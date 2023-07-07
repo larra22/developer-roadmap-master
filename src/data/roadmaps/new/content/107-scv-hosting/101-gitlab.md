@@ -1,0 +1,4 @@
+# GitLab
+
+Gitlab: Gitlab es un proyecto open-source instalable en tu servidor basado en Git que permite tener repositorios de código y control de versiones. Permite el trabajo colaborativo sobre el mismo proyecto. Gestionar usuarios, grupos e incluye integración con múltiples servicios como LDAP, wikis, etc. Se habla de control de cambios a la administración de los cambios realizados sobre un repositorio. Es decir, permite visualizar quién, cuando y qué se ha modificado en todo momento. Su mayor beneficio es poder volver a versiones anteriores de código fácilmente. [3] Los cambios son realizados mediante Branches (ramas), estas son espacios independientes donde los desarrolladores pueden trabajar libremente sin miedo de afectación. Cada uno puede realizar los cambios en una rama y publicarla en otra, llevando los cambios de una a otra mediante una petición de Merge Request.
+
