@@ -22,7 +22,7 @@ type ActivityResponse = {
       skipped: number;
       updatedAt: string;
     }[];
-    bestPractices: {
+    organigrama: {
       title: string;
       id: string;
       learning: number;
@@ -42,7 +42,7 @@ type ActivityResponse = {
     createdAt: Date;
     metadata: {
       resourceId?: string;
-      resourceType?: 'roadmap' | 'best-practice';
+      resourceType?: 'roadmap' | 'organigrama';
       topicId?: string;
       topicLabel?: string;
       resourceTitle?: string;
@@ -77,7 +77,7 @@ export function ActivityPage() {
   }, []);
 
   const learningRoadmaps = activity?.learning.roadmaps || [];
-  const learningBestPractices = activity?.learning.bestPractices || [];
+  const learningOrganigrama = activity?.learning.organigrama || [];
 
   if (isLoading) {
     return null;
@@ -93,9 +93,9 @@ export function ActivityPage() {
 
       <div class="mx-0 px-0 py-5 md:-mx-10 md:px-8 md:py-8">
         {learningRoadmaps.length === 0 &&
-          learningBestPractices.length === 0 && <EmptyActivity />}
+          learningOrganigrama.length === 0 && <EmptyActivity />}
 
-        {(learningRoadmaps.length > 0 || learningBestPractices.length > 0) && (
+        {(learningRoadmaps.length > 0 || learningOrganigrama.length > 0) && (
           <>
             <h2 class="mb-3 text-xs uppercase text-gray-400">
               Continue Following
@@ -127,23 +127,23 @@ export function ActivityPage() {
                   />
                 ))}
 
-              {learningBestPractices
+              {learningOrganigrama
                 .sort((a, b) => {
                   const updatedAtA = new Date(a.updatedAt);
                   const updatedAtB = new Date(b.updatedAt);
 
                   return updatedAtB.getTime() - updatedAtA.getTime();
                 })
-                .map((bestPractice) => (
+                .map((organigrama) => (
                   <ResourceProgress
-                    doneCount={bestPractice.done || 0}
-                    totalCount={bestPractice.total || 0}
-                    learningCount={bestPractice.learning || 0}
-                    resourceId={bestPractice.id}
-                    skippedCount={bestPractice.skipped || 0}
-                    resourceType={'best-practice'}
-                    title={bestPractice.title}
-                    updatedAt={bestPractice.updatedAt}
+                    doneCount={organigrama.done || 0}
+                    totalCount={organigrama.total || 0}
+                    learningCount={organigrama.learning || 0}
+                    resourceId={organigrama.id}
+                    skippedCount={organigrama.skipped || 0}
+                    resourceType={'organigrama'}
+                    title={organigrama.title}
+                    updatedAt={organigrama.updatedAt}
                     onCleared={() => {
                       pageProgressMessage.set('Updating activity');
                       loadActivity().finally(() => {

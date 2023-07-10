@@ -19,10 +19,10 @@ export function useToggleTopic(callback: CallbackType) {
       });
     }
 
-    window.addEventListener(`best-practice.topic.toggle`, handleToggleTopic);
+    window.addEventListener(`organigrama.topic.toggle`, handleToggleTopic);
     return () => {
       window.removeEventListener(
-        `best-practice.topic.toggle`,
+        `organigrama.topic.toggle`,
         handleToggleTopic
       );
     };

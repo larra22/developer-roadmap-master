@@ -107,7 +107,7 @@ export function TopicDetail() {
     const topicUrl =
       resourceType === 'roadmap'
         ? `/${resourceId}/${topicPartial}`
-        : `/best-practices/${resourceId}/${topicPartial}`;
+        : `/organigrama/${resourceId}/${topicPartial}`;
 
     httpGet<string>(
       topicUrl,
@@ -143,7 +143,7 @@ export function TopicDetail() {
   }
 
   const contributionDir =
-    resourceType === 'roadmap' ? 'roadmaps' : 'best-practices';
+    resourceType === 'roadmap' ? 'roadmaps' : 'organigrama';
   const contributionUrl = `https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/${contributionDir}/${resourceId}/content`;
 
   return (

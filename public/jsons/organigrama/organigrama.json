@@ -1,0 +1,653 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "75",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "measuredH": "47",
+                                    "measuredW": "461",
+                                    "properties": {
+                                        "size": "40",
+                                        "text": "LKS Next Organigrama"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "484",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "47",
+                    "measuredH": "47",
+                    "measuredW": "484",
+                    "properties": {
+                        "controlName": "ext_link:roadmap.sh/devops"
+                    },
+                    "typeID": "__group__",
+                    "w": "484",
+                    "x": "513",
+                    "y": "142",
+                    "zOrder": "3"
+                },
+                {
+                    "ID": "76",
+                    "h": "80",
+                    "measuredH": "79",
+                    "measuredW": "1",
+                    "properties": {
+                        "color": "16750848",
+                        "curvature": "0",
+                        "direction": "top",
+                        "leftArrow": "false",
+                        "p0": {
+                            "length": 0,
+                            "x": 0,
+                            "y": 0
+                        },
+                        "p1": {
+                            "length": 0.6076780965415332,
+                            "x": 0.6076578019865427,
+                            "y": 0.004966356936879205
+                        },
+                        "p2": {
+                            "length": 79.00632886041473,
+                            "x": 1,
+                            "y": 79
+                        },
+                        "rightArrow": "false",
+                        "shape": "line",
+                        "stroke": "dotted"
+                    },
+                    "typeID": "Arrow",
+                    "w": "2",
+                    "x": "703",
+                    "y": "62",
+                    "zOrder": "4"
+                },
+                {
+                    "ID": "77",
+                    "h": "142",
+                    "measuredH": "141",
+                    "measuredW": "1",
+                    "properties": {
+                        "color": "2848996",
+                        "curvature": "0",
+                        "direction": "top",
+                        "leftArrow": "false",
+                        "p0": {
+                            "length": 0,
+                            "x": 0,
+                            "y": 0
+                        },
+                        "p1": {
+                            "length": 0.5531925675566871,
+                            "x": 0.5531914893617021,
+                            "y": 0.001092198581560258
+                        },
+                        "p2": {
+                            "length": 141,
+                            "x": 0,
+                            "y": 141
+                        },
+                        "rightArrow": "false",
+                        "shape": "line"
+                    },
+                    "typeID": "Arrow",
+                    "w": "1",
+                    "x": "701",
+                    "y": "188",
+                    "zOrder": "5"
+                },
+                {
+                    "ID": "88",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "130",
+                                    "measuredH": "70",
+                                    "measuredW": "100",
+                                    "typeID": "Canvas",
+                                    "w": "420",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "children": {
+                                        "controls": {
+                                            "control": [
+                                                {
+                                                    "ID": "0",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "16777215",
+                                                        "icon": {
+                                                            "ID": "circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "0"
+                                                },
+                                                {
+                                                    "ID": "1",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "10027263",
+                                                        "icon": {
+                                                            "ID": "check-circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "1"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "h": "24",
+                                    "measuredH": "24",
+                                    "measuredW": "24",
+                                    "typeID": "__group__",
+                                    "w": "24",
+                                    "x": "23",
+                                    "y": "21",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "24",
+                                    "measuredW": "296",
+                                    "properties": {
+                                        "size": "16",
+                                        "text": "Personal Recommendation / Opinion"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "263",
+                                    "x": "59",
+                                    "y": "21",
+                                    "zOrder": "2"
+                                },
+                                {
+                                    "ID": "5",
+                                    "measuredH": "24",
+                                    "measuredW": "360",
+                                    "properties": {
+                                        "size": "16",
+                                        "text": "Order in roadmap not strict (Learn anytime)"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "324",
+                                    "x": "60",
+                                    "y": "86",
+                                    "zOrder": "3"
+                                },
+                                {
+                                    "ID": "6",
+                                    "children": {
+                                        "controls": {
+                                            "control": [
+                                                {
+                                                    "ID": "0",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "16777215",
+                                                        "icon": {
+                                                            "ID": "circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "0"
+                                                },
+                                                {
+                                                    "ID": "1",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "10066329",
+                                                        "icon": {
+                                                            "ID": "check-circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "1"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "h": "24",
+                                    "measuredH": "24",
+                                    "measuredW": "24",
+                                    "typeID": "__group__",
+                                    "w": "24",
+                                    "x": "23",
+                                    "y": "86",
+                                    "zOrder": "4"
+                                },
+                                {
+                                    "ID": "7",
+                                    "measuredH": "24",
+                                    "measuredW": "310",
+                                    "properties": {
+                                        "size": "16",
+                                        "text": "Alternative Option - Pick this or purple"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "277",
+                                    "x": "59",
+                                    "y": "54",
+                                    "zOrder": "5"
+                                },
+                                {
+                                    "ID": "8",
+                                    "children": {
+                                        "controls": {
+                                            "control": [
+                                                {
+                                                    "ID": "0",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "16777215",
+                                                        "icon": {
+                                                            "ID": "circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "0"
+                                                },
+                                                {
+                                                    "ID": "1",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "16777215",
+                                                        "icon": {
+                                                            "ID": "circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "1"
+                                                },
+                                                {
+                                                    "ID": "2",
+                                                    "measuredH": "24",
+                                                    "measuredW": "24",
+                                                    "properties": {
+                                                        "color": "3700253",
+                                                        "icon": {
+                                                            "ID": "check-circle",
+                                                            "size": "small"
+                                                        }
+                                                    },
+                                                    "typeID": "Icon",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "2"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "h": "24",
+                                    "measuredH": "24",
+                                    "measuredW": "24",
+                                    "typeID": "__group__",
+                                    "w": "24",
+                                    "x": "23",
+                                    "y": "53",
+                                    "zOrder": "6"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "130",
+                    "measuredH": "130",
+                    "measuredW": "420",
+                    "typeID": "__group__",
+                    "w": "420",
+                    "x": "46",
+                    "y": "28",
+                    "zOrder": "6"
+                },
+                {
+                    "ID": "398",
+                    "h": "94",
+                    "measuredH": "97",
+                    "measuredW": "1",
+                    "properties": {
+                        "color": "2848996",
+                        "curvature": "0",
+                        "direction": "top",
+                        "leftArrow": "false",
+                        "p0": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "p1": {
+                            "x": 0.5,
+                            "y": 0
+                        },
+                        "p2": {
+                            "x": 0,
+                            "y": 93
+                        },
+                        "rightArrow": "false",
+                        "shape": "line"
+                    },
+                    "typeID": "Arrow",
+                    "w": "1",
+                    "x": "702",
+                    "y": "377",
+                    "zOrder": "2"
+                },
+                {
+                    "ID": "400",
+                    "h": "105",
+                    "measuredH": "1",
+                    "measuredW": "333",
+                    "properties": {
+                        "color": "2848996",
+                        "curvature": "0",
+                        "direction": "top",
+                        "labelPosition": "5",
+                        "leftArrow": "false",
+                        "p0": {
+                            "x": 1,
+                            "y": 104
+                        },
+                        "p1": {
+                            "x": 0.5,
+                            "y": 0
+                        },
+                        "p2": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "rightArrow": "false",
+                        "shape": "line"
+                    },
+                    "typeID": "Arrow",
+                    "w": "2",
+                    "x": "703",
+                    "y": "502",
+                    "zOrder": "7"
+                },
+                {
+                    "ID": "401",
+                    "h": "1",
+                    "measuredH": "0",
+                    "measuredW": "356",
+                    "properties": {
+                        "color": "16750848",
+                        "curvature": "0",
+                        "direction": "top",
+                        "leftArrow": "false",
+                        "p0": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "p1": {
+                            "x": 0.5,
+                            "y": 0
+                        },
+                        "p2": {
+                            "x": 310,
+                            "y": 0
+                        },
+                        "rightArrow": "false",
+                        "shape": "line"
+                    },
+                    "typeID": "Arrow",
+                    "w": "311",
+                    "x": "714",
+                    "y": "354",
+                    "zOrder": "0"
+                },
+                {
+                    "ID": "458",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "53",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "color": "16776960"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "279",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "255",
+                                    "properties": {
+                                        "size": "24",
+                                        "text": "Consejo de Dirección"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "270",
+                                    "x": "9",
+                                    "y": "14",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "53",
+                    "measuredH": "53",
+                    "measuredW": "279",
+                    "properties": {
+                        "controlName": "103-entrega-vs-despliegue"
+                    },
+                    "typeID": "__group__",
+                    "w": "279",
+                    "x": "563",
+                    "y": "449",
+                    "zOrder": "8"
+                },
+                {
+                    "ID": "630",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "269",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "208",
+                                    "properties": {
+                                        "size": "24",
+                                        "text": "Beatriz Lizarralde"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "222",
+                                    "x": "31",
+                                    "y": "10",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "96",
+                                    "properties": {
+                                        "size": "18",
+                                        "text": "Presidenta"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "114",
+                                    "x": "85",
+                                    "y": "42",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "269",
+                    "properties": {
+                        "controlName": "104-infrastructure-as-code"
+                    },
+                    "typeID": "__group__",
+                    "w": "269",
+                    "x": "1026",
+                    "y": "314",
+                    "zOrder": "1"
+                },
+                {
+                    "ID": "773",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "50",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "color": "16776960"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "302",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "183",
+                                    "properties": {
+                                        "align": "center",
+                                        "bold": "false",
+                                        "size": "24",
+                                        "text": "Consejo Rector"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "250",
+                                    "x": "26",
+                                    "y": "11",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "50",
+                    "measuredH": "50",
+                    "measuredW": "302",
+                    "properties": {
+                        "controlName": "101-introduccion"
+                    },
+                    "typeID": "__group__",
+                    "w": "302",
+                    "x": "540",
+                    "y": "327",
+                    "zOrder": "9"
+                },
+                {
+                    "ID": "849",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "53",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "color": "16776960"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "279",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "206",
+                                    "properties": {
+                                        "size": "24",
+                                        "text": "Gerente Gerneral"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "222",
+                                    "x": "28",
+                                    "y": "10",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "53",
+                    "measuredH": "53",
+                    "measuredW": "279",
+                    "properties": {
+                        "controlName": "103-entrega-vs-despliegue"
+                    },
+                    "typeID": "__group__",
+                    "w": "279",
+                    "x": "555",
+                    "y": "575",
+                    "zOrder": "10"
+                }
+            ]
+        },
+        "measuredH": "628",
+        "measuredW": "1295",
+        "mockupH": "600",
+        "mockupW": "1249",
+        "version": "1.0"
+    }
+}

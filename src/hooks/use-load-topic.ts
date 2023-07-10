@@ -20,11 +20,11 @@ export function useLoadTopic(callback: CallbackType) {
     }
 
     window.addEventListener(`roadmap.topic.click`, handleTopicClick);
-    window.addEventListener(`best-practice.topic.click`, handleTopicClick);
+    window.addEventListener(`organigrama.topic.click`, handleTopicClick);
 
     return () => {
       window.removeEventListener(`roadmap.topic.click`, handleTopicClick);
-      window.removeEventListener(`best-practice.topic.click`, handleTopicClick);
+      window.removeEventListener(`organigrama.topic.click`, handleTopicClick);
     };
   }, []);
 }

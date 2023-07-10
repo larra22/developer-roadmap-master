@@ -3,7 +3,7 @@ import { httpPost } from '../../lib/http';
 import { getRelativeTimeString } from '../../lib/date';
 
 type ResourceProgressType = {
-  resourceType: 'roadmap' | 'best-practice';
+  resourceType: 'roadmap' | 'organigrama';
   resourceId: string;
   title: string;
   updatedAt: string;
@@ -57,7 +57,7 @@ export function ResourceProgress(props: ResourceProgressType) {
   const url =
     resourceType === 'roadmap'
       ? `/${resourceId}`
-      : `/best-practices/${resourceId}`;
+      : `/organigrama/${resourceId}`;
 
   const totalMarked = doneCount + skippedCount;
   const progressPercentage = Math.round((totalMarked / totalCount) * 100);

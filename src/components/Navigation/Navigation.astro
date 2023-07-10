@@ -15,8 +15,8 @@ import AccountDropdown from './AccountDropdown.astro';
         <a href='/roadmaps' class='text-gray-400 hover:text-white'>Roadmaps</a>
       </li>
       <li>
-        <a href='/best-practices' class='text-gray-400 hover:text-white'
-          >Best Practices</a
+        <a href='/organigrama' class='text-gray-400 hover:text-white'
+          >Organigrama</a
         >
       </li>
       <li class='hidden lg:inline'>
@@ -32,23 +32,7 @@ import AccountDropdown from './AccountDropdown.astro';
         </kbd>
       </li>
     </ul>
-    <ul class='hidden h-8 w-[172px] items-center justify-end gap-5 sm:flex'>
-      <li data-guest-required class='hidden'>
-        <a href='/login' class='text-gray-400 hover:text-white'>Login</a>
-      </li>
-      <li>
-        <AccountDropdown />
-
-        <a
-          data-guest-required
-          class='flex hidden h-8 w-28 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-700 px-4 py-2 text-sm font-medium text-white hover:from-blue-500 hover:to-blue-600'
-          href='/signup'
-        >
-          <span>Sign Up</span>
-        </a>
-      </li>
-    </ul>
-
+    
     <!-- Mobile Navigation Button -->
     <button
       class='block cursor-pointer text-gray-400 hover:text-gray-50 sm:hidden'
@@ -78,10 +62,10 @@ import AccountDropdown from './AccountDropdown.astro';
         </li>
         <li>
           <a
-            href='/best-practices'
+            href='/organigrama'
             class='text-xl hover:text-blue-300 md:text-lg'
           >
-            Best Practices
+            Organigrama
           </a>
         </li>
         <li>
@@ -102,32 +86,6 @@ import AccountDropdown from './AccountDropdown.astro';
             class='text-xl hover:text-blue-300 md:text-lg'
           >
             Account
-          </a>
-        </li>
-        <li data-auth-required class='hidden'>
-          <button
-            data-logout-button
-            class='text-xl text-red-300 hover:text-red-400 md:text-lg'
-          >
-            Logout
-          </button>
-        </li>
-        <li>
-          <a
-            data-guest-required
-            href='/login'
-            class='hidden text-xl text-white md:text-lg'
-          >
-            Login
-          </a>
-        </li>
-        <li>
-          <a
-            data-guest-required
-            href='/signup'
-            class='hidden text-xl text-green-300 hover:text-green-400 md:text-lg'
-          >
-            Sign Up
           </a>
         </li>
       </ul>

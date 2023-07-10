@@ -1,4 +1,4 @@
-import { getAllBestPractices } from '../lib/best-pratice';
+import { getAllOrganigramas } from '../lib/organigrama';
 import { getAllGuides } from '../lib/guide';
 import { getRoadmapsByTag } from '../lib/roadmap';
 import { getAllVideos } from '../lib/video';
@@ -7,7 +7,7 @@ export async function get() {
   const guides = await getAllGuides();
   const videos = await getAllVideos();
   const roadmaps = await getRoadmapsByTag('roadmap');
-  const bestPractices = await getAllBestPractices();
+  const organigramas = await getAllOrganigramas();
 
   return {
     body: JSON.stringify([
@@ -16,10 +16,10 @@ export async function get() {
         title: roadmap.frontmatter.briefTitle,
         group: 'Roadmaps',
       })),
-      ...bestPractices.map((bestPractice) => ({
-        url: `/best-practices/${bestPractice.id}`,
-        title: bestPractice.frontmatter.briefTitle,
-        group: 'Best Practices',
+      ...organigramas.map((organigrama) => ({
+        url: `/organigrama/${organigrama.id}`,
+        title: organigrama.frontmatter.briefTitle,
+        group: 'Organigrama',
       })),
       ...guides.map((guide) => ({
         url: `/guides/${guide.id}`,

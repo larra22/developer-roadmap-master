@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { useKeydown } from '../../hooks/use-keydown';
 import { useOutsideClick } from '../../hooks/use-outside-click';
-import BestPracticesIcon from '../../icons/best-practices.svg';
+import OrganigramaIcon from '../../icons/organigrama.svg';
 import GuideIcon from '../../icons/guide.svg';
 import HomeIcon from '../../icons/home.svg';
 import RoadmapIcon from '../../icons/roadmap.svg';
@@ -29,10 +29,10 @@ const defaultPages: PageType[] = [
   },
   { url: '/roadmaps', title: 'Roadmaps', group: 'Pages', icon: RoadmapIcon },
   {
-    url: '/best-practices',
-    title: 'Best Practices',
+    url: '/organigrama',
+    title: 'Organigrama',
     group: 'Pages',
-    icon: BestPracticesIcon,
+    icon: OrganigramaIcon,
   },
   { url: '/guides', title: 'Guides', group: 'Pages', icon: GuideIcon },
   { url: '/videos', title: 'Videos', group: 'Pages', icon: VideoIcon },

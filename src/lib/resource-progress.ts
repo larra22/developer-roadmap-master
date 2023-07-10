@@ -3,7 +3,7 @@ import { httpGet, httpPost } from './http';
 import { TOKEN_COOKIE_NAME } from './jwt';
 import Element = astroHTML.JSX.Element;
 
-export type ResourceType = 'roadmap' | 'best-practice';
+export type ResourceType = 'roadmap' | 'organigrama';
 export type ResourceProgressType = 'done' | 'learning' | 'pending' | 'skipped';
 
 type TopicMeta = {
@@ -74,7 +74,7 @@ export async function updateResourceProgress(
 }
 
 export async function getResourceProgress(
-  resourceType: 'roadmap' | 'best-practice',
+  resourceType: 'roadmap' | 'organigrama',
   resourceId: string
 ): Promise<{ done: string[]; learning: string[], skipped: string[] }> {
   // No need to load progress if user is not logged in
@@ -136,7 +136,7 @@ async function loadFreshProgress(
 }
 
 export function setResourceProgress(
-  resourceType: 'roadmap' | 'best-practice',
+  resourceType: 'roadmap' | 'organigrama',
   resourceId: string,
   done: string[],
   learning: string[],

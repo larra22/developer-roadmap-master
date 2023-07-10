@@ -1,0 +1,110 @@
+---
+import OrganigramaHeader from '../../../components/OrganigramaHeader.astro';
+import FrameRenderer from '../../../components/FrameRenderer/FrameRenderer.astro';
+import MarkdownFile from '../../../components/MarkdownFile.astro';
+import ShareIcons from '../../../components/ShareIcons/ShareIcons.astro';
+import { TopicDetail } from '../../../components/TopicDetail/TopicDetail';
+import UpcomingForm from '../../../components/UpcomingForm.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+OrganigramaFrontmatter,
+getOrganigramaIds,
+} from '../../../lib/organigrama';
+import { generateArticleSchema } from '../../../lib/jsonld-schema';
+
+export async function getStaticPaths() {
+  const organigramaIds = await getOrganigramaIds();
+
+  return organigramaIds.map((organigramaId) => ({
+    params: { organigramaId },
+  }));
+}
+
+interface Params extends Record<string, string | undefined> {
+  organigramaId: string;
+}
+
+const { organigramaId } = Astro.params as Params;
+const organigramaFile = await import(
+  `../../../data/organigrama/${organigramaId}/${organigramaId}.md`
+);
+const organigramaData =
+  organigramaFile.frontmatter as OrganigramaFrontmatter;
+
+let jsonLdSchema = [];
+
+if (organigramaData.schema) {
+  const organigramaSchema = organigramaData.schema;
+  jsonLdSchema.push(
+    generateArticleSchema({
+      url: `https://roadmap.sh/best-practices/${organigramaId}`,
+      headline: organigramaSchema.headline,
+      description: organigramaSchema.description,
+      datePublished: organigramaSchema.datePublished,
+      dateModified: organigramaSchema.dateModified,
+      imageUrl: organigramaSchema.imageUrl,
+    })
+  );
+}
+
+const contentContributionLink = `https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/best-practices/${organigramaId}/content`;
+---
+
+<BaseLayout
+  permalink={`/organigrama/${organigramaId}`}
+  title={organigramaData?.seo?.title}
+  briefTitle={organigramaData?.briefTitle}
+  description={organigramaData.seo.description}
+  keywords={organigramaData.seo.keywords}
+  noIndex={organigramaData.isUpcoming}
+  jsonLd={jsonLdSchema}
+>
+  <!-- Preload the font being used in the renderer -->
+  <link
+    rel='preload'
+    href='/fonts/balsamiq.woff2'
+    as='font'
+    type='font/woff2'
+    crossorigin
+    slot='after-header'
+  />
+
+  <OrganigramaHeader
+    title={organigramaData.title}
+    description={organigramaData.description}
+    organigramaId={organigramaId}
+    isUpcoming={organigramaData.isUpcoming}
+  />
+
+  <div class='bg-gray-50 py-4 sm:py-12'>
+    {
+      !organigramaData.isUpcoming && organigramaData.jsonUrl && (
+        <div class='container relative max-w-[1000px]'>
+          <ShareIcons
+            description={organigramaData.briefDescription}
+            pageUrl={`https://roadmap.sh/best-practices/${organigramaId}`}
+          />
+
+          <TopicDetail client:idle />
+
+          <FrameRenderer
+            resourceType={'organigrama'}
+            resourceId={organigramaId}
+            jsonUrl={organigramaData.jsonUrl}
+            dimensions={organigramaData.dimensions}
+          />
+        </div>
+      )
+    }
+
+    {
+      !organigramaData.isUpcoming && !organigramaData.jsonUrl && (
+        <MarkdownFile>
+          <organigramaFile.Content />
+        </MarkdownFile>
+      )
+    }
+  </div>
+
+  {organigramaData.isUpcoming && <UpcomingForm />}
+</BaseLayout>

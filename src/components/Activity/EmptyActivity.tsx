@@ -16,8 +16,8 @@ export function EmptyActivity() {
             Roadmaps
           </a>{' '}
           or{' '}
-          <a href="/best-practices" class="mt-4 text-blue-500 hover:underline">
-            Best Practices
+          <a href="/organigrama" class="mt-4 text-blue-500 hover:underline">
+          Organigrama
           </a>{' '}
           progress.
         </p>
