@@ -32,9 +32,9 @@
                     },
                     "typeID": "__group__",
                     "w": "484",
-                    "x": "513",
-                    "y": "142",
-                    "zOrder": "3"
+                    "x": "889",
+                    "y": "138",
+                    "zOrder": "6"
                 },
                 {
                     "ID": "76",
@@ -47,19 +47,19 @@
                         "direction": "top",
                         "leftArrow": "false",
                         "p0": {
-                            "length": 0,
+                            "y": 0,
                             "x": 0,
-                            "y": 0
+                            "length": 0
                         },
                         "p1": {
-                            "length": 0.6076780965415332,
+                            "y": 0.004966356936879205,
                             "x": 0.6076578019865427,
-                            "y": 0.004966356936879205
+                            "length": 0.6076780965415332
                         },
                         "p2": {
-                            "length": 79.00632886041473,
+                            "y": 79,
                             "x": 1,
-                            "y": 79
+                            "length": 79.00632886041473
                         },
                         "rightArrow": "false",
                         "shape": "line",
@@ -67,9 +67,9 @@
                     },
                     "typeID": "Arrow",
                     "w": "2",
-                    "x": "703",
-                    "y": "62",
-                    "zOrder": "4"
+                    "x": "1079",
+                    "y": "58",
+                    "zOrder": "7"
                 },
                 {
                     "ID": "77",
@@ -82,355 +82,62 @@
                         "direction": "top",
                         "leftArrow": "false",
                         "p0": {
-                            "length": 0,
+                            "y": 0,
                             "x": 0,
-                            "y": 0
+                            "length": 0
                         },
                         "p1": {
-                            "length": 0.5531925675566871,
+                            "y": 0.001092198581560258,
                             "x": 0.5531914893617021,
-                            "y": 0.001092198581560258
+                            "length": 0.5531925675566871
                         },
                         "p2": {
-                            "length": 141,
+                            "y": 141,
                             "x": 0,
-                            "y": 141
+                            "length": 141
                         },
                         "rightArrow": "false",
                         "shape": "line"
                     },
                     "typeID": "Arrow",
                     "w": "1",
-                    "x": "701",
-                    "y": "188",
-                    "zOrder": "5"
-                },
-                {
-                    "ID": "88",
-                    "children": {
-                        "controls": {
-                            "control": [
-                                {
-                                    "ID": "0",
-                                    "h": "130",
-                                    "measuredH": "70",
-                                    "measuredW": "100",
-                                    "typeID": "Canvas",
-                                    "w": "420",
-                                    "x": "0",
-                                    "y": "0",
-                                    "zOrder": "0"
-                                },
-                                {
-                                    "ID": "1",
-                                    "children": {
-                                        "controls": {
-                                            "control": [
-                                                {
-                                                    "ID": "0",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "16777215",
-                                                        "icon": {
-                                                            "ID": "circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "0"
-                                                },
-                                                {
-                                                    "ID": "1",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "10027263",
-                                                        "icon": {
-                                                            "ID": "check-circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "1"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "h": "24",
-                                    "measuredH": "24",
-                                    "measuredW": "24",
-                                    "typeID": "__group__",
-                                    "w": "24",
-                                    "x": "23",
-                                    "y": "21",
-                                    "zOrder": "1"
-                                },
-                                {
-                                    "ID": "2",
-                                    "measuredH": "24",
-                                    "measuredW": "296",
-                                    "properties": {
-                                        "size": "16",
-                                        "text": "Personal Recommendation / Opinion"
-                                    },
-                                    "typeID": "Label",
-                                    "w": "263",
-                                    "x": "59",
-                                    "y": "21",
-                                    "zOrder": "2"
-                                },
-                                {
-                                    "ID": "5",
-                                    "measuredH": "24",
-                                    "measuredW": "360",
-                                    "properties": {
-                                        "size": "16",
-                                        "text": "Order in roadmap not strict (Learn anytime)"
-                                    },
-                                    "typeID": "Label",
-                                    "w": "324",
-                                    "x": "60",
-                                    "y": "86",
-                                    "zOrder": "3"
-                                },
-                                {
-                                    "ID": "6",
-                                    "children": {
-                                        "controls": {
-                                            "control": [
-                                                {
-                                                    "ID": "0",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "16777215",
-                                                        "icon": {
-                                                            "ID": "circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "0"
-                                                },
-                                                {
-                                                    "ID": "1",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "10066329",
-                                                        "icon": {
-                                                            "ID": "check-circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "1"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "h": "24",
-                                    "measuredH": "24",
-                                    "measuredW": "24",
-                                    "typeID": "__group__",
-                                    "w": "24",
-                                    "x": "23",
-                                    "y": "86",
-                                    "zOrder": "4"
-                                },
-                                {
-                                    "ID": "7",
-                                    "measuredH": "24",
-                                    "measuredW": "310",
-                                    "properties": {
-                                        "size": "16",
-                                        "text": "Alternative Option - Pick this or purple"
-                                    },
-                                    "typeID": "Label",
-                                    "w": "277",
-                                    "x": "59",
-                                    "y": "54",
-                                    "zOrder": "5"
-                                },
-                                {
-                                    "ID": "8",
-                                    "children": {
-                                        "controls": {
-                                            "control": [
-                                                {
-                                                    "ID": "0",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "16777215",
-                                                        "icon": {
-                                                            "ID": "circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "0"
-                                                },
-                                                {
-                                                    "ID": "1",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "16777215",
-                                                        "icon": {
-                                                            "ID": "circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "1"
-                                                },
-                                                {
-                                                    "ID": "2",
-                                                    "measuredH": "24",
-                                                    "measuredW": "24",
-                                                    "properties": {
-                                                        "color": "3700253",
-                                                        "icon": {
-                                                            "ID": "check-circle",
-                                                            "size": "small"
-                                                        }
-                                                    },
-                                                    "typeID": "Icon",
-                                                    "x": "0",
-                                                    "y": "0",
-                                                    "zOrder": "2"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "h": "24",
-                                    "measuredH": "24",
-                                    "measuredW": "24",
-                                    "typeID": "__group__",
-                                    "w": "24",
-                                    "x": "23",
-                                    "y": "53",
-                                    "zOrder": "6"
-                                }
-                            ]
-                        }
-                    },
-                    "h": "130",
-                    "measuredH": "130",
-                    "measuredW": "420",
-                    "typeID": "__group__",
-                    "w": "420",
-                    "x": "46",
-                    "y": "28",
-                    "zOrder": "6"
-                },
-                {
-                    "ID": "398",
-                    "h": "94",
-                    "measuredH": "97",
-                    "measuredW": "1",
-                    "properties": {
-                        "color": "2848996",
-                        "curvature": "0",
-                        "direction": "top",
-                        "leftArrow": "false",
-                        "p0": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "p1": {
-                            "x": 0.5,
-                            "y": 0
-                        },
-                        "p2": {
-                            "x": 0,
-                            "y": 93
-                        },
-                        "rightArrow": "false",
-                        "shape": "line"
-                    },
-                    "typeID": "Arrow",
-                    "w": "1",
-                    "x": "702",
-                    "y": "377",
-                    "zOrder": "2"
-                },
-                {
-                    "ID": "400",
-                    "h": "105",
-                    "measuredH": "1",
-                    "measuredW": "333",
-                    "properties": {
-                        "color": "2848996",
-                        "curvature": "0",
-                        "direction": "top",
-                        "labelPosition": "5",
-                        "leftArrow": "false",
-                        "p0": {
-                            "x": 1,
-                            "y": 104
-                        },
-                        "p1": {
-                            "x": 0.5,
-                            "y": 0
-                        },
-                        "p2": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "rightArrow": "false",
-                        "shape": "line"
-                    },
-                    "typeID": "Arrow",
-                    "w": "2",
-                    "x": "703",
-                    "y": "502",
-                    "zOrder": "7"
+                    "x": "1077",
+                    "y": "184",
+                    "zOrder": "8"
                 },
                 {
                     "ID": "401",
-                    "h": "1",
-                    "measuredH": "0",
-                    "measuredW": "356",
+                    "h": "119",
+                    "measuredH": "144",
+                    "measuredW": "2",
                     "properties": {
                         "color": "16750848",
                         "curvature": "0",
                         "direction": "top",
                         "leftArrow": "false",
                         "p0": {
+                            "y": 118,
                             "x": 0,
-                            "y": 0
+                            "length": 118
                         },
                         "p1": {
-                            "x": 0.5,
-                            "y": 0
+                            "y": 0.0005785920925747348,
+                            "x": 0.45834136933461916,
+                            "length": 0.4583417345304084
                         },
                         "p2": {
-                            "x": 310,
-                            "y": 0
+                            "y": 0,
+                            "x": 0,
+                            "length": 0
                         },
                         "rightArrow": "false",
                         "shape": "line"
                     },
                     "typeID": "Arrow",
-                    "w": "311",
-                    "x": "714",
-                    "y": "354",
-                    "zOrder": "0"
+                    "w": "1",
+                    "x": "589",
+                    "y": "388",
+                    "zOrder": "4"
                 },
                 {
                     "ID": "458",
@@ -439,14 +146,15 @@
                             "control": [
                                 {
                                     "ID": "0",
-                                    "h": "53",
+                                    "h": "54",
                                     "measuredH": "140",
                                     "measuredW": "200",
                                     "properties": {
-                                        "color": "16776960"
+                                        "borderColor": "2848996",
+                                        "color": "16777215"
                                     },
                                     "typeID": "TextArea",
-                                    "w": "279",
+                                    "w": "289",
                                     "x": "0",
                                     "y": "0",
                                     "zOrder": "0"
@@ -456,11 +164,12 @@
                                     "measuredH": "32",
                                     "measuredW": "255",
                                     "properties": {
+                                        "align": "center",
                                         "size": "24",
                                         "text": "Consejo de Dirección"
                                     },
                                     "typeID": "Label",
-                                    "w": "270",
+                                    "w": "280",
                                     "x": "9",
                                     "y": "14",
                                     "zOrder": "1"
@@ -468,130 +177,16 @@
                             ]
                         }
                     },
-                    "h": "53",
-                    "measuredH": "53",
-                    "measuredW": "279",
+                    "h": "54",
+                    "measuredH": "54",
+                    "measuredW": "289",
                     "properties": {
                         "controlName": "103-entrega-vs-despliegue"
                     },
                     "typeID": "__group__",
-                    "w": "279",
-                    "x": "563",
-                    "y": "449",
-                    "zOrder": "8"
-                },
-                {
-                    "ID": "630",
-                    "children": {
-                        "controls": {
-                            "control": [
-                                {
-                                    "ID": "0",
-                                    "h": "77",
-                                    "measuredH": "140",
-                                    "measuredW": "200",
-                                    "properties": {
-                                        "backgroundAlpha": "0",
-                                        "borderColor": "16750848",
-                                        "color": "16777215"
-                                    },
-                                    "typeID": "TextArea",
-                                    "w": "269",
-                                    "x": "0",
-                                    "y": "0",
-                                    "zOrder": "0"
-                                },
-                                {
-                                    "ID": "1",
-                                    "measuredH": "32",
-                                    "measuredW": "208",
-                                    "properties": {
-                                        "size": "24",
-                                        "text": "Beatriz Lizarralde"
-                                    },
-                                    "typeID": "Label",
-                                    "w": "222",
-                                    "x": "31",
-                                    "y": "10",
-                                    "zOrder": "1"
-                                },
-                                {
-                                    "ID": "2",
-                                    "measuredH": "26",
-                                    "measuredW": "96",
-                                    "properties": {
-                                        "size": "18",
-                                        "text": "Presidenta"
-                                    },
-                                    "typeID": "Label",
-                                    "w": "114",
-                                    "x": "85",
-                                    "y": "42",
-                                    "zOrder": "2"
-                                }
-                            ]
-                        }
-                    },
-                    "h": "77",
-                    "measuredH": "77",
-                    "measuredW": "269",
-                    "properties": {
-                        "controlName": "104-infrastructure-as-code"
-                    },
-                    "typeID": "__group__",
-                    "w": "269",
-                    "x": "1026",
-                    "y": "314",
-                    "zOrder": "1"
-                },
-                {
-                    "ID": "773",
-                    "children": {
-                        "controls": {
-                            "control": [
-                                {
-                                    "ID": "0",
-                                    "h": "50",
-                                    "measuredH": "140",
-                                    "measuredW": "200",
-                                    "properties": {
-                                        "color": "16776960"
-                                    },
-                                    "typeID": "TextArea",
-                                    "w": "302",
-                                    "x": "0",
-                                    "y": "0",
-                                    "zOrder": "0"
-                                },
-                                {
-                                    "ID": "1",
-                                    "measuredH": "32",
-                                    "measuredW": "183",
-                                    "properties": {
-                                        "align": "center",
-                                        "bold": "false",
-                                        "size": "24",
-                                        "text": "Consejo Rector"
-                                    },
-                                    "typeID": "Label",
-                                    "w": "250",
-                                    "x": "26",
-                                    "y": "11",
-                                    "zOrder": "1"
-                                }
-                            ]
-                        }
-                    },
-                    "h": "50",
-                    "measuredH": "50",
-                    "measuredW": "302",
-                    "properties": {
-                        "controlName": "101-introduccion"
-                    },
-                    "typeID": "__group__",
-                    "w": "302",
-                    "x": "540",
-                    "y": "327",
+                    "w": "289",
+                    "x": "1178",
+                    "y": "356",
                     "zOrder": "9"
                 },
                 {
@@ -618,6 +213,7 @@
                                     "measuredH": "32",
                                     "measuredW": "206",
                                     "properties": {
+                                        "align": "center",
                                         "size": "24",
                                         "text": "Gerente Gerneral"
                                     },
@@ -638,16 +234,1232 @@
                     },
                     "typeID": "__group__",
                     "w": "279",
-                    "x": "555",
-                    "y": "575",
+                    "x": "1520",
+                    "y": "116",
+                    "zOrder": "11"
+                },
+                {
+                    "ID": "855",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "50",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "align": "center",
+                                        "borderColor": "2848996",
+                                        "color": "16777215",
+                                        "text": ""
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "302",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "183",
+                                    "properties": {
+                                        "align": "center",
+                                        "bold": "false",
+                                        "size": "24",
+                                        "text": "Consejo Rector"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "228",
+                                    "x": "26",
+                                    "y": "11",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "50",
+                    "measuredH": "50",
+                    "measuredW": "302",
+                    "properties": {
+                        "controlName": "100-consejo-rector"
+                    },
+                    "typeID": "__group__",
+                    "w": "302",
+                    "x": "440",
+                    "y": "358",
                     "zOrder": "10"
+                },
+                {
+                    "ID": "857",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "235",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "185",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Patxi Larrañaga"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "194",
+                                    "x": "27",
+                                    "y": "8",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "133",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Vicepresidente"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "133",
+                                    "x": "51",
+                                    "y": "40",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "235",
+                    "typeID": "__group__",
+                    "w": "235",
+                    "x": "450",
+                    "y": "593",
+                    "zOrder": "12"
+                },
+                {
+                    "ID": "858",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "197",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "145",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Jabi Puertas"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "163",
+                                    "x": "23",
+                                    "y": "8",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "94",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Secretario"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "112",
+                                    "x": "42",
+                                    "y": "40",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "197",
+                    "typeID": "__group__",
+                    "w": "197",
+                    "x": "450",
+                    "y": "681",
+                    "zOrder": "13"
+                },
+                {
+                    "ID": "859",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "80",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "260",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "223",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "María Amutxastegi"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "228",
+                                    "x": "16",
+                                    "y": "11",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "48",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Vocal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "63",
+                                    "x": "99",
+                                    "y": "47",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "80",
+                    "measuredH": "80",
+                    "measuredW": "260",
+                    "typeID": "__group__",
+                    "w": "260",
+                    "x": "223",
+                    "y": "774",
+                    "zOrder": "14"
+                },
+                {
+                    "ID": "861",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "80",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "211",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "168",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Yon Polvorosa"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "175",
+                                    "x": "11",
+                                    "y": "14",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "48",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Vocal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "65",
+                                    "x": "79",
+                                    "y": "46",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "80",
+                    "measuredH": "80",
+                    "measuredW": "211",
+                    "typeID": "__group__",
+                    "w": "211",
+                    "x": "492",
+                    "y": "774",
+                    "zOrder": "15"
+                },
+                {
+                    "ID": "862",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "76",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "284",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "257",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Eva Pérez de Arenaza"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "258",
+                                    "x": "10",
+                                    "y": "10",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "48",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Vocal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "71",
+                                    "x": "107",
+                                    "y": "42",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "76",
+                    "measuredH": "76",
+                    "measuredW": "284",
+                    "typeID": "__group__",
+                    "w": "284",
+                    "x": "719",
+                    "y": "776",
+                    "zOrder": "16"
+                },
+                {
+                    "ID": "863",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "69",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "279",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "228",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Izaro Zarraonandia"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "231",
+                                    "x": "24",
+                                    "y": "7",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "48",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Vocal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "69",
+                                    "x": "114",
+                                    "y": "39",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "69",
+                    "measuredH": "69",
+                    "measuredW": "279",
+                    "typeID": "__group__",
+                    "w": "279",
+                    "x": "327",
+                    "y": "870",
+                    "zOrder": "17"
+                },
+                {
+                    "ID": "864",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "69",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "233",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "173",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Jaione Badiola"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "194",
+                                    "x": "27",
+                                    "y": "7",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "48",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Vocal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "75",
+                                    "x": "79",
+                                    "y": "39",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "69",
+                    "measuredH": "69",
+                    "measuredW": "233",
+                    "typeID": "__group__",
+                    "w": "233",
+                    "x": "622",
+                    "y": "870",
+                    "zOrder": "18"
+                },
+                {
+                    "ID": "865",
+                    "h": "119",
+                    "measuredH": "118",
+                    "measuredW": "1",
+                    "properties": {
+                        "color": "16750848",
+                        "curvature": "0",
+                        "direction": "top",
+                        "leftArrow": "false",
+                        "p0": {
+                            "y": 118,
+                            "x": 0,
+                            "length": 118
+                        },
+                        "p1": {
+                            "y": 0.0005785920925747348,
+                            "x": 0.4583413693346192,
+                            "length": 0.45834173453040844
+                        },
+                        "p2": {
+                            "y": 0,
+                            "x": 0,
+                            "length": 0
+                        },
+                        "rightArrow": "false",
+                        "shape": "line"
+                    },
+                    "typeID": "Arrow",
+                    "w": "1",
+                    "x": "1327",
+                    "y": "396",
+                    "zOrder": "0"
+                },
+                {
+                    "ID": "883",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "55",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "borderColor": "40463",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "290",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "137",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Consultoría"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "281",
+                                    "x": "9",
+                                    "y": "14",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "55",
+                    "measuredH": "55",
+                    "measuredW": "290",
+                    "properties": {
+                        "controlName": "103-entrega-vs-despliegue"
+                    },
+                    "typeID": "__group__",
+                    "w": "290",
+                    "x": "243",
+                    "y": "1100",
+                    "zOrder": "27"
+                },
+                {
+                    "ID": "884",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "55",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "borderColor": "40463",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "290",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "63",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Legal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "281",
+                                    "x": "9",
+                                    "y": "14",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "55",
+                    "measuredH": "55",
+                    "measuredW": "290",
+                    "properties": {
+                        "controlName": "103-entrega-vs-despliegue"
+                    },
+                    "typeID": "__group__",
+                    "w": "290",
+                    "x": "549",
+                    "y": "1100",
+                    "zOrder": "28"
+                },
+                {
+                    "ID": "885",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "55",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "borderColor": "40463",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "413",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "378",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Financial Solutions & Corporate"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "401",
+                                    "x": "13",
+                                    "y": "14",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "55",
+                    "measuredH": "55",
+                    "measuredW": "414",
+                    "properties": {
+                        "controlName": "103-entrega-vs-despliegue"
+                    },
+                    "typeID": "__group__",
+                    "w": "414",
+                    "x": "575",
+                    "y": "1200",
+                    "zOrder": "29"
+                },
+                {
+                    "ID": "886",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "55",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "borderColor": "40463",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "290",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "128",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Tecnología"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "281",
+                                    "x": "9",
+                                    "y": "14",
+                                    "zOrder": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "55",
+                    "measuredH": "55",
+                    "measuredW": "290",
+                    "properties": {
+                        "controlName": "103-entrega-vs-despliegue"
+                    },
+                    "typeID": "__group__",
+                    "w": "290",
+                    "x": "243",
+                    "y": "1200",
+                    "zOrder": "30"
+                },
+                {
+                    "ID": "892",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "269",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "208",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Beatriz Lizarralde"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "222",
+                                    "x": "31",
+                                    "y": "8",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "96",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Presidenta"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "114",
+                                    "x": "85",
+                                    "y": "39",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "269",
+                    "typeID": "__group__",
+                    "w": "269",
+                    "x": "450",
+                    "y": "507",
+                    "zOrder": "5"
+                },
+                {
+                    "ID": "905",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "248",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "177",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Martin Recalde"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "187",
+                                    "x": "27",
+                                    "y": "8",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "128",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Director Legal"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "149",
+                                    "x": "65",
+                                    "y": "40",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "248",
+                    "typeID": "__group__",
+                    "w": "248",
+                    "x": "1188",
+                    "y": "776",
+                    "zOrder": "19"
+                },
+                {
+                    "ID": "906",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "75",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "342",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "210",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Jesus Dorronsoro"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "229",
+                                    "x": "27",
+                                    "y": "8",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "319",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Director de Consultoría Tecnológica"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "336",
+                                    "x": "0",
+                                    "y": "40",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "75",
+                    "measuredH": "75",
+                    "measuredW": "342",
+                    "typeID": "__group__",
+                    "w": "342",
+                    "x": "1188",
+                    "y": "689",
+                    "zOrder": "3"
+                },
+                {
+                    "ID": "907",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "269",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "188",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Gonzalo Fornos"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "194",
+                                    "x": "27",
+                                    "y": "11",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "182",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Director Consultoría"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "194",
+                                    "x": "42",
+                                    "y": "43",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "269",
+                    "typeID": "__group__",
+                    "w": "269",
+                    "x": "1188",
+                    "y": "601",
+                    "zOrder": "2"
+                },
+                {
+                    "ID": "908",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "children": {
+                                        "controls": {
+                                            "control": [
+                                                {
+                                                    "ID": "0",
+                                                    "h": "77",
+                                                    "measuredH": "140",
+                                                    "measuredW": "200",
+                                                    "properties": {
+                                                        "backgroundAlpha": "0",
+                                                        "borderColor": "16750848",
+                                                        "color": "16777215"
+                                                    },
+                                                    "typeID": "TextArea",
+                                                    "w": "269",
+                                                    "x": "0",
+                                                    "y": "0",
+                                                    "zOrder": "0"
+                                                },
+                                                {
+                                                    "ID": "1",
+                                                    "measuredH": "32",
+                                                    "measuredW": "166",
+                                                    "properties": {
+                                                        "align": "center",
+                                                        "size": "24",
+                                                        "text": "Elena Zárraga"
+                                                    },
+                                                    "typeID": "Label",
+                                                    "w": "222",
+                                                    "x": "0",
+                                                    "y": "8",
+                                                    "zOrder": "1"
+                                                },
+                                                {
+                                                    "ID": "2",
+                                                    "measuredH": "26",
+                                                    "measuredW": "161",
+                                                    "properties": {
+                                                        "align": "center",
+                                                        "size": "18",
+                                                        "text": "Directora General"
+                                                    },
+                                                    "typeID": "Label",
+                                                    "w": "178",
+                                                    "x": "45",
+                                                    "y": "40",
+                                                    "zOrder": "2"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "h": "77",
+                                    "measuredH": "77",
+                                    "measuredW": "269",
+                                    "typeID": "__group__",
+                                    "w": "269",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "269",
+                    "typeID": "__group__",
+                    "w": "269",
+                    "x": "1188",
+                    "y": "515",
+                    "zOrder": "1"
+                },
+                {
+                    "ID": "909",
+                    "h": "77",
+                    "measuredH": "140",
+                    "measuredW": "200",
+                    "properties": {
+                        "backgroundAlpha": "0",
+                        "borderColor": "16750848",
+                        "color": "16777215"
+                    },
+                    "typeID": "TextArea",
+                    "w": "316",
+                    "x": "1188",
+                    "y": "971",
+                    "zOrder": "21"
+                },
+                {
+                    "ID": "910",
+                    "measuredH": "32",
+                    "measuredW": "219",
+                    "properties": {
+                        "align": "center",
+                        "size": "24",
+                        "text": "Jose Ignacio Lacal"
+                    },
+                    "typeID": "Label",
+                    "w": "229",
+                    "x": "1211",
+                    "y": "979",
+                    "zOrder": "22"
+                },
+                {
+                    "ID": "911",
+                    "measuredH": "26",
+                    "measuredW": "287",
+                    "properties": {
+                        "align": "center",
+                        "size": "18",
+                        "text": "Director Desarrollo de Personas"
+                    },
+                    "typeID": "Label",
+                    "w": "305",
+                    "x": "1194",
+                    "y": "1011",
+                    "zOrder": "23"
+                },
+                {
+                    "ID": "912",
+                    "h": "77",
+                    "measuredH": "140",
+                    "measuredW": "200",
+                    "properties": {
+                        "backgroundAlpha": "0",
+                        "borderColor": "16750848",
+                        "color": "16777215",
+                        "text": ""
+                    },
+                    "typeID": "TextArea",
+                    "w": "316",
+                    "x": "1188",
+                    "y": "1070",
+                    "zOrder": "24"
+                },
+                {
+                    "ID": "913",
+                    "measuredH": "32",
+                    "measuredW": "165",
+                    "properties": {
+                        "align": "center",
+                        "size": "24",
+                        "text": "Joseba Bilbao"
+                    },
+                    "typeID": "Label",
+                    "w": "178",
+                    "x": "1211",
+                    "y": "1078",
+                    "zOrder": "25"
+                },
+                {
+                    "ID": "914",
+                    "measuredH": "26",
+                    "measuredW": "306",
+                    "properties": {
+                        "align": "center",
+                        "size": "18",
+                        "text": "Director de Desarrollo de Negocio"
+                    },
+                    "typeID": "Label",
+                    "w": "336",
+                    "x": "1178",
+                    "y": "1110",
+                    "zOrder": "26"
+                },
+                {
+                    "ID": "915",
+                    "children": {
+                        "controls": {
+                            "control": [
+                                {
+                                    "ID": "0",
+                                    "h": "77",
+                                    "measuredH": "140",
+                                    "measuredW": "200",
+                                    "properties": {
+                                        "backgroundAlpha": "0",
+                                        "borderColor": "16750848",
+                                        "color": "16777215"
+                                    },
+                                    "typeID": "TextArea",
+                                    "w": "252",
+                                    "x": "0",
+                                    "y": "0",
+                                    "zOrder": "0"
+                                },
+                                {
+                                    "ID": "1",
+                                    "measuredH": "32",
+                                    "measuredW": "205",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "24",
+                                        "text": "Isabel Fernandez"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "210",
+                                    "x": "26",
+                                    "y": "10",
+                                    "zOrder": "1"
+                                },
+                                {
+                                    "ID": "2",
+                                    "measuredH": "26",
+                                    "measuredW": "182",
+                                    "properties": {
+                                        "align": "center",
+                                        "size": "18",
+                                        "text": "Directora Financiera"
+                                    },
+                                    "typeID": "Label",
+                                    "w": "207",
+                                    "x": "26",
+                                    "y": "42",
+                                    "zOrder": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "h": "77",
+                    "measuredH": "77",
+                    "measuredW": "252",
+                    "typeID": "__group__",
+                    "w": "252",
+                    "x": "1188",
+                    "y": "870",
+                    "zOrder": "20"
                 }
             ]
         },
-        "measuredH": "628",
-        "measuredW": "1295",
-        "mockupH": "600",
-        "mockupW": "1249",
+        "measuredH": "1255",
+        "measuredW": "1799",
+        "mockupH": "1197",
+        "mockupW": "1576",
         "version": "1.0"
     }
 }
