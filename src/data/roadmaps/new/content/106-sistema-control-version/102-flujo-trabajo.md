@@ -1,4 +1,4 @@
-# Flujos 
+# Flujos
 
 Un flujo de trabajo Git es un conjunto de reglas y procedimientos establecidos para administrar el desarrollo de software utilizando el sistema de control de versiones Git. Define cómo se deben realizar y combinar las ramas de código, cómo se deben manejar las actualizaciones y cómo se debe colaborar en un proyecto.
 
@@ -6,7 +6,7 @@ Git, al centrarse en la flexibilidad, no existe ningún proceso estandarizado ac
 
 En resumen, un flujo de trabajo Git proporciona una estructura organizada y eficiente para el desarrollo de software colaborativo, control de versiones y despliegue continuo. Ayuda a mejorar la productividad, la colaboración y la calidad del código en proyectos de desarrollo de software.
 
-## Conceptos clave 
+## Conceptos clave
 
 - No existe un flujo de trabajo de Git universal.
 - Un flujo de trabajo debe ser sencillo y mejorar la productividad de tu equipo.
