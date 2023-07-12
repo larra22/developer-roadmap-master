@@ -1,25 +1,10 @@
-What is Continuous Testing?
-Continuous testing is a software testing approach in which tests are automated and run throughout the software development life cycle. It is a part of the continuous delivery (CD) process, in which software changes are delivered to customers continuously and iteratively.
+# Continuous Testing
 
-Continuous testing aims to identify defects and issues as early as possible, reducing the cost and time of fixing them later. Continuous testing provides immediate feedback to the development team, helping them to detect and address potential problems quickly and efficiently.
+La prueba continua es un enfoque de prueba de software en el que las pruebas se automatizan y se ejecutan a lo largo del ciclo de vida del desarrollo del software. Es parte del proceso de entrega continua (CD), en el que los cambios de software se entregan a los clientes de forma continua e iterativa.
 
-According to the Reports and Data source survey, 21% of QA professionals have incorporated continuous testing, source code management and continuous integration into their DevOps process to speed up code release.
+Las pruebas continuas tienen como objetivo identificar defectos y problemas lo antes posible, reduciendo el costo y el tiempo de solucionarlos más tarde. Las pruebas continuas brindan retroalimentación inmediata al equipo de desarrollo, ayudándolos a detectar y abordar problemas potenciales de manera rápida y eficiente. Además, da como resultado un aumento significativo en la velocidad de la productividad de un desarrollador, ya que elimina el requisito de volver a ejecutar todas las pruebas después de cada actualización y reconstrucción del proyecto.
 
-Advantages of Continuous Testing
-Here are several advantages of implementing continuous testing as a part of the software development process:
-● Continuous testing enables teams to identify bugs earlier in the software development process;
-● Continuous testing provides immediate feedback to developers on the quality of their code, enabling them to address any issues immediately;
-● You can minimize business risks by assessing and identifying potential issues before they become real problems;
-● Automating your test cases can reduce the time spent on testing;
-● Accelerating the process of software delivery to production helps release the product faster;
-● You can run performance tests in similitude, which can increase the speed of test execution.
 
-Disadvantages of Continuous Testing
-While continuous testing has become an integral part of the software development process, it’s not without its challenges. As software development teams work to incorporate testing into their CI/CD pipelines, they may encounter obstacles that can hinder their progress.
-● Continuous testing requires a different skillset than traditional testing, including expertise in DevOps, automation and CI/CD pipelines;
-● Different tools and technologies are available for continuous testing, and choosing the right ones can be tough. Integrating these tools with other parts of the development process can also be challenging;
-● To fully realize the benefits of continuous testing, you need to update your testing strategy by moving away from relying solely on traditional testing methods and adopting a well-defined approach to test data management;
-● Failing to integrate code regularly can result in issues such as duplicated coding efforts and non-compatible code, leading to defects.
 
 Emerging Technologies in Continuous Testing
 With the increasing demand for faster and more reliable software releases, emerging technologies such as AI/ML, automation and DevOps appeared in continuous testing. These technologies help teams to automate and streamline their testing processes, identify defects more quickly and improve overall software quality. Let’s examine some of them:

@@ -1,6 +1,6 @@
 # Diferencias entre la entrega y el displiegue continuo
 
-Para poder llevar a cabo correctamente DevOps, es fundamental comprender tanto la cultura como los componentes que lo forman. Así, estos dos terminos, la entrega y el despliegue continuo, pueden llegar a resultar ciertamente confusos al comenzar. Por tanto, incluiremos una breve explicación para así intentar despejar las posibles dudas: 
+Para poder llevar a cabo correctamente DevOps, es fundamental comprender tanto la cultura como los componentes que lo forman. Así, estos dos terminos, la entrega y el despliegue continuo, pueden llegar a resultar ciertamente confusos al comenzar. Por tanto, incluiremos una breve explicación para así intentar despejar las posibles dudas.
 
 La entrega continua se la conoce como el siguiente paso o extensión de la integración continua. Tiene como objetivo principal conseguir que la entrega de los nuevos cambios o actualizaciones del software a los clientes se realicen de forma ágil y fiable. A pesar de que la automatización es una de las características de la entrega continua, esta fase del desarrollo del software tiene un componente de intervención humana (las entregas se realizarán cuando se indique de forma explícita). En la entrega continua los desarrolladores controlan cuándo y cuántas veces se realiza la entrega de software.
 
