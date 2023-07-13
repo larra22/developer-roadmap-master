@@ -16,7 +16,9 @@ export class Sharer {
       return null;
     }
 
-    this.shareIconsEl.classList.remove('hidden');
+    //this.shareIconsEl.classList.remove('hidden');
+    this.shareIconsEl.classList.add('hidden');
+
   }
 
   init() {

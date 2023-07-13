@@ -2,7 +2,7 @@
 
 En git existen dos formas que nos permiten unir ramas, git merge y git rebase. Ambos comandos están diseñados para integrar cambios de una rama a otra rama, simplemente lo hacen de formas muy diferentes.
 
-| Git merge | Git rebase | 
+| Git merge | Git rebase |
 |----------|----------|
 | Crea un commit de merge (o commit basura) | Cambia la base de una de las ramas, incorporando todos los commits |
 | Es una operación no destructiva, evita peligros potenciales | La reorganización reescribe el historial mediante la creación de nuevos commits para cada commit en la rama original |

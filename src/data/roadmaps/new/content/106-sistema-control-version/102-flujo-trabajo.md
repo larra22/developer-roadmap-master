@@ -9,12 +9,12 @@ En resumen, un flujo de trabajo Git proporciona una estructura organizada y efic
 ## Conceptos clave
 
 - No existe un flujo de trabajo de Git universal.
-- Un flujo de trabajo debe ser sencillo y mejorar la productividad de tu equipo.
+- Un flujo de trabajo debe ser sencillo y mejorar la productividad deL equipo.
 - Los requisitos deben ayudar a dar forma al flujo de trabajo de Git.
 - Fallar rápido: Los conflictos de código y los problemas de integración deben descubrirse lo antes posible.
-- Es mejor solucionar, los problemas pequeños con frecuencia que solucionar los problemas grandes rara vez.
+- Es mejor solucionar los problemas pequeños con frecuencia que solucionar los problemas grandes rara vez.
 - Siempre liberable, incluso después de un sprint realmente malo, debería haber al menos algo que se pueda liberar.
-- Simple, todos los miembros del equipo utilizarán este esquema todos los días, por lo que las reglas y rutinas deben ser claras y sencillas 
+- Simple, todos los miembros del equipo utilizarán este esquema todos los días, por lo que las reglas y rutinas deben ser claras y sencillas.
 
 #### Bibliografía
 -[Comparar flujos de trabajo de Git: lo que debes saber](https://www.atlassian.com/es/git/tutorials/comparing-workflows)

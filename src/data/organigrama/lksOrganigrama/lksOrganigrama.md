@@ -2,17 +2,17 @@
 jsonUrl: '/jsons/organigrama/organigrama.json'
 order: 1
 briefTitle: 'Organigrama'
-briefDescription: 'Step by step guide for Organigrama or operations role in 2023'
+briefDescription: 'Organigrama LKS Next'
 isNew: false
 isUpcoming: false
 title: 'Organigrama Roadmap'
-description: 'Step by step guide for Organigrama, SRE or any other Operations Role in 2023'
+description: 'Organigrama LKS Next'
 dimensions:
   width: 968
   height: 1000
 schema:
   headline: 'Organigrama Roadmap'
-  description: 'Learn to become a Organigrama, SRE or get any other operations role with this interactive step by step guide in 2023. We also have resources and short descriptions attached to the roadmap items so you can get everything you want to learn in one place.'
+  description: 'Organigrama LKS Next por área '
   datePublished: '2023-01-05'
   dateModified: '2023-01-20'
 seo:
