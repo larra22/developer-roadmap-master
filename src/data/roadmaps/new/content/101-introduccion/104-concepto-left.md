@@ -2,13 +2,13 @@
 
 La idea del Shift Left Testing es incluir actividades de calidad desde el comienzo, incluso desde la planificación de las funcionalidades, con el fin de mitigar riesgos y tener un mejor análisis de calidad en cada una de las etapas del proceso. Así se anticipan potenciales fallos antes de que sucedan, cuando aún ni siquiera se ha escrito código.
 
-Con Shift Left Testing es posible obtener feedback más temprano, lo cual ayuda a la resolución de incidentes y a la optimización de procesos de desarrollo de software que mejoran la calidad del producto. Se disminuyendo riesgos para minimizar el impacto en el producto. 
+Con Shift Left Testing es posible obtener feedback más temprano, lo cual ayuda a la resolución de incidentes y a la optimización de procesos de desarrollo de software que mejoran la calidad del producto. Se disminuyendo riesgos para minimizar el impacto en el producto.
 
-Otra de las ventajas claras es la reducción de costos, ya que como se ha explicado anteriormente, las pruebas se realizan antes, el feedback se obtiene antes, los potenciales problemas se descubren antes, por lo que, evidentemente pueden resolverse antes. 
+Otra de las ventajas claras es la reducción de costos, ya que como se ha explicado anteriormente, las pruebas se realizan antes, el feedback se obtiene antes, los potenciales problemas se descubren antes, por lo que, evidentemente pueden resolverse antes.
 
-En resumen, hace que se mejore la calidad del producto final y que se reduzcan los riesgos. Además, trae grandes beneficios a los equipos de trabajo, en relación con su funcionamiento y modo de trabajar. 
+En resumen, hace que se mejore la calidad del producto final y que se reduzcan los riesgos. Además, trae grandes beneficios a los equipos de trabajo, en relación con su funcionamiento y modo de trabajar.
 
-# ¿Qué es Shift Right Testing?
+## ¿Qué es Shift Right Testing?
 
 Shift Right se refiere a la idea de realizar acciones más adelante en el proceso de desarrollo, normalmente en los pasos posteriores a la liberación del producto. Con la popularización del concepto de DevOps, las prácticas de Shift Right también se han vinculado a los procesos de liberación, configuración, y monitorización de aplicaciones. Ejemplo de testing, A/B testing. 
 

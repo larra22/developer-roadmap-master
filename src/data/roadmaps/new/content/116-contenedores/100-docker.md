@@ -1,7 +1,24 @@
 # Docker
 
+plataforma que facilita la construcción, ejecución y compartición
+de aplicaciones. Utiliza una tecnología de contenedores para empaquetar
+aplicaciones y sus dependencias en una sola imagen. Esto permite
+ejecutar la aplicación en cualquier plataforma que tenga Docker
+instalado
+
+o Una imagen de Docker es una plantilla de solo lectura utilizada
+para crear un contenedor de Docker. Las imágenes de Docker se
+basan en otras imágenes, se construyen utilizando un Dockerfile,
+se pueden utilizar imágenes de otros, y se pueden ejecutar en
+cualquier plataforma que tenga Docker instalado [19].
+o Un Dockerfile es un archivo de texto que contiene instrucciones
+para construir una imagen de Docker. Especifica la imagen base,
+las capas adicionales que deben agregarse a la imagen y los
+comandos que se deben ejecutar al construir la imagen 
+
 
 ## Componentes
+
 - **DockerFile** = Se trata de un fichero de texto utilizado para la construcción de imágenes. Contiene todas las características y herramientas necesarias para la correcta ejecución de la aplicación. Es decir, a través de este fichero, escribimos con comandos la instalación y configuración de los requisitos necesarios para su funcionamiento.
 - **Imagen** = Una imagen Docker es el resultado de la compilación de un Dockerfile. Al construir una imagen se genera una capa por cada una de las sentencias ejecutadas. Estas capas son de solo lectura y no se pueden modificar. Su principal ventaja es que se reutilizan entre imágenes evitando así duplicidades. Se podría decir, que las imágenes son equivalentes a un snapshot de una máquina virtual. Con la gran ventaja de ser muy liviano.
 - **Contenedor** = Un contenedor es una instancia de una imagen, es decir, es una imagen en ejecución. A partir de una imagen se pueden ejecutar N contenedores que nacen de una configuración común funcionando independientemente.

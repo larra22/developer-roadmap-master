@@ -1,6 +1,7 @@
 # Objetivos
 
-Con DevOps se logra: 
+Con DevOps se logra:
+
 1. Optimizar el tiempo de entrega de un producto software.
 2. Automatizar todas las tareas posibles.
 3. Gestionar la infraestructura como código.
@@ -12,6 +13,7 @@ El objetivo final de DevOps es **facilitar** el desarrollo continuo, la integrac
 Los equipos que implementan DevOps son más eficientes y tienden a finalizar los proyectos antes que aquellos que NO implementan DevOps. A menudo, hay menos errores de comunicación, y las mejoras y otros cambios necesarios se realizan rápidamente gracias a que el enfoque DevOps fomenta una mayor colaboración.
 
 #### Bibliografía
+
 - [¿Qué es DevOps y por qué es tan importante?](https://www.chakray.com/es/devops-que-es-y-por-que-es-tan-importante/)
 - [Implantación de DevOps: retos y objetivos](https://www.essiprojects.com/implantacion-devops-retos-y-objetivos/)
 - [¿Qué es DevOps? Beneficios y prácticas](https://sentrio.io/blog/que-es-devops/)

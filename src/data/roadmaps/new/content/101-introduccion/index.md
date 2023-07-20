@@ -1,4 +1,5 @@
 # Introducción
+
 DevOps es la unión de una cultura, procesos y herramientas para conseguir una entrega continua de un producto a los usuarios.
 
 DevOps no es sólo automatización o uso de herramientas/programas, se trata de cambios culturales. DevOps implica una nueva forma de trabajar en la cual la colaboración imperá en todos los ámbitos: en el desarrollo, en el funcionamiento y en las áreas de negocio. DevOps persigue conseguir tanto la eliminación de los silos entre los distintos departamentos como la participación de las partes interesadas pertinentes y la distribución ágil de resultados de negocio automatizados.

@@ -1,16 +1,16 @@
 # Tipos de IaC
 
-### Infraestructura como código inmutable 
+## Infraestructura como código inmutable
 
 La infraestructura como código inmutable representa un futuro simplificado, que requiere que cada componente siga unas especificaciones exactas sin variaciones. Cuando resulta necesario introducir un cambio, la infraestructura se aprovisiona  con los nuevos requisitos y la infraestructura como código antigua se sustituye. Con esta homogeneidad de la infraestructura subyacente, se pueden diseñar e implementar aplicaciones de forma mucho más rápida y estable.
 
-En resumen, ayuda a los equipos de desarrollo a mantener una configuración de infraestructura y codificación consistente hasta el lanzamiento final de la aplicación. 
+En resumen, ayuda a los equipos de desarrollo a mantener una configuración de infraestructura y codificación consistente hasta el lanzamiento final de la aplicación.
 
-### Infraestructura como código mutable
+## Infraestructura como código mutable
 
 Cuando los desarrolladores pueden cambiar el estado de IaC después del aprovisionamiento, se conoce como infraestructura mutable. Permite que el equipo de desarrollo sea más flexible. La infraestructura como código mutable debe actualizarse continuamente para poder seguir respondiendo a la evolución de las necesidades empresariales.
 
-Si hay algún cambio repentino en el producto de software, el equipo puede realizar personalizaciones rápidas de la infraestructura de implementación. También es más fácil responder a las amenazas de seguridad cuando se usa un IaC mutable. Sin embargo, el seguimiento de la consistencia del código se vuelve complejo en tales elementos IaC. 
+Si hay algún cambio repentino en el producto de software, el equipo puede realizar personalizaciones rápidas de la infraestructura de implementación. También es más fácil responder a las amenazas de seguridad cuando se usa un IaC mutable. Sin embargo, el seguimiento de la consistencia del código se vuelve complejo en tales elementos IaC.
 
 ## Enfoques
 
