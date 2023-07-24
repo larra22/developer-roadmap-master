@@ -11,15 +11,16 @@ Terraform tiene unas particularidades interesantes como poder comprobar la confi
 - El estado de Terraform le permite realizar un seguimiento de los cambios de recursos a lo largo de sus implementaciones.
 - Puede enviar sus configuraciones al control de versiones para colaborar de manera segura en la infraestructura.
 
-Características de Terraform
-Archivos de configuración declarativos: Puede definir la infraestructura como código y gestionar todo el ciclo de vida. Le ayudará a crear recursos, administrar los recursos existentes y destruir los recursos que ya no necesita.
-Módulo Instalable: Puede instalar módulos de socios o comunidades automáticamente desde el registro utilizando terraform init.
-Predecir y planificar cambios: Terraforms le permite modificar la infraestructura de manera predecible y segura separando la planificación y la aplicación y utilizando dependencias mapeadas.
-Gráficos de dependencia: Puede crear fácilmente un plan de terraform y actualizar el estado utilizando gráficos de dependencia de configuración
-Administración del Estado: Asigne recursos del mundo real a configuraciones, mejore el rendimiento y realice un seguimiento de metadatos para grandes infraestructuras.
-Soporta múltiples idiomas: Puede aprovisionar infraestructura en Java, Go, C #, Python, TypeScript y otros lenguajes de programación con módulos HCL y más de 1000 proveedores de Terraform como AWS, GCP, Azure, Oracle, VMware, Datadog, etc.
+### Características
 
-# Componentes clave
+- Archivos de configuración declarativos: Puede definir la infraestructura como código y gestionar todo el ciclo de vida. Le ayudará a crear recursos, administrar los recursos existentes y destruir los recursos que ya no necesita.
+- Módulo Instalable: Puede instalar módulos de socios o comunidades automáticamente desde el registro utilizando terraform init.
+- Predecir y planificar cambios: Terraforms le permite modificar la infraestructura de manera predecible y segura separando la planificación y la aplicación y utilizando dependencias mapeadas.
+- Gráficos de dependencia: Puede crear fácilmente un plan de terraform y actualizar el estado utilizando gráficos de dependencia de configuración
+- Administración del Estado: Asigne recursos del mundo real a configuraciones, mejore el rendimiento y realice un seguimiento de metadatos para grandes infraestructuras.
+- Soporta múltiples idiomas: Puede aprovisionar infraestructura en Java, Go, C #, Python, TypeScript y otros lenguajes de programación con módulos HCL y más de 1000 proveedores de Terraform como AWS, GCP, Azure, Oracle, VMware, Datadog, etc.
+
+#### Bibliografía
 
 - [antonbabenko/pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform#1-install-dependencies)
 - [TFLint](https://github.com/terraform-linters/tflint) (como un SonarLint para Terraform)

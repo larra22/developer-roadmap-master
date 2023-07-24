@@ -4,7 +4,7 @@ Prometheus es una solución de monitoreo flexible que está en desarrollo. El so
 
 Basicamente, Prometheus es un sistema de recolección métrica de aplicaciones y servicios para el almacenamiento en un banco de datos de serie temporal resultando muy eficiente.
 
-Prometheus sigue una arquitectura basada en pull donde el servidor obtiene métricas periódicamente de los objetivos que está configurado para monitorear. Los objetivos pueden ser varios tipos de aplicaciones, servicios o servidores, y exponen sus métricas mediante un protocolo compatible, como HTTP, SNMP o JMX. Prometheus admite varios tipos de métricas, como contadores, indicadores, histogramas y resúmenes, y puede realizar agregaciones y cálculos complejos en ellos.
+Prometheus sigue una arquitectura basada en pull donde el servidor obtiene métricas periódicamente de los objetivos que está configurado para monitorear. Los objetivos pueden ser varios tipos de aplicaciones, servicios o servidores, y exponen sus métricas mediante un protocolo compatible, como HTTP, etc. Prometheus admite varios tipos de métricas, como contadores, indicadores, histogramas y resúmenes, y puede realizar agregaciones y cálculos complejos en ellos.
 
 El servidor Prometheus almacena las métricas recopiladas en una base de datos de series de tiempo donde una combinación única de nombre de métrica, etiquetas y una marca de tiempo identifica cada serie de tiempo. El nombre de la métrica representa el tipo de métrica, como solicitudes HTTP, uso de CPU o uso de memoria. Las etiquetas proporcionan metadatos adicionales que se pueden usar para diferenciar entre instancias de la misma métrica, como el nombre de host del servidor, el nombre del servicio o la versión. La marca de tiempo representa la hora en que se recopiló la métrica.
 
@@ -25,6 +25,7 @@ El servidor Prometheus almacena las métricas recopiladas en una base de datos d
 
 Configuración inicial: Configurar Prometheus correctamente puede requerir un tiempo y esfuerzo significativo debido a su amplia gama de opciones y configuraciones.
 Almacenamiento a largo plazo: Aunque Prometheus es excelente para datos en tiempo real, no está diseñado para un almacenamiento a largo plazo de datos históricos, lo que puede requerir integración con otras soluciones.
+
 ### Consultas PromQL
 
 Después de configurar Prometheus para raspar sus objetivos, se puede comenzar a consultar las métricas recopiladas utilizando PromQL. PromQL es un lenguaje de consulta flexible y potente que permite realizar varios tipos de agregaciones, filtros y cálculos en las métricas recopiladas.
