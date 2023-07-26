@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
       {
-        name: 'nombre_de_tu_app',
+        name: 'roadmap',
         script: 'npm',
         args: 'run dev -- --host',
         watch: '.',
