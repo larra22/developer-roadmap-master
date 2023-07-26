@@ -1,10 +1,13 @@
 # Pipeline
+
 Un Pipeline es una secuencia de tareas automatizadas que definen el ciclo de vida de la aplicación de nuestro flujo de integración/entrega/despliegue continuo. Podemos decir que un Pipeline es un conjunto de instrucciones del proceso que siga una aplicación desde el repositorio de control de versiones hasta que llega a los usuarios.
 Consiste en un flujo comprendido en varias fases que van en forma secuencial, siendo la entrada de cada una la salida de la anterior.
 
-El pipeline estaría formado por un conjunto de procesos o herramientas automatizadas que permiten que los desarrolladores (y otros roles), trabajen de forma coherente para crear e implementar código en un entorno de producción.
+En resumen, un pipeline podría estar formado por un conjunto de procesos o herramientas automatizadas que permiten que los desarrolladores (y otros roles), trabajen de forma coherente para compilar, construir, probar e implementar código en un entorno de producción de forma más rápida y sencilla.
 
-NO existe un pipeline estándar, ya que depende completamente de la tecnología que se esté utilizando. Ahí surge la figura del ingeniero DevOps, que debe conocer por una parte el desarrollo como la infraestructura, la administración de sistemas y las herramientas de DevOps.
+### A tener en cuenta
+
+NO existe un pipeline estándar, ya que depende completamente de la tecnología que se esté utilizando. Ahí surge la figura del ingeniero DevOps, que debe conocer tanto el desarrollo como la infraestructura, la administración de sistemas y las herramientas de DevOps.
 
 La arquitectura definida esta basada en pipelines. Cada paso dará comienzo inmediatamente al finalizar el paso previo satisfactoriamente . Toda la lógica de proceso esta contenida por Jenkins, que aguarda pacientemente a un cambio en el repositorio de código configurado. El cambio propiciado por un Merge Request (petición de integración de cambios a una rama productiva) desencadena una ejecución de un Job. Al iniciarse la ejecución es necesario disponer del código localmente para ser compilado y obtener el artefacto versionado. Por ello, el primer paso es realizar la descarga de código. Posteriormente se realiza el compilado y análisis de calidad, siendo este último bloqueante si no se cumplen los estandartes configurados en SonarQube, provocando la parada inmediata de la ejecución. Una vez finalizados estos pasos, se sube el artefacto versionado al repositorio de artefactos dando comienzo el despliegue por los entornos configurados. Ansible es el encargado de realizar esta operativa. Para finalizar, se genera una tag con la versión del aplicativo en Gitlab para guardar una foto del código actual.
 
