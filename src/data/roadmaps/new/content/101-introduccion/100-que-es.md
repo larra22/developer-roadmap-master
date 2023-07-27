@@ -10,4 +10,8 @@ La automatización es un componente crítico en DevOps. Los usuarios DevOps depe
 - [¿En qué consiste la cultura de DevOps?](https://www.atlassian.com/es/devops/what-is-devops/devops-culture)
 - [What Is (Not) DevOps, and How Do We Get There?](https://www.infoq.com/news/2014/03/devops/)
 - [So you want to Onboard a DevOps Practitioner](https://github.com/actionjack/so-you-want-to-onboard-a-devops-engineer)
+
+## Recomendado y evaluado por LKS
+
 - [Introducción a DevOps para la mejora de los procesos de desarrollo con herramientas Open Source](https://openaccess.uoc.edu/bitstream/10609/97626/6/aelezTFG0619memoria.pdf)
+ $\rightarror$ 4 sobre 5 puntos

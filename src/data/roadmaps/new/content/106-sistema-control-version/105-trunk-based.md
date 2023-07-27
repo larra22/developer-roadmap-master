@@ -68,3 +68,7 @@ Al eliminar la necesidad de fusionar muchas ramas, se acelera el tiempo de entre
 - [Tecnología de DevOps: Desarrollo basado en troncos]((https://cloud.google.com/architecture/devops/devops-tech-trunk-based-development?hl=es-419#:~:text=En%20el%20desarrollo%20basado%20en%20troncos%2C%20los%20desarrolladores%20env%C3%ADan%20el,flechas%20descendentes)%20lo%20antes%20posible.)
 - [Beneficios De Las Feature Toggles O Feature Flags](https://apiumhub.com/es/tech-blog-barcelona/beneficios-feature-toggles-feature-flags/)
 - [Tecnología de DevOps: Desarrollo basado en troncos](https://cloud.google.com/architecture/devops/devops-tech-trunk-based-development?hl=es-419)
+
+## Recomendado y evaluado por LKS
+
+- [Version Control for Multiple Agile Teams](https://www.infoq.com/articles/agile-version-control/) $\rightarror$ 5 sobre 5 puntos

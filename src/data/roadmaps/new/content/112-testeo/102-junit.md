@@ -43,3 +43,7 @@ JUnit es una herramienta esencial en el desarrollo de software en Java, ya que f
 
 - [Primeros pasos con JUnit 5](https://www.adictosaltrabajo.com/2016/11/24/primeros-pasos-con-junit-5/)
 - [Primeros Pasos con JUnit](https://programacion.net/articulo/primeros_pasos_con_junit_265)
+
+## Recomendado y evaluado por LKS
+
+- [Online Courses - Learn Anything, On Your Schedule | Udemy](https://www.udemy.com/cart/success/817411596/) $\rightarror$ 5 sobre 5 puntos

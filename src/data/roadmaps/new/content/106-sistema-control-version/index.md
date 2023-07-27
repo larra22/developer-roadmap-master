@@ -10,6 +10,10 @@ A tener en cuenta: **ATENCIÓN**
 
 #### Bibliografía
 
-- [¿Qué es el control de versiones?](https://www.atlassian.com/es/git/tutorials/what-is-version-control)
+
 - [Sobre el Control de Versiones -Acerca del Control de Versiones](https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Acerca-del-Control-de-Versiones)
 - [¿Qué es el control de versiones?](https://unity.com/es/solutions/what-is-version-control)
+
+## Recomendado y evaluado por LKS
+
+- [¿Qué es el control de versiones?](https://www.atlassian.com/es/git/tutorials/what-is-version-control) $\rightarror$ 5 sobre 5 puntos

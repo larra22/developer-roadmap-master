@@ -22,3 +22,7 @@ Con Gitflow, se crean dos ramas de larga duración (se mantendrán durante todo 
 ## Recomendación para manejar todo
 
 - [SourceTree](https://www.sourcetreeapp.com/)
+
+## Recomendado y evaluado por LKS
+
+- [Curso de Gitflow profesional](https://openwebinars.net/cursos/gitflow/) $\rightarror$ 4 sobre 5 puntos
