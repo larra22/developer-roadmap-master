@@ -1,3 +1,5 @@
+# Puppet
+
 Puppet es otra herramienta popular de automatización de infraestructura y configuración, similar a Chef. Al igual que Chef, Puppet permite definir y administrar la configuración de la infraestructura como código, lo que facilita la gestión de sistemas de manera consistente y escalable. A continuación, te presento algunos conceptos clave que debes conocer acerca de Puppet:
 
 Manifests: Los manifests son archivos de código escritos en el lenguaje de configuración de Puppet que definen la configuración y el estado deseado de los recursos en los nodos administrados. Un manifest contiene declaraciones de recursos, que describen cómo los recursos deben ser configurados, como paquetes a instalar, servicios a habilitar o archivos de configuración a gestionar.

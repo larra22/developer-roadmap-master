@@ -1,3 +1,5 @@
+# Azure Cloud Provider
+
 Azure Cloud Provider es la plataforma de servicios en la nube de Microsoft, conocida como Microsoft Azure. Al igual que otros proveedores de servicios en la nube, Azure ofrece una amplia gama de servicios y soluciones para satisfacer diversas necesidades empresariales y de desarrollo. Aquí hay algunos aspectos clave que debes saber acerca de Azure:
 
 Servicios y soluciones integrales: Azure ofrece más de 200 servicios, que abarcan cómputo, almacenamiento, bases de datos, redes, inteligencia artificial, análisis de datos, Internet de las cosas (IoT), aprendizaje automático, seguridad y más. La plataforma es especialmente conocida por su integración con otras tecnologías y productos de Microsoft, lo que facilita la adopción por parte de empresas que ya utilizan tecnologías de Microsoft.
@@ -16,4 +18,4 @@ Seguridad y cumplimiento: Azure proporciona un conjunto completo de herramientas
 
 Azure DevOps: Azure ofrece una plataforma completa de DevOps que incluye herramientas para la colaboración, integración continua, entrega continua, pruebas y monitoreo. Esta plataforma facilita el desarrollo y despliegue de aplicaciones de manera eficiente.
 
-Azure es ampliamente utilizado por organizaciones de diferentes tamaños y sectores para desarrollar, implementar y administrar aplicaciones, así como para almacenar y analizar datos. Si estás interesado en utilizar Azure, es recomendable familiarizarse con su documentación, aprender a utilizar el portal de Azure, y explorar los diferentes servicios y soluciones que ofrece para aprovechar al máximo esta plataforma en la nube de Microsoft
+Azure es ampliamente utilizado por organizaciones de diferentes tamaños y sectores para desarrollar, implementar y administrar aplicaciones, así como para almacenar y analizar datos. Si estás interesado en utilizar Azure, es recomendable familiarizarse con su documentación, aprender a utilizar el portal de Azure, y explorar los diferentes servicios y soluciones que ofrece para aprovechar al máximo esta plataforma en la nube de Microsoft.

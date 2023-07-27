@@ -8,34 +8,18 @@ Dispone de Kubectl, una herramienta de línea de comandos diseñada para gestion
 
 Los objetos básicos de Kubernetes son:
 
-- Nodos $\rightarrow$ Máquinas que realizan las tareas solicitadas que asigna el plano de control.
-- Pod $\rightarrow$ es un conjunto de uno o más contenedores implementados en un solo nodo. Son los objetos más pequeños y básicos, poseen recursos compartidos para la red y almacenamiento. Su objetivo es ejecutar una única instancia de la aplicación en el clúster*.
+- Nodos $\rightarrow$ Un nodo es la unidad fundamental más pequeña de hardware informático. Representa una sola máquina en un clúster, que podría ser una máquina física en un centro de datos o una máquina virtual de un proveedor de nube. Cada máquina puede sustituir a cualquier otra máquina en un clúster de Kubernetes. El maestro en Kubernetes controla los nodos que tienen contenedores.
+- Pod $\rightarrow$ Los pods son estructuras de alto nivel que envuelven uno o más contenedores. Esto se debe a que los contenedores no se ejecutan directamente en Kubernetes. Los contenedores en el mismo pod comparten una red local y los mismos recursos, lo que les permite comunicarse fácilmente con otros contenedores en el mismo pod como si estuvieran en la misma máquina y, al mismo tiempo, mantienen un grado de aislamiento.
 - Servicio $\rightarrow$  es una forma de exponer una aplicación que se ejecuta en un conjunto de pods como servicio de una red.
+- Clúster de contenedores $\rightarrow$  Un clúster de contenedores es un conjunto de elementos de máquina que son nodos. Los clústeres inician rutas específicas para que los contenedores que se ejecutan en los nodos puedan comunicarse entre sí. En Kubernetes, el motor del contenedor (no el servidor de la API de Kubernetes) proporciona alojamiento para el servidor de la API.
 - Volumen $\rightarrow$  los archivos en un contenedor son efímeros. Si un Pod crashea, los datos que no estén en un volumen persistente se perderán
-- Namespace $\rightarrow$  es un clúster virtual respaldado por el mismo clúster físico.
+- Namespace $\rightarrow$  se utilizan para dividir los recursos del clúster entre varios usuarios. Están pensados ​​para entornos en los que hay muchos usuarios repartidos entre proyectos o equipos y proporcionan una gama de recursos.
 - Controladores (abstracciones de nivel superior) $\rightarrow$ Los controladores son bucles de control que observan el estado del clúster y ejecutan o solicitan los cambios que sean necesarios para alcanzar el estado deseado. Incluyen:
   - ReplicaSet $\rightarrow$ su propósito es mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento, asegurando de esta forma la disponibilidad de un número específico de Pods idénticos.
   - Deployment $\rightarrow$ proporciona actualizaciones declarativas para Pods y ReplicaSets.
   - StatefulSet $\rightarrow$ gestiona el despliegue y escalado de un conjunto de Pods. Además, garantiza el orden y unicidad de dichos Pods.
 
-Master Node: The control plane of the cluster, responsible for managing the state of the cluster, scheduling and managing workloads, and providing a centralized configuration.
-
-Worker Nodes: These are the machines (physical or virtual) that run your applications and services. Pods are scheduled on worker nodes, and the containers within those pods run on the worker nodes.
-
-etcd: A distributed key-value store that provides a source of truth for the cluster state and configuration. The master node communicates with etcd to ensure the desired state of the cluster is maintained.
-
-API Server: The front-end of the master node, responsible for serving the RESTful API used by all other components to interact with the cluster.
-
-Controller Manager: Monitors the state of the cluster and makes changes as necessary to ensure the desired state is maintained.
-
-Scheduler: Responsible for assigning pods to worker nodes based on available resources and constraints.
-
-Kubelet: An agent that runs on each worker node, responsible for communicating with the master node and ensuring that containers are running as expected.
-
-Container runtime: A software that is responsible for starting, stopping, and managing the containers. The most commonly used container runtime in Kubernetes is Docker.
-
 - *Un clúster de Kubernetes es un conjunto de máquinas de nodos que ejecutan aplicaciones en contenedores.
-- *Sistema de procesamiento paralelo o distribuido. Consta de un conjunto de computadoras independientes, interconectadas entre sí, de tal manera que funcionan como un solo recurso computacional.
 
 #### Bibliografía
 
