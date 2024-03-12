@@ -188,7 +188,7 @@ export function CommandMenu() {
                         <span class="mr-2 text-gray-400">{page.group}</span>
                       )}
                       {page.icon && (
-                        <img src={page.icon} class="mr-2 h-4 w-4" />
+                        <img class="mr-2 h-4 w-4" alt="Page Icon">{page.icon}</img>
                       )}
                       {page.title}
                     </a>

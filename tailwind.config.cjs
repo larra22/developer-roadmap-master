@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,svg}'],
   theme: {
     extend: {
+      colors: {
+        'lks-color': '#f85900',
+      },
       typography: {
         quoteless: {
           css: {
