@@ -20,4 +20,4 @@ Es una herramienta de Análisis de Composición de Software (Software Compositio
 
 ## Recomendado y evaluado por LKS
 
-- [Presentación SonarQube interno](https://docs.google.com/presentation/d/1VXO3GOeTXAMPmMdDY-b0Bn-wKaJGhlcvyEtStkoL5vo/edit?usp=sharing) $\rightarror$ 5 sobre 5 puntos
+- [Presentación SonarQube interno](https://docs.google.com/presentation/d/1VXO3GOeTXAMPmMdDY-b0Bn-wKaJGhlcvyEtStkoL5vo/edit?usp=sharing) $\rightarrow$ 5 sobre 5 puntos
