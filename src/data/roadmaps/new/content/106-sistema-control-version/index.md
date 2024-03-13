@@ -16,4 +16,4 @@ A tener en cuenta: **ATENCIÓN**
 
 ## Recomendado y evaluado por LKS
 
-- [¿Qué es el control de versiones?](https://www.atlassian.com/es/git/tutorials/what-is-version-control) $\rightarror$ 5 sobre 5 puntos
+- [¿Qué es el control de versiones?](https://www.atlassian.com/es/git/tutorials/what-is-version-control) | 5 sobre 5 puntos

@@ -25,4 +25,4 @@ Con Gitflow, se crean dos ramas de larga duración (se mantendrán durante todo 
 
 ## Recomendado y evaluado por LKS
 
-- [Curso de Gitflow profesional](https://openwebinars.net/cursos/gitflow/) $\rightarror$ 4 sobre 5 puntos
+- [Curso de Gitflow profesional](https://openwebinars.net/cursos/gitflow/) | 4 sobre 5 puntos

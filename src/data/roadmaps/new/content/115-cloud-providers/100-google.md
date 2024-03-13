@@ -28,5 +28,5 @@ Google Cloud Platform (GCP) es la plataforma de servicios en la nube proporciona
 
 ### Guías
 
-- Oficiales $\rightarrow$ [Instructivos y guías de inicio rápido de Google Cloud](https://cloud.google.com/docs/tutorials?hl=ES)
+- Oficiales: [Instructivos y guías de inicio rápido de Google Cloud](https://cloud.google.com/docs/tutorials?hl=ES)
 - [Paso 1: configurar un proyecto de Google Cloud](https://docs.citrix.com/es-es/tech-zone/learn/poc-guides/gcp-enterprisedaas-setup.html)

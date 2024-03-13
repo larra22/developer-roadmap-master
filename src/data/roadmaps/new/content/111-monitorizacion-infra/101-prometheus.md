@@ -10,9 +10,9 @@ El servidor Prometheus almacena las métricas recopiladas en una base de datos d
 
 ## Objetivos
 
-1. Recolección de métrias $\rightarrow$ Prometheus tiene como objetivo principal la recopilación de datos de métricas de sistemas, servicios y aplicaciones de manera eficiente y en tiempo real.
-2. Almacenamiento y recuperación $\rightarrow$ La herramienta almacena las métricas en una base de datos de series de tiempo que permite una recuperación rápida y eficiente para consultas y análisis.
-3. Monitoreo y alertas $\rightarrow$ Prometheus ofrece un potente sistema de alertas que notifica a los operadores cuando ciertas métricas superan umbrales predefinidos, permitiendo una reacción rápida ante problemas.
+1. Recolección de métrias:Prometheus tiene como objetivo principal la recopilación de datos de métricas de sistemas, servicios y aplicaciones de manera eficiente y en tiempo real.
+2. Almacenamiento y recuperación: La herramienta almacena las métricas en una base de datos de series de tiempo que permite una recuperación rápida y eficiente para consultas y análisis.
+3. Monitoreo y alertas: Prometheus ofrece un potente sistema de alertas que notifica a los operadores cuando ciertas métricas superan umbrales predefinidos, permitiendo una reacción rápida ante problemas.
 
 ### Beneficios
 

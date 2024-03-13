@@ -14,4 +14,4 @@ La automatización es un componente crítico en DevOps. Los usuarios DevOps depe
 ## Recomendado y evaluado por LKS
 
 - [Introducción a DevOps para la mejora de los procesos de desarrollo con herramientas Open Source](https://openaccess.uoc.edu/bitstream/10609/97626/6/aelezTFG0619memoria.pdf)
- $\rightarror$ 4 sobre 5 puntos
+ | 4 sobre 5 puntos

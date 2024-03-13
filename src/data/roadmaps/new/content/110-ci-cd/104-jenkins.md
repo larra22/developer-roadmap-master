@@ -6,23 +6,23 @@ En términos simples, Jenkins automatiza el proceso de construcción, prueba y d
 
 ## Componentes pipeline
 
-- Disparadores $\rightarrow$ Motivo por el cual se comienza la ejecución de tareas automáticas. Puede ser por varios motivos: push en un repositorio github, ejecución cada cierto tiempo, finalización de otra tarea,…
-- Stage $\rightarrow$ Son las etapas lógicas en las que se dividen los flujos de trabajo de Jenkins. Es una práctica recomendada dividir nuestro flujo de trabajo en etapas ya que nos ayudará a organizar nuestros pipelines en fases. Ejemplos de fases: build, test, deploy,…
-- Steps $\rightarrow$ Son las tareas ó comandos que ejecutados de forma secuencial implementan la lógica de nuestro flujo de trabajo.
-- Node $\rightarrow$ Máquina que es parte del entorno de Jenkins y es capaz de ejecutar un Pipeline Jenkins. También llamada agentes de ejecución. Pueden ser la misma máquina donde tenemos instalado Jenkins, o máquinas configuradas para este fin. También podemos usar contenedores docker como agentes de ejecución. Es importante reseñar que el directorio de trabajo (workspace) es compartido por los steps del nodo, de forma que steps de un nodo pueden acceder a ficheros/directorios generados por steps de ese mismo nodo.
-- Notificaciones $\rightarrow$ Por ejemplo que envíe un correo electrónico al terminar.
+- Disparadores: Motivo por el cual se comienza la ejecución de tareas automáticas. Puede ser por varios motivos: push en un repositorio github, ejecución cada cierto tiempo, finalización de otra tarea,…
+- Stage: Son las etapas lógicas en las que se dividen los flujos de trabajo de Jenkins. Es una práctica recomendada dividir nuestro flujo de trabajo en etapas ya que nos ayudará a organizar nuestros pipelines en fases. Ejemplos de fases: build, test, deploy,…
+- Steps: Son las tareas ó comandos que ejecutados de forma secuencial implementan la lógica de nuestro flujo de trabajo.
+- Node: Máquina que es parte del entorno de Jenkins y es capaz de ejecutar un Pipeline Jenkins. También llamada agentes de ejecución. Pueden ser la misma máquina donde tenemos instalado Jenkins, o máquinas configuradas para este fin. También podemos usar contenedores docker como agentes de ejecución. Es importante reseñar que el directorio de trabajo (workspace) es compartido por los steps del nodo, de forma que steps de un nodo pueden acceder a ficheros/directorios generados por steps de ese mismo nodo.
+- Notificaciones: Por ejemplo que envíe un correo electrónico al terminar.
 
 ## Ventajas de Jenkins
 
-1. Automatización $\rightarrow$ Jenkins automatiza tareas repetitivas y propensas a errores, lo que ahorra tiempo y reduce la posibilidad de fallos humanos.
+1. Automatización: Jenkins automatiza tareas repetitivas y propensas a errores, lo que ahorra tiempo y reduce la posibilidad de fallos humanos.
 
-2. Integración Continua $\rightarrow$ Permite la integración rápida y continua del código, lo que facilita la detección temprana de errores y la solución rápida de problemas.
+2. Integración Continua : Permite la integración rápida y continua del código, lo que facilita la detección temprana de errores y la solución rápida de problemas.
 
-3. Entrega Continua $\rightarrow$ Jenkins facilita la entrega rápida y confiable del software a través de pipelines bien definidas y procesos automatizados.
+3. Entrega Continua: Jenkins facilita la entrega rápida y confiable del software a través de pipelines bien definidas y procesos automatizados.
 
-4. Escalabilidad $\rightarrow$ Es altamente escalable y puede adaptarse a proyectos de diferentes tamaños y complejidades.
+4. Escalabilidad: Es altamente escalable y puede adaptarse a proyectos de diferentes tamaños y complejidades.
 
-5. Personalización $\rightarrow$ Mediante el uso de plugins, Jenkins se puede personalizar para ajustarse a las necesidades específicas de cada proyecto.
+5. Personalización: Mediante el uso de plugins, Jenkins se puede personalizar para ajustarse a las necesidades específicas de cada proyecto.
 
 ## Instalación
 

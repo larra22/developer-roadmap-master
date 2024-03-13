@@ -4,9 +4,9 @@ El flujo de trabajo GitLab Flow es una variante del flujo de trabajo Git que se 
 
 ## Ramas del repositorio
 
-1. Main/Master branch $\rightarrow$ Representa la versión de producción del código. Es una rama protegida, lo que significa que solo se deben fusionar cambios comprobados y de alta calidad en ella.
+1. Main/Master branch: Representa la versión de producción del código. Es una rama protegida, lo que significa que solo se deben fusionar cambios comprobados y de alta calidad en ella.
 
-2. Feature branches $\rightarrow$ Cuando un desarrollador trabaja en una nueva función o característica, crea una rama de características (feature branch) a partir de la rama principal. El nombre de esta rama refleja el contenido de la función que se está desarrollando.
+2. Feature branches: Cuando un desarrollador trabaja en una nueva función o característica, crea una rama de características (feature branch) a partir de la rama principal. El nombre de esta rama refleja el contenido de la función que se está desarrollando.
 
 ## Desarrollo y colaboración
 
@@ -33,10 +33,10 @@ En resumen, el GitLab Flow es un enfoque sencillo pero efectivo para el desarrol
 GitFlow y GitLab Flow son dos enfoques diferentes para gestionar el flujo de trabajo y la colaboración en proyectos de desarrollo de software utilizando Git.
 || GitFlow | GitLab Flow |
 |----------|----------|
-|Desarrollo ramificado $\rightarrow$ Utiliza varias ramas principales para organizar el desarrollo (dos ramas principales principales: develop y master) | Simplificación del flujo $\rightarrow$ Es una variante más simple del flujo de trabajo Git. Se basa en el uso de una sola rama principal |
+|Desarrollo ramificado: Utiliza varias ramas principales para organizar el desarrollo (dos ramas principales principales: develop y master) | Simplificación del flujo: Es una variante más simple del flujo de trabajo Git. Se basa en el uso de una sola rama principal |
 | El desarrollo de nuevas características se realiza en ramas de características que se crean a partir de la rama develop. Una vez que una funcionalidad está completa, se fusiona de nuevo en develop | Al igual que GitFlow, las nuevas características se desarrollan en ramas de características separadas que se crean a partir de la rama principal. Una vez completadas, se fusionan nuevamente en la rama principal |
-| Ramas de lanzamiento $\rightarrow$ Antes de un lanzamiento, se crea una rama de lanzamiento a partir de develop | Sin ramas de lanzamiento ni hotfix $\rightarrow$ NO se utilizan ramas de lanzamiento o hotfix. Los cambios se prueban y se fusionan directamente en la rama principal cuando están listos para su implementación |
-| Ramas de hotfix $\rightarrow$ Si se encuentran errores en producción (master), se crea una rama de hotfix a partir de master, se corrige el error y luego se fusiona tanto en master como en develop | **Énfasis en las solicitudes de fusión**. Se pone un fuerte énfasis en el uso de solicitudes de fusión (Merge Requests) para revisar y aprobar los cambios antes de su fusión en la rama principal |
-| Propenso a "ramas zombie" $\rightarrow$ Puede resultar en un gran número de ramas persistentes en el repositorio, lo que a veces se conoce como "ramas zombie" | Enfoque ágil $\rightarrow$ GitLab Flow es más ágil y se centra en la iteración rápida y en la entrega continua de código de alta calidad |
+| Ramas de lanzamiento: Antes de un lanzamiento, se crea una rama de lanzamiento a partir de develop | Sin ramas de lanzamiento ni hotfix: NO se utilizan ramas de lanzamiento o hotfix. Los cambios se prueban y se fusionan directamente en la rama principal cuando están listos para su implementación |
+| Ramas de hotfix: Si se encuentran errores en producción (master), se crea una rama de hotfix a partir de master, se corrige el error y luego se fusiona tanto en master como en develop | **Énfasis en las solicitudes de fusión**. Se pone un fuerte énfasis en el uso de solicitudes de fusión (Merge Requests) para revisar y aprobar los cambios antes de su fusión en la rama principal |
+| Propenso a "ramas zombie": Puede resultar en un gran número de ramas persistentes en el repositorio, lo que a veces se conoce como "ramas zombie" | Enfoque ágil: GitLab Flow es más ágil y se centra en la iteración rápida y en la entrega continua de código de alta calidad |
 
 En resumen, GitFlow es un enfoque más estructurado y complejo que utiliza múltiples ramas principales para organizar el desarrollo, mientras que GitLab Flow es más simple y ágil, basándose en el uso de una sola rama principal y en el uso de solicitudes de fusión para gestionar los cambios.

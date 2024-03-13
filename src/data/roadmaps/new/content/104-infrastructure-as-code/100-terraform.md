@@ -6,7 +6,7 @@ Terraform tiene unas particularidades interesantes como poder comprobar la confi
 
 ## Ventajas
 
-- Puede utilizarse con muchos proveedores de servicios de cloud $\rightarrow$ Una de las principales ventajas es que se puede usar con cientos de proveedores de nube. Así que, no es necesario aprender una herramienta para trabajar con cada proveedor de nube, ya sea que utilices AWS, Azure, Google Cloud Platform, etc., siempre tendrás la posibilidad de definir la infraestructura con Terraform. Es una de las razones por las que se ha convertido en la herramienta más utilizada para aprovisionar infraestructuras en la nube.
+- Puede utilizarse con muchos proveedores de servicios de cloud : Una de las principales ventajas es que se puede usar con cientos de proveedores de nube. Así que, no es necesario aprender una herramienta para trabajar con cada proveedor de nube, ya sea que utilices AWS, Azure, Google Cloud Platform, etc., siempre tendrás la posibilidad de definir la infraestructura con Terraform. Es una de las razones por las que se ha convertido en la herramienta más utilizada para aprovisionar infraestructuras en la nube.
 - Su lenguaje (HCL) es muy sencillo de usar, lo que facilita la implementación de infraestructura de manera mucho más ágil, con menos coste en tiempo y adaptación por parte del desarrollador.
 - El estado de Terraform le permite realizar un seguimiento de los cambios de recursos a lo largo de sus implementaciones.
 - Puede enviar sus configuraciones al control de versiones para colaborar de manera segura en la infraestructura.

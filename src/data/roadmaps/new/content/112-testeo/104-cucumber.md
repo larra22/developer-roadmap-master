@@ -26,21 +26,21 @@ Típicamente, estas pruebas se van a guardar en archivos “.feature”, los cua
 
 ### Conceptos clave
 
-- Características (Feature files) $\rightarrow$ Son archivos que contienen los escenarios de prueba escritos en Gherkin. Cada archivo de característica representa una funcionalidad o característica específica de la aplicación. Los escenarios dentro del archivo de características se ejecutan como pruebas de aceptación.
+- Características (Feature files): Son archivos que contienen los escenarios de prueba escritos en Gherkin. Cada archivo de característica representa una funcionalidad o característica específica de la aplicación. Los escenarios dentro del archivo de características se ejecutan como pruebas de aceptación.
 
-- Pasos de prueba (Step Definitions) $\rightarrow$ Son fragmentos de código escritos en lenguajes de programación como Java, Ruby, JavaScript, etc., que vinculan los pasos de los escenarios en el archivo de características con la implementación de las pruebas. Estos pasos se encargan de ejecutar las acciones y comprobar los resultados esperados.
+- Pasos de prueba (Step Definitions): Son fragmentos de código escritos en lenguajes de programación como Java, Ruby, JavaScript, etc., que vinculan los pasos de los escenarios en el archivo de características con la implementación de las pruebas. Estos pasos se encargan de ejecutar las acciones y comprobar los resultados esperados.
 
-- Informes $\rightarrow$ Cucumber proporciona informes detallados sobre la ejecución de las pruebas, lo que facilita el seguimiento y la comprensión de los resultados de las pruebas.
+- Informes: Cucumber proporciona informes detallados sobre la ejecución de las pruebas, lo que facilita el seguimiento y la comprensión de los resultados de las pruebas.
 
-- Scenario Outline $\rightarrow$ Cucumber permite la reutilización de escenarios mediante el uso de Scenario Outlines. Un Scenario Outline es una plantilla que se puede llenar con datos diferentes para ejecutar el mismo escenario varias veces con diferentes conjuntos de datos. Se utiliza la palabra clave "Scenario Outline" en lugar de "Scenario" y se definen parámetros entre corchetes {} en los pasos del escenario.
+- Scenario Outline:Cucumber permite la reutilización de escenarios mediante el uso de Scenario Outlines. Un Scenario Outline es una plantilla que se puede llenar con datos diferentes para ejecutar el mismo escenario varias veces con diferentes conjuntos de datos. Se utiliza la palabra clave "Scenario Outline" en lugar de "Scenario" y se definen parámetros entre corchetes {} en los pasos del escenario.
 
-- Hooks $\rightarrow$ Los Hooks en Cucumber son métodos que se ejecutan antes o después de cada escenario o conjunto de escenarios. Permiten configurar y preparar el entorno antes de que se ejecuten las pruebas y limpiar o realizar acciones posteriores a la prueba. Los Hooks son útiles para inicializar datos, establecer conexiones con bases de datos o servicios, cerrar sesiones y otras tareas de configuración.
+- Hooks: Los Hooks en Cucumber son métodos que se ejecutan antes o después de cada escenario o conjunto de escenarios. Permiten configurar y preparar el entorno antes de que se ejecuten las pruebas y limpiar o realizar acciones posteriores a la prueba. Los Hooks son útiles para inicializar datos, establecer conexiones con bases de datos o servicios, cerrar sesiones y otras tareas de configuración.
 
-- Tags $\rightarrow$ Los Tags son etiquetas que se pueden agregar a los escenarios o conjuntos de escenarios en el archivo de características. Permiten agrupar y organizar las pruebas para que se puedan ejecutar selectivamente utilizando filtros de tags. Los Tags son útiles para categorizar las pruebas y permiten ejecutar un subconjunto específico de pruebas según las necesidades.
+- Tags: Los Tags son etiquetas que se pueden agregar a los escenarios o conjuntos de escenarios en el archivo de características. Permiten agrupar y organizar las pruebas para que se puedan ejecutar selectivamente utilizando filtros de tags. Los Tags son útiles para categorizar las pruebas y permiten ejecutar un subconjunto específico de pruebas según las necesidades.
 
-- Step Argument Transformations $\rightarrow$ Es una funcionalidad avanzada de Cucumber que permite convertir automáticamente argumentos de pasos en objetos con tipos específicos. Esto es útil cuando se necesitan datos en un formato particular para realizar acciones en las pruebas.
+- Step Argument Transformations: Es una funcionalidad avanzada de Cucumber que permite convertir automáticamente argumentos de pasos en objetos con tipos específicos. Esto es útil cuando se necesitan datos en un formato particular para realizar acciones en las pruebas.
 
-- Hooks con Etiquetas $\rightarrow$ Cucumber también permite utilizar Hooks específicos para ciertas etiquetas. Esto permite ejecutar acciones antes o después de escenarios específicos que tengan ciertas etiquetas, lo que brinda mayor flexibilidad en la configuración y limpieza de pruebas según las necesidades.
+- Hooks con Etiquetas: Cucumber también permite utilizar Hooks específicos para ciertas etiquetas. Esto permite ejecutar acciones antes o después de escenarios específicos que tengan ciertas etiquetas, lo que brinda mayor flexibilidad en la configuración y limpieza de pruebas según las necesidades.
 
 ## Estructura básica
 
@@ -55,7 +55,7 @@ Feature: Descripción de la funcionalidad a probar
 
 ## Instalación
 
-- Guía oficial gran variedad de lenguajes $\rightarrow$ [Instalación cucumber](https://cucumber.io/docs/installation/)
+- Guía oficial gran variedad de lenguajes: [Instalación cucumber](https://cucumber.io/docs/installation/)
 
 ### Cheatsheet
 

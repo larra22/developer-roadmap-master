@@ -25,9 +25,9 @@ Las pipelines son fundamentales para implementar prácticas de CI/CD. Permiten a
 
 Un pipeline es una secuencia de operaciones automatizadas que usualmente representa una parte de la entrega y el aseguramiento de la calidad del software. Podemos verlo simplemente como una secuencia de scripts que provee algunos beneficios como:
 
-1. Agrupación de operaciones $\rightarrow$ Las operaciones se agrupan en etapas que llamaremos stages, pero también son conocidas como gates o quality gates estas introducen una estructura del proceso y definen claramente una regla: si un stage falla, ningun otro stage se ejecuta.
-2. Visibilidad $\rightarrow$ Todos los aspectos del proceso son visualizados, lo que puede ayudar a un análisis del fallo rápido y promueve la colaboración de los equipos.
-3. Retroalimentación $\rightarrow$ Los miembros del equipo se dan cuenta de los problemas tan pronto como ocurren. Esto les permite reaccionar de manera rápida.
+1. Agrupación de operaciones: Las operaciones se agrupan en etapas que llamaremos stages, pero también son conocidas como gates o quality gates estas introducen una estructura del proceso y definen claramente una regla: si un stage falla, ningun otro stage se ejecuta.
+2. Visibilidad: Todos los aspectos del proceso son visualizados, lo que puede ayudar a un análisis del fallo rápido y promueve la colaboración de los equipos.
+3. Retroalimentación: Los miembros del equipo se dan cuenta de los problemas tan pronto como ocurren. Esto les permite reaccionar de manera rápida.
 
 ### Ejemplo proceso
 

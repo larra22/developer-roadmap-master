@@ -6,13 +6,13 @@ Se ha convertido en una práctica habitual entre los equipos de DevOps y parte d
 
 ## ¿Cómo funciona el flujo de trabajo trunk-based?
 
-1. **Rama Principal (Trunk)** $\rightarrow$ En este flujo, la rama principal es considerada como la rama de integración. Representa la versión de desarrollo más actualizada y estable del proyecto.
+1. **Rama Principal (Trunk)**: En este flujo, la rama principal es considerada como la rama de integración. Representa la versión de desarrollo más actualizada y estable del proyecto.
 
-2. **Commit Tempranos y Frecuentes** $\rightarrow$ Los desarrolladores realizan confirmaciones de sus cambios en la rama principal de manera temprana y frecuente, lo que permite una rápida integración de código.
+2. **Commit Tempranos y Frecuentes**: Los desarrolladores realizan confirmaciones de sus cambios en la rama principal de manera temprana y frecuente, lo que permite una rápida integración de código.
 
-3. **Pruebas Continuas** $\rightarrow$ Se implementan pruebas automatizadas para garantizar que las confirmaciones no rompan la funcionalidad existente.
+3. **Pruebas Continuas**: Se implementan pruebas automatizadas para garantizar que las confirmaciones no rompan la funcionalidad existente.
 
-4. **Integración Continua** $\rightarrow$ Todos los cambios se integran continuamente en la rama principal, lo que facilita la detección temprana de conflictos e incompatibilidades.
+4. **Integración Continua**: Todos los cambios se integran continuamente en la rama principal, lo que facilita la detección temprana de conflictos e incompatibilidades.
 
 5. **Entrega Continua** Con las pruebas y la integración continua en su lugar, se facilita la entrega de software de manera más regular y confiable.
 
@@ -50,17 +50,17 @@ Al eliminar la necesidad de fusionar muchas ramas, se acelera el tiempo de entre
 
 ### Pasos para implementar el flujo de trabajo trunk-based:
 
-1. Educación del Equipo $\rightarrow$ Es importante que todos los miembros del equipo comprendan los principios y beneficios del flujo trunk-based y estén dispuestos a adoptar esta metodología.
+1. Educación del Equipo: Es importante que todos los miembros del equipo comprendan los principios y beneficios del flujo trunk-based y estén dispuestos a adoptar esta metodología.
 
-2. Establecer Pruebas Automatizadas $\rightarrow$ Implementar pruebas automatizadas para garantizar que los cambios realizados no afecten negativamente la funcionalidad existente.
+2. Establecer Pruebas Automatizadas: Implementar pruebas automatizadas para garantizar que los cambios realizados no afecten negativamente la funcionalidad existente.
 
-3. Comunicación y Colaboración $\rightarrow$ Fomentar la comunicación y la colaboración entre los miembros del equipo para garantizar una integración sin problemas y para abordar rápidamente cualquier problema que surja.
+3. Comunicación y Colaboración: Fomentar la comunicación y la colaboración entre los miembros del equipo para garantizar una integración sin problemas y para abordar rápidamente cualquier problema que surja.
 
-4. Integración Continua $\rightarrow$ Anima a los desarrolladores a realizar confirmaciones frecuentes y tempranas en la rama principal.
+4. Integración Continua: Anima a los desarrolladores a realizar confirmaciones frecuentes y tempranas en la rama principal.
 
-5. Monitoreo Continuo $\rightarrow$ Establece un sistema de monitoreo continuo para detectar problemas o errores lo antes posible.
+5. Monitoreo Continuo: Establece un sistema de monitoreo continuo para detectar problemas o errores lo antes posible.
 
-6. Retroalimentación y Mejora Continua $\rightarrow$ Analiza regularmente el flujo de trabajo para identificar oportunidades de mejora y ajustar el proceso según sea necesario.
+6. Retroalimentación y Mejora Continu: Analiza regularmente el flujo de trabajo para identificar oportunidades de mejora y ajustar el proceso según sea necesario.
 
 #### Bibliografía
 
@@ -71,4 +71,4 @@ Al eliminar la necesidad de fusionar muchas ramas, se acelera el tiempo de entre
 
 ## Recomendado y evaluado por LKS
 
-- [Version Control for Multiple Agile Teams](https://www.infoq.com/articles/agile-version-control/) $\rightarror$ 5 sobre 5 puntos
+- [Version Control for Multiple Agile Teams](https://www.infoq.com/articles/agile-version-control/) | 5 sobre 5 puntos
