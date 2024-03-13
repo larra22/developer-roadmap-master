@@ -6,11 +6,11 @@ Chef viene con dos modelos de implementación: (1) servidor cliente e (2) indepe
 
 ## Arquitectura
 
-- **Chef WorkStation** $\rightarrow$ plataforma de desarrollo local para que los usuarios de Chef creen, prueben y apliquen configuraciones. Puede ser con un ordenador de escritorio local/portátil con Chef DK (Kit de desarrollo) instalado. Se puede utilizar como entorno de desarrollo/prueba antes de pasar a Producción.
+- **Chef WorkStation**: plataforma de desarrollo local para que los usuarios de Chef creen, prueben y apliquen configuraciones. Puede ser con un ordenador de escritorio local/portátil con Chef DK (Kit de desarrollo) instalado. Se puede utilizar como entorno de desarrollo/prueba antes de pasar a Producción.
 
-- **Servidor Chef** $\rightarrow$ Es un servidor que tiene instalado y configurado un software chef-server. Es responsable de administrar el código del Chef y acceder al código de configuración desde Chef Workstation. El servidor chef debe ser una máquina **Linux**.
+- **Servidor Chef**:Es un servidor que tiene instalado y configurado un software chef-server. Es responsable de administrar el código del Chef y acceder al código de configuración desde Chef Workstation. El servidor chef debe ser una máquina **Linux**.
 
-- **Clientes de Chef** $\rightarrow$ Son los servidores que se comunican con el servidor de Chef para obtener detalles de configuración, como el código de chef y otros archivos dependientes en binarios. Extrae el código del servidor Chef y lo implementa localmente.
+- **Clientes de Chef**: Son los servidores que se comunican con el servidor de Chef para obtener detalles de configuración, como el código de chef y otros archivos dependientes en binarios. Extrae el código del servidor Chef y lo implementa localmente.
 
 ## Componentes clave
 
@@ -26,9 +26,9 @@ Chef viene con dos modelos de implementación: (1) servidor cliente e (2) indepe
 
 ## 2 Implementaciones
 
-1. *Chef Server* $\rightarrow$ Chef utiliza un servidor central (Chef Server) para almacenar y administrar la configuración y los datos relacionados con los nodos, roles y recetas. Los nodos se comunican con el servidor para obtener la configuración y las políticas asignadas.
+1. *Chef Server*: Chef utiliza un servidor central (Chef Server) para almacenar y administrar la configuración y los datos relacionados con los nodos, roles y recetas. Los nodos se comunican con el servidor para obtener la configuración y las políticas asignadas.
 
-2. *Chef Solo* $\rightarrow$ Chef Solo es una versión simplificada de Chef que no requiere un servidor central. Es útil para entornos pequeños o pruebas locales, donde no se necesita la complejidad de un servidor centralizado.
+2. *Chef Solo*: Chef Solo es una versión simplificada de Chef que no requiere un servidor central. Es útil para entornos pequeños o pruebas locales, donde no se necesita la complejidad de un servidor centralizado.
 
 ### Global 
 
@@ -36,7 +36,7 @@ Chef es ampliamente utilizado en entornos de desarrollo y producción para autom
 
 ### Instalación
 
--Chef client $\rightarrow$ Windows $\rightarrow$ [https://jesuslc.com/2014/01/29/poco-a-poco-con-chef-en-windows/](https://jesuslc.com/2014/01/29/poco-a-poco-con-chef-en-windows/)
+-Chef client: Windows: [https://jesuslc.com/2014/01/29/poco-a-poco-con-chef-en-windows/](https://jesuslc.com/2014/01/29/poco-a-poco-con-chef-en-windows/)
 
 #### Bibliografía
 

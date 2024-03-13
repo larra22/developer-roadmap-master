@@ -37,6 +37,6 @@ Docker-compose es una herramienta desarrollada para definir y ejecutar aplicacio
 
 ## Recomendado y evaluado por LKS
 
-- [DevOps con Docker, Jenkins, Kubernetes, git, GitFlow CI y CD](https://www.udemy.com/course/devops-con-dockers-kubernetes-jenkins-y-gitflow-cicd/) $\rightarror$ 4.5 sobre 5 puntos
-- [Docker Crash Course - The Net Ninja](https://youtu.be/31ieHmcTUOk) $\rightarror$ 5 sobre 5 puntos
-- [Introducción a Docker - OpenWebinars](https://openwebinars.net/accounts/login/?next=/academia/portada/docker-introduccion/) $\rightarror$ 4 sobre 5 puntos
+- [DevOps con Docker, Jenkins, Kubernetes, git, GitFlow CI y CD](https://www.udemy.com/course/devops-con-dockers-kubernetes-jenkins-y-gitflow-cicd/) | 4.5 sobre 5 puntos
+- [Docker Crash Course - The Net Ninja](https://youtu.be/31ieHmcTUOk) | 5 sobre 5 puntos
+- [Introducción a Docker - OpenWebinars](https://openwebinars.net/accounts/login/?next=/academia/portada/docker-introduccion/) | 4 sobre 5 puntos
