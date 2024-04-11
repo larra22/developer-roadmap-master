@@ -1,0 +1,58 @@
+---
+import SimplePageHeader from '../../components/SimplePageHeader.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DB from '../../components/Database/DB.astro';
+
+export const prerender = false; //Para que cada vez que carge coja la informacion de la base de datos
+//Si no aparece esta linea, se cargará una vez y no se actualizará
+
+
+---
+
+
+<BaseLayout
+title='Añadir un nuevo recurso'
+description={'Pon la información del recurso y se almacenará en la base de datos.'}
+permalink={`/recursos`}
+>
+  <SimplePageHeader title='Añadir un nuevo recurso' description='Pon la información del recurso y se almacenará en la base de datos.' />
+
+<form method="post">
+  <label>
+   Título:
+    <input type="text" id="titulo" name="titulo"  required/>
+  </label>
+  <label>
+    Link
+    <input type="text" id="enlaceFichero" name="enlaceFichero" required />
+  </label>
+  <label>
+    Descripción:
+    <input type="text" id="descripcion" name="descripcion" required/>
+  </label>
+  <label>
+    Nivel de dificultad:
+    <label for="r1">Principiante</label>
+    <input type="radio" name="dificultad" id="r1" value="principiante">
+    <label for="r2">Intermedio</label>
+    <input type="radio" name="dificultad" id="r2" value="intermedio">
+    <label for="r3">Avanzado</label>
+    <input type="radio" name="dificultad" id="r3" value="avanzado">
+
+  </label>
+
+  <label>
+    Correo electrónico:
+    <input type="text" id="quienIncluido" name="quienIncluido" />
+  </label>
+
+
+
+  <button>Enviar</button>
+</form>
+  
+  
+  
+
+
+</BaseLayout>

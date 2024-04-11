@@ -3,6 +3,9 @@ import { getAllGuides } from '../lib/guide';
 import { getRoadmapsByTag } from '../lib/roadmap';
 import { getAllVideos } from '../lib/video';
 
+export const ssr = false;
+export const csr = true;
+
 export async function get() {
   const guides = await getAllGuides();
   const videos = await getAllVideos();

@@ -36,6 +36,7 @@ const defaultPages: PageType[] = [
   },
   { url: '/guides', title: 'Guides', group: 'Pages', icon: GuideIcon },
   { url: '/videos', title: 'Videos', group: 'Pages', icon: VideoIcon },
+  { url: '/recursos', title: 'Recursos', group: 'Pages', icon: VideoIcon },
 ];
 
 function shouldShowPage(page: PageType) {
