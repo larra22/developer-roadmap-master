@@ -13,14 +13,14 @@ const { breadcrumbs, roadmapId } = Astro.props;
   <!-- Desktop breadcrumbs -->
   <p class='text-gray-500 container hidden sm:block'>
     {
-      breadcrumbs.map((breadcrumb, counter) => {
+      breadcrumbs.map((breadcrumb: { url: any; title: unknown; }, counter: number) => {
         const isLast = counter === breadcrumbs.length - 1;
 
         if (!isLast) {
           return (
             <>
               <a class='hover:text-gray-800' href={`${breadcrumb.url}`}>
-                {breadcrumb.title}
+                {breadcrumb.title } 
               </a>
               <span>&nbsp;&middot;&nbsp;</span>
             </>

@@ -1,4 +1,4 @@
-import type { PageSponsorType } from '../components/PageSponsor';
+
 import type { MarkdownFileType } from './File';
 
 export interface RoadmapFrontmatter {
