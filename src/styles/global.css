@@ -8,6 +8,25 @@
   }
 }
 
+button {
+  background-color: #f7f8f7; /* Green */
+  border: 2px solid #F85900;
+  color: #F85900;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #F85900;
+  color:#ebebeb
+}
+
 blockquote p:before {
   display: none;
 }
