@@ -40,6 +40,10 @@ const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
     <div class='container'>
       {
         topics.map((topic) => {
+          if (!topic || !topic.heading) {
+    // Skip rendering if topic or heading is undefined
+    return ;
+  }
           // Breadcrumbs have three additional items e.g.
           //
           //     Roadmaps / Frontend / Topics / Internet / HTTP
