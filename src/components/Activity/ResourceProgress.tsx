@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import React, { useState } from 'react';
 import { httpPost } from '../../lib/http';
 import { getRelativeTimeString } from '../../lib/date';
 

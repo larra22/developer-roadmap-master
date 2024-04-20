@@ -14,5 +14,16 @@ const createTable = async () => {
 
 
 //Obtener los recursos según categoría
+const getResourcesByCategory = async (category: string) => {
+    try {
+        const query = `SELECT * FROM recursos WHERE categoria = '${category}'`;
+        const { rows } = await db.query(query);
+        return rows;
+    } catch (error) {
+        console.error('Error getting resources by category:', error);
+    }
+}
+
+
 //Obtener los recursos según las opiniones
 

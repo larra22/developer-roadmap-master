@@ -1,4 +1,4 @@
-import { useEffect } from 'preact/hooks';
+import React, { useEffect } from 'react';
 
 export function useKeydown(keyName: string, callback: any, deps: any[] = []) {
   useEffect(() => {

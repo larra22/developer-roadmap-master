@@ -6,18 +6,23 @@ import { getAllVideos } from '../lib/video';
 export const ssr = false;
 export const csr = true;
 
-export async function get() {
+export async function GET() {
   const guides = await getAllGuides();
   const videos = await getAllVideos();
   const roadmaps = await getRoadmapsByTag('roadmap');
   const organigramas = await getAllOrganigramas();
 
-  return {
-    body: JSON.stringify([
+  return new Response(
+    JSON.stringify([
       ...roadmaps.map((roadmap) => ({
+        id: roadmap.id,
         url: `/${roadmap.id}`,
         title: roadmap.frontmatter.briefTitle,
+        description: roadmap.frontmatter.briefDescription,
         group: 'Roadmaps',
+        metadata: {
+          tags: roadmap.frontmatter.tags,
+        },
       })),
       ...organigramas.map((organigrama) => ({
         url: `/organigrama/${organigrama.id}`,
@@ -35,5 +40,5 @@ export async function get() {
         group: 'Videos',
       })),
     ]),
-  };
-}
+  )};
+

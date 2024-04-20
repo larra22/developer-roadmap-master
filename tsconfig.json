@@ -1,7 +1,10 @@
 {
 	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact"
-	}
+			  "target": "es2017",
+			  "module": "es2022", // or any other module format that supports top-level await
+			  "jsx": "react-jsx",
+				"jsxImportSource": "preact"
+		
+		}
 }

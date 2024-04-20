@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks';
+import React,{ useEffect, useState } from 'react';
 import { httpGet } from '../../lib/http';
 import { ActivityCounters } from './ActivityCounters';
 import { ResourceProgress } from './ResourceProgress';

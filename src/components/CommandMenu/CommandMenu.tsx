@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
+import React, { useEffect, useRef, useState } from 'react';
 import { useKeydown } from '../../hooks/use-keydown';
 import { useOutsideClick } from '../../hooks/use-outside-click';
 import OrganigramaIcon from '../../icons/organigrama.svg';
@@ -14,7 +14,7 @@ type PageType = {
   url: string;
   title: string;
   group: string;
-  icon?: string;
+  icon?: ImageMetadata;
   isProtected?: boolean;
 };
 

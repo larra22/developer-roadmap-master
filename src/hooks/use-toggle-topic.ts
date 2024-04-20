@@ -1,4 +1,4 @@
-import { useEffect } from 'preact/hooks';
+import React, { useEffect } from 'react';
 import type { ResourceType } from '../lib/resource-progress';
 
 type CallbackType = (data: {

@@ -4,7 +4,7 @@ import { CommandMenu } from '../components/CommandMenu/CommandMenu';
 import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation/Navigation.astro';
 import OpenSourceBanner from '../components/OpenSourceBanner.astro';
-import { PageProgress } from '../components/PageProgress';
+//import { PageProgress } from '../components/PageProgress';
 import { siteConfig } from '../lib/config';
 import '../styles/global.css';
 
@@ -146,7 +146,7 @@ const gaPageIdentifier = Astro.url.pathname
       <Footer />
     </slot>
 
-    <PageProgress initialMessage={initialLoadingMessage} client:idle />
+    <!--<PageProgress initialMessage={initialLoadingMessage} client:idle />-->
     <CommandMenu client:idle />
     <slot name='after-footer' />
 

@@ -13,3 +13,6 @@ IDEA: Los textos de entrada, realizarse con chatgpt. Y ya, abajo se añaden los 
 Todo lo de la carpeta scripts, no se ejecuta directamente en la app. Si necesitamos algo de ello debe ejecutarse a mano.
 
 Vale la informacion de la izquierda se incluye en [..topicId].astro, cuando hace file.content añade todo lo que contienete el fichero.
+
+He comentado la clase de PageProgress, porque da un error con los preact/hooks. Mirar para arreglar, por tan esta comentado tanto en BaseLayout.
+Tambien he comentado pracitcamente toda la clase de CommandMenu.tsx
