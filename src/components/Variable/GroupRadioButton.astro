@@ -1,0 +1,22 @@
+--- 
+
+export interface Props {
+    valores: string [];
+}
+
+const {valores} = Astro.props;
+
+---
+
+
+
+        {
+            (valores || []).map((valor: string) => {
+                return (
+                    <label for="r1">{valor}</label>
+                    <input type="radio" name="dificultad" id="r1" value={valor}/>
+                )
+            })
+
+        }
+

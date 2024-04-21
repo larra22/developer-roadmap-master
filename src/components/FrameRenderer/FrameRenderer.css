@@ -76,6 +76,8 @@ svg .clickable-group.done[data-group-id^='check:'] rect {
 }
 
 .clickable-group rect {
+   
+  -webkit-user-select: none;
   user-select: none;
 }
 
