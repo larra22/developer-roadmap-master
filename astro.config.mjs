@@ -6,10 +6,14 @@ import compress from 'astro-compress';
 import { defineConfig } from 'astro/config';
 import rehypeExternalLinks from 'rehype-external-links';
 import { serializeSitemap, shouldIndexPage } from './sitemap.mjs';
-
+import node from '@astrojs/node';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://roadmap.sh/',
+  output: 'hybrid',
+  adapter: node({
+    mode: 'standalone',
+  }),
   markdown: {
     shikiConfig: {
       theme: 'dracula',
