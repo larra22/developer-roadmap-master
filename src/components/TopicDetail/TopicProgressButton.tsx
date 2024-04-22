@@ -5,8 +5,8 @@ import DownIcon from '../../icons/down.svg';
 import SpinnerIcon from '../../icons/spinner.svg';
 import { isLoggedIn } from '../../lib/jwt';
 import {
-  ResourceProgressType,
-  ResourceType,
+ type ResourceProgressType,
+ type ResourceType,
   getTopicStatus,
   renderTopicProgress,
   updateResourceProgress,
@@ -161,7 +161,7 @@ export function TopicProgressButton(props: TopicProgressButtonProps) {
   if (isUpdatingProgress) {
     return (
       <button className="inline-flex cursor-default items-center rounded-md border border-gray-300 bg-white p-1 px-2 text-sm text-black">
-        <img alt="Check" class="h-4 w-4 animate-spin" src={SpinnerIcon} />
+        <img alt="Check" class="h-4 w-4 animate-spin" src={SpinnerIcon.toString()} />
         <span className="ml-2">Updating Status..</span>
       </button>
     );
@@ -185,7 +185,7 @@ export function TopicProgressButton(props: TopicProgressButtonProps) {
         onClick={() => setShowChangeStatus(true)}
       >
         <span className="mr-0.5">Update Status</span>
-        <img alt="Check" class="h-4 w-4" src={DownIcon} />
+        <img alt="Check" class="h-4 w-4" src={DownIcon.toString()} />
       </button>
 
       {showChangeStatus && (

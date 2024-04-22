@@ -2,9 +2,14 @@
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RoadmapBanner from '../../components/RoadmapBanner.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getRoadmapTopicFiles,RoadmapTopicFileType } from '../../lib/roadmap-topic';
+import { getRoadmapTopicFiles, type RoadmapTopicFileType } from '../../lib/roadmap-topic';
+import type { Props } from '../guides/[guideId].astro';
+import {getResourcesByCategory} from '../../database/consultas';
 
-export async function getStaticPaths() {
+
+export const prerender = false;
+
+const getLoadStaticData = async () => {
   const topicPathMapping = await getRoadmapTopicFiles();
 
   return Object.keys(topicPathMapping).map((topicSlug) => {
@@ -22,8 +27,11 @@ export async function getStaticPaths() {
   });
 }
 
+const roadmapData = await getLoadStaticData();
+
 const { topicId } = Astro.params;
-const { file, breadcrumbs, roadmapId, roadmap, heading } = Astro.props as RoadmapTopicFileType;
+const { file, breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
+
 ---
 
 <BaseLayout
@@ -39,6 +47,9 @@ const { file, breadcrumbs, roadmapId, roadmap, heading } = Astro.props as Roadma
     <div class='container pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0'>
       <main id='main-content'>
         <file.Content />
+
+        {getResourcesByCategory('Video')}
+
       </main>
     </div>
   </div>

@@ -11,7 +11,7 @@ import { isLoggedIn } from '../../lib/jwt';
 import {
   isTopicDone,
   renderTopicProgress,
-  ResourceType,
+  type ResourceType,
   updateResourceProgress as updateResourceProgressApi,
 } from '../../lib/resource-progress';
 import { pageProgressMessage, sponsorHidden } from '../../stores/page';
@@ -155,7 +155,7 @@ export function TopicDetail() {
         {isLoading && (
           <div className="flex w-full justify-center">
             <img
-              src={SpinnerIcon}
+              src={SpinnerIcon.toString()}
               alt="Loading"
               className="h-6 w-6 animate-spin fill-blue-600 text-gray-200 sm:h-12 sm:w-12"
             />
@@ -182,7 +182,7 @@ export function TopicDetail() {
                 className="absolute right-2.5 top-2.5 inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
                 onClick={() => setIsActive(false)}
               >
-                <img alt="Close" class="h-5 w-5" src={CloseIcon} />
+                <img alt="Close" class="h-5 w-5" src={CloseIcon.toString()} />
               </button>
             </div>
 

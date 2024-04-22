@@ -3,7 +3,7 @@ import { httpPost } from '../../lib/http';
 import { isLoggedIn } from '../../lib/jwt';
 import {
   renderResourceProgress,
-  ResourceType,
+ type ResourceType,
 } from '../../lib/resource-progress';
 
 export class Renderer {

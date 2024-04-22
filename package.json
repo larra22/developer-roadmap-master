@@ -21,7 +21,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@astrojs/node": "^8.2.1",
+    "@astrojs/node": "^8.2.5",
     "@astrojs/preact": "^3.2.0",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/tailwind": "^5.1.0",
@@ -29,8 +29,8 @@
     "@nanostores/preact": "^0.5.0",
     "@playform/pipe": "^0.0.2",
     "astro": "^4.4.0",
-    "mysql2": "^10.2.4",
     "astro-compress": "^2.2.10",
+    "express": "^4.19.2",
     "jose": "^5.2.2",
     "js-cookie": "^3.0.5",
     "mysql2": "^3.9.7",
