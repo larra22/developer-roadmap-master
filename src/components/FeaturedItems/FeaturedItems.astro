@@ -1,5 +1,5 @@
 ---
-import FeaturedItem, { FeaturedItemType } from './FeaturedItem.astro';
+import FeaturedItem, { type FeaturedItemType } from './FeaturedItem.astro';
 
 export interface Props {
   featuredItems: FeaturedItemType[];
@@ -19,7 +19,7 @@ const { featuredItems, heading } = Astro.props;
 
     <ul class='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3'>
       {
-        featuredItems.map((featuredItem: { text: string; url: string; isNew: boolean | undefined; isUpcoming: boolean | undefined; }) => (
+        featuredItems.map((featuredItem: FeaturedItemType) => (
           <li>
             
             <FeaturedItem

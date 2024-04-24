@@ -4,7 +4,7 @@ import { db } from "./dbMySQL";
 export const getResourcesByCategory = async (tipo: string) => {
     try {
         const connection = await db.getConnection();
-        const query = `SELECT * FROM recursos WHERE Tipo = '${tipo}'`;
+        const query = `SELECT * FROM Recurso WHERE Tipo = '${tipo}'`;
         const [rows, fields] = await connection.execute(query);
         connection.release();
         console.log('Resources by category:', rows);
