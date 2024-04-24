@@ -30,6 +30,7 @@ export class Renderer {
     this.handleSvgClick = this.handleSvgClick.bind(this);
     this.prepareConfig = this.prepareConfig.bind(this);
     this.switchRoadmap = this.switchRoadmap.bind(this);
+    //this.changeColors = this.changeColors.bind(this);
   }
 
   get loaderEl() {
@@ -52,6 +53,7 @@ export class Renderer {
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
     this.jsonUrl = dataset.jsonUrl!;
+
 
     return true;
   }
@@ -77,6 +79,8 @@ export class Renderer {
         return res.json();
       })
       .then((json) => {
+        //AQUIIIIIII
+        this.changeColors(json);
         return wireframeJSONToSVG(json, {
           fontURL: '/fonts/balsamiq.woff2',
         });
@@ -133,6 +137,8 @@ export class Renderer {
       this.switchRoadmap(`/jsons/roadmaps/${roadmapType}.json`);
     } else {
       this.jsonToSvg(this.jsonUrl);
+
+      
     }
   }
 
@@ -160,7 +166,6 @@ export class Renderer {
       // roadmap/frontend/switch-version
       label: `${newJsonFileSlug}`,
     });
-
     this.jsonToSvg(newJsonUrl)?.then(() => {
       this.containerEl?.setAttribute('style', '');
     });
@@ -223,13 +228,61 @@ export class Renderer {
         },
       })
     );
+  } 
+
+  
+  /// MIOOOO
+
+// Change colors in the JSON based on text content
+// Change colors in the JSON based on text content
+changeColors(json: any): any {
+  console.log(json);
+  // Check if the JSON object has the expected structure
+  if (!json || !json.mockup || !json.mockup.controls || !json.mockup.controls.control) {
+      console.error('Invalid JSON structure. Unable to change colors.');
+      return json; // Return the original JSON object
   }
+
+  console.log(json.mockup.controls.control[1].children.controls.control[1].properties.text);
+  // Create a deep copy of the original JSON
+  const modifiedJson = JSON.parse(JSON.stringify(json));
+
+  modifiedJson.mockup.controls.control.forEach((control: {children: {controls: { control: [1];};};}) => {
+    if (control.children && control.children.controls) {
+          // Iterate through controls within the group
+          control.children.controls.control.forEach((innerControl: { properties: { text: string; color: string; }; }) => {
+              // Check if it's a label and has text
+              if (innerControl.typeID === 'Label' && innerControl.properties && innerControl.properties.text) {
+                  const text = innerControl.controlname.toString();
+                  // Determine color based on text content
+                  const color = this.determineColorByText(text);
+                  // Update color property
+                  innerControl.properties.color = color;
+              }
+          });
+      }
+  });
+
+  // Return the modified JSON
+  return modifiedJson;
+}
+
+
+
+  determineColorByText(text: string): string {
+    // Implement your logic here to determine color based on text content
+    // This is just a placeholder, replace it with your actual logic
+    console.log(text);
+    return text.includes('106-sistema-control-version') ? '#FFC0CB' : '#FFFFFF';
+}
 
   init() {
     window.addEventListener('DOMContentLoaded', this.onDOMLoaded);
     window.addEventListener('click', this.handleSvgClick);
     // window.addEventListener('contextmenu', this.handleSvgClick);
   }
+
+
 }
 
 const renderer = new Renderer();
