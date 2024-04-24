@@ -6,8 +6,12 @@ import {
  type ResourceType,
 } from '../../lib/resource-progress';
 
-//IMPORTANTE LOS COLORES NO ESTAN EN HEXADECIMAL #, estan en DECIMAL!!!
-//pagina para hacer los cambios https://www.mathsisfun.com/hexadecimal-decimal-colors.html
+/**
+ * ! TENER EN CUENTA
+ * * IMPORTANTE LOS COLORES NO ESTAN EN HEXADECIMAL #, estan en DECIMAL!!!
+ * * pagina para hacer los cambios https://www.mathsisfun.com/hexadecimal-decimal-colors.html
+ * */
+
 const COLOR_GRIS= '8421504';
 const COLOR_NEGRO= '0';
 const COLOR_VERDE= '248890';
@@ -37,7 +41,7 @@ export class Renderer {
     this.handleSvgClick = this.handleSvgClick.bind(this);
     this.prepareConfig = this.prepareConfig.bind(this);
     this.switchRoadmap = this.switchRoadmap.bind(this);
-    //this.changeColors = this.changeColors.bind(this);
+    this.changeColors = this.changeColors.bind(this);
   }
 
   get loaderEl() {
@@ -52,7 +56,6 @@ export class Renderer {
     if (!this.containerEl) {
       return false;
     }
-
     // Clone it so we can use it later
     this.loaderHTML = this.loaderEl!.innerHTML;
     const dataset = this.containerEl.dataset;
@@ -86,8 +89,6 @@ export class Renderer {
         return res.json();
       })
       .then((json) => {
-        //AQUIIIIIII
-        
         return wireframeJSONToSVG(this.changeColors(json), {
           fontURL: '/fonts/balsamiq.woff2',
         });
