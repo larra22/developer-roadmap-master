@@ -6,6 +6,13 @@ import {
  type ResourceType,
 } from '../../lib/resource-progress';
 
+//IMPORTANTE LOS COLORES NO ESTAN EN HEXADECIMAL #, estan en DECIMAL!!!
+//pagina para hacer los cambios https://www.mathsisfun.com/hexadecimal-decimal-colors.html
+const COLOR_GRIS= '8421504';
+const COLOR_NEGRO= '0';
+const COLOR_VERDE= '248890';
+const COLOR_LKS = '16275712';
+const COLOR_BLANCO= '16777215';
 export class Renderer {
   resourceId: string;
   resourceType: string;
@@ -80,8 +87,8 @@ export class Renderer {
       })
       .then((json) => {
         //AQUIIIIIII
-        this.changeColors(json);
-        return wireframeJSONToSVG(json, {
+        
+        return wireframeJSONToSVG(this.changeColors(json), {
           fontURL: '/fonts/balsamiq.woff2',
         });
       })
@@ -236,6 +243,7 @@ export class Renderer {
 // Change colors in the JSON based on text content
 // Change colors in the JSON based on text content
 changeColors(json: any): any {
+  //LABEL PARA EL TEXTO
   console.log(json);
   // Check if the JSON object has the expected structure
   if (!json || !json.mockup || !json.mockup.controls || !json.mockup.controls.control) {
@@ -247,23 +255,44 @@ changeColors(json: any): any {
   // Create a deep copy of the original JSON
   const modifiedJson = JSON.parse(JSON.stringify(json));
 
-  modifiedJson.mockup.controls.control.forEach((control: {children: {controls: { control: [1];};};}) => {
+  modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color: string; }; }[]; }; }; }) => {
     if (control.children && control.children.controls) {
-          // Iterate through controls within the group
-          control.children.controls.control.forEach((innerControl: { properties: { text: string; color: string; }; }) => {
-              // Check if it's a label and has text
-              if (innerControl.typeID === 'Label' && innerControl.properties && innerControl.properties.text) {
-                  const text = innerControl.controlname.toString();
-                  // Determine color based on text content
-                  const color = this.determineColorByText(text);
-                  // Update color property
-                  innerControl.properties.color = color;
-              }
-          });
-      }
-  });
+        // Accessing the second control element
+        const innerControlLabel = control.children.controls.control[1];
+        if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text) {
+            const text = innerControlLabel.properties.text;
+            console.log(text);
+            const color = this.determineColorByText(text);
+            innerControlLabel.properties.color = color;
+            console.log(innerControlLabel.properties.color);
+            console.log(color);
+            console.log(innerControlLabel.properties.text);
+          }
+    }
+});
 
-  // Return the modified JSON
+  //PARA EL CUADRADO
+  modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { color: string; }; }[]; }; }; }) => {
+    if (control.children && control.children.controls) {
+        // Accessing the second control element
+        const innerControlTextArea = control.children.controls.control[0]; //El cuadrado
+        console.log(innerControlTextArea);
+       // console.log(innerControlTextArea.properties.color);
+        if (innerControlTextArea && innerControlTextArea.properties) {
+            const color = this.determineColorByText('Git');
+
+            innerControlTextArea.properties.color = color;
+          
+            console.log(innerControlTextArea.properties.color);
+            console.log('Text Area?' +color);
+          }
+    }
+}
+    
+  );
+
+
+
   return modifiedJson;
 }
 
@@ -273,7 +302,8 @@ changeColors(json: any): any {
     // Implement your logic here to determine color based on text content
     // This is just a placeholder, replace it with your actual logic
     console.log(text);
-    return text.includes('106-sistema-control-version') ? '#FFC0CB' : '#FFFFFF';
+  
+    return text.includes('Git') ? COLOR_LKS : COLOR_NEGRO;
 }
 
   init() {
