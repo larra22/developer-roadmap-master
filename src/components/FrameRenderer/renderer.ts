@@ -252,37 +252,22 @@ changeColors(json: any): any {
 
   // Create a deep copy of the original JSON
   const modifiedJson = JSON.parse(JSON.stringify(json));
+  console.log(modifiedJson);
 
   modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color: string; }; }[]; }; }; }) => {
     if (control.children && control.children.controls) {
         // Accessing the second control element
         const innerControlLabel = control.children.controls.control[1];
-        if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text) {
+        const innerControlTextArea = control.children.controls.control[0]; 
+        //El cuadrado
+        if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text && innerControlTextArea && innerControlTextArea.properties) {
             const text = innerControlLabel.properties.text;
             const color = this.determineColorByText(text);
             innerControlLabel.properties.color = color;
+            innerControlTextArea.properties.color = color;
           }
     }
 });
-
-  //PARA EL CUADRADO
-  modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { color: string; }; }[]; }; }; }) => {
-    if (control.children && control.children.controls) {
-     // Accessing the second control element
-        const innerControlTextArea = control.children.controls.control[0]; //El cuadrado
-       // console.log(innerControlTextArea.properties.color);
-        if (innerControlTextArea && innerControlTextArea.properties) {
-            const color = this.determineColorByText('Git');
-
-            innerControlTextArea.properties.color = color;
-          
-          }
-    }
-}
-    
-  );
-
-
 
   return modifiedJson;
 }
@@ -291,7 +276,7 @@ changeColors(json: any): any {
 
   determineColorByText(text: string): string {
   //Añadir aqui segun la base de datos o lo decedido para senior o junior
-    return text.includes('Git') ? COLOR_LKS : COLOR_NEGRO;
+    return text.includes('Monitoreo') ? COLOR_LKS : COLOR_NEGRO;
 }
 
   init() {
