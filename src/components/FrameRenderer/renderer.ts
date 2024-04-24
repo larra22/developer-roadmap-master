@@ -244,14 +244,12 @@ export class Renderer {
 // Change colors in the JSON based on text content
 changeColors(json: any): any {
   //LABEL PARA EL TEXTO
-  console.log(json);
   // Check if the JSON object has the expected structure
   if (!json || !json.mockup || !json.mockup.controls || !json.mockup.controls.control) {
       console.error('Invalid JSON structure. Unable to change colors.');
       return json; // Return the original JSON object
   }
 
-  console.log(json.mockup.controls.control[1].children.controls.control[1].properties.text);
   // Create a deep copy of the original JSON
   const modifiedJson = JSON.parse(JSON.stringify(json));
 
@@ -261,12 +259,8 @@ changeColors(json: any): any {
         const innerControlLabel = control.children.controls.control[1];
         if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text) {
             const text = innerControlLabel.properties.text;
-            console.log(text);
             const color = this.determineColorByText(text);
             innerControlLabel.properties.color = color;
-            console.log(innerControlLabel.properties.color);
-            console.log(color);
-            console.log(innerControlLabel.properties.text);
           }
     }
 });
@@ -274,17 +268,14 @@ changeColors(json: any): any {
   //PARA EL CUADRADO
   modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { color: string; }; }[]; }; }; }) => {
     if (control.children && control.children.controls) {
-        // Accessing the second control element
+     // Accessing the second control element
         const innerControlTextArea = control.children.controls.control[0]; //El cuadrado
-        console.log(innerControlTextArea);
        // console.log(innerControlTextArea.properties.color);
         if (innerControlTextArea && innerControlTextArea.properties) {
             const color = this.determineColorByText('Git');
 
             innerControlTextArea.properties.color = color;
           
-            console.log(innerControlTextArea.properties.color);
-            console.log('Text Area?' +color);
           }
     }
 }
@@ -299,10 +290,7 @@ changeColors(json: any): any {
 
 
   determineColorByText(text: string): string {
-    // Implement your logic here to determine color based on text content
-    // This is just a placeholder, replace it with your actual logic
-    console.log(text);
-  
+  //Añadir aqui segun la base de datos o lo decedido para senior o junior
     return text.includes('Git') ? COLOR_LKS : COLOR_NEGRO;
 }
 
