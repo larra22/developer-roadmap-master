@@ -243,6 +243,8 @@ export class Renderer {
 
 // Change colors in the JSON based on text content
 // Change colors in the JSON based on text content
+// TODO: Add more colors and conditions
+// TODO: Adaptarlo para cada uno de las posibilidades
 changeColors(json: any): any {
   //LABEL PARA EL TEXTO
   // Check if the JSON object has the expected structure

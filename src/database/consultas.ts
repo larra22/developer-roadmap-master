@@ -1,4 +1,5 @@
 import { db } from "./dbMySQL";
+import { type ResultSetHeader} from "mysql2"
 
 //Obtener los recursos según categoría
 export const getResourcesByCategory = async (tipo: string) => {
