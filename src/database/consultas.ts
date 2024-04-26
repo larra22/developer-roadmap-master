@@ -14,3 +14,16 @@ export const getResourcesByCategory = async (tipo: string) => {
         console.error('Error getting resources by category:', error);
     }
 }
+
+export const getResourcesByDificultad = async (dificultad: string) => {
+    try {
+        const connection = await db.getConnection();
+        const query = `SELECT * FROM Recurso WHERE n_Dificultad = '${dificultad}'`;
+        const [rows] = await connection.execute<IRecurso[]>(query, [dificultad]);
+        connection.release();
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting resources by dificultad:', error);
+    }
+}

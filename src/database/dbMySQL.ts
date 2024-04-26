@@ -1,14 +1,14 @@
 import mysql from 'mysql2/promise';
 import { type RowDataPacket } from "mysql2"
 
-enum Dificultad {
+export enum Dificultad {
   Principiante = 'Principiante',
   Intermedio =  'Intermedio',
   Avanzado = 'Avanzado',
 
 }
 
-enum Tipo {
+export enum Tipo {
   PDF = 'PDF',
   Video = 'Video',
   Presentacion = 'Presentacion',

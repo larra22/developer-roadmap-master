@@ -1,22 +1,11 @@
 import { wireframeJSONToSVG } from 'roadmap-renderer';
 import { httpPost } from '../../lib/http';
 import { isLoggedIn } from '../../lib/jwt';
-import {
-  renderResourceProgress,
- type ResourceType,
-} from '../../lib/resource-progress';
+import { renderResourceProgress, type ResourceType} from '../../lib/resource-progress';
+import { changeColors } from './colorVariable';
 
-/**
- * ! TENER EN CUENTA
- * * IMPORTANTE LOS COLORES NO ESTAN EN HEXADECIMAL #, estan en DECIMAL!!!
- * * pagina para hacer los cambios https://www.mathsisfun.com/hexadecimal-decimal-colors.html
- * */
-
-const COLOR_GRIS= '8421504';
-const COLOR_NEGRO= '0';
-const COLOR_VERDE= '248890';
-const COLOR_LKS = '16275712';
-const COLOR_BLANCO= '16777215';
+// TODO: FALTA HACER ESTO VARIABLE SEGUN LO ESCOGIDO POR EL USUARIO
+const puesto='senior'
 export class Renderer {
   resourceId: string;
   resourceType: string;
@@ -31,17 +20,15 @@ export class Renderer {
     this.resourceType = '';
     this.jsonUrl = '';
     this.loaderHTML = null;
-
     this.containerId = 'resource-svg-wrap';
     this.loaderId = 'resource-loader';
-
     this.init = this.init.bind(this);
     this.onDOMLoaded = this.onDOMLoaded.bind(this);
     this.jsonToSvg = this.jsonToSvg.bind(this);
     this.handleSvgClick = this.handleSvgClick.bind(this);
     this.prepareConfig = this.prepareConfig.bind(this);
     this.switchRoadmap = this.switchRoadmap.bind(this);
-    this.changeColors = this.changeColors.bind(this);
+  
   }
 
   get loaderEl() {
@@ -56,14 +43,11 @@ export class Renderer {
     if (!this.containerEl) {
       return false;
     }
-    // Clone it so we can use it later
     this.loaderHTML = this.loaderEl!.innerHTML;
     const dataset = this.containerEl.dataset;
-
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
     this.jsonUrl = dataset.jsonUrl!;
-
 
     return true;
   }
@@ -89,7 +73,7 @@ export class Renderer {
         return res.json();
       })
       .then((json) => {
-        return wireframeJSONToSVG(this.changeColors(json), {
+        return wireframeJSONToSVG(changeColors(json, puesto), {
           fontURL: '/fonts/balsamiq.woff2',
         });
       })
@@ -109,11 +93,9 @@ export class Renderer {
 
         const message = `
           <strong>There was an error.</strong><br>
-          
           Try loading the page again. or submit an issue on GitHub with following:<br><br>
+          ${error.message} <br /> ${error.stack}`;
 
-          ${error.message} <br /> ${error.stack}
-        `;
         this.containerEl.innerHTML = `<div class="error py-5 text-center text-red-600 mx-auto">${message}</div>`;
       });
   }
@@ -145,8 +127,6 @@ export class Renderer {
       this.switchRoadmap(`/jsons/roadmaps/${roadmapType}.json`);
     } else {
       this.jsonToSvg(this.jsonUrl);
-
-      
     }
   }
 
@@ -206,7 +186,6 @@ export class Renderer {
     if (/^json:/.test(groupId)) {
       // e.g. /roadmaps/frontend-beginner.json
       const newJsonUrl = groupId.replace('json:', '');
-
       this.switchRoadmap(newJsonUrl);
       return;
     }
@@ -238,49 +217,12 @@ export class Renderer {
     );
   } 
 
+
+
+
+
+
   
-  /// MIOOOO
-
-// Change colors in the JSON based on text content
-// Change colors in the JSON based on text content
-// TODO: Add more colors and conditions
-// TODO: Adaptarlo para cada uno de las posibilidades
-changeColors(json: any): any {
-  //LABEL PARA EL TEXTO
-  // Check if the JSON object has the expected structure
-  if (!json || !json.mockup || !json.mockup.controls || !json.mockup.controls.control) {
-      console.error('Invalid JSON structure. Unable to change colors.');
-      return json; // Return the original JSON object
-  }
-
-  // Create a deep copy of the original JSON
-  const modifiedJson = JSON.parse(JSON.stringify(json));
-  console.log(modifiedJson);
-
-  modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color: string; }; }[]; }; }; }) => {
-    if (control.children && control.children.controls) {
-        // Accessing the second control element
-        const innerControlLabel = control.children.controls.control[1];
-        const innerControlTextArea = control.children.controls.control[0]; 
-        //El cuadrado
-        if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text && innerControlTextArea && innerControlTextArea.properties) {
-            const text = innerControlLabel.properties.text;
-            const color = this.determineColorByText(text);
-            innerControlLabel.properties.color = color;
-            innerControlTextArea.properties.color = color;
-          }
-    }
-});
-
-  return modifiedJson;
-}
-
-
-
-  determineColorByText(text: string): string {
-  //Añadir aqui segun la base de datos o lo decedido para senior o junior
-    return text.includes('Monitoreo') ? COLOR_LKS : COLOR_NEGRO;
-}
 
   init() {
     window.addEventListener('DOMContentLoaded', this.onDOMLoaded);
