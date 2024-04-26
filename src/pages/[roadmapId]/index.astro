@@ -4,7 +4,6 @@ import FrameRenderer from '../../components/FrameRenderer/FrameRenderer.astro';
 import MarkdownFile from '../../components/MarkdownFile.astro';
 import RelatedRoadmaps from '../../components/RelatedRoadmaps.astro';
 import RoadmapHeader from '../../components/RoadmapHeader.astro';
-import ShareIcons from '../../components/ShareIcons/ShareIcons.astro';
 import { TopicDetail } from '../../components/TopicDetail/TopicDetail';
 import UpcomingForm from '../../components/UpcomingForm.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -37,25 +36,10 @@ const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
 
 let jsonLdSchema = [];
 
-if (roadmapData.schema) {
-  const roadmapSchema = roadmapData.schema;
-  jsonLdSchema.push(
-    generateArticleSchema({
-      url: `https://roadmap.sh/${roadmapId}`,
-      headline: roadmapSchema.headline,
-      description: roadmapSchema.description,
-      datePublished: roadmapSchema.datePublished,
-      dateModified: roadmapSchema.dateModified,
-      imageUrl: roadmapSchema.imageUrl,
-    })
-  );
-}
 
 if (roadmapFAQs.length) {
   jsonLdSchema.push(generateFAQSchema(roadmapFAQs));
 }
-
-const contentContributionLink = `https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/roadmaps/${roadmapId}/content`;
 ---
 
 <BaseLayout
@@ -91,10 +75,6 @@ const contentContributionLink = `https://github.com/kamranahmedse/developer-road
     {
       !roadmapData.isUpcoming && roadmapData.jsonUrl && (
         <div class='container relative max-w-[1000px]'>
-          <ShareIcons
-            description={roadmapData.briefDescription}
-            pageUrl={`https://roadmap.sh/${roadmapId}`}
-          />
           <TopicDetail client:idle />
 
           <FrameRenderer

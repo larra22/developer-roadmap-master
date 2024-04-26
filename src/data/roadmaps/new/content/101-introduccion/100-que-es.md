@@ -1,3 +1,7 @@
+---
+puesto: --'junior'
+keywords: --'introduccion'
+---
 # ¿Qué es?
 
 DevOps es la asimilación y fusión de diversas culturas, prácticas, filosofías y metodologías que incrementan y mejoran la capacidad de los equipos de producir servicios y aplicaciones de mayor calidad en menor tiempo. DevOps engloba nuevos procesos, nuevas herramientas y nuevas formas de pensar.

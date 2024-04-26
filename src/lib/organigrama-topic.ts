@@ -1,4 +1,4 @@
-import type { MarkdownFileType } from './file';
+import type { MarkdownFileType } from './File';
 import type { OrganigramaFrontmatter } from './organigrama';
 
 // Generates URL from the topic file path e.g.

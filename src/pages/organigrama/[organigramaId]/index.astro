@@ -7,10 +7,9 @@ import { TopicDetail } from '../../../components/TopicDetail/TopicDetail';
 import UpcomingForm from '../../../components/UpcomingForm.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import {
-OrganigramaFrontmatter,
+type OrganigramaFrontmatter,
 getOrganigramaIds,
 } from '../../../lib/organigrama';
-import { generateArticleSchema } from '../../../lib/jsonld-schema';
 
 export async function getStaticPaths() {
   const organigramaIds = await getOrganigramaIds();
@@ -31,23 +30,7 @@ const organigramaFile = await import(
 const organigramaData =
   organigramaFile.frontmatter as OrganigramaFrontmatter;
 
-let jsonLdSchema = [];
 
-if (organigramaData.schema) {
-  const organigramaSchema = organigramaData.schema;
-  jsonLdSchema.push(
-    generateArticleSchema({
-      url: `https://roadmap.sh/best-practices/${organigramaId}`,
-      headline: organigramaSchema.headline,
-      description: organigramaSchema.description,
-      datePublished: organigramaSchema.datePublished,
-      dateModified: organigramaSchema.dateModified,
-      imageUrl: organigramaSchema.imageUrl,
-    })
-  );
-}
-
-const contentContributionLink = `https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/best-practices/${organigramaId}/content`;
 ---
 
 <BaseLayout
@@ -57,7 +40,6 @@ const contentContributionLink = `https://github.com/kamranahmedse/developer-road
   description={organigramaData.seo.description}
   keywords={organigramaData.seo.keywords}
   noIndex={organigramaData.isUpcoming}
-  jsonLd={jsonLdSchema}
 >
   <!-- Preload the font being used in the renderer -->
   <link

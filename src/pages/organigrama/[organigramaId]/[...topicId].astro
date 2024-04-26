@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { OrganigramaTopicFileType,getAllOrganigramaTopicFiles } from '../../../lib/organigrama-topic';
+import { type OrganigramaTopicFileType,getAllOrganigramaTopicFiles } from '../../../lib/organigrama-topic';
 
 export async function getStaticPaths() {
   const topicPathMapping = await getAllOrganigramaTopicFiles();

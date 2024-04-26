@@ -144,7 +144,6 @@ export function TopicDetail() {
 
   const contributionDir =
     resourceType === 'roadmap' ? 'roadmaps' : 'organigrama';
-  const contributionUrl = `https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/${contributionDir}/${resourceId}/content`;
 
   return (
     <div>
@@ -197,14 +196,6 @@ export function TopicDetail() {
               id="contrib-meta"
               class="mt-10 border-t pt-3 text-sm leading-relaxed text-gray-400"
             >
-              Contribute links to learning resources about this topic{' '}
-              <a
-                target="_blank"
-                class="text-blue-700 underline"
-                href={contributionUrl}
-              >
-                on GitHub repository.
-              </a>
               .
             </p>
           </>
