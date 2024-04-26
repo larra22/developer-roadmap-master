@@ -4,7 +4,7 @@ import RoadmapBanner from '../../components/RoadmapBanner.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getRoadmapTopicFiles, type RoadmapTopicFileType } from '../../lib/roadmap-topic';
 import type { Props } from '../guides/[guideId].astro';
-import {getResourcesByCategory} from '../../database/consultas';
+import {getResourcesByCategory, getCategoriaInformacionRoadmap} from '../../database/consultas';
 
 
 export const prerender = false;
@@ -37,6 +37,7 @@ const { file, breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
 */
 
 const recursos =  await getResourcesByCategory('Formacion Jira');
+const cuerpo = await getCategoriaInformacionRoadmap('git');
 
 ---
 
@@ -52,20 +53,26 @@ const recursos =  await getResourcesByCategory('Formacion Jira');
 
     <div class='container pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0'>
       <main id='main-content'>
-        <file.Content />
+
+        {cuerpo &&
+          <div>
+            <h2>{cuerpo.idNombre}</h2>
+            <p>{cuerpo.descripcion}</p>
+          </div>
+        }
+        {!cuerpo && <p>No hay información</p>}
+
       <ul>
         {/* Conditional rendering using logical && operator */}
         {recursos  && recursos?.map((recurso) => (
-          <li> 
+          <li>
            <a href={recurso.enlaceFichero} target="_blank" rel="noopener noreferrer">{recurso.titulo}</a>
         </li>
     ))}
 
     {/* Conditional rendering for when recursos is null */}
     {(!recursos || recursos.length==0)  && <p>No hay recursos para esta categoría</p>}
-   
-    
-     </ul>
+      </ul>
 
       </main>
     </div>

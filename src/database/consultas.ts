@@ -1,5 +1,7 @@
-import { type IRecurso, db } from "./dbMySQL";
 import { type ResultSetHeader} from "mysql2"
+
+import { type IRecurso, db } from "./dbMySQL";
+import { type ICategoria } from "./dbMySQL";
 
 export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
     try {
@@ -68,4 +70,24 @@ export const getResourcesByTipo = async (tipo: string) => {
     } catch (error) {
         console.error('Error getting resources by tipo:', error);
     }
+}
+
+/**
+ * Este método compronda los markdowns
+ * @param categoria 
+ * Devolverá el primer resultado de la consulta
+ */
+export const getCategoriaInformacionRoadmap = async (categoria:string) => {
+    try {
+        const connection = await db.getConnection();
+        const query = `SELECT * FROM Categoria WHERE idNombre = '${categoria}'`;
+        const [rows] = await connection.execute<ICategoria[]>(query, [categoria]);
+        connection.release();
+        return rows[0];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }
+
+
+
 }

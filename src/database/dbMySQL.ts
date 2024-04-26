@@ -28,12 +28,10 @@ export interface IRecurso extends RowDataPacket {
 
 export interface ICategoria extends RowDataPacket {
   idNombre: string
- descripcion: string
+  descripcion: string
   categoriaSuperior: string
 
 }
-
-/**
 
 export const prerender = false;
 
@@ -42,7 +40,8 @@ const connectionConfig = {
   user: 'roadmap',
   password: 'roadmap',
   database: 'roadmap',
-  port: 3307,
+  //port: 3307,
+  port:3306
 
 };
 
@@ -51,5 +50,3 @@ export const pool = mysql.createPool(connectionConfig);
 
 
 export {pool as db}
-
-*/

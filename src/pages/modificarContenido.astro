@@ -1,0 +1,44 @@
+---
+import SimplePageHeader from "../components/SimplePageHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+
+
+---
+<BaseLayout title='Modificar la información' permalink={'/modificarContenido'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Modificar la información/contenido'
+  />
+
+  <form method="POST">
+    
+    <label>
+      Título:
+      <textarea name="categoria" rows="2" cols="50"></textarea>
+    </label>
+    <br>
+    <label>
+      Descripción:
+      <textarea name="descripcion" rows="10" cols="70"></textarea>
+    </label>
+    <br>
+
+    <label>
+        Añadir recurso: <div class="select-box">
+            <input type="search" class="search-box" placeholder="Search...">
+            <select class="options-list" size="5" multiple>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+              <option value="5">Option 5</option>
+            </select>
+          </div>
+    </label>
+    
+    <button>Guardar</button>
+    </form>
+
+
+</BaseLayout>
