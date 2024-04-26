@@ -17,7 +17,7 @@ export enum Tipo {
 
 
 export interface IRecurso extends RowDataPacket {
-  idRecurso: number
+  idRecurso?: number
   titulo: string
   enlaceFichero: string
   descripcion: boolean
@@ -27,11 +27,10 @@ export interface IRecurso extends RowDataPacket {
 }
 
 export interface ICategoria extends RowDataPacket {
-  id?: number
-  email: string
-  password: string
-  admin: boolean
-  created_at: Date
+  idNombre: string
+ descripcion: string
+  categoriaSuperior: string
+
 }
 
 export const prerender = false;

@@ -1,0 +1,67 @@
+---
+import SimplePageHeader from "../components/SimplePageHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { addResourceCategoria } from "../database/consultas";
+import { addResourceTituloEnlace } from "../database/consultas";
+
+export const prerender = false
+
+if (Astro.request.method === "POST") {
+    try {
+      const data = await Astro.request.formData();
+      const titulo = data.get("titulo");
+      const enlace = data.get("enlace");
+      const categoria = data.get("categoria");
+      const superior = data.get("superior");
+      const descripcion = data.get("descripcion");
+        if(categoria && superior && descripcion){
+            addResourceCategoria(categoria.toString(), superior.toString(), descripcion.toString());
+
+        }
+        if(titulo && enlace){
+            
+        addResourceTituloEnlace(titulo.toString(), enlace.toString());
+        }
+      
+
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      }
+    }
+  }
+
+---
+
+<BaseLayout title='About roadmap.sh' permalink={'/addBD'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Añade todo a la base de datos'
+  />
+
+  <form method="POST">
+    <label>
+      Titulo:
+      <input type="text" name="titulo"  />
+    </label>
+    <label>
+      Enlace:
+      <input type="text"name="enlace" />
+    </label>
+    <label>
+        Categoria:
+        <input type="text" name="categoria" />
+      </label>
+      <label>
+        CategoriaSuperior:
+        <input type="text" name="superior" />
+      </label>
+      <label>
+        Descripcion:
+        <input type="text" name="descripcion" />
+      </label>
+
+    <button>Submit</button>
+    </form>
+
+</BaseLayout>

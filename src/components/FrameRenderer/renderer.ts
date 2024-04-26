@@ -5,7 +5,7 @@ import { renderResourceProgress, type ResourceType} from '../../lib/resource-pro
 import { changeColors } from './colorVariable';
 
 // TODO: FALTA HACER ESTO VARIABLE SEGUN LO ESCOGIDO POR EL USUARIO
-const puesto='senior'
+const puesto='junior'
 export class Renderer {
   resourceId: string;
   resourceType: string;

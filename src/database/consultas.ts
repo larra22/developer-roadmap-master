@@ -1,7 +1,31 @@
 import { type IRecurso, db } from "./dbMySQL";
 import { type ResultSetHeader} from "mysql2"
 
+export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
+    try {
+        const connection = await db.getConnection();
+        const query = `INSERT INTO Recurso (titulo, enlaceFichero,descripcion,nivelDificultad,tipo,deInteres) VALUES ('${titulo}', '${enlace}',null,null,null,null)`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlace]);
+        connection.release();
+        return result.insertId;
+    } catch (error) {
+        console.error('Error adding resource:', error);
+    }
 
+}
+
+export const addResourceCategoria = async (nombre: string, descripcion:string, superior:string) => {
+    try {
+        const connection = await db.getConnection();
+        const query = `INSERT INTO Categoria (idNombre, descripcion, categoriaSuperior) VALUES ('${nombre}','${descripcion}', '${superior}')`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [nombre, descripcion,superior]);
+        connection.release();
+        return result.insertId;
+    } catch (error) {
+        console.error('Error adding resource:', error);
+    }
+
+}
 
 //Obtener los recursos según categoría
 export const getResourcesByCategory = async (categoria: string) => {
