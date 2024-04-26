@@ -36,7 +36,7 @@ const { file, breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
 *!-------------------------------------------------------------------------------------------------------------------
 */
 
-const recursos = await getResourcesByCategory('PDF');
+const recursos =  await getResourcesByCategory('PDF');
 
 ---
 
@@ -53,15 +53,13 @@ const recursos = await getResourcesByCategory('PDF');
     <div class='container pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0'>
       <main id='main-content'>
         <file.Content />
-
-      {Object.values(recursos).map((recurso) => (
-        <div class='mt-8'>
-          <h2 class='text-2xl font-bold'>{recurso.title}</h2>
-          <p class='text-gray-600'>{recurso.description}</p>
-          <a href={recurso.url} class='text-blue-600 hover:underline'>Download</a>
-        </div>
-      ));
-      }
+      <ul>
+        {recursos?.map((recurso) => (
+           <li> 
+            <a href={recurso.enlaceFichero} target="_blank" rel="noopener noreferrer">{recurso.titulo}</a>
+         </li>
+     ))}
+     </ul>
 
       </main>
     </div>
