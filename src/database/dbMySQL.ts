@@ -33,6 +33,8 @@ export interface ICategoria extends RowDataPacket {
 
 }
 
+/**
+
 export const prerender = false;
 
 const connectionConfig = {
@@ -50,4 +52,4 @@ export const pool = mysql.createPool(connectionConfig);
 
 export {pool as db}
 
-
+*/
