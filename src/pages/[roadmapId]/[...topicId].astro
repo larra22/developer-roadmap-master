@@ -54,11 +54,17 @@ const recursos =  await getResourcesByCategory('PDF');
       <main id='main-content'>
         <file.Content />
       <ul>
-        {recursos?.map((recurso) => (
-           <li> 
-            <a href={recurso.enlaceFichero} target="_blank" rel="noopener noreferrer">{recurso.titulo}</a>
-         </li>
-     ))}
+        {/* Conditional rendering using logical && operator */}
+        {recursos  && recursos?.map((recurso) => (
+          <li> 
+           <a href={recurso.enlaceFichero} target="_blank" rel="noopener noreferrer">{recurso.titulo}</a>
+        </li>
+    ))}
+
+    {/* Conditional rendering for when recursos is null */}
+    {(!recursos || recursos.length==0)  && <p>No hay recursos para esta categoría</p>}
+   
+    
      </ul>
 
       </main>
