@@ -2,6 +2,7 @@ import { type ResultSetHeader} from "mysql2"
 
 import { type IRecurso, db } from "./dbMySQL";
 import { type ICategoria } from "./dbMySQL";
+import { type IRelacionRecursoCategoria } from "./dbMySQL";
 
 export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
     try {
@@ -16,18 +17,31 @@ export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
 
 }
 
+export const addRelacionRecursoCategoria = async (idRecurso: number, idNombre: string) => {
+    try{
+        const connection = await db.getConnection();
+        const query = `INSERT INTO Recurso_categoria (idRecurso, idNombre) VALUES ('${idRecurso}', '${idNombre}'`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [idRecurso, idNombre]);
+        connection.release();
+        return result.insertId;
+
+    } catch (error) {
+        console.error('Error adding resource:', error);
+    }
+
+}
+
 export const addResourceCategoria = async (nombre: string, descripcion:string, superior:string) => {
     try {
         const connection = await db.getConnection();
         const query = `INSERT INTO Categoria (idNombre, descripcion, categoriaSuperior) VALUES ('${nombre}','${descripcion}', '${superior}')`;
         const [result] = await connection.execute<ResultSetHeader>(query, [nombre, descripcion,superior]);
         connection.release();
-        return result.insertId;
+        return nombre;
     } catch (error) {
-        console.error('Error adding resource:', error);
+        throw new Error('Error adding category: ' + error);
     }
-
-}
+    }
 
 //Obtener los recursos según categoría
 export const getResourcesByCategory = async (categoria: string) => {

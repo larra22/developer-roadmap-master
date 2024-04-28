@@ -33,6 +33,12 @@ export interface ICategoria extends RowDataPacket {
 
 }
 
+export interface IRelacionRecursoCategoria extends RowDataPacket {
+  idRecurso: number
+  idNombre: string
+
+}
+
 export const prerender = false;
 
 const connectionConfig = {

@@ -3,7 +3,8 @@ import SimplePageHeader from "../components/SimplePageHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { addResourceCategoria } from "../database/consultas";
 import { addResourceTituloEnlace } from "../database/consultas";
-
+import { addRelacionRecursoCategoria } from "../database/consultas";
+import { getCategoriaInformacionRoadmap } from "../database/consultas";
 export const prerender = false
 
 if (Astro.request.method === "POST") {
@@ -14,13 +15,23 @@ if (Astro.request.method === "POST") {
       const categoria = data.get("categoria");
       const superior = data.get("superior");
       const descripcion = data.get("descripcion");
+      let idRecurso ;
+      let idNombre ;
         if(categoria && superior && descripcion){
-            addResourceCategoria(categoria.toString(), superior.toString(), descripcion.toString());
-
+          try{
+            idNombre = await getCategoriaInformacionRoadmap(categoria.toString());
+          }catch(e){
+            
+           idNombre =await addResourceCategoria(categoria.toString(), superior.toString(), descripcion.toString());
+          }
         }
         if(titulo && enlace){
             
-        addResourceTituloEnlace(titulo.toString(), enlace.toString());
+        idRecurso = await addResourceTituloEnlace(titulo.toString(), enlace.toString());
+        }
+
+      if(idRecurso && idNombre){
+          addRelacionRecursoCategoria(idRecurso, idNombre);
         }
       
 
@@ -29,7 +40,7 @@ if (Astro.request.method === "POST") {
         console.error(error.message);
       }
     }
-  }
+  } 
 
 ---
 
