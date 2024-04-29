@@ -1,10 +1,11 @@
 ---
 import SimplePageHeader from "../components/SimplePageHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { addResourceCategoria } from "../database/consultas";
+import { addResourceCategoria, type MyErrorEvent  } from "../database/consultas";
 import { addResourceTituloEnlace } from "../database/consultas";
 import { addRelacionRecursoCategoria } from "../database/consultas";
 import { getCategoriaInformacionRoadmap } from "../database/consultas";
+
 export const prerender = false
 
 if (Astro.request.method === "POST") {
@@ -17,13 +18,27 @@ if (Astro.request.method === "POST") {
       const descripcion = data.get("descripcion");
       let idRecurso ;
       let idNombre ;
+      let categoriaBD;
         if(categoria && superior && descripcion){
           try{
-            idNombre = await getCategoriaInformacionRoadmap(categoria.toString());
-          }catch(e){
+            idNombre =await addResourceCategoria(categoria.toString(),  descripcion.toString(),superior.toString(),);
+            } catch (error) {
+            const errorDuplicate = error as MyErrorEvent;
+            if (errorDuplicate.message === 'ER_DUP_ENTRY') {
+              console.log("Duplicate key error occurred.");
+              categoriaBD = await getCategoriaInformacionRoadmap(categoria.toString());
+              if (categoriaBD) {
+                console.log('Ha pasado')
+                idNombre = categoriaBD.idNombre;
+                console.log("idNombre", idNombre);
+              }
+             } else{
+                console.error("An error occurred while adding the row:", error);
+              }
             
-           idNombre =await addResourceCategoria(categoria.toString(), superior.toString(), descripcion.toString());
+          
           }
+          
         }
         if(titulo && enlace){
             
@@ -31,6 +46,8 @@ if (Astro.request.method === "POST") {
         }
 
       if(idRecurso && idNombre){
+        console.log("idRecurso", idRecurso);
+        console.log("idNombre", idNombre);
           addRelacionRecursoCategoria(idRecurso, idNombre);
         }
       

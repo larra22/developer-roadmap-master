@@ -46,10 +46,12 @@ const connectionConfig = {
   user: 'roadmap',
   password: 'roadmap',
   database: 'roadmap',
-  //port: 3307,
-  port:3306
+  port: 3307,
+  //port:3306
 
 };
+
+
 
 
 export const pool = mysql.createPool(connectionConfig);
