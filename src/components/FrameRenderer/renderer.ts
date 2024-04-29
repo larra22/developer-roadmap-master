@@ -2,7 +2,7 @@ import { wireframeJSONToSVG } from 'roadmap-renderer';
 import { httpPost } from '../../lib/http';
 import { isLoggedIn } from '../../lib/jwt';
 import { renderResourceProgress, type ResourceType} from '../../lib/resource-progress';
-import { changeColors } from './colorVariable';
+import { changeColors } from './variable';
 
 // TODO: FALTA HACER ESTO VARIABLE SEGUN LO ESCOGIDO POR EL USUARIO
 const puesto='junior'

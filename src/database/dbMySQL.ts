@@ -39,6 +39,13 @@ export interface IRelacionRecursoCategoria extends RowDataPacket {
 
 }
 
+export interface IRoadmapComponentePrioridad extends RowDataPacket {
+  idRoadmap: number
+  componenteCategoria: string
+  prioriadad?: number
+
+}
+
 export const prerender = false;
 
 const connectionConfig = {

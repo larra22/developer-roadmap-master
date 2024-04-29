@@ -70,3 +70,9 @@ const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'
     
 }
   
+
+
+/**  export async roadmapCategorias(resourceId: string){
+
+
+}*/

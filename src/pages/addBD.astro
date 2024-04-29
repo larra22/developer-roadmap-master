@@ -28,36 +28,24 @@ if (Astro.request.method === "POST") {
               console.log("Duplicate key error occurred.");
               categoriaBD = await getCategoriaInformacionRoadmap(categoria.toString());
               if (categoriaBD) {
-                console.log('Ha pasado')
                 idNombre = categoriaBD.idNombre;
-                console.log("idNombre", idNombre);
-              }
-             } else{
+              }} else{
                 console.error("An error occurred while adding the row:", error);
               }
-            
-          
           }
-          
         }
         if(titulo && enlace){
-            
         idRecurso = await addResourceTituloEnlace(titulo.toString(), enlace.toString());
         }
 
       if(idRecurso && idNombre){
-        console.log("idRecurso", idRecurso);
-        console.log("idNombre", idNombre);
           addRelacionRecursoCategoria(idRecurso, idNombre);
         }
-      
 
     } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      }
+      console.log(error);
     }
-  } 
+  }
 
 ---
 

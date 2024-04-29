@@ -1,9 +1,29 @@
 ---
 import SimplePageHeader from "../components/SimplePageHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCategoriaInformacionRoadmap, updateCategoriaNombreDescripcion } from "../database/consultas";
+import { redirectToDefaultLocale } from "astro:i18n";
 
 
+export const prerender = false
 
+const informacion = await getCategoriaInformacionRoadmap('git')
+
+if (Astro.request.method === 'POST') {
+    try{
+        const data = await Astro.request.formData();
+        const categoria = data.get('categoria')?.toString();
+        const descripcion = data.get('descripcion')?.toString();
+        if(categoria && descripcion && categoria.length > 0 && descripcion.length > 0){
+            await updateCategoriaNombreDescripcion( 'git', categoria, descripcion)
+        }
+
+        return Astro.redirect('/roadmaps')
+    
+    }catch(e){
+        console.log(e)
+    }
+}
 ---
 <BaseLayout title='Modificar la información' permalink={'/modificarContenido'}>
     <SimplePageHeader
@@ -15,12 +35,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     
     <label>
       Título:
-      <textarea name="categoria" rows="2" cols="50"></textarea>
+      <textarea id="categoria" rows="10" cols="20">{informacion?.idNombre}</textarea>
     </label>
     <br>
     <label>
       Descripción:
-      <textarea name="descripcion" rows="10" cols="70"></textarea>
+      <textarea name="descripcion" rows="10" cols="70">{informacion?.descripcion}</textarea>
     </label>
     <br>
 

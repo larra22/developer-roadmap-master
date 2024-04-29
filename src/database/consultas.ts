@@ -3,6 +3,7 @@ import { type ResultSetHeader} from "mysql2"
 import { type IRecurso, db } from "./dbMySQL";
 import { type ICategoria } from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
+import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
 import {ER_DUP_ENTRY} from 'mysql-error-keys'
 
 
@@ -137,7 +138,34 @@ export const getCategoriaInformacionRoadmap = async (categoria:string) => {
     }finally {
         connection.release();
     }
+}
 
 
+export const updateCategoriaNombreDescripcion = async (idNombre: string, nuevoNombre: string, nuevaDescripcion:string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `UPDATE Categoria SET idNombre='${nuevoNombre}'  descripcion = '${nuevaDescripcion}' WHERE idNombre = '${idNombre}'`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [nuevaDescripcion, idNombre]);
+        return result.affectedRows;
+    } catch (error) {
+        console.error('Error updating categoria:', error);
+    }finally {
+        connection.release();
+    }
+}
 
+export const getComponentesCategoria = async (roadmap: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Roadmap_categoria WHERE idRoadmap = '${roadmap}'`;
+        const [rows] = await connection.execute<IRoadmapComponentePrioridad[]>(query, [roadmap]);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
 }

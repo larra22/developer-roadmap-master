@@ -30,7 +30,9 @@ const getLoadStaticData = async () => {
 const roadmapData = await getLoadStaticData();
 
 const { topicId } = Astro.params;
-const { file, breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
+
+const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
+
 
 /*
 *!-------------------------------------------------------------------------------------------------------------------
