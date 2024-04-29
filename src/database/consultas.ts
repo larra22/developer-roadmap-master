@@ -159,7 +159,7 @@ export const getComponentesCategoria = async (roadmap: string) => {
     const connection = await db.getConnection();
     try {
         
-        const query = `SELECT * FROM Roadmap_categoria WHERE idRoadmap = '${roadmap}'`;
+        const query = `SELECT * FROM Roadmap_categoria WHERE idRoadmap = '${roadmap}' ORDER BY prioridad DESC`;
         const [rows] = await connection.execute<IRoadmapComponentePrioridad[]>(query, [roadmap]);
         
         return rows || [];

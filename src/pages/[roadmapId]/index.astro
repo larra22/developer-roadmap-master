@@ -12,6 +12,7 @@ generateArticleSchema,
 generateFAQSchema,
 } from '../../lib/jsonld-schema';
 import { type RoadmapFrontmatter,getRoadmapIds } from '../../lib/roadmap';
+import { getComponentesCategoria } from '../../database/consultas';
 
 export async function getStaticPaths() {
   const roadmapIds = await getRoadmapIds();
@@ -34,12 +35,31 @@ const { faqs: roadmapFAQs = [] } = await import(
 );
 const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
 
+const componentesCategoria:string[] = [];
+
 let jsonLdSchema = [];
 
 
 if (roadmapFAQs.length) {
   jsonLdSchema.push(generateFAQSchema(roadmapFAQs));
 }
+
+if (Astro.request.method === 'GET') {
+  componentesCategoria.length = 0;
+  try {
+    const componentes = await getComponentesCategoria(roadmapId);
+    componentes?.map((componente) => {
+        componentesCategoria.push(
+            componente.componenteCategoria);
+
+    });
+    console.log(componentesCategoria.length);
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 ---
 
 <BaseLayout
@@ -82,6 +102,7 @@ if (roadmapFAQs.length) {
             resourceId={roadmapId}
             jsonUrl={roadmapData.jsonUrl}
             dimensions={roadmapData.dimensions}
+            componentesCategoria={componentesCategoria}
           />
         </div>
       )

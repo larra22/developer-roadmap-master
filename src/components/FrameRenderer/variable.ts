@@ -8,19 +8,73 @@
  * * pagina para hacer los cambios https://www.mathsisfun.com/hexadecimal-decimal-colors.html
  * */
 
+function extructuraCorrectaJson(json: any): boolean{
+  // Check if the JSON object has the expected structure
+    return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
+}
+
+//SEGUIR CON ESTO
+// TODO : Corregir para que funcione correctamente
+// TODO: Que los markdown se rellene corrcetamente tambien
+// Meter de todo en la pase de datos
+//TODO: Empezar con el esquema de Bea
+
+export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
+    if (!extructuraCorrectaJson(json) ){
+        console.error('Invalid JSON structure. Unable to change colors.');
+        return json; // Return the original JSON object
+    }
+
+    const modifiedJson = JSON.parse(JSON.stringify(json));
+
+
+    let limit = listaCategorias.length;
+    console.log('Limit: ', limit);
+
+    console.log(modifiedJson.mockup.controls.control[0].children.controls.control[0].properties.text);
+    while (limit > 0){
+    
+    modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color:string}; }[]; }; };}) => {
+            
+            
+                const categoria = listaCategorias[limit-1];
+            if (control.children && control.children.controls) {
+                const innerControl = control.children.controls.control[1];
+                const innerControlTextArea = control.children.controls.control[0];
+                if (innerControl && innerControl.properties && innerControl.properties.text && innerControlTextArea && innerControlTextArea.properties) {
+                    
+                    determineTextByBD(categoria, innerControl);
+                    
+                    innerControlTextArea.properties.color = COLOR_VERDE;
+                    limit--;
+                }
+            }
+            
+    });
+}
+
+
+    return modifiedJson;
+}
+
+function determineTextByBD( nuevoTexto: string, innerControl: any){
+    console.log(innerControl.properties.text)
+        innerControl.properties.text = nuevoTexto;
+        console.log(innerControl.properties.text)
+        
+}
 
 // Change colors in the JSON based on text content
-export function changeColors(json: any, puesto: string): any {
-  //LABEL PARA EL TEXTO
-  // Check if the JSON object has the expected structure
-  if (!json || !json.mockup || !json.mockup.controls || !json.mockup.controls.control) {
+export function changeJson(json: any, puesto: string): any {
+  if (!extructuraCorrectaJson(json) ){
       console.error('Invalid JSON structure. Unable to change colors.');
-      return json; // Return the original JSON object
+      return json;
   }
 
-  // Create a deep copy of the original JSON
   const modifiedJson = JSON.parse(JSON.stringify(json));
-  console.log(modifiedJson);
+
+
+
 
   modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color: string; }; }[]; }; }; }) => {
     if (control.children && control.children.controls) {
@@ -29,6 +83,7 @@ export function changeColors(json: any, puesto: string): any {
         const innerControlTextArea = control.children.controls.control[0];
         //El cuadrado
         if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text && innerControlTextArea && innerControlTextArea.properties) {
+            
             const text = innerControlLabel.properties.text;
             const color = determineColorByText(text, puesto);
             //innerControlLabel.properties.color = color; // Para modificar el color del texto
@@ -69,10 +124,6 @@ const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'
     }
     
 }
-  
 
 
-/**  export async roadmapCategorias(resourceId: string){
 
-
-}*/

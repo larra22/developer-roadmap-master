@@ -2,7 +2,10 @@ import { wireframeJSONToSVG } from 'roadmap-renderer';
 import { httpPost } from '../../lib/http';
 import { isLoggedIn } from '../../lib/jwt';
 import { renderResourceProgress, type ResourceType} from '../../lib/resource-progress';
-import { changeColors } from './variable';
+import {  changeJson, changeTextoSegunListaBD } from './variable';
+
+
+export const prerender = false
 
 // TODO: FALTA HACER ESTO VARIABLE SEGUN LO ESCOGIDO POR EL USUARIO
 const puesto='junior'
@@ -14,6 +17,9 @@ export class Renderer {
 
   containerId: string;
   loaderId: string;
+
+  componentesCategoria: string[];
+
 
   constructor() {
     this.resourceId = '';
@@ -28,6 +34,10 @@ export class Renderer {
     this.handleSvgClick = this.handleSvgClick.bind(this);
     this.prepareConfig = this.prepareConfig.bind(this);
     this.switchRoadmap = this.switchRoadmap.bind(this);
+
+    this.componentesCategoria = [];
+
+
   
   }
 
@@ -48,7 +58,9 @@ export class Renderer {
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
     this.jsonUrl = dataset.jsonUrl!;
-
+    const componentesCategoriaString = dataset.componentesCategoria || '';
+    this.componentesCategoria = componentesCategoriaString.split(',').map(item => item.trim());
+    
     return true;
   }
 
@@ -56,7 +68,7 @@ export class Renderer {
    * @param { string } jsonUrl
    * @returns {Promise<SVGElement>}
    */
-  jsonToSvg(jsonUrl: string) {
+ jsonToSvg(jsonUrl: string) {
     if (!jsonUrl) {
       console.error('jsonUrl not defined in frontmatter');
       return null;
@@ -68,12 +80,15 @@ export class Renderer {
 
     this.containerEl.innerHTML = this.loaderHTML!;
 
-    return fetch(jsonUrl)
+    return  fetch(jsonUrl)
       .then((res) => {
         return res.json();
       })
-      .then((json) => {
-        return wireframeJSONToSVG(changeColors(json, puesto), {
+      .then((json) =>{
+       json = changeTextoSegunListaBD(json, this.componentesCategoria)
+      //  roadmapCategorias(this.resourceId);
+        
+        return wireframeJSONToSVG(changeJson(json, puesto), {
           fontURL: '/fonts/balsamiq.woff2',
         });
       })
@@ -233,5 +248,7 @@ export class Renderer {
 
 }
 
+
 const renderer = new Renderer();
 renderer.init();
+
