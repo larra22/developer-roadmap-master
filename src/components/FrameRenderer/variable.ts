@@ -8,6 +8,13 @@
  * * pagina para hacer los cambios https://www.mathsisfun.com/hexadecimal-decimal-colors.html
  * */
 
+const COLOR_GRIS= '8421504';
+const COLOR_NEGRO= '0';
+const COLOR_VERDE= '248890';
+const COLOR_LKS = '16275712';
+const COLOR_BLANCO= '16777215';
+const COLOR_ROJO = '16711680';
+
 function extructuraCorrectaJson(json: any): boolean{
   // Check if the JSON object has the expected structure
     return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
@@ -26,32 +33,27 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
     }
 
     const modifiedJson = JSON.parse(JSON.stringify(json));
-
-
     let limit = listaCategorias.length;
-    console.log('Limit: ', limit);
+    let componentIndex= 0;
 
-    console.log(modifiedJson.mockup.controls.control[0].children.controls.control[0].properties.text);
-    while (limit > 0){
-    
-    modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color:string}; }[]; }; };}) => {
-            
-            
-                const categoria = listaCategorias[limit-1];
+    while (limit > 0 && componentIndex < modifiedJson.mockup.controls.control.length){
+            const control = modifiedJson.mockup.controls.control[componentIndex];
+            const categoria = listaCategorias[limit-1];
+
             if (control.children && control.children.controls) {
                 const innerControl = control.children.controls.control[1];
                 const innerControlTextArea = control.children.controls.control[0];
-                if (innerControl && innerControl.properties && innerControl.properties.text && innerControlTextArea && innerControlTextArea.properties) {
-                    
+                if (innerControl && innerControl.properties && innerControl.properties.text && innerControlTextArea && innerControlTextArea.properties && innerControlTextArea.properties.color) {
                     determineTextByBD(categoria, innerControl);
+                    console.log(innerControlTextArea)
+                    innerControlTextArea.properties.color = COLOR_LKS;
                     
-                    innerControlTextArea.properties.color = COLOR_VERDE;
-                    limit--;
                 }
             }
-            
-    });
-}
+
+        limit--;
+        componentIndex++;
+    }
 
 
     return modifiedJson;
@@ -59,7 +61,8 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
 
 function determineTextByBD( nuevoTexto: string, innerControl: any){
     console.log(innerControl.properties.text)
-        innerControl.properties.text = nuevoTexto;
+    console.log(nuevoTexto)   
+    innerControl.properties.text = nuevoTexto;
         console.log(innerControl.properties.text)
         
 }
@@ -95,12 +98,7 @@ export function changeJson(json: any, puesto: string): any {
   return modifiedJson;
 }
 
-const COLOR_GRIS= '8421504';
-const COLOR_NEGRO= '0';
-const COLOR_VERDE= '248890';
-const COLOR_LKS = '16275712';
-const COLOR_BLANCO= '16777215';
-const COLOR_ROJO = '16711680';
+
 
 const categoriaJunior = ['git', 'calidad', 'sonar', 'introduccion', 'continu'];
 const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'];
