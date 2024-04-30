@@ -1,4 +1,4 @@
-
+import { componentes } from "./estructuraJson";
 
 // TODO: Add more colors and conditions
 // TODO: Adaptarlo para cada uno de las posibilidades
@@ -36,8 +36,12 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
     let limit = listaCategorias.length;
     let componentIndex= 0;
 
+    
+
+
     while (limit > 0 && componentIndex < modifiedJson.mockup.controls.control.length){
             const control = modifiedJson.mockup.controls.control[componentIndex];
+            console.log(control);
             const categoria = listaCategorias[limit-1];
 
             if (control.children && control.children.controls) {
@@ -49,6 +53,11 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
             }
         componentIndex++;
     }
+    if(limit <= 0){
+        
+        modifiedJson.mockup.controls.control.splice(componentIndex);
+    }
+
     return modifiedJson;
 }
 
