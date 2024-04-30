@@ -42,29 +42,18 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
 
             if (control.children && control.children.controls) {
                 const innerControl = control.children.controls.control[1];
-                const innerControlTextArea = control.children.controls.control[0];
-                if (innerControl && innerControl.properties && innerControl.properties.text && innerControlTextArea && innerControlTextArea.properties && innerControlTextArea.properties.color) {
+                if (innerControl && innerControl.properties && innerControl.properties.text) {
                     determineTextByBD(categoria, innerControl);
-                    console.log(innerControlTextArea)
-                    innerControlTextArea.properties.color = COLOR_LKS;
-                    
+                    limit--;
                 }
             }
-
-        limit--;
         componentIndex++;
     }
-
-
     return modifiedJson;
 }
 
 function determineTextByBD( nuevoTexto: string, innerControl: any){
-    console.log(innerControl.properties.text)
-    console.log(nuevoTexto)   
-    innerControl.properties.text = nuevoTexto;
-        console.log(innerControl.properties.text)
-        
+    innerControl.properties.text = nuevoTexto; 
 }
 
 // Change colors in the JSON based on text content
@@ -90,7 +79,7 @@ export function changeJson(json: any, puesto: string): any {
             const text = innerControlLabel.properties.text;
             const color = determineColorByText(text, puesto);
             //innerControlLabel.properties.color = color; // Para modificar el color del texto
-            innerControlTextArea.properties.color = color; //Para modificar el color del cuadrado
+            //innerControlTextArea.properties.color = color; //Para modificar el color del cuadrado
           }
     }
 });
