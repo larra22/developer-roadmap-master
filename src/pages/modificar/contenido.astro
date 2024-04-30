@@ -1,0 +1,66 @@
+---
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCategoriaInformacionRoadmap, updateCategoriaNombreDescripcion,
+  getRoadmapAlmacenados
+ } from "../../database/consultas";
+ import { type IRoadmapEsquema} from '../../database/dbMySQL'
+export const prerender = false
+
+
+const listaDeRoadmaps = await getRoadmapAlmacenados();
+let stringListaRoadmaps = [];
+
+if( listaDeRoadmaps){
+  listaDeRoadmaps.map((roadmap: IRoadmapEsquema) => (
+    stringListaRoadmaps.push(roadmap.nombre)
+
+
+))}
+
+
+const informacion = await getCategoriaInformacionRoadmap('git')
+
+if (Astro.request.method === 'POST') {
+    try{
+      
+        const data = await Astro.request.formData();
+        const categoria = data.get('categoria');
+        const descripcion = data.get('descripcion');
+        
+        if(categoria && descripcion){
+          await updateCategoriaNombreDescripcion( 'git', categoria.toString(), descripcion.toString())
+
+        }
+
+        return Astro.redirect('/modificar/contenido')
+    
+    }catch(e){
+        console.log(e)
+    }
+}
+---
+<BaseLayout title='Modificar la información' permalink={'/modificar/contenido'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Modificar la información/contenido'
+  />
+
+  <form method="POST">
+    
+    <label>
+      Título:
+      <textarea name="categoria" rows="10" cols="20">{informacion?.idNombre}</textarea>
+    </label>
+    <br>
+    <label>
+      Descripción:
+      <textarea name="descripcion" rows="10" cols="70">{informacion?.descripcion}</textarea>
+    </label>
+    <br>
+    
+    <button>Guardar</button>
+    </form>
+
+
+</BaseLayout>

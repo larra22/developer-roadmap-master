@@ -74,9 +74,6 @@ export function changeJson(json: any, puesto: string): any {
 
   const modifiedJson = JSON.parse(JSON.stringify(json));
 
-
-
-
   modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color: string; }; }[]; }; }; }) => {
     if (control.children && control.children.controls) {
         // Accessing the second control element

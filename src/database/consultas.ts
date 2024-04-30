@@ -1,6 +1,6 @@
 import { type ResultSetHeader} from "mysql2"
 
-import { type IRecurso, db } from "./dbMySQL";
+import { type IRecurso, db, type IRoadmapEsquema } from "./dbMySQL";
 import { type ICategoria } from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
@@ -78,8 +78,6 @@ export const getResourcesByCategory = async (categoria: string) => {
             WHERE Recurso_categoria.idNombre = '${categoria}'`;
         const [rows] = await connection.execute<IRecurso[]>(query, [categoria]);
         
-        console.log(rows);
-        
         return rows || [];
     } catch (error) {
         console.error('Error getting resources by category:', error);
@@ -145,8 +143,8 @@ export const updateCategoriaNombreDescripcion = async (idNombre: string, nuevoNo
     const connection = await db.getConnection();
     try {
         
-        const query = `UPDATE Categoria SET idNombre='${nuevoNombre}'  descripcion = '${nuevaDescripcion}' WHERE idNombre = '${idNombre}'`;
-        const [result] = await connection.execute<ResultSetHeader>(query, [nuevaDescripcion, idNombre]);
+        const query = `UPDATE Categoria SET idNombre='${nuevoNombre}', descripcion = '${nuevaDescripcion}' WHERE idNombre = '${idNombre}'`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [nuevoNombre, nuevaDescripcion, idNombre]);
         return result.affectedRows;
     } catch (error) {
         console.error('Error updating categoria:', error);
@@ -165,6 +163,37 @@ export const getComponentesCategoria = async (roadmap: string) => {
         return rows || [];
     } catch (error) {
         console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
+}
+
+export const getRoadmapAlmacenados = async () => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM EsquemaRoadmap`;
+        const [rows] = await connection.execute<IRoadmapEsquema[]>(query);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting roadmap:', error);
+    }finally {
+        connection.release();
+    }
+
+}
+
+export const insertJsonIntoRoadmap = async (roadmap: string, json: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap) VALUES ('${roadmap}', '${json}')`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json]);
+        
+        return result.insertId;
+    } catch (error) {
+        console.error('Error adding resource:', error);
     }finally {
         connection.release();
     }
