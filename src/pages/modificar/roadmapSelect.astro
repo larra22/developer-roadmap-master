@@ -44,7 +44,6 @@ const [roadmapNames] = await Promise.all([fetchRoadmapNames()]);
   
       selecion?.addEventListener('change', (event) => {
         const selectedValue = (event.target as HTMLSelectElement).value;
-            // Redirect to the new page with the selected roadmap as a query parameter
             window.location.href = `/modificar/categoriaSelect?roadmap=${selectedValue}`;
       });
     </script>

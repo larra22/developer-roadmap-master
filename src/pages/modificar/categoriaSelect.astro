@@ -1,9 +1,8 @@
-
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import { getComponentesCategoria } from '../../database/consultas';
-import type { log } from "console";
+
 export const prerender = false
 
 
@@ -13,15 +12,12 @@ const roadmapName =  Astro.request.url.split('=')[1];
 
 
 const fetchCategoriaNames = async () => {
-    console.log(roadmapName);
     const listaDeCategorias = await getComponentesCategoria(roadmapName);
-    console.log(listaDeCategorias);
     return listaDeCategorias?.map(categoria => categoria.componenteCategoria);
 };
 
 const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
 ---
-
 
 <BaseLayout title='Modificar contenido' permalink={'/categoriaSelect'}>
     <SimplePageHeader
@@ -36,6 +32,17 @@ const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
             <option value={categoria}>{categoria}</option>
           ))}
       </select>
+
+      <script>
+
+        // TODO: Si queremos añadir que dependa del roadmap, coger de la url el nombre de este
+
+        const select = document.getElementById('categoriaSelect');
+        select?.addEventListener('change', (event) => {
+            const categoria =(event.target as HTMLSelectElement).value;
+            window.location.href = `/modificar/contenido?categoria=${categoria}`;
+        });
+      </script>
 
 
 </BaseLayout>
