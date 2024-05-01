@@ -5,11 +5,13 @@ import { addResourceCategoria, type MyErrorEvent  } from "../database/consultas"
 import { addResourceTituloEnlace } from "../database/consultas";
 import { addRelacionRecursoCategoria } from "../database/consultas";
 import { getCategoriaInformacionRoadmap } from "../database/consultas";
+import {insertRelacionRoadmapCategoria} from "../database/consultas";
 
 export const prerender = false
 
 if (Astro.request.method === "POST") {
     try {
+      
       const data = await Astro.request.formData();
       const titulo = data.get("titulo");
       const enlace = data.get("enlace");
@@ -22,6 +24,7 @@ if (Astro.request.method === "POST") {
         if(categoria && superior && descripcion){
           try{
             idNombre =await addResourceCategoria(categoria.toString(),  descripcion.toString(),superior.toString(),);
+            insertRelacionRoadmapCategoria('new',idNombre)
             console.log('Categoria añadida correctamente + ', idNombre )
             } catch (error) {
             const errorDuplicate = error as MyErrorEvent;

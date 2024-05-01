@@ -16,7 +16,6 @@ const COLOR_BLANCO= '16777215';
 const COLOR_ROJO = '16711680';
 
 function extructuraCorrectaJson(json: any): boolean{
-  // Check if the JSON object has the expected structure
     return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
 }
 
@@ -29,15 +28,12 @@ function extructuraCorrectaJson(json: any): boolean{
 export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
     if (!extructuraCorrectaJson(json) ){
         console.error('Invalid JSON structure. Unable to change colors.');
-        return json; // Return the original JSON object
+        return json;
     }
 
     const modifiedJson = JSON.parse(JSON.stringify(json));
     let limit = listaCategorias.length;
     let componentIndex= 0;
-
-    
-
 
     while (limit > 0 && componentIndex < modifiedJson.mockup.controls.control.length){
             const control = modifiedJson.mockup.controls.control[componentIndex];
@@ -62,7 +58,7 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
 }
 
 function determineTextByBD( nuevoTexto: string, innerControl: any){
-    innerControl.properties.text = nuevoTexto; 
+    innerControl.properties.text = nuevoTexto;
 }
 
 // Change colors in the JSON based on text content

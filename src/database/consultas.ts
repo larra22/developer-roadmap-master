@@ -19,7 +19,7 @@ export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
     const connection = await db.getConnection();
     try {
         
-        const query = `INSERT INTO Recurso (titulo, enlaceFichero,descripcion,nivelDificultad,tipo,deInteres) VALUES ('${titulo}', '${enlace}',null,null,null,null)`;
+        const query = `INSERT INTO Recurso (titulo, enlaceFichero,descripcion,n_dificultad,tipo,deInteres) VALUES ('${titulo}', '${enlace}',null,null,null,null)`;
         const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlace]);
         
         return result.insertId;
@@ -191,6 +191,28 @@ export const insertJsonIntoRoadmap = async (roadmap: string, json: string) => {
         const query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap) VALUES ('${roadmap}', '${json}')`;
         const [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json]);
         
+        return result.insertId;
+    } catch (error) {
+        console.error('Error adding resource:', error);
+    }finally {
+        connection.release();
+    }
+}
+
+
+export const insertRelacionRoadmapCategoria = async (roadmap: string, categoria: string, prioridad?: number) => {
+    const connection = await db.getConnection();
+    try {
+        let query: string;
+        let result: ResultSetHeader; // Change the type annotation to ResultSetHeader
+        if(prioridad){
+             query = `INSERT INTO Roadmap_categoria (idRoadmap, componenteCategoria, prioridad) VALUES ('${roadmap}', '${categoria}', '${prioridad}')`;
+            [result] = await connection.execute<ResultSetHeader>(query, [roadmap, categoria, prioridad]);
+        }else{
+            query = `INSERT INTO Roadmap_categoria  (idRoadmap, componenteCategoria) VALUES ('${roadmap}', '${categoria}')`;
+            [result] = await connection.execute<ResultSetHeader>(query, [roadmap, categoria]);
+        }
+
         return result.insertId;
     } catch (error) {
         console.error('Error adding resource:', error);
