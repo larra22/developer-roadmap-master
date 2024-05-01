@@ -1,0 +1,41 @@
+
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import { getComponentesCategoria } from '../../database/consultas';
+import type { log } from "console";
+export const prerender = false
+
+
+
+
+const roadmapName =  Astro.request.url.split('=')[1];
+
+
+const fetchCategoriaNames = async () => {
+    console.log(roadmapName);
+    const listaDeCategorias = await getComponentesCategoria(roadmapName);
+    console.log(listaDeCategorias);
+    return listaDeCategorias?.map(categoria => categoria.componenteCategoria);
+};
+
+const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
+---
+
+
+<BaseLayout title='Modificar contenido' permalink={'/categoriaSelect'}>
+    <SimplePageHeader
+      title='Developer Roadmaps'
+      description='Modifica el contenido del roadmap'
+    />
+
+    <label>Selecciona la categoria: </label>
+
+    <select name="categoria" id="categoriaSelect">
+        {categoriaNames?.map((categoria: string) => (
+            <option value={categoria}>{categoria}</option>
+          ))}
+      </select>
+
+
+</BaseLayout>

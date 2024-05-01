@@ -7,6 +7,7 @@ import { PageProgress } from '../components/PageProgress';
 import { PageSponsor } from '../components/PageSponsor';
 import { siteConfig } from '../lib/config';
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -130,6 +131,8 @@ const gaPageIdentifier = Astro.url.pathname
         <script type='application/ld+json' set:html={JSON.stringify(jsonLd)} />
       )
     }
+
+<ViewTransitions />
   </head>
   <body>
     <slot name='page-header'>

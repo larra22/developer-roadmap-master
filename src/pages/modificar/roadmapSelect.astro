@@ -1,0 +1,51 @@
+---
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import { getRoadmapAlmacenados } from "../../database/consultas";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+
+export const prerender = false
+
+const fetchRoadmapNames = async () => {
+    const listaDeRoadmaps = await getRoadmapAlmacenados();
+    return listaDeRoadmaps?.map(roadmap => roadmap.idRoadmap);
+};
+
+const [roadmapNames] = await Promise.all([fetchRoadmapNames()]);
+
+
+
+---
+
+<BaseLayout title='Modificar contenido' permalink={'/roadmapSelect'}>
+    <SimplePageHeader
+      title='Developer Roadmaps'
+      description='Modifica el contenido del roadmap'
+    />
+  
+
+      <label> Roadmap a modificar: </label>
+      <br/>
+      <select name="roadmap" id="roadmapSelect">
+        {roadmapNames?.map((roadmap: string) => (
+          <option value={roadmap}>{roadmap}</option>
+        ))}
+      </select>
+
+      
+
+      <br/>
+
+  
+    <script>
+
+
+      const selecion = document.getElementById('roadmapSelect');
+  
+      selecion?.addEventListener('change', (event) => {
+        const selectedValue = (event.target as HTMLSelectElement).value;
+            // Redirect to the new page with the selected roadmap as a query parameter
+            window.location.href = `/modificar/categoriaSelect?roadmap=${selectedValue}`;
+      });
+    </script>
+  </BaseLayout>
