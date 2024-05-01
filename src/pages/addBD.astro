@@ -22,6 +22,7 @@ if (Astro.request.method === "POST") {
         if(categoria && superior && descripcion){
           try{
             idNombre =await addResourceCategoria(categoria.toString(),  descripcion.toString(),superior.toString(),);
+            console.log('Categoria añadida correctamente + ', idNombre )
             } catch (error) {
             const errorDuplicate = error as MyErrorEvent;
             if (errorDuplicate.message === 'ER_DUP_ENTRY') {
@@ -36,10 +37,12 @@ if (Astro.request.method === "POST") {
         }
         if(titulo && enlace){
         idRecurso = await addResourceTituloEnlace(titulo.toString(), enlace.toString());
+        console.log('Recurso añadido correctamente + ', idRecurso )
         }
 
       if(idRecurso && idNombre){
           addRelacionRecursoCategoria(idRecurso, idNombre);
+          console.log('Relacion añadida correctamente')
         }
 
     } catch (error) {
