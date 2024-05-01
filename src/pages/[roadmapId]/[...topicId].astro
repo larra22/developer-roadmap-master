@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getRoadmapTopicFiles, type RoadmapTopicFileType } from '../../lib/roadmap-topic';
 import type { Props } from '../guides/[guideId].astro';
 import {getResourcesByCategory, getCategoriaInformacionRoadmap} from '../../database/consultas';
+import type { ICategoria, IRecurso } from '../../database/dbMySQL';
+import { toCodes } from 'astro:i18n';
 
 
 export const prerender = false;
@@ -30,6 +32,7 @@ const getLoadStaticData = async () => {
 const roadmapData = await getLoadStaticData();
 
 const { topicId } = Astro.params;
+console.log('topicId', topicId);
 
 const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
 
@@ -37,9 +40,12 @@ const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
 /*
 *!-------------------------------------------------------------------------------------------------------------------
 */
-
-const recursos =  await getResourcesByCategory('Formacion Jira');
-const cuerpo = await getCategoriaInformacionRoadmap('git');
+let  recursos: IRecurso[] | undefined;
+let cuerpo: ICategoria | undefined;
+  if(topicId){
+  recursos =  await getResourcesByCategory(topicId);
+   cuerpo = await getCategoriaInformacionRoadmap(topicId);
+  }
 
 ---
 

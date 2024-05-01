@@ -1,4 +1,4 @@
-import { componentes } from "./estructuraJson";
+import { createComponent, createControl, createLabel, createTextArea } from "./estructuraJson";
 
 // TODO: Add more colors and conditions
 // TODO: Adaptarlo para cada uno de las posibilidades
@@ -34,25 +34,31 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
     const modifiedJson = JSON.parse(JSON.stringify(json));
     let limit = listaCategorias.length;
     let componentIndex= 0;
+    let x=100,y=400, z=0;
 
-    while (limit > 0 && componentIndex < modifiedJson.mockup.controls.control.length){
-            const control = modifiedJson.mockup.controls.control[componentIndex];
-            console.log(control);
-            const categoria = listaCategorias[limit-1];
-
-            if (control.children && control.children.controls) {
-                const innerControl = control.children.controls.control[1];
-                if (innerControl && innerControl.properties && innerControl.properties.text) {
-                    determineTextByBD(categoria, innerControl);
-                    limit--;
-                }
-            }
-        componentIndex++;
-    }
-    if(limit <= 0){
+    modifiedJson.mockup.controls.control.splice(0);
+    while (limit > 0 ){
         
-        modifiedJson.mockup.controls.control.splice(componentIndex);
+        //Habria que dejar solo las flechas pero mientras esto
+        const categoria = listaCategorias[limit-1];
+
+        const textArea = createTextArea(COLOR_BLANCO);
+        const control0 = createControl("0","140","200", textArea, "TextArea", "124", "0", "0", "0", "46");
+
+        const label = createLabel("12", categoria);
+        const control1= createControl("1","25","68", label,"Label","88","24","11","1")
+
+        const componentes = createComponent(componentIndex.toString(), "46", "46", "121", categoria, [control0, control1],"121", x.toString(), y.toString(),  "100");
+        componentIndex++;
+        x+=200;
+        y+=400
+        modifiedJson.mockup.controls.control[modifiedJson.mockup.controls.control.length] = componentes;
+        
+        limit--;
+        
     }
+
+    console.log(modifiedJson)
 
     return modifiedJson;
 }
