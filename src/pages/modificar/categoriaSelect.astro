@@ -28,10 +28,22 @@ const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
     <label>Selecciona la categoria: </label>
 
     <select name="categoria" id="categoriaSelect">
+      <option value="" disabled selected>...</option>
         {categoriaNames?.map((categoria: string) => (
             <option value={categoria}>{categoria}</option>
           ))}
       </select>
+
+      <br/>
+
+      <br/>
+      <br/>
+  
+      <br/>
+  
+      <br/>
+      <br/>
+  
 
       <script>
 

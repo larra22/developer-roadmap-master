@@ -5,17 +5,17 @@ import { getCategoriaInformacionRoadmap, updateCategoriaNombreDescripcion,} from
 export const prerender = false
 
 
-const categoriaName = Astro.request.url.split('=')[1]
-
+const categoriaName = decodeURIComponent(Astro.request.url).split('=')[1]
+console.log('categoriaName', categoriaName)
 const informacion = await getCategoriaInformacionRoadmap(categoriaName)
 
 if (Astro.request.method === 'POST') {
     try{
       
+      
         const data = await Astro.request.formData();
         const categoria = data.get('categoria');
         const descripcion = data.get('descripcion');
-        console.log(categoria)
         if(categoria && descripcion){
           await updateCategoriaNombreDescripcion( categoriaName, categoria.toString(), descripcion.toString())
 
@@ -37,15 +37,20 @@ if (Astro.request.method === 'POST') {
   <form method="POST">
     
     <label>
-      Título:
-      <textarea name="categoria" rows="10" cols="20">{informacion?.idNombre}</textarea>
+      Título:     
+      <textarea name="categoria" rows="1" cols="60">{informacion?.idNombre}</textarea>
     </label>
-    <br>
+  </br>
+</br>
+</br>
+</br>
     <label>
       Descripción:
-      <textarea name="descripcion" rows="10" cols="70">{informacion?.descripcion}</textarea>
+      <textarea name="descripcion" rows="10" cols="120">{informacion?.descripcion}</textarea>
     </label>
-    <br>
+  </br>
+</br>
+
     
     <button>Guardar</button>
     </form>

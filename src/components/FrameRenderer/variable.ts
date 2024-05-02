@@ -14,6 +14,7 @@ const COLOR_VERDE= '248890';
 const COLOR_LKS = '16275712';
 const COLOR_BLANCO= '16777215';
 const COLOR_ROJO = '16711680';
+const COLOR_AMARILLO = '16776960';
 
 function extructuraCorrectaJson(json: any): boolean{
     return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
@@ -34,7 +35,7 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
     const modifiedJson = JSON.parse(JSON.stringify(json));
     let limit = listaCategorias.length;
     let componentIndex= 0;
-    let x=100,y=400, z=0;
+    let x=680,y=300, z=0;
 
     //modifiedJson.mockup.controls.control.splice(0);
     while (limit > 0 ){
@@ -42,15 +43,22 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
         //Habria que dejar solo las flechas pero mientras esto
         const categoria = listaCategorias[limit-1];
 
-        const textArea = createTextArea(COLOR_BLANCO);
-        const control0 = createControl("0","140","200", textArea, "TextArea", "124", "0", "0", "0", "46");
+        const textArea = createTextArea(COLOR_AMARILLO);
+        const control0 = createControl("0","200","340", textArea, "TextArea", "200", "0", "0", "0", "50");
 
-        const label = createLabel("12", categoria);
+        const label = createLabel("20", categoria);
         const control1= createControl("1","25","68", label,"Label","88","24","11","1")
 
-        const componentes = createComponent(componentIndex.toString(), "46", "46", "121", categoria, [control0, control1],"121", x.toString(), y.toString(),  "100");
+        const componentes = createComponent(componentIndex.toString(), "70", "46", "121", categoria, [control0, control1],"121", x.toString(), y.toString(),  "100");
         componentIndex++;
-        x+=200;
+        if(componentIndex%2!=0){
+            x+=600;
+        }else{
+            x=680;
+        }
+        
+        
+       // x+=200;
         y+=400
         modifiedJson.mockup.controls.control[modifiedJson.mockup.controls.control.length] = componentes;
         
@@ -58,14 +66,10 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
         
     }
 
-    console.log(modifiedJson)
 
     return modifiedJson;
 }
 
-function determineTextByBD( nuevoTexto: string, innerControl: any){
-    innerControl.properties.text = nuevoTexto;
-}
 
 // Change colors in the JSON based on text content
 export function changeJson(json: any, puesto: string): any {
