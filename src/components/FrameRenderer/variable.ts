@@ -36,7 +36,7 @@ export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
     let componentIndex= 0;
     let x=100,y=400, z=0;
 
-    modifiedJson.mockup.controls.control.splice(0);
+    //modifiedJson.mockup.controls.control.splice(0);
     while (limit > 0 ){
         
         //Habria que dejar solo las flechas pero mientras esto
