@@ -1,7 +1,0 @@
-# Vocal del Consejo Rector
-
-- Nombre: **Jaione**
-- Apellidos: **Badiola Lopez**
-- Correo: **<jbadiola.legal@lksnext.com>**
-- Oficina: **Garaia**
-![Imagen](/src/data/organigrama/lksOrganigrama/content/fotos/jaione-badiola.PNG)

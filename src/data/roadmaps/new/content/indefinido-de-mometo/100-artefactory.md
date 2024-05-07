@@ -1,2 +1,0 @@
-# Artefactory
-Artifactory es un repositorio privado de artefactos. Permite gestionar cualquier pieza de software ya sea binarios o dependencias de cualquier lenguaje. Se podría entender esta plataforma como una biblioteca donde se almacenan y recuperar archivos. Además, brinda un gran sistema de versionado y gestión de releases que permite tener gran control sobre los cambios de software.

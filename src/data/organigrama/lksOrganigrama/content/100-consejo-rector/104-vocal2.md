@@ -1,7 +1,0 @@
-# Vocal del Consejo Rector
-
-- Nombre: **Yon**
-- Apellidos: **Polvorosa**
-- Correo: **<ypolvorosa@lksnext.com>**
-- Oficina: **Zuatzu**
-![Imagen](/src/data/organigrama/lksOrganigrama/content/fotos/yon-polvorosa.PNG)
