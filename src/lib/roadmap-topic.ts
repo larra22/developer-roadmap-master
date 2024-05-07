@@ -1,3 +1,7 @@
+// TODO: AJUSTAR TODO EL CODIGO PARA QUE FUNCIONE CON LA 
+//BASE DE DATOS Y NO LO COJA DESDE LOS ARCHIVOS
+
+
 import type {MarkdownFileType} from './File';
 import type {RoadmapFrontmatter} from './roadmap';
 

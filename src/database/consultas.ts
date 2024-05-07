@@ -138,6 +138,20 @@ export const getCategoriaInformacionRoadmap = async (categoria:string) => {
     }
 }
 
+export const getAllCategorias = async () => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Categoria`;
+        const [rows] = await connection.execute<ICategoria[]>(query);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
+}
 
 export const updateCategoriaNombreDescripcion = async (idNombre: string, nuevoNombre: string, nuevaDescripcion:string) => {
     const connection = await db.getConnection();
@@ -168,6 +182,8 @@ export const getComponentesCategoria = async (roadmap: string) => {
     }
 }
 
+
+
 export const getRoadmapAlmacenados = async () => {
     const connection = await db.getConnection();
     try {
@@ -184,7 +200,7 @@ export const getRoadmapAlmacenados = async () => {
 
 }
 
-export const insertJsonIntoRoadmap = async (roadmap: string, json: string) => {
+export const addNewRoadmapTituloJson = async (roadmap: string, json: string) => {
     const connection = await db.getConnection();
     try {
         
@@ -197,6 +213,22 @@ export const insertJsonIntoRoadmap = async (roadmap: string, json: string) => {
     }finally {
         connection.release();
     }
+}
+
+export const getJsonDeRoadmap = async (roadmap: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `Select jsonRoadmap FROM EsquemaRoadmap WHERE idRoadmap='${roadmap}'`;
+        const [result] = await connection.execute<IRoadmapEsquema[]>(query, [roadmap]);
+        
+        return result[0];
+    } catch (error) {
+        console.error('Error obtaining json esquelo', error);
+    }finally {
+        connection.release();
+    }
+
 }
 
 

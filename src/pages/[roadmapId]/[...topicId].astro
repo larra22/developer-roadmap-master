@@ -2,40 +2,52 @@
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RoadmapBanner from '../../components/RoadmapBanner.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getRoadmapTopicFiles, type RoadmapTopicFileType } from '../../lib/roadmap-topic';
+import { getRoadmapTopicFiles} from '../../lib/roadmap-topic';
 import type { Props } from '../guides/[guideId].astro';
-import {getResourcesByCategory, getCategoriaInformacionRoadmap} from '../../database/consultas';
+import {getResourcesByCategory, getAllCategorias, getCategoriaInformacionRoadmap} from '../../database/consultas';
 import type { ICategoria, IRecurso } from '../../database/dbMySQL';
-import { toCodes } from 'astro:i18n';
 
-
+// TODO: Es necesario modificar la base de datos, 
+// para que los roadmap tengan un brieftitle
 export const prerender = false;
 
 const getLoadStaticData = async () => {
-  const topicPathMapping = await getRoadmapTopicFiles();
-
-  return Object.keys(topicPathMapping).map((topicSlug) => {
-    const topicDetails = topicPathMapping[topicSlug];
-    const roadmapId = topicDetails.roadmapId;
-    const topicId = topicSlug.replace(`/${roadmapId}/`, '');
-
+  //const topicPathMapping = await getRoadmapTopicFiles();
+  const listaCategoriasGuardadas = await getAllCategorias();
+  return listaCategoriasGuardadas?.map((categoria) => {
+    const roadmapId = categoria.idRoadmap;
+    const topicId = categoria.idCategoria;
+    //const topicId = categoria.replace(`/${roadmapId}/`, '');
     return {
       params: {
         topicId,
         roadmapId,
       },
-      props: topicDetails,
+      props: categoria,
     };
   });
 }
+ // return Object.keys(topicPathMapping).map((topicSlug) => {
+   // const topicDetails = topicPathMapping[topicSlug];
+    //const roadmapId = topicDetails.roadmapId;
+   // const topicId = topicSlug.replace(`/${roadmapId}/`, '');
+
+   // return {
+    //  params: {
+      //  topicId,
+        //roadmapId,
+      //},
+   //   props: topicDetails,
+    //};
+ // });
+//}
 
 const roadmapData = await getLoadStaticData();
 
 const { topicId } = Astro.params;
-console.log('topicId', topicId);
 
-const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData[0].props;
-
+//const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData?.[0]?.props ?? {};
+const {roadmapId} = roadmapData?.[0]?.params ?? {};
 
 /*
 *!-------------------------------------------------------------------------------------------------------------------
@@ -48,16 +60,16 @@ let cuerpo: ICategoria | undefined;
   }
 
 ---
-
+<!--title={`${heading} - roadmap.sh`}-->
 <BaseLayout
-  title={`${heading} - roadmap.sh`}
-  description={`Free resources to learn ${heading} in ${roadmap.briefTitle}. Everything you need to know about ${heading} and how it relates to ${roadmap.briefTitle}.`}
+  title={'No title'}
+  description={`Free resources to learn  in . Everything you need to know about .`}
   noIndex={true}
   permalink={`/${roadmapId}/${topicId}`}
 >
-  <RoadmapBanner roadmapId={roadmapId} roadmap={roadmap} />
+   <RoadmapBanner roadmapId={roadmapId} roadmap={roadmapId} />
   <div class='bg-gray-50'>
-    <Breadcrumbs breadcrumbs={breadcrumbs} roadmapId={roadmapId} />
+    <!--  <Breadcrumbs breadcrumbs={breadcrumbs} roadmapId={roadmapId} />-->
 
     <div class='container pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0'>
       <main id='main-content'>
