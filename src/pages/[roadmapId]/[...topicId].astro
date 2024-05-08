@@ -6,6 +6,7 @@ import { getRoadmapTopicFiles} from '../../lib/roadmap-topic';
 import type { Props } from '../guides/[guideId].astro';
 import {getResourcesByCategory, getAllCategorias, getCategoriaInformacionRoadmap} from '../../database/consultas';
 import type { ICategoria, IRecurso } from '../../database/dbMySQL';
+import { getRoadmapById , getRoadmapAlmacenados} from '../../database/consultas';
 
 // TODO: Es necesario modificar la base de datos, 
 // para que los roadmap tengan un brieftitle
@@ -47,7 +48,12 @@ const roadmapData = await getLoadStaticData();
 const { topicId } = Astro.params;
 
 //const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData?.[0]?.props ?? {};
-const {roadmapId} = roadmapData?.[0]?.params ?? {};
+//const {roadmapId} = roadmapData?.[0]?.params ?? {};
+const roadmapId = 'new'
+console.log("EL id del roadmap es  " + roadmapId);
+const roadmap = await getRoadmapById(roadmapId);
+const breadcrumbs= await getRoadmapAlmacenados();
+
 
 /*
 *!-------------------------------------------------------------------------------------------------------------------
@@ -67,9 +73,9 @@ let cuerpo: ICategoria | undefined;
   noIndex={true}
   permalink={`/${roadmapId}/${topicId}`}
 >
-   <RoadmapBanner roadmapId={roadmapId} roadmap={roadmapId} />
-  <div class='bg-gray-50'>
-    <!--  <Breadcrumbs breadcrumbs={breadcrumbs} roadmapId={roadmapId} />-->
+{roadmap && <RoadmapBanner roadmapId={roadmapId} roadmap={roadmap} />}
+<div class='bg-gray-50'>
+    <Breadcrumbs breadcrumbs={breadcrumbs || []} roadmapId={roadmapId} />
 
     <div class='container pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0'>
       <main id='main-content'>

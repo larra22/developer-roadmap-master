@@ -5,12 +5,11 @@ export interface Props {
   url: string;
   title: string;
   description: string;
-  isNew: boolean;
 
 }
 
 
-const { url, title, description, isNew } = Astro.props;
+const { url, title, description} = Astro.props;
 ---
 
 <a
@@ -22,13 +21,13 @@ const { url, title, description, isNew } = Astro.props;
   >
     {title}
   </span>
-  <span class='text-sm leading-normal text-gray-400 hidden sm:block'>{description}</span>
+  {console.log('La descripcion' + description)}
 
-  {
+ <!--  {
     isNew && (
       <span class='absolute bottom-1 right-1 bg-yellow-300 text-yellow-900 text-xs font-medium px-1 sm:px-1.5 py-0.5 rounded-sm uppercase'>
         New
       </span>
     )
-  }
+  }-->
 </a>

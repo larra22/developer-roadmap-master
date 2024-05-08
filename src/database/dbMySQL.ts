@@ -18,6 +18,12 @@ export enum Tipo {
 export interface IRoadmapEsquema  extends RowDataPacket {
   idRoadmap: string
   jsonRoadmap: string
+  order: number
+  briefTitle: string
+  briefDescription: string
+  title: string
+  description: string
+  relatedRoadmaps: string
 }
 
 

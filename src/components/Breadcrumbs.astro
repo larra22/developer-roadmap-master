@@ -1,8 +1,10 @@
 ---
-import type { BreadcrumbItem } from '../lib/roadmap-topic';
+
+import type {IRoadmapEsquema} from '../database/dbMySQL'
+export const prerender = false;
 
 export interface Props {
-  breadcrumbs: BreadcrumbItem[];
+  breadcrumbs: IRoadmapEsquema[];
   roadmapId: string;
 }
 
@@ -15,19 +17,29 @@ const { breadcrumbs, roadmapId } = Astro.props;
     {
       breadcrumbs.map((breadcrumb, counter) => {
         const isLast = counter === breadcrumbs.length - 1;
+        
 
         if (!isLast) {
           return (
             <>
-              <a class='hover:text-gray-800' href={`${breadcrumb.url}`}>
+              <a class='hover:text-gray-800' href={`${breadcrumb.idRoadmap}`}>
+                {console.log('pasa por aqui')}
                 {breadcrumb.title}
+                {console.log(breadcrumb.title)}
               </a>
               <span>&nbsp;&middot;&nbsp;</span>
             </>
           );
+        }else{
+          return (
+            <>
+              {console.log('pasa pro')}
+              {console.log(breadcrumb.title)}
+              <span class='text-gray-400'>{breadcrumb.title}</span>
+            </>
+          );
         }
 
-        return <span class='text-gray-400'>{breadcrumb.title}</span>;
       })
     }
   </p>

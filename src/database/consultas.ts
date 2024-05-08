@@ -200,6 +200,22 @@ export const getRoadmapAlmacenados = async () => {
 
 }
 
+export const getRoadmapById = async (roadmap: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM EsquemaRoadmap WHERE idRoadmap = '${roadmap}'`;
+        const [rows] = await connection.execute<IRoadmapEsquema[]>(query, [roadmap]);
+        
+        return rows[0];
+    } catch (error) {
+        console.error('Error getting roadmap:', error);
+    }finally {
+        connection.release();
+    }
+
+}
+
 export const addNewRoadmapTituloJson = async (roadmap: string, json: string) => {
     const connection = await db.getConnection();
     try {

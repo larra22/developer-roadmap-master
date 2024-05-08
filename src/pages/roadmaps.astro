@@ -1,11 +1,16 @@
 ---
 import GridItem from '../components/GridItem.astro';
 import SimplePageHeader from '../components/SimplePageHeader.astro';
+import { getRoadmapAlmacenados } from '../database/consultas';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getRoadmapsByTag } from '../lib/roadmap';
 
-const roleRoadmaps = await getRoadmapsByTag('role-roadmap');
-const skillRoadmaps = await getRoadmapsByTag('skill-roadmap');
+//const roleRoadmaps = await getRoadmapsByTag('role-roadmap');
+//const skillRoadmaps = await getRoadmapsByTag('skill-roadmap');
+
+export const prerender = false;
+
+const roadmaps= await getRoadmapAlmacenados();
 
 ---
 
@@ -23,18 +28,17 @@ const skillRoadmaps = await getRoadmapsByTag('skill-roadmap');
   <div class='flex bg-white pt-4 pb-14 sm:pt-8 sm:pb-16'>
     <div class='container'>
       <div class='grid grid-cols-1 gap-0.5 sm:grid-cols-2 sm:gap-3'>
-        {
-          roleRoadmaps.map((roleRoadmap) => (
+        {roadmaps &&
+          roadmaps.map((roleRoadmap) => (
             <GridItem
-              url={`/${roleRoadmap.id}`}
-              isNew={roleRoadmap.frontmatter.isNew}
-              title={roleRoadmap.frontmatter.title}
-              description={roleRoadmap.frontmatter.description}
+              url={`/${roleRoadmap.idRoadmap}`}
+              title={roleRoadmap.title}
+              description={roleRoadmap.description}
             />
           ))
         }
 
-        {
+        <!--{
           skillRoadmaps.map((skillRoadmap) => (
             <GridItem
               url={`/${skillRoadmap.id}`}
@@ -43,7 +47,7 @@ const skillRoadmaps = await getRoadmapsByTag('skill-roadmap');
               description={skillRoadmap.frontmatter.description}
             />
           ))
-        }
+        }-->
       </div>
     </div>
   </div>
