@@ -3,7 +3,7 @@ import FeaturedGuides from '../components/FeaturedGuides.astro';
 import FeaturedItems from '../components/FeaturedItems/FeaturedItems.astro';
 import FeaturedVideos from '../components/FeaturedVideos.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getAllOrganigramas } from '../lib/organigrama';
+//import { getAllOrganigramas } from '../lib/organigrama';
 import { getAllGuides } from '../lib/guide';
 
 import { getAllVideos } from '../lib/video';
@@ -12,7 +12,7 @@ import { getRoadmapAlmacenados } from '../database/consultas';
 export const prerender = false;
 //const roleRoadmaps = await getRoadmapsByTag('role-roadmap');
 //const skillRoadmaps = await getRoadmapsByTag('skill-roadmap');
-const organigramas = await getAllOrganigramas();
+//const organigramas = await getAllOrganigramas();
 const roadmaps = await getRoadmapAlmacenados();
 
 const guides = await getAllGuides();
@@ -55,7 +55,7 @@ const videos = await getAllVideos();
     />}
 
    
-    <FeaturedItems
+    <!--<FeaturedItems
       heading='Organigrama'
       featuredItems={organigramas.map((organigrama) => ({
         text: organigrama.frontmatter.briefTitle,
@@ -63,7 +63,7 @@ const videos = await getAllVideos();
         isNew: organigrama.frontmatter.isNew,
         isUpcoming: organigrama.frontmatter.isUpcoming,
       }))}
-    />
+    />-->
 
     
     <div class='grid grid-cols-1 gap-7 sm:gap-16 bg-gray-50 py-7 sm:py-16'>

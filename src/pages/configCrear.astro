@@ -1,8 +1,24 @@
 ---
 import SimplePageHeader from "../components/SimplePageHeader.astro";
+import { getAllCategorias } from "../database/consultas";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 export const prerender = false
+
+const categoriasNivel1 = await getAllCategorias();
+
+if (Astro.request.method === 'POST') {
+    try{
+        const data = await Astro.request.formData();
+        const categoria = data.get('categoria');
+        //Obtener todos los que esten checked
+        //obtener el titutlo y almacenar todo en la bd
+
+      }catch(e){
+        console.log(e)
+    }
+}
+
 ---
 
 <BaseLayout title='About roadmap.sh' permalink={'/addBD'}>
@@ -18,8 +34,14 @@ export const prerender = false
     <label>Descripción:</label>
     <textarea name="descripcion" rows="4" cols="60"/>
 
-    <input type="checkbox" id="C" name="C" value="C"/>    
-    <label>C</label> <br>    
+    {categoriasNivel1 && categoriasNivel1.map((categoria) => (
+        <div>
+            <input type="checkbox" id={categoria.idNombre} name={categoria.idNombre} value={categoria.idNombre} />    
+            <label>{categoria.idNombre}</label> <br>    
+        </div>
+    ))}
+
+
 
 <br/>
     <button>Submit</button>
