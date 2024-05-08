@@ -1,5 +1,4 @@
 ---
-import type { RoadmapFileType } from '../lib/roadmap';
 
 export interface Props {
   url: string;
@@ -21,7 +20,6 @@ const { url, title, description} = Astro.props;
   >
     {title}
   </span>
-  {console.log('La descripcion' + description)}
 
  <!--  {
     isNew && (

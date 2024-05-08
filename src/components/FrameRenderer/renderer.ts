@@ -12,7 +12,7 @@ const puesto='junior'
 export class Renderer {
   resourceId: string;
   resourceType: string;
-  jsonUrl: string;
+  jsonData: string;
   loaderHTML: string | null;
 
   containerId: string;
@@ -24,7 +24,7 @@ export class Renderer {
   constructor() {
     this.resourceId = '';
     this.resourceType = '';
-    this.jsonUrl = '';
+    this.jsonData = '';
     this.loaderHTML = null;
     this.containerId = 'resource-svg-wrap';
     this.loaderId = 'resource-loader';
@@ -34,7 +34,7 @@ export class Renderer {
     this.handleSvgClick = this.handleSvgClick.bind(this);
     this.prepareConfig = this.prepareConfig.bind(this);
     this.switchRoadmap = this.switchRoadmap.bind(this);
-
+    
     this.componentesCategoria = [];
 
 
@@ -42,6 +42,7 @@ export class Renderer {
   }
 
   get loaderEl() {
+    
     return document.getElementById(this.loaderId);
   }
 
@@ -50,6 +51,7 @@ export class Renderer {
   }
 
   prepareConfig() {
+   
     if (!this.containerEl) {
       return false;
     }
@@ -57,7 +59,7 @@ export class Renderer {
     const dataset = this.containerEl.dataset;
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
-    this.jsonUrl = dataset.jsonUrl!;
+    this.jsonData = dataset.jsonData!;
     const componentesCategoriaString = dataset.componentesCategoria || '';
     this.componentesCategoria = componentesCategoriaString.split(',').map(item => item.trim());
     
@@ -65,12 +67,13 @@ export class Renderer {
   }
 
   /**
-   * @param { string } jsonUrl
+   * @param { string } jsonData
    * @returns {Promise<SVGElement>}
    */
- jsonToSvg(jsonUrl: string) {
-    if (!jsonUrl) {
-      console.error('jsonUrl not defined in frontmatter');
+ jsonToSvg(jsonData: string) {
+
+    if (!jsonData) {
+      console.error('jsonData not defined in frontmatter');
       return null;
     }
 
@@ -79,20 +82,13 @@ export class Renderer {
     }
 
     this.containerEl.innerHTML = this.loaderHTML!;
-
-    return  fetch(jsonUrl)
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) =>{
-       json = changeTextoSegunListaBD(json, this.componentesCategoria)
-      //  roadmapCategorias(this.resourceId);
-        
-        return wireframeJSONToSVG(changeJson(json, puesto), {
+    jsonData = changeTextoSegunListaBD(JSON.parse(jsonData), this.componentesCategoria)
+    
+        return wireframeJSONToSVG(changeJson(jsonData, puesto), {
           fontURL: '/fonts/balsamiq.woff2',
-        });
+        
       })
-      .then((svg) => {
+      .then((svg: string | Node) => {
         this.containerEl?.replaceChildren(svg);
       })
       .then(() => {
@@ -101,7 +97,7 @@ export class Renderer {
           this.resourceId
         );
       })
-      .catch((error) => {
+      .catch((error: { message: any; stack: any; }) => {
         if (!this.containerEl) {
           return;
         }
@@ -129,6 +125,7 @@ export class Renderer {
   }
 
   onDOMLoaded() {
+    
     if (!this.prepareConfig()) {
       return;
     }
@@ -141,12 +138,13 @@ export class Renderer {
     if (roadmapType) {
       this.switchRoadmap(`/jsons/roadmaps/${roadmapType}.json`);
     } else {
-      this.jsonToSvg(this.jsonUrl);
+      this.jsonToSvg(this.jsonData);
     }
   }
 
-  switchRoadmap(newJsonUrl: string) {
-    const newJsonFileSlug = newJsonUrl.split('/').pop()?.replace('.json', '');
+  switchRoadmap(newjsonData: string) {
+    console.log('Al menos')
+    const newJsonFileSlug = newjsonData.split('/').pop()?.replace('.json', '');
 
     // Update the URL and attach the new roadmap type
     if (window?.history?.pushState) {
@@ -169,7 +167,7 @@ export class Renderer {
       // roadmap/frontend/switch-version
       label: `${newJsonFileSlug}`,
     });
-    this.jsonToSvg(newJsonUrl)?.then(() => {
+    this.jsonToSvg(newjsonData)?.then(() => {
       this.containerEl?.setAttribute('style', '');
     });
   }
@@ -200,8 +198,8 @@ export class Renderer {
 
     if (/^json:/.test(groupId)) {
       // e.g. /roadmaps/frontend-beginner.json
-      const newJsonUrl = groupId.replace('json:', '');
-      this.switchRoadmap(newJsonUrl);
+      const newjsonData = groupId.replace('json:', '');
+      this.switchRoadmap(newjsonData);
       return;
     }
 
@@ -251,4 +249,3 @@ export class Renderer {
 
 const renderer = new Renderer();
 renderer.init();
-

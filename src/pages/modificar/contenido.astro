@@ -6,7 +6,7 @@ export const prerender = false
 
 
 const categoriaName = decodeURIComponent(Astro.request.url).split('=')[1]
-console.log('categoriaName', categoriaName)
+
 const informacion = await getCategoriaInformacionRoadmap(categoriaName)
 
 if (Astro.request.method === 'POST') {

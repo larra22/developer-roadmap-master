@@ -5,44 +5,33 @@ import MarkdownFile from '../../components/MarkdownFile.astro';
 import RelatedRoadmaps from '../../components/RelatedRoadmaps.astro';
 import RoadmapHeader from '../../components/RoadmapHeader.astro';
 import { TopicDetail } from '../../components/TopicDetail/TopicDetail';
-import UpcomingForm from '../../components/UpcomingForm.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import {
-generateArticleSchema,
-generateFAQSchema,
-} from '../../lib/jsonld-schema';
-import { type RoadmapFrontmatter,getRoadmapIds } from '../../lib/roadmap';
-import { getComponentesCategoria } from '../../database/consultas';
+import { getComponentesCategoria, getRoadmapAlmacenados, getRoadmapById } from '../../database/consultas';
 
-export async function getStaticPaths() {
-  const roadmapIds = await getRoadmapIds();
+export const prerender = false;
 
-  return roadmapIds.map((roadmapId) => ({
-    params: { roadmapId },
-  }));
-}
 
 interface Params extends Record<string, string | undefined> {
   roadmapId: string;
 }
 
 const { roadmapId } = Astro.params as Params;
-const roadmapFile = await import(
-  `../../data/roadmaps/${roadmapId}/${roadmapId}.md`
-);
-const { faqs: roadmapFAQs = [] } = await import(
-  `../../data/roadmaps/${roadmapId}/faqs.astro`
-);
-const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
+
+// TODO: Mirar para añadir el FAQ en el archivo de datos del roadmap de la BD
+//const { faqs: roadmapFAQs = [] } = await import(
+  //`../../data/roadmaps/${roadmapId}/faqs.astro`
+//);
+
+//const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
+const roadmapData = await getRoadmapById(roadmapId);
 
 const componentesCategoria:string[] = [];
 
-let jsonLdSchema = [];
+let jsonLdSchema: Record<string, unknown>[] | undefined = [];
 
-
-if (roadmapFAQs.length) {
-  jsonLdSchema.push(generateFAQSchema(roadmapFAQs));
-}
+//if (roadmapFAQs.length) {
+  //jsonLdSchema.push(generateFAQSchema(roadmapFAQs));
+//}
 
 if (Astro.request.method === 'GET') {
   componentesCategoria.length = 0;
@@ -64,11 +53,9 @@ if (Astro.request.method === 'GET') {
 
 <BaseLayout
   permalink={`/${roadmapId}`}
-  title={roadmapData?.seo?.title}
-  briefTitle={roadmapData.briefTitle}
-  description={roadmapData.seo.description}
-  keywords={roadmapData.seo.keywords}
-  noIndex={roadmapData.isUpcoming}
+  title={roadmapData?.title ?? 'Indefinido'}
+  briefTitle={roadmapData?.briefTitle}
+  description={roadmapData?.description}
   jsonLd={jsonLdSchema}
 >
   <!-- Preload the font being used in the renderer -->
@@ -82,45 +69,45 @@ if (Astro.request.method === 'GET') {
   />
 
   <RoadmapHeader
-    title={roadmapData.title}
-    description={roadmapData.description}
-    note={roadmapData.note}
-    tnsBannerLink={roadmapData.tnsBannerLink}
+    title={roadmapData?.title ?? 'Indefinido'}
+    description={roadmapData?.description ?? 'Indefinido'}
+    note={roadmapData?.note}
     roadmapId={roadmapId}
-    hasTopics={roadmapData.hasTopics}
-    isUpcoming={roadmapData.isUpcoming}
+
   />
 
   <div class='bg-gray-50 pt-4 sm:pt-12'>
-    {
-      !roadmapData.isUpcoming && roadmapData.jsonUrl && (
+    {roadmapData  && (
         <div class='container relative max-w-[1000px]'>
           <TopicDetail client:idle />
 
           <FrameRenderer
             resourceType={'roadmap'}
             resourceId={roadmapId}
-            jsonUrl={roadmapData.jsonUrl}
+            jsonData={roadmapData.jsonRoadmap}
             dimensions={roadmapData.dimensions}
             componentesCategoria={componentesCategoria}
-          />
+          
+        />
+        
         </div>
       )
     }
 
-    {
-      !roadmapData.isUpcoming && !roadmapData.jsonUrl && (
-        <div class='mt-0 pb-14 sm:-mt-6'>
-          <MarkdownFile>
-            <roadmapFile.Content />
-          </MarkdownFile>
-        </div>
-      )
-    }
+    <!--  {roadmapData && !roadmapData.jsonData && (
+      
+      <div class='mt-0 pb-14 sm:-mt-6'>
+        <MarkdownFile>
+          <roadmapFile.Content /> 
+        </MarkdownFile>
+      </div>
+    )
+   
+  }-->
 
-    {roadmapData.isUpcoming && <UpcomingForm />}
 
-    <FAQs faqs={roadmapFAQs} />
-    <RelatedRoadmaps roadmap={roadmapData} />
+
+    <!-- <FAQs faqs={roadmapFAQs} />-->
+    {roadmapData && <RelatedRoadmaps roadmap={roadmapData} />}
   </div>
 </BaseLayout>

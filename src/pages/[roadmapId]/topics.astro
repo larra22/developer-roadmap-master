@@ -1,25 +1,18 @@
 ---
 import RoadmapHeader from '../../components/RoadmapHeader.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getRoadmapIds, type RoadmapFrontmatter } from '../../lib/roadmap';
 import { getTopicsByRoadmapId } from '../../lib/roadmap-topic';
 
 interface Params extends Record<string, string | undefined> {
   roadmapId: string;
 }
 
-export async function getStaticPaths() {
-  const roadmapIds = await getRoadmapIds();
-
-  return roadmapIds.map((roadmapId) => ({
-    params: { roadmapId },
-  }));
-}
 
 const { roadmapId } = Astro.params as Params;
 const topics = await getTopicsByRoadmapId(roadmapId);
 const roadmapFile = await import(`../../data/roadmaps/${roadmapId}/${roadmapId}.md`);
-const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
+const roadmapData = await getRoadmapById(roadmapId);
+
 ---
 
 <BaseLayout
@@ -43,7 +36,9 @@ const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
           if (!topic || !topic.heading) {
     // Skip rendering if topic or heading is undefined
     return ;
+    
   }
+  {console.log('Carga')}
           // Breadcrumbs have three additional items e.g.
           //
           //     Roadmaps / Frontend / Topics / Internet / HTTP

@@ -1,19 +1,17 @@
 ---
-import { getRoadmapsByIds, type RoadmapFrontmatter } from '../lib/roadmap';
+import type { IRoadmapEsquema } from '../database/dbMySQL';
+import {getRoadmapById} from '../database/consultas'
 
-
+export const prerender = false;
 export interface Props {
-  roadmap: RoadmapFrontmatter;
+  roadmap: IRoadmapEsquema;
 }
 
 const { roadmap } = Astro.props;
 
-const relatedRoadmaps = roadmap.relatedRoadmaps || [];
-if (!relatedRoadmaps.length) {
-  return null;
-}
+const relatedRoadmaps = roadmap.relatedRoadmap;
 
-const relatedRoadmapDetails = await getRoadmapsByIds(relatedRoadmaps);
+const relatedRoadmapDetails = await getRoadmapById(relatedRoadmaps);
 ---
 
 <div class='border-t bg-gray-100'>
@@ -27,17 +25,25 @@ const relatedRoadmapDetails = await getRoadmapsByIds(relatedRoadmaps);
     </div>
 
     <div class='flex flex-col gap-1 pb-8'>
-      {
-        relatedRoadmapDetails.map((relatedRoadmap) => (
+      <a
+            href={`/${relatedRoadmapDetails?.idRoadmap}`}
+            class='py-2 px-3.5 bg-white border rounded-md hover:bg-gray-50 flex flex-col sm:flex-row gap-0.5 sm:gap-0'
+          >
+            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmapDetails?.briefTitle}</span>
+            <span class='text-gray-500'>{relatedRoadmapDetails?.briefDescription}</span>
+          </a>
+     <!--  {
+        relatedRoadmapDetails?.map((relatedRoadmap: { id: any; briefTitle: unknown; briefDescription: unknown; }) => (
           <a
             href={`/${relatedRoadmap.id}`}
             class='py-2 px-3.5 bg-white border rounded-md hover:bg-gray-50 flex flex-col sm:flex-row gap-0.5 sm:gap-0'
           >
-            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmap.frontmatter.briefTitle}</span>
-            <span class='text-gray-500'>{relatedRoadmap.frontmatter.briefDescription}</span>
+            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmap.briefTitle}</span>
+            <span class='text-gray-500'>{relatedRoadmap.briefDescription}</span>
           </a>
         ))
-      }
+      }-->
+
     </div>
   </div>
 </div>

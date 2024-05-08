@@ -23,7 +23,7 @@ export interface IRoadmapEsquema  extends RowDataPacket {
   briefDescription: string
   title: string
   description: string
-  relatedRoadmaps: string
+  relatedRoadmap: string
 }
 
 
