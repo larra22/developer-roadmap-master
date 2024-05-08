@@ -1,0 +1,28 @@
+---
+import SimplePageHeader from "../components/SimplePageHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+export const prerender = false
+---
+
+<BaseLayout title='About roadmap.sh' permalink={'/addBD'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Añade todo a la base de datos'
+  />
+
+  <form method="POST">
+    <label>Titulo:</label>
+    <input type="text" name="titulo"  />
+
+    <label>Descripción:</label>
+    <textarea name="descripcion" rows="4" cols="60"/>
+
+    <input type="checkbox" id="C" name="C" value="C"/>    
+    <label>C</label> <br>    
+
+<br/>
+    <button>Submit</button>
+    </form>
+
+</BaseLayout>

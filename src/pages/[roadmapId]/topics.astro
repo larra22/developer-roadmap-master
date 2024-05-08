@@ -22,7 +22,7 @@ const roadmapData = await getRoadmapById(roadmapId);
 >
   <RoadmapHeader
     description={roadmapData?.description ?? ''}
-    title={`${roadmapData?.briefTitle} Topics`}
+    title={`${roadmapData?.title} Topics`}
     roadmapId={roadmapId}
     hasSearch={true}
     hasTopics={false}

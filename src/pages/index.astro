@@ -47,7 +47,7 @@ const videos = await getAllVideos();
    {roadmaps && <FeaturedItems
       heading='Role based Roadmaps'
       featuredItems={roadmaps.map((roadmapItem) => ({
-        text: roadmapItem.briefTitle,
+        text: roadmapItem.title,
         url: `/${roadmapItem.idRoadmap}`,
        // isNew: roadmapItem.frontmatter.isNew,
        // isUpcoming: roadmapItem.frontmatter.isUpcoming,

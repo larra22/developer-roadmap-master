@@ -29,17 +29,17 @@ const relatedRoadmapDetails = await getRoadmapById(relatedRoadmaps);
             href={`/${relatedRoadmapDetails?.idRoadmap}`}
             class='py-2 px-3.5 bg-white border rounded-md hover:bg-gray-50 flex flex-col sm:flex-row gap-0.5 sm:gap-0'
           >
-            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmapDetails?.briefTitle}</span>
-            <span class='text-gray-500'>{relatedRoadmapDetails?.briefDescription}</span>
+            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmapDetails?.title}</span>
+            <span class='text-gray-500'>{relatedRoadmapDetails?.description}</span>
           </a>
      <!--  {
-        relatedRoadmapDetails?.map((relatedRoadmap: { id: any; briefTitle: unknown; briefDescription: unknown; }) => (
+        relatedRoadmapDetails?.map((relatedRoadmap: { id: any; title: unknown; description: unknown; }) => (
           <a
             href={`/${relatedRoadmap.id}`}
             class='py-2 px-3.5 bg-white border rounded-md hover:bg-gray-50 flex flex-col sm:flex-row gap-0.5 sm:gap-0'
           >
-            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmap.briefTitle}</span>
-            <span class='text-gray-500'>{relatedRoadmap.briefDescription}</span>
+            <span class='font-medium inline-block min-w-[150px]'>{relatedRoadmap.title}</span>
+            <span class='text-gray-500'>{relatedRoadmap.description}</span>
           </a>
         ))
       }-->

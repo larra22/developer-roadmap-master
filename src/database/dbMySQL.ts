@@ -19,8 +19,6 @@ export interface IRoadmapEsquema  extends RowDataPacket {
   idRoadmap: string
   jsonRoadmap: JSON
   order: number
-  briefTitle: string
-  briefDescription: string
   title: string
   description: string
   relatedRoadmap: string
