@@ -143,7 +143,7 @@ export class Renderer {
   }
 
   switchRoadmap(newjsonData: string) {
-    console.log('Al menos')
+
     const newJsonFileSlug = newjsonData.split('/').pop()?.replace('.json', '');
 
     // Update the URL and attach the new roadmap type

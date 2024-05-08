@@ -1,7 +1,7 @@
 ---
 import Loader from '../Loader.astro';
 import './FrameRenderer.css';
-import { getComponentesCategoria } from "../../database/consultas";
+
 export const prerender = false
 export interface Props {
   resourceType: 'roadmap' | 'organigrama';
@@ -16,10 +16,6 @@ export interface Props {
 
 const { resourceId, resourceType, jsonData, dimensions = null, componentesCategoria} = Astro.props;
 
-console.log(JSON.stringify(jsonData))
-console.log(jsonData)
-
-console.log(JSON.parse(JSON.stringify(jsonData)))
 
 
 ---

@@ -1,7 +1,7 @@
 ---
 import RoadmapHeader from '../../components/RoadmapHeader.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getTopicsByRoadmapId } from '../../lib/roadmap-topic';
+import {getComponentesCategoria, getRoadmapById} from '../../database/consultas'
 
 interface Params extends Record<string, string | undefined> {
   roadmapId: string;
@@ -9,21 +9,20 @@ interface Params extends Record<string, string | undefined> {
 
 
 const { roadmapId } = Astro.params as Params;
-const topics = await getTopicsByRoadmapId(roadmapId);
-const roadmapFile = await import(`../../data/roadmaps/${roadmapId}/${roadmapId}.md`);
+const topics = await getComponentesCategoria(roadmapId);
+
 const roadmapData = await getRoadmapById(roadmapId);
 
 ---
 
 <BaseLayout
-  title={`${roadmapData.title} Topics`}
-  description={roadmapData.seo.description}
-  keywords={roadmapData.seo.keywords}
+  title={`${roadmapData?.title} Topics`}
+  description={roadmapData?.description}
   permalink={`/${roadmapId}/topics`}
 >
   <RoadmapHeader
-    description={roadmapData.description}
-    title={`${roadmapData.briefTitle} Topics`}
+    description={roadmapData?.description ?? ''}
+    title={`${roadmapData?.briefTitle} Topics`}
     roadmapId={roadmapId}
     hasSearch={true}
     hasTopics={false}
@@ -31,14 +30,14 @@ const roadmapData = await getRoadmapById(roadmapId);
 
   <div class='bg-gray-50 pt-5 pb-8 sm:pt-10 sm:pb-16'>
     <div class='container'>
-      {
+      {topics &&
         topics.map((topic) => {
           if (!topic || !topic.heading) {
     // Skip rendering if topic or heading is undefined
     return ;
     
   }
-  {console.log('Carga')}
+
           // Breadcrumbs have three additional items e.g.
           //
           //     Roadmaps / Frontend / Topics / Internet / HTTP

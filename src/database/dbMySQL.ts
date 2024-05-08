@@ -17,7 +17,7 @@ export enum Tipo {
 
 export interface IRoadmapEsquema  extends RowDataPacket {
   idRoadmap: string
-  jsonRoadmap: string
+  jsonRoadmap: JSON
   order: number
   briefTitle: string
   briefDescription: string
@@ -63,10 +63,10 @@ const connectionConfig = {
   host: 'localhost',
   user: 'roadmap',
   password: 'roadmap',
-  database: 'roadmap',
-  //database: 'roadmapcompleto',
-  port: 3307,
-  //port:3306
+  //database: 'roadmap',
+  database: 'roadmapcompleto',
+  //port: 3307,
+  port:3306
 
 };
 
