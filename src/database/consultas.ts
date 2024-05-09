@@ -34,7 +34,7 @@ export interface MyErrorEvent {
     
             return result.insertId;
         } catch (error) {
-            console.error('Error adding resource:', error);
+            console.error('Error adding relacion roadmap-categoria:', error);
         }finally {
             connection.release();
         }
@@ -56,7 +56,7 @@ export interface MyErrorEvent {
             
             
             
-            return result.insertId;
+            return result.insertId
         } catch (error) {
             console.error('Error adding a new roadmap', error);
         }finally {

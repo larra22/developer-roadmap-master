@@ -2,20 +2,45 @@
 import SimplePageHeader from "../components/SimplePageHeader.astro";
 import { getAllCategorias } from "../database/consultas";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import esqueletoDev from "../../public/roadmaps/esqueletoDev.json";
+import { insertNuevoRoadmap } from "../database/consultas";
+import { insertRelacionRoadmapCategoria } from "../database/consultas";
 
 export const prerender = false
 
 const categoriasNivel1 = await getAllCategorias();
 
+// TODO: FALTA AÑADIR LO DE LOS ROADMAPS RELACIONADOS
+// Pero quizas para ello haga falta crear 
+// Tambien falta poder poner a prioridad a las categorias
 if (Astro.request.method === 'POST') {
     try{
         const data = await Astro.request.formData();
-        const titulo = data.get('titulo');
-        const descripcion = data.get('descripcion');
-        const json = await fetch('/public/roadmaps/esqueletoDev.json');
-        console.log(json)
-        //Obtener todos los que esten checked
-        //obtener el titutlo y almacenar todo en la bd
+        const titulo = data.get('titulo')?.toString();
+        const descripcion = data.get('descripcion')?.toString();
+        const json = JSON.stringify(esqueletoDev);
+        const checkboxes = categoriasNivel1?.filter(categoria => data.has(categoria.idNombre))
+            .map(categoria => categoria.idNombre);
+        const id= titulo;
+        if(id && titulo && json && descripcion ){
+            console.log('Datos completos')
+            const resultId= await insertNuevoRoadmap(id, json, titulo, descripcion);
+            console.log(resultId)
+
+            if(resultId==0){
+                console.log(resultId)
+                console.log('Roadmap creado con exito')
+                console.log(checkboxes)
+                checkboxes?.map((categoria)=>{
+                    insertRelacionRoadmapCategoria(id, categoria)
+                }
+            )
+                return Astro.redirect('/')               // Ahora creamos las relaciones entre las categorias y el roadmap
+            }
+            return Astro.redirect('/404')
+
+        }
+        console.log('Faltan datos, error crear aglo visual que señalice el error al usuario')
 
       }catch(e){
         console.log(e)
@@ -24,7 +49,7 @@ if (Astro.request.method === 'POST') {
 
 ---
 
-<BaseLayout title='About roadmap.sh' permalink={'/addBD'}>
+<BaseLayout title='About roadmap.sh' permalink={'/configCrear'}>
     <SimplePageHeader
     title='Developer Roadmaps'
     description='Añade todo a la base de datos'
@@ -36,6 +61,7 @@ if (Astro.request.method === 'POST') {
 
     <label>Descripción:</label>
     <textarea name="descripcion" rows="4" cols="60"/>
+    <div>
 
     {categoriasNivel1 && categoriasNivel1.map((categoria) => (
         <div>
@@ -44,6 +70,7 @@ if (Astro.request.method === 'POST') {
         </div>
 
         ))}
+    </div>
 
 <br/>
     <button>Crear y guardar</button>

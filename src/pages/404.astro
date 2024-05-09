@@ -1,21 +1,14 @@
 ---
 import Icon from '../components/AstroIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getRoadmapIds } from '../lib/roadmap';
 
-const roadmapIds = await getRoadmapIds();
-const legacyRoadmapUrls = [...roadmapIds.map((id) => `/${id}/`), '/roadmaps/'];
+
+
+
 ---
 
 <BaseLayout title='Page not found' permalink={'/404'} noIndex={true}>
   <!-- Legacy roadmp pages handling -->
-  <script slot='after-header' define:vars={{ legacyRoadmapUrls }}>
-    // If it's a roadmap page and it ends with a slash
-    // redirect to the same page without the slash
-    if (legacyRoadmapUrls.includes(window.location.pathname)) {
-      window.location.pathname = window.location.pathname.slice(0, -1);
-    }
-  </script>
 
   <div class='bg-gray-100'>
     <div class='py-10 md:py-32 container flex flex-col md:flex-row items-center justify-center gap-7'>
