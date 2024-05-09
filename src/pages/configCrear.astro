@@ -10,7 +10,10 @@ const categoriasNivel1 = await getAllCategorias();
 if (Astro.request.method === 'POST') {
     try{
         const data = await Astro.request.formData();
-        const categoria = data.get('categoria');
+        const titulo = data.get('titulo');
+        const descripcion = data.get('descripcion');
+        const json = await fetch('/public/roadmaps/esqueletoDev.json');
+        console.log(json)
         //Obtener todos los que esten checked
         //obtener el titutlo y almacenar todo en la bd
 
@@ -36,15 +39,14 @@ if (Astro.request.method === 'POST') {
 
     {categoriasNivel1 && categoriasNivel1.map((categoria) => (
         <div>
-            <input type="checkbox" id={categoria.idNombre} name={categoria.idNombre} value={categoria.idNombre} />    
-            <label>{categoria.idNombre}</label> <br>    
+            <input type="checkbox" id={categoria.idNombre} name={categoria.idNombre} value={categoria.idNombre} />
+            <label>{categoria.idNombre}</label> <br>
         </div>
-    ))}
 
-
+        ))}
 
 <br/>
-    <button>Submit</button>
+    <button>Crear y guardar</button>
     </form>
 
 </BaseLayout>

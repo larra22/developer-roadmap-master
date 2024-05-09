@@ -13,6 +13,56 @@ export interface MyErrorEvent {
 }
 
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  INSERT INTO BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    export const insertRelacionRoadmapCategoria = async (roadmap: string, categoria: string, prioridad?: number) => {
+        const connection = await db.getConnection();
+        try {
+            let query: string;
+            let result: ResultSetHeader; // Change the type annotation to ResultSetHeader
+            if(prioridad){
+                 query = `INSERT INTO Roadmap_categoria (idRoadmap, componenteCategoria, prioridad) VALUES ('${roadmap}', '${categoria}', '${prioridad}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, categoria, prioridad]);
+            }else{
+                query = `INSERT INTO Roadmap_categoria  (idRoadmap, componenteCategoria) VALUES ('${roadmap}', '${categoria}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, categoria]);
+            }
+    
+            return result.insertId;
+        } catch (error) {
+            console.error('Error adding resource:', error);
+        }finally {
+            connection.release();
+        }
+    }
+
+    export const insertNuevoRoadmap = async (roadmap: string, json: any, titulo:string, descripcion: string, relatedRoadmap?:string) => {
+        const connection = await db.getConnection();
+        try {
+            let result: ResultSetHeader; 
+            let query: string;
+            if(relatedRoadmap){
+                query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap, title, description, relatedRoadmap) VALUES ('${roadmap}', '${json}', '${titulo}', '${descripcion}', '${relatedRoadmap}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json, titulo, descripcion, relatedRoadmap]);
+            }else{
+                query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap, title, description) VALUES ('${roadmap}', '${json}', '${titulo}', '${descripcion}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json, titulo, descripcion]);
+
+            }
+            
+            
+            
+            return result.insertId;
+        } catch (error) {
+            console.error('Error adding a new roadmap', error);
+        }finally {
+            connection.release();
+        }
+    }
 
 
 export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
@@ -67,6 +117,12 @@ export const addResourceCategoria = async (nombre: string, descripcion:string, s
         connection.release();
     }
     }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GET FROM BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Obtener los recursos según categoría
 export const getResourcesByCategory = async (categoria: string) => {
@@ -153,19 +209,6 @@ export const getAllCategorias = async () => {
     }
 }
 
-export const updateCategoriaNombreDescripcion = async (idNombre: string, nuevoNombre: string, nuevaDescripcion:string) => {
-    const connection = await db.getConnection();
-    try {
-        
-        const query = `UPDATE Categoria SET idNombre='${nuevoNombre}', descripcion = '${nuevaDescripcion}' WHERE idNombre = '${idNombre}'`;
-        const [result] = await connection.execute<ResultSetHeader>(query, [nuevoNombre, nuevaDescripcion, idNombre]);
-        return result.affectedRows;
-    } catch (error) {
-        console.error('Error updating categoria:', error);
-    }finally {
-        connection.release();
-    }
-}
 
 export const getComponentesCategoria = async (roadmap: string) => {
     const connection = await db.getConnection();
@@ -216,20 +259,7 @@ export const getRoadmapById = async (roadmap: string) => {
 
 }
 
-export const addNewRoadmapTituloJson = async (roadmap: string, json: string) => {
-    const connection = await db.getConnection();
-    try {
-        
-        const query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap) VALUES ('${roadmap}', '${json}')`;
-        const [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json]);
-        
-        return result.insertId;
-    } catch (error) {
-        console.error('Error adding resource:', error);
-    }finally {
-        connection.release();
-    }
-}
+
 
 export const getJsonDeRoadmap = async (roadmap: string) => {
     const connection = await db.getConnection();
@@ -248,23 +278,23 @@ export const getJsonDeRoadmap = async (roadmap: string) => {
 }
 
 
-export const insertRelacionRoadmapCategoria = async (roadmap: string, categoria: string, prioridad?: number) => {
-    const connection = await db.getConnection();
-    try {
-        let query: string;
-        let result: ResultSetHeader; // Change the type annotation to ResultSetHeader
-        if(prioridad){
-             query = `INSERT INTO Roadmap_categoria (idRoadmap, componenteCategoria, prioridad) VALUES ('${roadmap}', '${categoria}', '${prioridad}')`;
-            [result] = await connection.execute<ResultSetHeader>(query, [roadmap, categoria, prioridad]);
-        }else{
-            query = `INSERT INTO Roadmap_categoria  (idRoadmap, componenteCategoria) VALUES ('${roadmap}', '${categoria}')`;
-            [result] = await connection.execute<ResultSetHeader>(query, [roadmap, categoria]);
-        }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  UPDATE BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        return result.insertId;
-    } catch (error) {
-        console.error('Error adding resource:', error);
-    }finally {
-        connection.release();
+    export const updateCategoriaNombreDescripcion = async (idNombre: string, nuevoNombre: string, nuevaDescripcion:string) => {
+        const connection = await db.getConnection();
+        try {
+            
+            const query = `UPDATE Categoria SET idNombre='${nuevoNombre}', descripcion = '${nuevaDescripcion}' WHERE idNombre = '${idNombre}'`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [nuevoNombre, nuevaDescripcion, idNombre]);
+            return result.affectedRows;
+        } catch (error) {
+            console.error('Error updating categoria:', error);
+        }finally {
+            connection.release();
+        }
     }
-}
+    
