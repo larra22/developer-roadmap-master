@@ -2,9 +2,9 @@
 import GridItem from '../../components/GridItem.astro';
 import SimplePageHeader from '../../components/SimplePageHeader.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getAllOrganigramas } from '../../lib/organigrama';
+//import { getAllOrganigramas } from '../../lib/organigrama';
 
-const organigramas = await getAllOrganigramas();
+//const organigramas = await getAllOrganigramas();
 ---
 
 <BaseLayout
@@ -20,7 +20,8 @@ const organigramas = await getAllOrganigramas();
   <div class='bg-gray-100 pt-4 pb-14 sm:pt-8 sm:pb-16'>
     <div class='container'>
       <div class='grid grid-cols-1 sm:grid-cols-2 gap-0.5 sm:gap-3'>
-        {
+      
+      <!-- {
           organigramas.map((organigrama) => (
             <GridItem
               url={`/organigrama/${organigrama.id}`}
@@ -29,7 +30,7 @@ const organigramas = await getAllOrganigramas();
               description={organigrama.frontmatter.description}
             />
           ))
-        }
+        } -->
       </div>
     </div>
   </div>

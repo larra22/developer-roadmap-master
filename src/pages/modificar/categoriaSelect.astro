@@ -1,22 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
-import { getComponentesCategoria } from '../../database/consultas';
-
+import { getAllCategorias} from '../../database/consultas';
+import {Dropdown} from './Dropdown';
 export const prerender = false
 
 
-
-
-const roadmapName =  Astro.request.url.split('=')[1];
-
-
 const fetchCategoriaNames = async () => {
-    const listaDeCategorias = await getComponentesCategoria(roadmapName);
-    return listaDeCategorias?.map(categoria => categoria.componenteCategoria);
+    const listaDeCategorias = await getAllCategorias();
+    return listaDeCategorias?.map(categoria => categoria.idNombre) ?? [];
 };
 
+
 const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
+
 ---
 
 <BaseLayout title='Modificar contenido' permalink={'/categoriaSelect'}>
@@ -27,12 +24,9 @@ const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
 
     <label>Selecciona la categoria: </label>
 
-    <select name="categoria" id="categoriaSelect">
-      <option value="" disabled selected>...</option>
-        {categoriaNames?.map((categoria: string) => (
-            <option value={categoria}>{categoria}</option>
-          ))}
-      </select>
+
+<Dropdown lista={categoriaNames}/>
+ 
 
       <br/>
 
@@ -46,6 +40,29 @@ const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
   
 
       <script>
+        /** 
+          const categoriaDropdown = document?.getElementById("categoriaDropdown");
+          if (categoriaDropdown) {
+            categoriaDropdown.classList.toggle("show");
+          }
+        
+          const input = document?.getElementById("categoriaSelect") as HTMLInputElement;
+          const filter = input?.value.toUpperCase();
+          const div = document?.getElementById("categoriaDropdown");
+          const a = div?.getElementsByTagName("a");
+          if (a) {
+          for (let i = 0; i < a.length; i++) {
+            
+              const txtValue = a[i].textContent || a[i].innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              a[i].style.display = "";
+            } else {
+              a[i].style.display = "none";
+            }
+            }
+            
+          }
+        
 
         // TODO: Si queremos añadir que dependa del roadmap, coger de la url el nombre de este
 
@@ -54,6 +71,7 @@ const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
             const categoria =(event.target as HTMLSelectElement).value;
             window.location.href = `/modificar/contenido?categoria=${categoria}`;
         });
+        */
       </script>
 
 

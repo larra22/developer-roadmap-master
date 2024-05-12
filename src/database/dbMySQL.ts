@@ -55,6 +55,13 @@ export interface IRoadmapComponentePrioridad extends RowDataPacket {
 
 }
 
+export interface IUsuario extends RowDataPacket {
+  email: string
+  password: string
+  admin: boolean
+
+}
+
 export const prerender = false;
 
 const connectionConfig = {

@@ -1,6 +1,6 @@
 import { type ResultSetHeader} from "mysql2"
 
-import { type IRecurso, db, type IRoadmapEsquema } from "./dbMySQL";
+import { type IRecurso, db, type IRoadmapEsquema, type IUsuario } from "./dbMySQL";
 import { type ICategoria } from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
@@ -117,6 +117,19 @@ export const addResourceCategoria = async (nombre: string, descripcion:string, s
         connection.release();
     }
     }
+
+    export const insertUsuario = async (email: string, password: string) => {
+        const connection = await db.getConnection();
+        try {
+            
+            const query = `INSERT INTO Usuario (email, password, admin) VALUES ('${email}', '${password}')`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [email, password]);
+            
+            return email;
+        } catch (error) {
+            console.error('Error adding user:', error);
+    }
+}
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -277,6 +290,18 @@ export const getJsonDeRoadmap = async (roadmap: string) => {
 
 }
 
+export const getUsuarioSegunEmail = async (email: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Usuario WHERE email = '${email}'`;
+        const [rows] = await connection.execute<IUsuario[]>(query, [email]);
+        
+        return rows[0];
+    } catch (error) {
+        console.error('Error getting user:', error);
+    }
+}
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
