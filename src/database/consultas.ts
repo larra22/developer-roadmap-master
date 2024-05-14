@@ -65,12 +65,12 @@ export interface MyErrorEvent {
     }
 
 
-export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
+export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string,n_Dificultad:string,tipo:string,formato:string,idioma:string,deInteres:number[] ) => {
     const connection = await db.getConnection();
     try {
         
-        const query = `INSERT INTO Recurso (titulo, enlaceFichero,descripcion,n_dificultad,tipo,deInteres) VALUES ('${titulo}', '${enlace}',null,null,null,null)`;
-        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlace]);
+        const query = `INSERT INTO Recurso (titulo, enlaceFichero,interno,descripcion,n_dificultad,tipo,formato,idioma,deInteres) VALUES ('${titulo}', '${enlaceFichero}','${interno}','${descripcion}','${n_Dificultad}','${tipo}','${formato}','${idioma}','${deInteres}')`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlaceFichero, interno,descripcion, n_Dificultad, tipo, formato,idioma,deInteres]);
         
         return result.insertId;
     } catch (error) {
@@ -80,6 +80,7 @@ export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
     }
 
 }
+
 
 export const addRelacionRecursoCategoria = async (idRecurso: number, idNombre: string) => {
     const connection = await db.getConnection();

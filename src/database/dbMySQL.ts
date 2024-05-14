@@ -7,11 +7,24 @@ export enum Dificultad {
   Avanzado = 'Avanzado',
 
 }
-
-export enum Tipo {
+export enum Formato{
   PDF = 'PDF',
   Video = 'Video',
+  Imagen = 'Imagen',
   Presentacion = 'Presentacion',
+  Otro = 'Otro'
+
+}
+export enum Tipo {
+  DePago = 'Curso de pago',
+  Gratuito = 'Curso gratuito',
+  Webinar = 'Webinar',
+  Libro = 'Libro',
+  Guia = 'Guia',
+  Tutorial = 'Tutorial',
+  Documentacion = 'Documentacion',
+  Articulo = 'Articulo',
+  Otro = 'Otro'
 
 }
 
@@ -29,10 +42,13 @@ export interface IRecurso extends RowDataPacket {
   idRecurso?: number
   titulo: string
   enlaceFichero: string
-  descripcion: boolean
+  interno:boolean
+  descripcion: string
   n_Dificultad: Dificultad
   tipo: Tipo
-  deInteres: number
+  formato: Formato
+  idioma: string
+  deInteres: number[]
 }
 
 export interface ICategoria extends RowDataPacket {
