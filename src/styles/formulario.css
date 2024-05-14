@@ -53,3 +53,15 @@ form {
     cursor: pointer;
     font-size: 18px;
   }
+
+
+
+  .radio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .radio-container label {
+    margin-right: 10px;
+  }

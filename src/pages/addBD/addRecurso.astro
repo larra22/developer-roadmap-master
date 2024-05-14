@@ -1,0 +1,86 @@
+---
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import '../../styles/formulario.css'
+
+
+ export const prerender = false
+---
+
+
+<BaseLayout title='Onboarding' permalink={'/enviarOpinion'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Incluir en el almacenamiento de la empresa un nuevo recurso:'
+  />
+
+  <form method="POST">
+    <fieldset>
+        <label  for="titulo" >Título:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          required
+          placeholder="Título del recurso" aria-required="true"
+        />
+
+        <label for="enlaceFichero">Enlace al fichero:</label>
+        <input
+          type="text"
+          id="enlaceFichero"
+          name="enlaceFichero"
+          required
+          placeholder="Enlace del fichero" aria-required="true"
+        />
+        </fieldset>
+
+        <fieldset>
+            <legend>Campos opcionales </legend>
+            <br>
+        <label for="descripcion">Descripción:</label>
+        <textarea
+          id="descripcion"
+          name="descripcion"
+          cols="50"
+          rows="5"
+          placeholder="Descripción..."
+        ></textarea>
+        
+
+        <label for="descripcion">Nivel de dificultad:</label>
+
+            <div class="radio-container">
+                <input type="radio" id="principiante" name="dificultad" value="principiante">
+                <label for="principiante">Principiante</label>
+                
+                <input type="radio" id="intermedio" name="dificultad" value="intermedio">
+                <label for="intermedio">Intermedio</label>
+                
+                <input type="radio" id="avanzado" name="dificultad" value="avanzado">
+                <label for="avanzado">Avanzado</label>
+              </div>
+
+        <label for="idioma">Idioma:</label>
+              <select id="idioma" name="idioma" >
+                <option value="" disabled selected>Escoger idioma...</option>
+                <option value="castellano">Castellano</option>
+                <option value="euskera">Euskera</option>
+                <option value="ingles">Inglés</option>
+                <option value="otro">Otro...</option>
+              </select>
+
+
+
+
+            </fieldset>
+    <fieldset>
+
+
+
+        <button type="submit">Guardar</button>
+    </fieldset>
+</form>
+
+
+</BaseLayout>

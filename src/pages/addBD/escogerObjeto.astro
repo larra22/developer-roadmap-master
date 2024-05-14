@@ -1,0 +1,64 @@
+---
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+---
+
+
+<BaseLayout title='About roadmap.sh' permalink={'/addBD/escogerObjeto'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Añade todo a la base de datos'
+  />
+  <div class='container'>
+    <h1 class='text-2xl sm:text-3xl font-bold block'>Almacenar contenido en la BD:</h1>
+    </div>
+    <div class='container mt-5'>
+  <br>
+  <br>
+  <a
+  href='/addBD/addCategoria'
+  class='hidden sm:inline transition-colors py-2 px-3 text-xs font-medium rounded-full bg-gradient-to-r from-slate-600 to-black hover:from-blue-600 hover:to-blue-800 text-white'
+>
+  Añadir cateogría &rarr;
+</a>
+
+<div class='block sm:hidden mt-3'>
+  <a
+    href='/addBD/addCategoria'
+    class='text-sm font-regular block p-2 border border-black text-black rounded-md text-center hover:bg-black hover:text-gray-50'
+  >
+    Añadir categoría &nbsp;&rarr;
+  </a>
+</div>
+
+</div>
+
+<div class='container mt-5'>
+  <br>
+  <br>
+  <a
+  href='/addBD/addRecurso'
+  class='hidden sm:inline transition-colors py-2 px-3 text-xs font-medium rounded-full bg-gradient-to-r from-slate-600 to-black hover:from-blue-600 hover:to-blue-800 text-white'
+>
+  Añadir Recurso &rarr;
+</a>
+
+<div class='block sm:hidden mt-3'>
+  <a
+    href='/addBD/addRecurso'
+    class='text-sm font-regular block p-2 border border-black text-black rounded-md text-center hover:bg-black hover:text-gray-50'
+  >
+    Añadir Recurso &nbsp;&rarr;
+  </a>
+</div>
+
+</div>
+
+
+ <div class='container mt-5'>
+  <br>
+  <br>
+ </div>
+
+</BaseLayout>
