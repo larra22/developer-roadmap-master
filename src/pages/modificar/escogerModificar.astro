@@ -2,6 +2,7 @@
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ButtonDegradado from "../../components/ButtonDegradado.astro";
+
 ---
 
 
@@ -11,10 +12,10 @@ import ButtonDegradado from "../../components/ButtonDegradado.astro";
     description='Añade todo a la base de datos'
   />
 
+  <ButtonDegradado titulo="Modifca o elimina el contenido de la base de datos"  path="/modificar/categoriaSelect" text="Modifcar categoría"></ButtonDegradado>
 
-  <ButtonDegradado titulo="Almacenar contenido en la BD:" path="/addBD/addCategoria" text="Añadir categoría"/>
- <ButtonDegradado path="/addBD/addRecurso" text="Añadir recurso"/>
+    <ButtonDegradado path="/modificar/recursoSelect" text="Modifcar recurso"></ButtonDegradado>
 
-
+    <ButtonDegradado path="/modificar/roadmapSelect" text="Modifcar roadmap"></ButtonDegradado>
 
 </BaseLayout>

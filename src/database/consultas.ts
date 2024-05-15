@@ -67,10 +67,17 @@ export interface MyErrorEvent {
 
 export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string | null,n_Dificultad:string | null,tipo:string | null,formato:string | null,idioma:string | null,deInteres:number[] | null ) => {
     const connection = await db.getConnection();
+    const internoExterno = interno ? 1 : 0;
+    const dificultad = n_Dificultad ? `'${n_Dificultad}'` : null;
+    const tipoRecurso = tipo ? `'${tipo}'` : null;
+    const formatoRecurso = formato ? `'${formato}'` : null;
+    const idiomaRecurso = idioma ? `'${idioma}'` : null;
+    const deInteresRecurso = deInteres ? `'${deInteres}'` : null;
+
     try {
         
-        const query = `INSERT INTO Recurso (titulo, enlaceFichero,interno,descripcion,n_dificultad,tipo,formato,idioma,deInteres) VALUES ('${titulo}', '${enlaceFichero}','${interno}','${descripcion}','${n_Dificultad}','${tipo}','${formato}','${idioma}','${deInteres}')`;
-        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlaceFichero, interno,descripcion, n_Dificultad, tipo, formato,idioma,deInteres]);
+        const query = `INSERT INTO Recurso (titulo, enlaceFichero,interno,descripcion,n_dificultad,tipo,formato,idioma,deInteres) VALUES ('${titulo}', '${enlaceFichero}','${internoExterno}','${descripcion}',${dificultad},${tipoRecurso},${formatoRecurso},${idiomaRecurso},${deInteresRecurso})`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlaceFichero, internoExterno,descripcion, dificultad, tipoRecurso, formatoRecurso,idiomaRecurso,deInteres]);
         
         return result.insertId;
     } catch (error) {
@@ -82,7 +89,7 @@ export const insertResource = async (titulo:string, enlaceFichero:string,interno
 }
 
 
-export const addRelacionRecursoCategoria = async (idRecurso: number, idNombre: string) => {
+export const insertRelacionRecursoCategoria = async (idRecurso: number, idNombre: string) => {
     const connection = await db.getConnection();
     try{
         

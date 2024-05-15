@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import '../../styles/formulario.css';
 import {insertResource} from '../../database/consultas.ts';
 import {getAllCategorias} from '../../database/consultas.ts';
+import { insertRelacionRecursoCategoria } from "../../database/consultas.ts";
 
 
  export const prerender = false
@@ -14,6 +15,7 @@ import {getAllCategorias} from '../../database/consultas.ts';
       const titulo = data.get("titulo")?.toString();
       const enlace = data.get("enlaceFichero")?.toString();
       const interno = data.get("internoExterno")?.toString() === "true" ? true : false;
+      const categoria = data.get("categoria")?.toString();
       //Opcionales
       const descripcion = data.get("descripcion")?.toString();
       const dificultad = data.get("dificultad")?.toString();
@@ -21,31 +23,28 @@ import {getAllCategorias} from '../../database/consultas.ts';
         const tipo = data.get("tipo")?.toString();
         const formato = data.get("formato")?.toString();
       let idRecurso ;
-      if(titulo && enlace && interno){
-      idRecurso = await insertResource(titulo, enlace, interno, descripcion ?? null , dificultad ?? null, idioma ?? null, tipo ?? null, formato ?? null, null);
-      }
+      if(titulo && enlace && interno && categoria){
+      idRecurso = await insertResource(titulo, enlace, interno, descripcion ?? null , dificultad ?? null, tipo ?? null, formato ?? null,idioma ?? null,  null);
+        if(idRecurso){
+      await insertRelacionRecursoCategoria(idRecurso, categoria);
+    }}
     } catch (error) {
-      console.log(error);
+      return Astro.redirect('/addBD/addError')
     }
   }
 
 const categorias = await getAllCategorias();
 var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
 ---
-
-
+<head>
+  <meta charset="UTF-8" />
+</head>
 <BaseLayout title='Onboarding' permalink={'/enviarOpinion'}>
     <SimplePageHeader
     title='Developer Roadmaps'
     description='Incluir en el almacenamiento de la empresa un nuevo recurso:'
   />
-  <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"/>
-    <!-- Include Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-  </head>
 
   <form method="POST">
     <fieldset>
@@ -78,7 +77,8 @@ var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
         </fieldset>
 
         <label for="categoria">Elige una categoría:</label>
-        <select class="js-example-basic-single" id="categoria" name="categoria" >
+        <select class="js-example-basic-single" id="categoria" name="categoria" required>
+          <option value="" disabled selected>Escoger categoría...</option>
           {categoriasNames?.map((categoria) => (
             <option value={categoria}>{categoria}</option>
           ))}
@@ -103,46 +103,46 @@ var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
         <label for="dificultad">Nivel de dificultad:</label>
 
             <div class="radio-container">
-                <input type="radio" id="principiante" name="dificultad" value="principiante"/>
+                <input type="radio" id="rincipiante" name="dificultad" value="Principiante"/>
                 <label for="principiante">Principiante</label>
                 
-                <input type="radio" id="intermedio" name="dificultad" value="intermedio"/>
+                <input type="radio" id="intermedio" name="dificultad" value="Intermedio"/>
                 <label for="intermedio">Intermedio</label>
                 
-                <input type="radio" id="avanzado" name="dificultad" value="avanzado"/>
+                <input type="radio" id="avanzado" name="dificultad" value="Avanzado"/>
                 <label for="avanzado">Avanzado</label>
               </div>
 
         <label for="idioma">Idioma:</label>
               <select id="idioma" name="idioma" >
                 <option value="" disabled selected>Escoger idioma...</option>
-                <option value="castellano">Castellano</option>
-                <option value="euskera">Euskera</option>
-                <option value="ingles">Inglés</option>
-                <option value="otro">Otro...</option>
+                <option value="Castellano">Castellano</option>
+                <option value="Euskera">Euskera</option>
+                <option value="Ingles">Inglés</option>
+                <option value="Otro">Otro...</option>
               </select>
 
         <label for="tipo">¿Qué tipo es?:</label>
               <select id="tipo" name="tipo" >
                 <option value="" disabled selected>Escoger tipo...</option>
-                <option value="dePago">Curso de pago</option>
-                <option value="gratuito">Curso gratuito</option>
-                <option value="webinars">Webinars</option>
-                <option value="libro">Libro</option>
-                <option value="guia">Guía</option>
-                <option value="tutorial">Tutorial</option>
-                <option value="articulo">Artículo</option>
-                <option value="otro">Otro...</option>
+                <option value="Curso de pago ">Curso de pago</option>
+                <option value="Curso gratuito">Curso gratuito</option>
+                <option value="Webinar">Webinars</option>
+                <option value="Libro">Libro</option>
+                <option value="Guia">Guía</option>
+                <option value="Tutorial">Tutorial</option>
+                <option value="Articulo">Artículo</option>
+                <option value="Otro">Otro...</option>
               </select>
 
               <label for="formato">¿Qué formato tiene?:</label>
               <select id="formato" name="formato" >
                 <option value="" disabled selected>Escoger formato...</option>
-                <option value="pdf">PDF</option>
-                <option value="video">Vídeo</option>
-                <option value="imagen">Imagen</option>
-                <option value="presentacion">Presentación</option>
-                <option value="otro">Otro...</option>
+                <option value="PDF">PDF</option>
+                <option value="Video">Vídeo</option>
+                <option value="Imagen">Imagen</option>
+                <option value="Presentacion">Presentación</option>
+                <option value="Otro">Otro...</option>
               </select>
 
 
@@ -156,13 +156,14 @@ var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
 
 </form>
 
+
 </BaseLayout>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
- import $ from 'jquery';
-  $(document).ready(function() {
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
+import $ from 'jquery';
+$(document).ready(function() {
     $('.js-example-basic-single').select2();
 });
 </script>
-
 
