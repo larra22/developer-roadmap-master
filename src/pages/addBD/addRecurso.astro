@@ -1,31 +1,36 @@
 ---
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import '../../styles/formulario.css'
-import {insertResource} from '../../database/consultas.ts'
+import '../../styles/formulario.css';
+import {insertResource} from '../../database/consultas.ts';
+import {getAllCategorias} from '../../database/consultas.ts';
+
 
  export const prerender = false
 
  if (Astro.request.method === "POST") {
     try {
         const data = await Astro.request.formData();
-      const titulo = data.get("titulo");
-      const enlace = data.get("enlaceFichero");
-      const interno = data.get("internoExterno");
+      const titulo = data.get("titulo")?.toString();
+      const enlace = data.get("enlaceFichero")?.toString();
+      const interno = data.get("internoExterno")?.toString() === "true" ? true : false;
       //Opcionales
-      const descripcion = data.get("descripcion");
-      const dificultad = data.get("dificultad");
-      const idioma = data.get("idioma");
-        const tipo = data.get("tipo");
-        const formato = data.get("formato");
+      const descripcion = data.get("descripcion")?.toString();
+      const dificultad = data.get("dificultad")?.toString();
+      const idioma = data.get("idioma")?.toString();
+        const tipo = data.get("tipo")?.toString();
+        const formato = data.get("formato")?.toString();
       let idRecurso ;
-      
+      if(titulo && enlace && interno){
       idRecurso = await insertResource(titulo, enlace, interno, descripcion ?? null , dificultad ?? null, idioma ?? null, tipo ?? null, formato ?? null, null);
-
+      }
     } catch (error) {
       console.log(error);
     }
   }
+
+const categorias = await getAllCategorias();
+var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
 ---
 
 
@@ -34,6 +39,13 @@ import {insertResource} from '../../database/consultas.ts'
     title='Developer Roadmaps'
     description='Incluir en el almacenamiento de la empresa un nuevo recurso:'
   />
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"/>
+    <!-- Include Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  </head>
 
   <form method="POST">
     <fieldset>
@@ -57,18 +69,27 @@ import {insertResource} from '../../database/consultas.ts'
 
         <label for="interno">¿Este recurso ha sido creado por LKS?:</label>
             <div class="radio-container" >
-                <input type="radio" id="interno" name="internoExterno" value={true} required>
+                <input type="radio" id="interno" name="internoExterno" value="true" required/>
                 <label for="interno">Sí</label>
 
-                <input type="radio" id="externo" name="internoExterno" value={false} required>
+                <input type="radio" id="externo" name="internoExterno" value="false" required/>
                 <label for="intermedio">No</label>
               </div>
         </fieldset>
 
+        <label for="categoria">Elige una categoría:</label>
+        <select class="js-example-basic-single" id="categoria" name="categoria" >
+          {categoriasNames?.map((categoria) => (
+            <option value={categoria}>{categoria}</option>
+          ))}
+          </select>
+          <div style="display: flex; flex-flow: column; justify-content: center;">
+            <rux-log filter=""></rux-log>
+          </div>
 
         <fieldset>
             <legend>Campos opcionales </legend>
-            <br>
+        <br></br>
         <label for="descripcion">Descripción:</label>
         <textarea
           id="descripcion"
@@ -82,13 +103,13 @@ import {insertResource} from '../../database/consultas.ts'
         <label for="dificultad">Nivel de dificultad:</label>
 
             <div class="radio-container">
-                <input type="radio" id="principiante" name="dificultad" value="principiante">
+                <input type="radio" id="principiante" name="dificultad" value="principiante"/>
                 <label for="principiante">Principiante</label>
                 
-                <input type="radio" id="intermedio" name="dificultad" value="intermedio">
+                <input type="radio" id="intermedio" name="dificultad" value="intermedio"/>
                 <label for="intermedio">Intermedio</label>
                 
-                <input type="radio" id="avanzado" name="dificultad" value="avanzado">
+                <input type="radio" id="avanzado" name="dificultad" value="avanzado"/>
                 <label for="avanzado">Avanzado</label>
               </div>
 
@@ -135,5 +156,13 @@ import {insertResource} from '../../database/consultas.ts'
 
 </form>
 
-
 </BaseLayout>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
+ import $ from 'jquery';
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
+
+

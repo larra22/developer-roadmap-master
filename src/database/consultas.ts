@@ -65,7 +65,7 @@ export interface MyErrorEvent {
     }
 
 
-export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string,n_Dificultad:string,tipo:string,formato:string,idioma:string,deInteres:number[] ) => {
+export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string | null,n_Dificultad:string | null,tipo:string | null,formato:string | null,idioma:string | null,deInteres:number[] | null ) => {
     const connection = await db.getConnection();
     try {
         

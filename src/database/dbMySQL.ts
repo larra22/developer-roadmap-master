@@ -43,12 +43,12 @@ export interface IRecurso extends RowDataPacket {
   titulo: string
   enlaceFichero: string
   interno:boolean
-  descripcion: string
-  n_Dificultad: Dificultad
-  tipo: Tipo
-  formato: Formato
-  idioma: string
-  deInteres: number[]
+  descripcion: string | null;
+  n_Dificultad: Dificultad | null;
+  tipo: Tipo | null;
+  formato: Formato | null;
+  idioma: string | null;
+  deInteres: number[] | null;
 }
 
 export interface ICategoria extends RowDataPacket {
