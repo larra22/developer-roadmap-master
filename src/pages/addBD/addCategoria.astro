@@ -1,0 +1,81 @@
+---
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import { insertCategoria} from "../../database/consultas";
+import { getAllCategorias } from "../../database/consultas";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import '../../styles/formulario.css'
+
+
+ export const prerender = false
+
+
+ const categorias = await getAllCategorias();
+const categoriasNames = categorias?.map((categoria) => categoria.title);
+
+
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+        const titulo = data.get("titulo")?.toString();
+        const descripcion = data.get("descripcion")?.toString();
+        const categoriaPadre = data.get("categoriaPadre")?.toString();
+
+        if(titulo && descripcion && categoriaPadre){7
+            await insertCategoria(titulo, descripcion, categoriaPadre);
+        }
+
+        
+
+      
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+---
+
+<BaseLayout title='Onboarding' permalink={'/enviarOpinion'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Incluir en el almacenamiento de la empresa un nuevo recurso:'
+  />
+
+
+  <form method="POST">
+    <fieldset>
+
+        <fieldset>
+            <label  for="titulo" >Título:</label>
+            <input
+              type="text"
+              id="titulo"
+              name="titulo"
+              required
+              placeholder="Título de la categoría" aria-required="true"
+            />
+
+            <label for="descripcion">Descripción:</label>
+        <textarea
+          id="descripcion"
+          name="descripcion"
+          cols="50"
+          rows="5"
+          placeholder="Descripción..."
+        ></textarea>
+
+
+        <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
+        <select id="categoriaPadre" name="categoricategoriaPadrea" >
+            <option value="" disabled selected>Escoger categoría padre...</option>
+            <option value="ninguna" >Ninguna</option>
+            {categoriasNames?.map((categoria) => {
+                <option value={categoria}>{categoria}</option>
+            })}
+          </select>
+        <button type="submit">Guardar</button>
+    </fieldset>
+</form>
+
+
+</BaseLayout>

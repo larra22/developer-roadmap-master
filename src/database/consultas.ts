@@ -98,7 +98,7 @@ export const addRelacionRecursoCategoria = async (idRecurso: number, idNombre: s
 
 }
 
-export const addResourceCategoria = async (nombre: string, descripcion:string, superior:string) => {
+export const insertCategoria = async (nombre: string, descripcion:string, superior:string) => {
     const connection = await db.getConnection();
     try {
 
