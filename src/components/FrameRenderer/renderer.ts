@@ -18,7 +18,9 @@ export class Renderer {
   containerId: string;
   loaderId: string;
 
-  componentesCategoria: string[];
+  componentesCategoriaPrimerNivel: string[];
+  componentesCategoriaSegundoNivel: [string, string][];
+  componentesCategoriaTercerNivel: string[];
 
 
   constructor() {
@@ -35,8 +37,9 @@ export class Renderer {
     this.prepareConfig = this.prepareConfig.bind(this);
     this.switchRoadmap = this.switchRoadmap.bind(this);
     
-    this.componentesCategoria = [];
-
+    this.componentesCategoriaPrimerNivel = [];
+    this.componentesCategoriaSegundoNivel = [];
+    this.componentesCategoriaTercerNivel = [];
 
   
   }
@@ -60,8 +63,24 @@ export class Renderer {
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
     this.jsonData = dataset.jsonData!;
-    const componentesCategoriaString = dataset.componentesCategoria || '';
-    this.componentesCategoria = componentesCategoriaString.split(',').map(item => item.trim());
+
+
+    const componentesCategoriaPrimerNivelString = dataset.componentesCategoriaPrimerNivel || '';
+    this.componentesCategoriaPrimerNivel = componentesCategoriaPrimerNivelString.split(',').map(item => item.trim());
+
+    const componentesCategoriaSegundoNivelString = dataset.componentesCategoriaSegundoNivel || '';
+    const itemsArray = componentesCategoriaSegundoNivelString.split(',').map(item => item.trim());
+    
+    // Create tuples with current and next items, skipping every other item
+    const componentesCategoriaSegundoNivelArray: [string, string][] = [];
+    for (let i = 0; i < itemsArray.length; i += 2) {
+        const currentItem = itemsArray[i];
+        const nextItem = i + 1 < itemsArray.length ? itemsArray[i + 1] : ''; // If there's no next item, use an empty string
+        componentesCategoriaSegundoNivelArray.push([currentItem, nextItem]);
+    }
+    this.componentesCategoriaSegundoNivel = componentesCategoriaSegundoNivelArray;
+    
+   // this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelString.split(',').map(item => item.trim());
     
     return true;
   }
@@ -82,7 +101,7 @@ export class Renderer {
     }
 
     this.containerEl.innerHTML = this.loaderHTML!;
-    jsonData = changeTextoSegunListaBD(JSON.parse(jsonData), this.componentesCategoria)
+    jsonData = changeTextoSegunListaBD(JSON.parse(jsonData), this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
     
         return wireframeJSONToSVG(changeJson(jsonData, puesto), {
           fontURL: '/fonts/balsamiq.woff2',

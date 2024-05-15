@@ -11,12 +11,15 @@ export interface Props {
     width: number;
     height: number;
   };
-  componentesCategoria: string[];
+  componentesCategoriaPrimerNivel: string[];
+  componentesCategoriaSegundoNivel: [string,string][];
+  //componentesCategoriaTercerNivel: string[];
 }
 
-const { resourceId, resourceType, jsonData, dimensions = null, componentesCategoria} = Astro.props;
 
+const { resourceId, resourceType, jsonData, dimensions = null, componentesCategoriaPrimerNivel, componentesCategoriaSegundoNivel} = Astro.props;
 
+//console.log(componentesCategoriaSegundoNivel)
 
 ---
 
@@ -27,7 +30,8 @@ const { resourceId, resourceType, jsonData, dimensions = null, componentesCatego
     : null}
   data-resource-type={resourceType}
   data-resource-id={resourceId}
-  data-componentes-categoria={componentesCategoria}
+  data-componentes-categoria-primer-nivel={componentesCategoriaPrimerNivel}
+  data-componentes-categoria-segundo-nivel={componentesCategoriaSegundoNivel}
   data-json-data={JSON.stringify(jsonData)}
 >
 

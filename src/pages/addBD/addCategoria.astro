@@ -10,7 +10,8 @@ import '../../styles/formulario.css'
 
 
  const categorias = await getAllCategorias();
-const categoriasNames = categorias?.map((categoria) => categoria.title);
+const categoriasNames = categorias?.map((categoria) => categoria.idNombre);
+console.log(categoriasNames)
 
 
 if (Astro.request.method === "POST") {
@@ -69,8 +70,9 @@ if (Astro.request.method === "POST") {
         <select id="categoriaPadre" name="categoricategoriaPadrea" >
             <option value="" disabled selected>Escoger categoría padre...</option>
             <option value="ninguna" >Ninguna</option>
-            {categoriasNames?.map((categoria) => {
-                <option value={categoria}>{categoria}</option>
+            {categoriasNames && categoriasNames.map((categoria) => {
+             return   <option  value={categoria}>{categoria}</option>
+
             })}
           </select>
         <button type="submit">Guardar</button>

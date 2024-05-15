@@ -1,13 +1,10 @@
 ---
-import FAQs from '../../components/FAQs/FAQs.astro';
 import FrameRenderer from '../../components/FrameRenderer/FrameRenderer.astro';
-import MarkdownFile from '../../components/MarkdownFile.astro';
 import RelatedRoadmaps from '../../components/RelatedRoadmaps.astro';
 import RoadmapHeader from '../../components/RoadmapHeader.astro';
 import { TopicDetail } from '../../components/TopicDetail/TopicDetail';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getComponentesCategoria, getRoadmapAlmacenados, getRoadmapById } from '../../database/consultas';
-
+import { getComponentesCategoriaPrimerNivel, getComponentesCategoriaSegundoNivel,  getRoadmapById } from '../../database/consultas';
 export const prerender = false;
 
 
@@ -18,31 +15,33 @@ interface Params extends Record<string, string | undefined> {
 const { roadmapId } = Astro.params as Params;
 
 // TODO: Mirar para añadir el FAQ en el archivo de datos del roadmap de la BD
-//const { faqs: roadmapFAQs = [] } = await import(
-  //`../../data/roadmaps/${roadmapId}/faqs.astro`
-//);
 
-//const roadmapData = roadmapFile.frontmatter as RoadmapFrontmatter;
 const roadmapData = await getRoadmapById(roadmapId);
 
-const componentesCategoria:string[] = [];
+const componentesCategoriaPrimerNivel:string[] = [];
+const componentesCategoriaSegundoNivel:[string,string][]= [];
+//const componentesCategoriaTercerNivel:string[] = [];
 
 let jsonLdSchema: Record<string, unknown>[] | undefined = [];
 
-//if (roadmapFAQs.length) {
-  //jsonLdSchema.push(generateFAQSchema(roadmapFAQs));
-//}
 
 if (Astro.request.method === 'GET') {
-  componentesCategoria.length = 0;
+  componentesCategoriaPrimerNivel.length = 0;
   try {
-    const componentes = await getComponentesCategoria(roadmapId);
-    componentes?.map((componente) => {
-        componentesCategoria.push(
-            componente.componenteCategoria);
+    const componentesPrimerNivel = await getComponentesCategoriaPrimerNivel(roadmapId);
+    componentesPrimerNivel?.map((componentePrimerNivel) => {
+        componentesCategoriaPrimerNivel.push(
+            componentePrimerNivel.componenteCategoria);
 
     });
 
+    const componentesSegundoNivel = await getComponentesCategoriaSegundoNivel(roadmapId);
+    componentesSegundoNivel?.map((componenteSegundoNivel) => {
+        componentesCategoriaSegundoNivel.push(
+            [componenteSegundoNivel.componenteCategoria, componenteSegundoNivel.categoriaSuperior]);
+         
+    });
+   //console.log(componentesCategoriaSegundoNivel) console.log(componentesCategoriaSegundoNivel);
   } catch (error) {
     console.log(error);
   }
@@ -85,28 +84,13 @@ if (Astro.request.method === 'GET') {
             resourceId={roadmapId}
             jsonData={roadmapData.jsonRoadmap}
             dimensions={roadmapData.dimensions}
-            componentesCategoria={componentesCategoria}
-          
+            componentesCategoriaPrimerNivel={componentesCategoriaPrimerNivel}
+            componentesCategoriaSegundoNivel={componentesCategoriaSegundoNivel}
         />
-        
+
         </div>
       )
     }
-
-    <!--  {roadmapData && !roadmapData.jsonData && (
-      
-      <div class='mt-0 pb-14 sm:-mt-6'>
-        <MarkdownFile>
-          <roadmapFile.Content /> 
-        </MarkdownFile>
-      </div>
-    )
-   
-  }-->
-
-
-
-    <!-- <FAQs faqs={roadmapFAQs} />-->
     {roadmapData && <RelatedRoadmaps roadmap={roadmapData} />}
   </div>
 </BaseLayout>

@@ -1,6 +1,6 @@
 import { type ResultSetHeader} from "mysql2"
 
-import { type IRecurso, db, type IRoadmapEsquema, type IUsuario } from "./dbMySQL";
+import { type IRecurso, db, type IRoadmapEsquema, type IUsuario, type ICategoriaSubNivel } from "./dbMySQL";
 import { type ICategoria } from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
@@ -155,6 +155,38 @@ export const getResourcesByCategory = async (categoria: string) => {
     }
 }
 
+export const getRecursoById = async (idRecurso: number) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Recurso WHERE idRecurso = '${idRecurso}'`;
+        const [rows] = await connection.execute<IRecurso[]>(query, [idRecurso]);
+        
+        return rows[0];
+    } catch (error) {
+        console.error('Error getting resource:', error);
+    }finally {
+        connection.release();
+    }
+
+}
+
+export const getAllRecursos = async () => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Recurso`;
+        const [rows] = await connection.execute<IRecurso[]>(query);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting resources:', error);
+    }finally {
+        connection.release();
+    }
+
+
+}
 export const getResourcesByDificultad = async (dificultad: string) => {
     const connection = await db.getConnection();
     try {
@@ -223,12 +255,37 @@ export const getAllCategorias = async () => {
 }
 
 
-export const getComponentesCategoria = async (roadmap: string) => {
+export const getComponentesCategoriaPrimerNivel = async (roadmap: string) => {
     const connection = await db.getConnection();
     try {
         
-        const query = `SELECT * FROM Roadmap_categoria WHERE idRoadmap = '${roadmap}' ORDER BY prioridad DESC`;
+        const query = `SELECT * FROM Roadmap_categoria INNER JOIN Categoria ON componenteCategoria=idNombre WHERE idRoadmap = '${roadmap}' AND Categoria.categoriaSuperior='${roadmap}' ORDER BY prioridad ASC`;
         const [rows] = await connection.execute<IRoadmapComponentePrioridad[]>(query, [roadmap]);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
+}
+
+export const getComponentesCategoriaSegundoNivel = async (roadmap: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
+        FROM Roadmap_categoria 
+        JOIN Categoria 
+        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre 
+        WHERE Roadmap_categoria.idRoadmap = '${roadmap}' 
+        AND Categoria.categoriaSuperior IN (
+            SELECT idNombre 
+            FROM Categoria 
+            WHERE Categoria.categoriaSuperior = '${roadmap}'
+        ) 
+        ORDER BY prioridad ASC;`;
+        const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap]);
         
         return rows || [];
     } catch (error) {

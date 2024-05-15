@@ -26,48 +26,91 @@ function extructuraCorrectaJson(json: any): boolean{
 // Meter de todo en la pase de datos
 //TODO: Empezar con el esquema de Bea
 
-export function changeTextoSegunListaBD(json: any, listaCategorias: string[]){
+
+function primerNivel(json:any, listaCategoriasPrimerNivel:string[], listaCategoriasSegundoNivel:[string,string][], listaPadres: string[]){
+    let limit = listaCategoriasPrimerNivel.length;
+    let componentIndexPrimerNivel= 0;
+    let xPrimerNivel=550,yPrimerNivel=300, zPrimerNivel=0;
+    console.log(listaCategoriasPrimerNivel)
+    let i=0
+    while (limit > i ){
+        //Habria que dejar solo las flechas pero mientras esto
+        const categoria = listaCategoriasPrimerNivel[i];
+        const textArea = createTextArea(COLOR_AMARILLO);
+        const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
+        const label = createLabel("25", categoria);
+        const control1= createControl("1","25","100", label,"Label","88","24","11","1")
+        const componentes = createComponent(componentIndexPrimerNivel.toString(), "70", "46", "200", categoria, [control0, control1],"121", xPrimerNivel.toString(), yPrimerNivel.toString(),  "100");
+        componentIndexPrimerNivel++;
+        yPrimerNivel+=320
+        json.mockup.controls.control[json.mockup.controls.control.length] = componentes;
+        if(listaPadres.includes(categoria)){
+            json = segundoNivel(json, categoria, listaCategoriasSegundoNivel, yPrimerNivel-190, xPrimerNivel-100);
+        }
+        i++;
+        if(componentIndexPrimerNivel%2!=0){
+            xPrimerNivel=1200;
+            //yPrimerNivel=yPrimerNivel- 100;
+        }else{
+            xPrimerNivel=600;
+            yPrimerNivel+=100
+            console.log(yPrimerNivel)
+          
+        }  
+        
+       // x+=200;
+        
+    }
+
+    return json;
+}
+
+
+function segundoNivel(json:any, padre:string, listaCategoriasSegundoNivel:[string,string][], ySegundoNivel:number, xSegundoNivel:number){
+    //let limit = listaCategoriasSegundoNivel.length;
+    let componentIndexSegundoNivel= 0;
+    let  zSegundoNivel=0;
+    let i=0;
+    let listaHijos = listaCategoriasSegundoNivel.filter((categoriaPadre) =>categoriaPadre[1] == padre).map((categoriaPadre) => categoriaPadre[0]);
+
+    let limit = listaHijos?.length ?? 0 ;
+    while (limit > i){
+        //Habria que dejar solo las flechas pero mientras esto
+        const categoria = listaHijos[i];
+        const textArea = createTextArea(COLOR_BLANCO);
+        const control0 = createControl("0","200","340", textArea, "TextArea", "325", "0", "0", "0", "50");
+        const label = createLabel("20", categoria);
+        const control1= createControl("1","25","68", label,"Label","88","24","11","1")
+        const componentes = createComponent(componentIndexSegundoNivel.toString(), "70", "46", "200", categoria, [control0, control1],"121", xSegundoNivel.toString(), ySegundoNivel.toString(),  "100");
+        componentIndexSegundoNivel++;
+        xSegundoNivel+=350;
+       // x+=200;
+
+        json.mockup.controls.control[json.mockup.controls.control.length] = componentes;
+        
+        i++;;
+    }
+
+
+    return json;
+}
+
+export function changeTextoSegunListaBD(json: any, listaCategoriasPrimerNivel: string[], listaCategoriasSegundoNivel: [string,string][], listaCategoriasTercerivel: string[]){
     if (!extructuraCorrectaJson(json) ){
         console.error('Invalid JSON structure. Unable to change colors.');
         return json;
     }
 
     const modifiedJson = JSON.parse(JSON.stringify(json));
-    let limit = listaCategorias.length;
-    let componentIndex= 0;
-    let x=680,y=300, z=0;
 
-    //modifiedJson.mockup.controls.control.splice(0);
-    while (limit > 0 ){
-        
-        //Habria que dejar solo las flechas pero mientras esto
-        const categoria = listaCategorias[limit-1];
+    const listaPadres = listaCategoriasSegundoNivel.map((categoriaPadre) => categoriaPadre[1]);
+    
+    const jsonPrimerNivel= primerNivel(modifiedJson, listaCategoriasPrimerNivel,listaCategoriasSegundoNivel, listaPadres);
 
-        const textArea = createTextArea(COLOR_AMARILLO);
-        const control0 = createControl("0","200","340", textArea, "TextArea", "200", "0", "0", "0", "50");
+    return jsonPrimerNivel;
 
-        const label = createLabel("20", categoria);
-        const control1= createControl("1","25","68", label,"Label","88","24","11","1")
-
-        const componentes = createComponent(componentIndex.toString(), "70", "46", "121", categoria, [control0, control1],"121", x.toString(), y.toString(),  "100");
-        componentIndex++;
-        if(componentIndex%2!=0){
-            x+=600;
-        }else{
-            x=680;
-        }
-        
-        
-       // x+=200;
-        y+=400
-        modifiedJson.mockup.controls.control[modifiedJson.mockup.controls.control.length] = componentes;
-        
-        limit--;
-        
-    }
-
-
-    return modifiedJson;
+    
+    
 }
 
 

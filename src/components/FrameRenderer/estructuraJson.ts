@@ -89,7 +89,7 @@ export function createComponent(
     ID: string,
     h: string,
     measuredH: "46",
-    measuredW: "121",
+    measuredW: "200",
     controlName: string,
     controls: Control[],
     w: string,
@@ -122,6 +122,6 @@ const control0 = createControl("0","140","200", textArea, "TextArea", "124", "0"
 const label = createLabel("12", "Nombre");
 const control1= createControl("1","25","68", label,"Label","88","24","11","1")
 
-export const componentes = createComponent("0", "46", "46", "121", "Nombre", [control0, control1],"121", "370","3000",  "100");
+export const componentes = createComponent("0", "46", "46", "200", "Nombre", [control0, control1],"200", "370","3000",  "100");
 
 //modifiedJson.mockup.controls.control[modifiedJson.mockup.controls.control.length] = componentes;
