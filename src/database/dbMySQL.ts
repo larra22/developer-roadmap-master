@@ -1,6 +1,8 @@
 import mysql from 'mysql2/promise';
 import { type RowDataPacket } from "mysql2"
 
+
+
 export enum Dificultad {
   Principiante = 'Principiante',
   Intermedio =  'Intermedio',
@@ -80,10 +82,8 @@ export interface ICategoriaSubNivel extends RowDataPacket {
 export interface IUsuario extends RowDataPacket {
   email: string
   password: string
-  admin: boolean
-
+  admin:boolean
 }
-
 export const prerender = false;
 
 const connectionConfig = {
@@ -101,6 +101,7 @@ const connectionConfig = {
 
 
 export const pool = mysql.createPool(connectionConfig);
+
 
 
 export {pool as db}
