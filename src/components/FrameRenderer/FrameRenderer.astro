@@ -6,7 +6,6 @@ export const prerender = false
 export interface Props {
   resourceType: 'roadmap' | 'organigrama';
   resourceId: string;
-  jsonData: string;
   dimensions?: {
     width: number;
     height: number;
@@ -17,6 +16,10 @@ export interface Props {
 }
 
 
+<<<<<<< HEAD
+=======
+const { resourceId, resourceType,  dimensions = null, componentesCategoriaPrimerNivel, componentesCategoriaSegundoNivel} = Astro.props;
+>>>>>>> d773851 (falta por haer cosas)
 
 const { resourceId, resourceType,  dimensions = null, componentesCategoriaPrimerNivel, componentesCategoriaSegundoNivel,componentesCategoriaTercerNivel} = Astro.props;
 
@@ -35,8 +38,11 @@ console.log(componentesCategoriaTercerNivel)
   data-resource-id={resourceId}
   data-componentes-categoria-primer-nivel={componentesCategoriaPrimerNivel}
   data-componentes-categoria-segundo-nivel={componentesCategoriaSegundoNivel}
+<<<<<<< HEAD
   data-componentes-categoria-tercer-nivel={componentesCategoriaTercerNivel}
 
+=======
+>>>>>>> d773851 (falta por haer cosas)
 >
 
 

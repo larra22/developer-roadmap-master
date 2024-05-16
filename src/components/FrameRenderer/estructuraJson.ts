@@ -54,10 +54,10 @@ interface Control {
 }
 
 export function createControl(
-    ID: "0"|"1" | string,
+    ID:  string,
     
-    measuredH: "200"|"25"|string,
-    measuredW: "400" |"100" | "1"| string,
+    measuredH: string,
+    measuredW:  string,
     properties : TextArea | Label,
     typeID: "TextArea" | "Label" | "Arrow",
     w: string,
@@ -168,8 +168,8 @@ interface Component {
 export function createComponent(
     ID: string,
     h: string,
-    measuredH: "46",
-    measuredW: "200",
+    measuredH: string,
+    measuredW: string,
     controlName: string,
     controls: Control[],
     w: string,

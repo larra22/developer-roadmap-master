@@ -26,6 +26,11 @@ export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategori
     const listaComponentesPrimerNivel = crearCuadrados(listaCategoriasPrimerNivel,listaCategoriasSegundoNivel, subTercerNivel,COLOR_AMARILLO);
    console.log(listaCategoriasSegundoNivel)
 
+<<<<<<< HEAD
+=======
+    console.log(listaCategoriasPrimerNivel)
+    let listaComponentesPrimerNivel = crearCuadradosPrimerNivel(listaCategoriasPrimerNivel);
+>>>>>>> d773851 (falta por haer cosas)
     const controls = {control:[]}
 
     const mockup = createMockUp(controls, "4000","1800","4000","1390","1.0")
@@ -91,7 +96,7 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], 
     let i=0;
 
 
-    while (i==0){
+    while (max>i){
 
         const flecha= crearFlecaPrincipal(i+10);
         listaFlechas.push(flecha);
@@ -104,28 +109,32 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], 
         const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
 
         const componente = createComponent(i.toString(), "70", "46", "200",texto, [control0, control1],"121", centro_X.toString(), principio_Y.toString(),  "100");
+<<<<<<< HEAD
 
         const hijos = crearCuadradosSegundoNivel(subcategorias, texto, COLOR_GRIS, principio_Y_primer_nivel, subTercerNivel);
         listaConComponentes.push(...hijos);
         console.log(hijos)
+=======
+        console.log(texto)
+        listaConComponentes.push(componente);
+        console.log(listaConComponentes)    
+>>>>>>> d773851 (falta por haer cosas)
         i++;
     }
 
    // listaFlechas.concat(listaConComponentes);
     
-    return listaFlechas
-
+    return listaFlechas.concat(listaConComponentes);
 
 }
 
 
 function crearFlecaPrincipal(i: number){
    // const propiedades=createPropertiesFlechas(COLOR_AMARILLO, '0', 'top', 'false', {x: '0', y: '149',length:'149'}, {x: '-0.0047699137004053056', y: '0.46874741514792245',length:'0.46877168353535187'}, {x: '0', y: '0', length:'0'}, 'false', 'line');
-   const properties= createPropertiesFlechas(COLOR_AMARILLO,"0","bottom","false",{x:"0",y:"2",length:"2"},{x:"0.4999999999999997",y:"-1.372857004936771519",length:"0.4999999999999997"},{x:"910",y:"0",length:"910"},"false","line")
+   const properties= createPropertiesFlechas(COLOR_VERDE,"0","bottom","false",{x:"0",y:"2",length:"2"},{x:"0.4999999999999997",y:"-1.372857004936771519",length:"0.4999999999999997"},{x:"910",y:"0",length:"910"},"false","line")
     //const controlFlecha = createControl(i.toString(),"79","1", propiedades, "Arrow", "2",  centro_X.toString(), "150", "1", "80");
     const controlFlecha = createControl("0","2","910",properties,"Arrow","910","0","0","0","2") 
     
-    const componente = createComponent("166")
-    
-    return controlFlecha;
+    const componente = createComponent("166","310","310","2","flecha", [controlFlecha],"2",centro_X.toString(), "150", "1")
+    return componente;
 }

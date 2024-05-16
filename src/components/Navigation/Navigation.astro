@@ -21,7 +21,7 @@ import AccountDropdown from './AccountDropdown.astro';
      </li>
 
      <li>
-        <a href='/configCrear' class='text-lks-color hover:text-gray-400'>
+        <a href='/addBD/configCrear' class='text-lks-color hover:text-gray-400'>
           CrearNuevo</a
         >
      </li>
@@ -41,7 +41,7 @@ import AccountDropdown from './AccountDropdown.astro';
         <a href='/modificar/escogerModificar' class='text-lks-color hover:text-gray-400'>Modificar</a>
       </li>
       <li class='hidden lg:inline'>
-        <a href='/opinar/enviarOpinion' class='text-lks-color hover:text-gray-400'>Calificar</a>
+        <a href='/opinar/escogerRecurso' class='text-lks-color hover:text-gray-400'>Calificar</a>
       </li>
      <!-- <li>
         <kbd data-command-menu class="hidden sm:flex items-center text-lks-color border border-lks-color rounded-md px-2.5 py-1 text-sm hover:bg-gray-600 hover:cursor-pointer">
@@ -87,16 +87,7 @@ import AccountDropdown from './AccountDropdown.astro';
             Organigrama
           </a>
         </li>
-        <li>
-          <a href='/guides' class='text-xl hover:text-blue-300 md:text-lg'>
-            Guides
-          </a>
-        </li>
-        <li>
-          <a href='/videos' class='text-xl hover:text-blue-300 md:text-lg'>
-            Videos
-          </a>
-        </li>
+        
 
         <!-- Links for logged in users -->
         <li data-auth-required class='hidden'>

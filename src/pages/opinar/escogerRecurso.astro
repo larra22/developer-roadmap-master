@@ -8,6 +8,7 @@ import '../../styles/formulario.css'
  export const prerender = false
 
  const recursos = await getAllRecursos();
+ const recursosNames = recursos?.map((recurso) => recurso.titulo);
 
  if(Astro.request.method === 'POST'){
   try{
@@ -47,9 +48,9 @@ import '../../styles/formulario.css'
         <label for="titulo">Escoge el recurso que has cursado:</label>
         <select id="recurso" name="recurso" required>
           <option value="" disabled selected>Escoger el recurso a valorar...</option>
-          {recursos?.map((recurso) => {
-            <option value={recurso.idRecurso}>{recurso.titulo}</option>
-        })}
+          {recursosNames?.map((recurso) => (
+            <option value={recurso}>{recurso}</option>
+        ))}
         
         </select>
 

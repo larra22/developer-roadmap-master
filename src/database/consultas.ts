@@ -53,17 +53,17 @@ export interface MyErrorEvent {
         }
     }
 
-    export const insertNuevoRoadmap = async (roadmap: string, json: any, titulo:string, descripcion: string, relatedRoadmap?:string) => {
+    export const insertNuevoRoadmap = async (roadmap: string, titulo:string, descripcion: string, relatedRoadmap?:string) => {
         const connection = await db.getConnection();
         try {
             let result: ResultSetHeader; 
             let query: string;
             if(relatedRoadmap){
-                query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap, title, description, relatedRoadmap) VALUES ('${roadmap}', '${json}', '${titulo}', '${descripcion}', '${relatedRoadmap}')`;
-                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json, titulo, descripcion, relatedRoadmap]);
+                query = `INSERT INTO EsquemaRoadmap (idRoadmap,  title, description, relatedRoadmap) VALUES ('${roadmap}', '${titulo}', '${descripcion}', '${relatedRoadmap}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, titulo, descripcion, relatedRoadmap]);
             }else{
-                query = `INSERT INTO EsquemaRoadmap (idRoadmap, jsonRoadmap, title, description) VALUES ('${roadmap}', '${json}', '${titulo}', '${descripcion}')`;
-                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, json, titulo, descripcion]);
+                query = `INSERT INTO EsquemaRoadmap (idRoadmap, title, description) VALUES ('${roadmap}', '${titulo}', '${descripcion}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap,  titulo, descripcion]);
 
             }
             
@@ -386,8 +386,8 @@ export const getRoadmapById = async (roadmap: string) => {
     try {
         
         const query = `SELECT * FROM EsquemaRoadmap WHERE idRoadmap = '${roadmap}'`;
+     
         const [rows] = await connection.execute<IRoadmapEsquema[]>(query, [roadmap]);
-        
         return rows[0];
     } catch (error) {
         console.error('Error getting roadmap:', error);

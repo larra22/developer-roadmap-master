@@ -65,3 +65,18 @@ form {
   .radio-container label {
     margin-right: 10px;
   }
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Adjust margin as needed */
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 5px; /* Adjust margin as needed */
+}

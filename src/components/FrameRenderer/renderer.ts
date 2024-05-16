@@ -12,9 +12,8 @@ const puesto='junior'
 export class Renderer {
   resourceId: string;
   resourceType: string;
-  jsonData: string;
   loaderHTML: string | null;
-
+  jsonData:any;
   containerId: string;
   loaderId: string;
 
@@ -26,7 +25,6 @@ export class Renderer {
   constructor() {
     this.resourceId = '';
     this.resourceType = '';
-    this.jsonData = '';
     this.loaderHTML = null;
     this.containerId = 'resource-svg-wrap';
     this.loaderId = 'resource-loader';
@@ -41,7 +39,7 @@ export class Renderer {
     this.componentesCategoriaSegundoNivel = [];
     this.componentesCategoriaTercerNivel = [];
 
-  
+   
   }
 
   get loaderEl() {
@@ -62,8 +60,7 @@ export class Renderer {
     const dataset = this.containerEl.dataset;
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
-    this.jsonData = dataset.jsonData!;
-
+  
 
     const componentesCategoriaPrimerNivelString = dataset.componentesCategoriaPrimerNivel || '';
     this.componentesCategoriaPrimerNivel = componentesCategoriaPrimerNivelString.split(',').map(item => item.trim());
@@ -91,10 +88,15 @@ export class Renderer {
     }    
     this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelArray;
    // this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelString.split(',').map(item => item.trim());
+   this.jsonData = changeTextoSegunListaBD(this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
     
 
+<<<<<<< HEAD
 
 
+=======
+  
+>>>>>>> d773851 (falta por haer cosas)
     return true;
   }
 
@@ -114,9 +116,8 @@ export class Renderer {
     }
 
     this.containerEl.innerHTML = this.loaderHTML!;
-    jsonData = changeTextoSegunListaBD(JSON.parse(jsonData), this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
     
-        return wireframeJSONToSVG(jsonData, {
+        return wireframeJSONToSVG(JSON.parse(JSON.stringify(jsonData)), {
           fontURL: '/fonts/balsamiq.woff2',
         
       })
