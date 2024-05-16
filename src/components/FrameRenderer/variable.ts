@@ -17,6 +17,7 @@ const COLOR_ROJO = '16711680';
 const COLOR_AMARILLO = '16776960';
 
 function extructuraCorrectaJson(json: any): boolean{
+    coordendasFlecha(json);
     return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
 }
 
@@ -26,26 +27,32 @@ function extructuraCorrectaJson(json: any): boolean{
 // Meter de todo en la pase de datos
 //TODO: Empezar con el esquema de Bea
 
+//Menor x, -> izquierda
+//Menor y-> arriba
+
 
 function primerNivel(json:any, listaCategoriasPrimerNivel:string[], listaCategoriasSegundoNivel:[string,string][], listaPadres: string[]){
     let limit = listaCategoriasPrimerNivel.length;
     let componentIndexPrimerNivel= 0;
-    let xPrimerNivel=550,yPrimerNivel=300, zPrimerNivel=0;
+    let yPrimerNivel=265
+    let xPrimerNivel=100, zPrimerNivel=0;
     console.log(listaCategoriasPrimerNivel)
     let i=0
     while (limit > i ){
         //Habria que dejar solo las flechas pero mientras esto
         const categoria = listaCategoriasPrimerNivel[i];
         const textArea = createTextArea(COLOR_AMARILLO);
+        const label = createLabel("25", categoria); //Tamño letra, texto
+
         const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
-        const label = createLabel("25", categoria);
+        
         const control1= createControl("1","25","100", label,"Label","88","24","11","1")
         const componentes = createComponent(componentIndexPrimerNivel.toString(), "70", "46", "200", categoria, [control0, control1],"121", xPrimerNivel.toString(), yPrimerNivel.toString(),  "100");
         componentIndexPrimerNivel++;
         yPrimerNivel+=320
         json.mockup.controls.control[json.mockup.controls.control.length] = componentes;
         if(listaPadres.includes(categoria)){
-            json = segundoNivel(json, categoria, listaCategoriasSegundoNivel, yPrimerNivel-190, xPrimerNivel-100);
+           //json = segundoNivel(json, categoria, listaCategoriasSegundoNivel, yPrimerNivel-190, xPrimerNivel-100);
         }
         i++;
         if(componentIndexPrimerNivel%2!=0){
@@ -76,11 +83,12 @@ function segundoNivel(json:any, padre:string, listaCategoriasSegundoNivel:[strin
     let limit = listaHijos?.length ?? 0 ;
     while (limit > i){
         //Habria que dejar solo las flechas pero mientras esto
+       // createControl(1,2,3,4,5)
         const categoria = listaHijos[i];
         const textArea = createTextArea(COLOR_BLANCO);
-        const control0 = createControl("0","200","340", textArea, "TextArea", "325", "0", "0", "0", "50");
+        const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
         const label = createLabel("20", categoria);
-        const control1= createControl("1","25","68", label,"Label","88","24","11","1")
+        const control1= createControl("1","25","100", label,"Label","88","50","11","1")
         const componentes = createComponent(componentIndexSegundoNivel.toString(), "70", "46", "200", categoria, [control0, control1],"121", xSegundoNivel.toString(), ySegundoNivel.toString(),  "100");
         componentIndexSegundoNivel++;
         xSegundoNivel+=350;
@@ -106,6 +114,18 @@ export function changeTextoSegunListaBD(json: any, listaCategoriasPrimerNivel: s
     const listaPadres = listaCategoriasSegundoNivel.map((categoriaPadre) => categoriaPadre[1]);
     
     const jsonPrimerNivel= primerNivel(modifiedJson, listaCategoriasPrimerNivel,listaCategoriasSegundoNivel, listaPadres);
+
+
+
+
+    //
+
+    const textArea = createTextArea(COLOR_ROJO);
+    const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
+    const label = createLabel("20", 'Prueba');
+    const control1= createControl("1","25","100", label,"Label","88","50","11","1")
+    const componentes = createComponent('0', "70", "46", "200",'Prueba', [control0, control1],"121",'0', '100',  "0");
+    jsonPrimerNivel.mockup.controls.control[jsonPrimerNivel.mockup.controls.control.length] = componentes;
 
     return jsonPrimerNivel;
 
@@ -169,3 +189,8 @@ const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'
 
 
 
+/////////////////////////////////////////////////////////////7
+
+function coordendasFlecha(json:any){
+   console.log(json)
+}

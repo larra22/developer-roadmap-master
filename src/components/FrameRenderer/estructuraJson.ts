@@ -58,12 +58,12 @@ export function createLabel(size: string, text: string): Label {
 }
 
 export function createControl(
-    ID: string,
+    ID: "0"|"1",
     
-    measuredH: string,
-    measuredW: string,
+    measuredH: "200"|"25",
+    measuredW: "400" |"100",
     properties : TextArea | Label,
-    typeID: string,
+    typeID: "TextArea" | "Label",
     w: string,
     x: string,
     y: string,
@@ -116,12 +116,3 @@ export function createComponent(
     };
 }
 
-const textArea = createTextArea("16776960");
-const control0 = createControl("0","140","200", textArea, "TextArea", "124", "0", "0", "0", "46");
-
-const label = createLabel("12", "Nombre");
-const control1= createControl("1","25","68", label,"Label","88","24","11","1")
-
-export const componentes = createComponent("0", "46", "46", "200", "Nombre", [control0, control1],"200", "370","3000",  "100");
-
-//modifiedJson.mockup.controls.control[modifiedJson.mockup.controls.control.length] = componentes;

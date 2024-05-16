@@ -1,17 +1,32 @@
 import mysql from 'mysql2/promise';
 import { type RowDataPacket } from "mysql2"
 
+
+
 export enum Dificultad {
   Principiante = 'Principiante',
   Intermedio =  'Intermedio',
   Avanzado = 'Avanzado',
 
 }
-
-export enum Tipo {
+export enum Formato{
   PDF = 'PDF',
   Video = 'Video',
+  Imagen = 'Imagen',
   Presentacion = 'Presentacion',
+  Otro = 'Otro'
+
+}
+export enum Tipo {
+  DePago = 'Curso de pago',
+  Gratuito = 'Curso gratuito',
+  Webinar = 'Webinar',
+  Libro = 'Libro',
+  Guia = 'Guia',
+  Tutorial = 'Tutorial',
+  Documentacion = 'Documentacion',
+  Articulo = 'Articulo',
+  Otro = 'Otro'
 
 }
 
@@ -29,10 +44,13 @@ export interface IRecurso extends RowDataPacket {
   idRecurso?: number
   titulo: string
   enlaceFichero: string
-  descripcion: boolean
-  n_Dificultad: Dificultad
-  tipo: Tipo
-  deInteres: number
+  interno:boolean
+  descripcion: string | null;
+  n_Dificultad: Dificultad | null;
+  tipo: Tipo | null;
+  formato: Formato | null;
+  idioma: string | null;
+  deInteres: number[] | null;
 }
 
 export interface ICategoria extends RowDataPacket {
@@ -64,20 +82,18 @@ export interface ICategoriaSubNivel extends RowDataPacket {
 export interface IUsuario extends RowDataPacket {
   email: string
   password: string
-  admin: boolean
-
+  admin:boolean
 }
-
 export const prerender = false;
 
 const connectionConfig = {
   host: 'localhost',
   user: 'roadmap',
   password: 'roadmap',
-  database: 'roadmap',
-  //database: 'roadmapcompleto',
-  port: 3307,
-  //port:3306
+  //database: 'roadmap',
+  database: 'roadmapcompleto',
+  //port: 3307,
+  port:3306
 
 };
 
@@ -85,6 +101,7 @@ const connectionConfig = {
 
 
 export const pool = mysql.createPool(connectionConfig);
+
 
 
 export {pool as db}

@@ -1,0 +1,39 @@
+---
+
+export interface Props {
+    titulo?:string;
+  path: string;
+  text: string;
+
+
+}
+
+
+const { titulo, path, text} = Astro.props;
+---
+
+<div class='container'>
+    <h1 class='text-2xl sm:text-3xl font-bold block'>{titulo}</h1>
+    </div>
+    <div class='container mt-5'>
+  <br>
+  <br>
+  <a
+  href={path}
+  class='hidden sm:inline transition-colors py-2 px-3 text-xs font-medium rounded-full bg-gradient-to-r from-slate-600 to-black hover:from-blue-600 hover:to-blue-800 text-white'
+>
+  {text} &rarr;
+</a>
+
+<div class='block sm:hidden mt-3'>
+  <a
+    href={path}
+    class='text-sm font-regular block p-2 border border-black text-black rounded-md text-center hover:bg-black hover:text-gray-50'
+  >
+    {text} &nbsp;&rarr;
+  </a>
+</div>
+
+</div>
+
+<br>

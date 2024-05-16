@@ -1,0 +1,53 @@
+---
+import { getUsuarioByEmail} from '../../database/consultas';
+import './auth.css';
+
+export const prerender = false
+
+if(Astro.request.method === 'POST') {
+    try {
+        const data = await Astro.request.formData();
+        const email = data.get('email')?.toString();
+        const password = data.get('password')?.toString();
+
+        if(email && password){
+          const usuario= await getUsuarioByEmail(email);
+          if(usuario){
+            if(usuario.password === password){
+              
+              return Astro.redirect('/');
+            }
+          
+          }
+        }
+    return Astro.redirect('/');
+    
+} catch (error) {
+      return Astro.redirect('/addBD/addError')
+    
+    }
+}
+
+---
+<section class="container forms">
+    <div class="form Signin">
+        <div class="form-content">
+            <header>Registrarse</header>
+            <form method="POST">
+                <div class="field input-field">
+                    <input type="email" placeholder="Email Address" name="email" class="input" >
+                </div>
+                <div class="field input-field">
+                    <input type="password" placeholder="Password" name="password" class="password" >
+                    <i class="bx bx-hide eye-icon"></i>
+                </div>
+                <div class="field button-field">
+                    <button type="submit">Registrarse</button>
+                </div>
+            </form>
+            <div class="form-link">
+                <a href="#" class="forgot-pass">¿Contraseña olvidada?</a>
+            </div>
+        </div>
+    </div>
+</section>

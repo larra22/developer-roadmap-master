@@ -1,7 +1,7 @@
 import { type ResultSetHeader} from "mysql2"
 
-import { type IRecurso, db, type IRoadmapEsquema, type IUsuario, type ICategoriaSubNivel } from "./dbMySQL";
-import { type ICategoria } from "./dbMySQL";
+import { type IRecurso, db, type IRoadmapEsquema, type ICategoriaSubNivel } from "./dbMySQL";
+import { type ICategoria , type IUsuario} from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
 import {ER_DUP_ENTRY} from 'mysql-error-keys'
@@ -19,6 +19,19 @@ export interface MyErrorEvent {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    export const inserUsuario= async (email: string, password: string) => {
+            const connection = await db.getConnection();
+            try {
+                const query = `INSERT INTO Usuario (email, password) VALUES ('${email}', '${password}')`;
+                const [result] = await connection.execute<ResultSetHeader>(query, [email, password]);
+                return result.insertId;
+            } catch (error) {
+                console.error('Error adding user:', error);
+
+            }finally {
+                connection.release();
+            }
+    }
     export const insertRelacionRoadmapCategoria = async (roadmap: string, categoria: string, prioridad?: number) => {
         const connection = await db.getConnection();
         try {
@@ -65,12 +78,19 @@ export interface MyErrorEvent {
     }
 
 
-export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
+export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string | null,n_Dificultad:string | null,tipo:string | null,formato:string | null,idioma:string | null,deInteres:number[] | null ) => {
     const connection = await db.getConnection();
+    const internoExterno = interno ? 1 : 0;
+    const dificultad = n_Dificultad ? `'${n_Dificultad}'` : null;
+    const tipoRecurso = tipo ? `'${tipo}'` : null;
+    const formatoRecurso = formato ? `'${formato}'` : null;
+    const idiomaRecurso = idioma ? `'${idioma}'` : null;
+    const deInteresRecurso = deInteres ? `'${deInteres}'` : null;
+
     try {
         
-        const query = `INSERT INTO Recurso (titulo, enlaceFichero,descripcion,n_dificultad,tipo,deInteres) VALUES ('${titulo}', '${enlace}',null,null,null,null)`;
-        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlace]);
+        const query = `INSERT INTO Recurso (titulo, enlaceFichero,interno,descripcion,n_dificultad,tipo,formato,idioma,deInteres) VALUES ('${titulo}', '${enlaceFichero}','${internoExterno}','${descripcion}',${dificultad},${tipoRecurso},${formatoRecurso},${idiomaRecurso},${deInteresRecurso})`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [titulo, enlaceFichero, internoExterno,descripcion, dificultad, tipoRecurso, formatoRecurso,idiomaRecurso,deInteres]);
         
         return result.insertId;
     } catch (error) {
@@ -81,7 +101,8 @@ export const addResourceTituloEnlace = async (titulo:string, enlace:string) => {
 
 }
 
-export const addRelacionRecursoCategoria = async (idRecurso: number, idNombre: string) => {
+
+export const insertRelacionRecursoCategoria = async (idRecurso: number, idNombre: string) => {
     const connection = await db.getConnection();
     try{
         
@@ -128,6 +149,8 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
             return email;
         } catch (error) {
             console.error('Error adding user:', error);
+    }finally {
+        connection.release();
     }
 }
     
@@ -153,6 +176,22 @@ export const getResourcesByCategory = async (categoria: string) => {
     }finally {
         connection.release();
     }
+}
+
+export const getUsuarioByEmail = async (email: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Usuario WHERE email = '${email}'`;
+        const [rows] = await connection.execute<IUsuario[]>(query, [email]);
+        
+        return rows[0];
+    } catch (error) {
+        console.error('Error getting user:', error);
+
+}finally {
+    connection.release();
+}
 }
 
 export const getRecursoById = async (idRecurso: number) => {
@@ -259,7 +298,7 @@ export const getComponentesCategoriaPrimerNivel = async (roadmap: string) => {
     const connection = await db.getConnection();
     try {
         
-        const query = `SELECT * FROM Roadmap_categoria INNER JOIN Categoria ON componenteCategoria=idNombre WHERE idRoadmap = '${roadmap}' AND Categoria.categoriaSuperior='${roadmap}' ORDER BY prioridad ASC`;
+        const query = `SELECT * FROM Roadmap_categoria INNER JOIN Categoria ON componenteCategoria=idNombre WHERE idRoadmap = '${roadmap}' AND Categoria.categoriaSuperior='Global' ORDER BY prioridad ASC`;
         const [rows] = await connection.execute<IRoadmapComponentePrioridad[]>(query, [roadmap]);
         
         return rows || [];
@@ -282,7 +321,7 @@ export const getComponentesCategoriaSegundoNivel = async (roadmap: string) => {
         AND Categoria.categoriaSuperior IN (
             SELECT idNombre 
             FROM Categoria 
-            WHERE Categoria.categoriaSuperior = '${roadmap}'
+            WHERE Categoria.categoriaSuperior = 'Global'
         ) 
         ORDER BY prioridad ASC;`;
         const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap]);
@@ -347,18 +386,6 @@ export const getJsonDeRoadmap = async (roadmap: string) => {
 
 }
 
-export const getUsuarioSegunEmail = async (email: string) => {
-    const connection = await db.getConnection();
-    try {
-        
-        const query = `SELECT * FROM Usuario WHERE email = '${email}'`;
-        const [rows] = await connection.execute<IUsuario[]>(query, [email]);
-        
-        return rows[0];
-    } catch (error) {
-        console.error('Error getting user:', error);
-    }
-}
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
