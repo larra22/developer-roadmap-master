@@ -1,3 +1,4 @@
+import { crearGrafico } from "./crearGrafico";
 import { createComponent, createControl, createLabel, createTextArea } from "./estructuraJson";
 
 // TODO: Add more colors and conditions
@@ -17,7 +18,7 @@ const COLOR_ROJO = '16711680';
 const COLOR_AMARILLO = '16776960';
 
 function extructuraCorrectaJson(json: any): boolean{
-    coordendasFlecha(json);
+
     return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
 }
 
@@ -104,30 +105,14 @@ function segundoNivel(json:any, padre:string, listaCategoriasSegundoNivel:[strin
 }
 
 export function changeTextoSegunListaBD(json: any, listaCategoriasPrimerNivel: string[], listaCategoriasSegundoNivel: [string,string][], listaCategoriasTercerivel: string[]){
-    if (!extructuraCorrectaJson(json) ){
-        console.error('Invalid JSON structure. Unable to change colors.');
-        return json;
-    }
-
-    const modifiedJson = JSON.parse(JSON.stringify(json));
+   
 
     const listaPadres = listaCategoriasSegundoNivel.map((categoriaPadre) => categoriaPadre[1]);
-    
-    const jsonPrimerNivel= primerNivel(modifiedJson, listaCategoriasPrimerNivel,listaCategoriasSegundoNivel, listaPadres);
 
 
 
-
-    //
-
-    const textArea = createTextArea(COLOR_ROJO);
-    const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
-    const label = createLabel("20", 'Prueba');
-    const control1= createControl("1","25","100", label,"Label","88","50","11","1")
-    const componentes = createComponent('0', "70", "46", "200",'Prueba', [control0, control1],"121",'0', '100',  "0");
-    jsonPrimerNivel.mockup.controls.control[jsonPrimerNivel.mockup.controls.control.length] = componentes;
-
-    return jsonPrimerNivel;
+    json = crearGrafico(listaCategoriasPrimerNivel, listaCategoriasSegundoNivel, listaPadres);
+    return json
 
     
     
@@ -190,7 +175,3 @@ const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'
 
 
 /////////////////////////////////////////////////////////////7
-
-function coordendasFlecha(json:any){
-   console.log(json)
-}

@@ -103,7 +103,7 @@ export class Renderer {
     this.containerEl.innerHTML = this.loaderHTML!;
     jsonData = changeTextoSegunListaBD(JSON.parse(jsonData), this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
     
-        return wireframeJSONToSVG(changeJson(jsonData, puesto), {
+        return wireframeJSONToSVG(jsonData, {
           fontURL: '/fonts/balsamiq.woff2',
         
       })
