@@ -55,10 +55,9 @@ interface Control {
 
 export function createControl(
     ID:  string,
-    
     measuredH: string,
     measuredW:  string,
-    properties : TextArea | Label,
+    properties : TextArea | Label |Properties,
     typeID: "TextArea" | "Label" | "Arrow",
     w: string,
     x: string,
@@ -87,8 +86,8 @@ interface Properties {
     direction:  string;
     leftArrow:  string;
     p0:         { x: string, y: string, length: string};
-    p1:         {x: string, y: string},
-    p2:         {x: string, y: string},
+    p1:         {x: string, y: string,length: string},
+    p2:         {x: string, y: string,length: string},
     rightArrow: string;
     shape:      string;
     stroke?:     string;
@@ -207,7 +206,7 @@ const componentes = createComponent('0', "70", "46", "200",'Prueba', [control0, 
 
 
 const propiedades= createPropertiesFlechas('16711680', '0', '0', '0', {x: '0', y: '0', length:'0'}, {x: '0', y: '0',length:'0'}, {x: '0', y: '0',length:'0'}, '0', '0');
-const controlFlecha = createControl("0","200","400", propiedades, "TextArea", "325", "0", "0", "0", "50");
+const controlFlecha = createControl("0","200","400", propiedades, "Arrow", "325", "0", "0", "0", "50");
 
 const controls = {control: []};
 const mockup = createMockUp(controls, "100", "100", "100", "100", "1.0");

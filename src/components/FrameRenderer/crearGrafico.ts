@@ -10,7 +10,7 @@ const COLOR_AMARILLO = '16776960';
 
 
 const centro_X=1000;
-const principio_Y = 0;
+let principio_Y = 0;
 
 function extructuraCorrectaJson(json: any): boolean{
     return json && json.mockup && json.mockup.controls && json.mockup.controls.control;
@@ -98,8 +98,10 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], 
 
     while (max>i){
 
-        const flecha= crearFlecaPrincipal(i+10);
-        listaFlechas.push(flecha);
+        const flechaHorizontal= crearFlecaPrincipalHorizontal(i+10, principio_Y);
+        listaFlechas.push(flechaHorizontal);
+        const flechaVertical = crearFlechaVerticalIzquierda(i+20, centro_X);
+        listaFlechas.push(flechaVertical);
         const textArea = createTextArea(COLOR_AMARILLO)
 
         const texto = listaTitulos[i];
@@ -120,21 +122,33 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], 
         console.log(listaConComponentes)    
 >>>>>>> d773851 (falta por haer cosas)
         i++;
+        console.log(listaFlechas)
+        principio_Y+=300;
     }
 
    // listaFlechas.concat(listaConComponentes);
-    
+    console.log(listaFlechas)
     return listaFlechas.concat(listaConComponentes);
 
 }
 
 
-function crearFlecaPrincipal(i: number){
-   // const propiedades=createPropertiesFlechas(COLOR_AMARILLO, '0', 'top', 'false', {x: '0', y: '149',length:'149'}, {x: '-0.0047699137004053056', y: '0.46874741514792245',length:'0.46877168353535187'}, {x: '0', y: '0', length:'0'}, 'false', 'line');
-   const properties= createPropertiesFlechas(COLOR_VERDE,"0","bottom","false",{x:"0",y:"2",length:"2"},{x:"0.4999999999999997",y:"-1.372857004936771519",length:"0.4999999999999997"},{x:"910",y:"0",length:"910"},"false","line")
-    //const controlFlecha = createControl(i.toString(),"79","1", propiedades, "Arrow", "2",  centro_X.toString(), "150", "1", "80");
-    const controlFlecha = createControl("0","2","910",properties,"Arrow","910","0","0","0","2") 
+function crearFlecaPrincipalHorizontal(i: number, coordenadaY: number){
+    //Recudido a la mitad
+    //const properties= createPropertiesFlechas(COLOR_ROJO,"0","bottom","false",{x:"0",y:"0",length:"0"},{x:"2",y:"20",length:"20"},{x:"2",y:"20",length:"20"},"false","line")
+    //const controlFlecha = createControl(i.toString(),"2","10",properties,"Arrow","10",(coordenadaX/10).toString(),principio_Y.toString(),"1","2") 
     
-    const componente = createComponent("166","310","310","2","flecha", [controlFlecha],"2",centro_X.toString(), "150", "1")
-    return componente;
+   const properties= createPropertiesFlechas(COLOR_VERDE,"0","bottom","false",{x:"0",y:"0",length:"0"},{x:"50",y:"2",length:"50"},{x:"10",y:"2",length:"10"},"false","line")
+    const controlFlecha = createControl(i.toString(),"2","10",properties,"Arrow","10","50",((principio_Y/10)+3).toString(),"1","2") 
+    
+    return controlFlecha;
+}
+
+function crearFlechaVerticalIzquierda(i:number, coordenadaX:number){
+
+    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"0.5",y:"0",length:"0"},{x:"0",y:"0",length:"0"},{x:"0",y:"50",length:"6"},"false","line")
+    const controlFlecha = createControl(i.toString(),"10","5",properties,"Arrow","2",(coordenadaX/20).toString(),"1","1","0.3") 
+
+    
+    return controlFlecha;
 }

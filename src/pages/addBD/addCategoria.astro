@@ -66,12 +66,12 @@ console.log(categoriasNames)
               name="descripcion"
               cols="50"
               rows="5"
-              placeholder="Descripción..."
+              placeholder="Descripción..." required aria-required="true"
             ></textarea>
 
 
         <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
-        <select id="categoriaPadre" name="categoriaPadre" >
+        <select id="categoriaPadre" name="categoriaPadre" required aria-required="true">
             <option value="" disabled selected>Escoger categoría padre...</option>
             <option value="Global" >Ninguna</option>
             {categoriasNames?.map((categoria) => (

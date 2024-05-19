@@ -1,0 +1,117 @@
+{
+  "mockup": {
+    "controls": {
+      "control": [
+        {
+          "ID": "2",
+          "children": {
+            "controls": {
+              "control": [
+                {
+                  "ID": "0",
+                  "h": "718",
+                  "measuredH": "717",
+                  "measuredW": "3",
+                  "properties": {
+                    "color": "2848996",
+                    "curvature": "0",
+                    "direction": "top",
+                    "leftArrow": "false",
+                    "p0": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "p1": {
+                      "x": 0.5038485650177542,
+                      "y": -0.0016543988614056706
+                    },
+                    "p2": {
+                      "x": 2,
+                      "y": 717
+                    },
+                    "rightArrow": "false",
+                    "shape": "line",
+                    "text": ""
+                  },
+                  "typeID": "Arrow",
+                  "w": "3",
+                  "x": "0",
+                  "y": "0",
+                  "zOrder": "0"
+                }
+              ]
+            }
+          },
+          "h": "718",
+          "measuredH": "718",
+          "measuredW": "3",
+          "properties": {
+            "controlName": "flecha"
+          },
+          "typeID": "__group__",
+          "w": "3",
+          "x": "612",
+          "y": "45",
+          "zOrder": "0"
+        },
+        {
+          "ID": "3",
+          "children": {
+            "controls": {
+              "control": [
+                {
+                  "ID": "0",
+                  "h": "3",
+                  "measuredH": "2",
+                  "measuredW": "378",
+                  "properties": {
+                    "color": "2848996",
+                    "curvature": "0",
+                    "direction": "bottom",
+                    "leftArrow": "false",
+                    "p0": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "p1": {
+                      "x": 0.5038485650177541,
+                      "y": -0.0016543988614056702
+                    },
+                    "p2": {
+                      "x": 378,
+                      "y": 0
+                    },
+                    "rightArrow": "false",
+                    "shape": "line",
+                    "text": ""
+                  },
+                  "typeID": "Arrow",
+                  "w": "378",
+                  "x": "0",
+                  "y": "0",
+                  "zOrder": "0"
+                }
+              ]
+            }
+          },
+          "h": "3",
+          "measuredH": "3",
+          "measuredW": "378",
+          "properties": {
+            "controlName": "horizontal"
+          },
+          "typeID": "__group__",
+          "w": "378",
+          "x": "893",
+          "y": "85",
+          "zOrder": "1"
+        }
+      ]
+    },
+    "measuredH": "763",
+    "measuredW": "1271",
+    "mockupH": "718",
+    "mockupW": "659",
+    "version": "1.0"
+  }
+}
