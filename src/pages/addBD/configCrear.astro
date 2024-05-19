@@ -13,6 +13,9 @@ const categoriasNivel1 = await getAllCategorias();
 // TODO: FALTA AÑADIR LO DE LOS ROADMAPS RELACIONADOS
 // Pero quizas para ello haga falta crear 
 // Tambien falta poder poner a prioridad a las categorias
+
+//FALTA AÑADIR LA PRIORIDAD DE LAS CATEGORIAS
+//PODER ESCOGER EL ORDEN
 if (Astro.request.method === 'POST') {
     try{
         const data = await Astro.request.formData();
