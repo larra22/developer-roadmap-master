@@ -145,9 +145,10 @@ function crearFlecaPrincipalHorizontal(i: number, coordenadaY: number){
 }
 
 function crearFlechaVerticalIzquierda(i:number, coordenadaX:number){
-
-    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"0.5",y:"0",length:"0"},{x:"0",y:"0",length:"0"},{x:"0",y:"50",length:"6"},"false","line")
-    const controlFlecha = createControl(i.toString(),"10","5",properties,"Arrow","2",(coordenadaX/20).toString(),"1","1","0.3") 
+    console.log(i)
+    let y=15;
+    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"0",y:"0",length:"0"},{x:"1",y:"0",length:"1"},{x:"0.1",y:(principio_Y/30).toString(),length:"10"},"false","line")
+    const controlFlecha = createControl(i.toString(),"10","2",properties,"Arrow","0","50","20","0","10") 
 
     
     return controlFlecha;
