@@ -85,9 +85,9 @@ interface Properties {
     curvature:  string;
     direction:  string;
     leftArrow:  string;
-    p0:         { x: string, y: string, length: string};
-    p1:         {x: string, y: string,length: string},
-    p2:         {x: string, y: string,length: string},
+    p0:         { x: string, y: string, length?: string};
+    p1:         {x: string, y: string,length?: string},
+    p2:         {x: string, y: string,length?: string},
     rightArrow: string;
     shape:      string;
     stroke?:     string;
@@ -99,9 +99,9 @@ export function createPropertiesFlechas(
     curvature: string,
     direction: string,
     leftArrow: string,
-    p0: {x: string, y: string, length: string},
-    p1: {x: string, y: string, length: string},
-    p2: {x: string, y: string, length: string},
+    p0: {x: string, y: string, length?: string},
+    p1: {x: string, y: string, length?: string},
+    p2: {x: string, y: string, length?: string},
     rightArrow: string,
     shape: string,
     //stroke?: "dotted",

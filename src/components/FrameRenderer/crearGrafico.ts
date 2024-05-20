@@ -69,7 +69,7 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][],c
 
         const flechaHorizontal= crearFlecaPrincipalHorizontal(i+10);
         listaFlechas.push(flechaHorizontal);
-        const flechaVertical = crearFlechaVerticalIzquierda(i+20, principio_Y_primer_nivel);
+        const flechaVertical = crearFlechaVerticalIzquierda(i+20, (principio_Y_primer_nivel/10)+3);
         listaFlechas.push(flechaVertical);
         const textArea = createTextArea(color)
 
@@ -89,6 +89,7 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][],c
         principio_Y_primer_nivel+=300;
 
     }
+    console.log(listaFlechas)
 
     return listaFlechas.concat(listaConComponentes);
 
@@ -108,11 +109,9 @@ function crearFlecaPrincipalHorizontal(i: number){
 }
 
 function crearFlechaVerticalIzquierda(i:number, coordenadaY:number){
+    console.log(coordenadaY)
+    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"600",y:"1"},{x:"0.5",y:"-3",length:"0.5"},{x:"0",y:"0",length:"0"},"false","line")
+    const controlFlecha = createControl((i*33).toString(),((coordenadaY/33)+10).toString(),"2",properties,"Arrow","4","50",(coordenadaY).toString(),"0",((coordenadaY/33)+10).toString())
 
-    let y=15;
-    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"0",y:"0",length:"0"},{x:"1",y:"0",length:"1"},{x:"1",y:(coordenadaY).toString(),length:"10"},"false","line")
-    const controlFlecha = createControl(i.toString(),"10","2",properties,"Arrow","0","50","20","0","10") 
-
-    
     return controlFlecha;
 }
