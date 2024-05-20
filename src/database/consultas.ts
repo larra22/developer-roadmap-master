@@ -336,6 +336,33 @@ export const getComponentesCategoriaSegundoNivel = async (roadmap: string) => {
     }
 }
 
+export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:string)=>{
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
+        FROM Roadmap_categoria 
+        JOIN Categoria 
+        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre 
+        WHERE Roadmap_categoria.idRoadmap = '${roadmap}' 
+        AND Categoria.categoriaSuperior IN (
+            SELECT idNombre 
+            FROM Categoria 
+            WHERE Categoria.categoriaSuperior = '${padre}' 
+        ) 
+        ORDER BY prioridad ASC;`;
+
+        const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap]);
+        console.log(rows)
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
+
+}
+
 
 export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:string)=>{
     const connection = await db.getConnection();
