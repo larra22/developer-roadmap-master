@@ -78,5 +78,32 @@ form {
 }
 
 .checkbox-item input[type="checkbox"] {
-    margin-right: 5px; /* Adjust margin as needed */
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+input[type="number"] {
+  width: 100px; /* Establece el ancho del campo de entrada */
+  height: 30px; /* Establece la altura del campo de entrada */
+  border: 2px solid orange; /* Bordes en negro */
+  border-radius: 15px; /* Bordes redondeados */
+  padding: 5px; /* Espacio interior del campo */
+  font-size: 16px; /* Tamaño de fuente */
+  box-sizing: border-box; /* Incluye el padding y el borde dentro del tamaño total del elemento */
+}
+
+input[type="submit"] {
+  margin-top: 10px; /* Espacio superior para el botón de envío */
+  padding: 10px 20px; /* Espaciado interno del botón de envío */
+  font-size: 16px; /* Tamaño de fuente del botón de envío */
+  border-radius: 5px; /* Bordes redondeados del botón de envío */
+  cursor: pointer; /* Cambia el cursor cuando se pasa sobre el botón de envío */
+}
+
+input[type="submit"]:hover {
+  background-color: #f0f0f0; /* Color de fondo del botón de envío al pasar el ratón por encima */
+}
+
+.checkbox-item label:not([for]) {
+  margin-left: 20px; /* Espacio a la izquierda del segundo label */
+  font-weight: normal;
 }

@@ -26,7 +26,7 @@ export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategori
    console.log(listaCategoriasSegundoNivel)
 
     const controls = {control:[]}
-    const mockup = createMockUp(controls, "4000","1800","4000","1390","1.0")
+    const mockup = createMockUp(controls, "5000","1800","5000","1390","1.0")
     mockup.controls.control=listaComponentesPrimerNivel;
 
     const global = createGlobal(mockup)
@@ -69,8 +69,7 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][],c
 
         const flechaHorizontal= crearFlecaPrincipalHorizontal(i+10);
         listaFlechas.push(flechaHorizontal);
-        const flechaVertical = crearFlechaVerticalIzquierda(i+20, (principio_Y_primer_nivel/10)+3);
-        listaFlechas.push(flechaVertical);
+       
         const textArea = createTextArea(color)
 
         const texto = listaTitulos[i];
@@ -89,6 +88,8 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][],c
         principio_Y_primer_nivel+=300;
 
     }
+    const flechaVertical = crearFlechaVerticalIzquierda(i+20, (principio_Y_primer_nivel/10)+3);
+    listaFlechas.push(flechaVertical);
     console.log(listaFlechas)
 
     return listaFlechas.concat(listaConComponentes);
@@ -104,14 +105,18 @@ function crearFlecaPrincipalHorizontal(i: number){
     
    const properties= createPropertiesFlechas(COLOR_VERDE,"0","bottom","false",{x:"0",y:"0",length:"0"},{x:"50",y:"2",length:"50"},{x:"10",y:"2",length:"10"},"false","line")
     const controlFlecha = createControl(i.toString(),"2","10",properties,"Arrow","10","50",((principio_Y_primer_nivel/10)+3).toString(),"1","2") 
+    console.log((principio_Y_primer_nivel/10)+3)
     
     return controlFlecha;
 }
-
+let y=6;
 function crearFlechaVerticalIzquierda(i:number, coordenadaY:number){
     console.log(coordenadaY)
-    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"600",y:"1"},{x:"0.5",y:"-3",length:"0.5"},{x:"0",y:"0",length:"0"},"false","line")
-    const controlFlecha = createControl((i*33).toString(),((coordenadaY/33)+10).toString(),"2",properties,"Arrow","4","50",(coordenadaY).toString(),"0",((coordenadaY/33)+10).toString())
 
+    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"0.5",y:"33",length:"30"},{x:"0",y:"63",length:"0"},{x:"0",y:"63",length:"0"},"false","line")
+    const controlFlecha = createControl((i*33).toString(),"2","1",properties,"Arrow","1","50","33","0","0.8")
+    console.log('una')
+    y+=40;
+    console.log(y)
     return controlFlecha;
 }

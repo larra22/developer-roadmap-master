@@ -10,19 +10,15 @@ export const prerender = false
 
 const categoriasNivel1 = await getAllCategorias();
 
-// TODO: FALTA AÑADIR LO DE LOS ROADMAPS RELACIONADOS
-// Pero quizas para ello haga falta crear 
-// Tambien falta poder poner a prioridad a las categorias
-
-//FALTA AÑADIR LA PRIORIDAD DE LAS CATEGORIAS
-//PODER ESCOGER EL ORDEN
 if (Astro.request.method === 'POST') {
     try{
         const data = await Astro.request.formData();
         const titulo = data.get('titulo')?.toString();
+        const prioridad = data.get('prioridad')?.toString();
         const descripcion = data.get('descripcion')?.toString();
         const checkboxes = categoriasNivel1?.filter(categoria => data.has(categoria.idNombre))
-            .map(categoria => categoria.idNombre);
+            .map(categoria => ({ idNombre: categoria.idNombre,
+                prioridad: data.get(`prioridad-${categoria.idNombre}`)?.toString()}));
         const id= titulo;
         if(id && titulo  && descripcion ){
             console.log('Datos completos')
@@ -33,8 +29,13 @@ if (Astro.request.method === 'POST') {
                 console.log(resultId)
                 console.log('Roadmap creado con exito')
                 console.log(checkboxes)
+
                 checkboxes?.map((categoria)=>{
-                    insertRelacionRoadmapCategoria(id, categoria)
+                    if(categoria.prioridad==null){
+                       insertRelacionRoadmapCategoria(id, categoria.idNombre)
+                    }else{
+                    insertRelacionRoadmapCategoria(id, categoria.idNombre, parseInt(categoria.prioridad))
+                    }
                 }
             )
                 return Astro.redirect('/')               // Ahora creamos las relaciones entre las categorias y el roadmap
@@ -48,7 +49,6 @@ if (Astro.request.method === 'POST') {
         console.log(e)
     }
 }
-
 ---
 
 <BaseLayout title='About roadmap.sh' permalink={'/addBD/configCrear'}>
@@ -64,7 +64,7 @@ if (Astro.request.method === 'POST') {
     <input type="text" name="titulo" required />
 
     <label>Descripción:</label>
-    <textarea name="descripcion" rows="4" cols="60" required/>
+    <textarea name="descripcion" rows="4" cols="60" required></textarea>
     </fieldset>
 
     <fieldset>
@@ -72,8 +72,10 @@ if (Astro.request.method === 'POST') {
             <label for="categorias">Escoge las categorías que desees incluir:</label>
             {categoriasNivel1?.map((categoria) => (
                 <div class="checkbox-item">
-                    <input type="checkbox" id={categoria.idNombre} name={categoria.idNombre} value={categoria.idNombre} />
+                    <input type="checkbox" id={categoria.idNombre} name={categoria.idNombre} value={categoria.idNombre}/>
                     <label for={categoria.idNombre}>{categoria.idNombre}</label>
+                    <label>Orden (opcional):</label>
+                    <input type="number" id={`prioridad-${categoria.idNombre}`} name={`prioridad-${categoria.idNombre}`} min="1"/>
                 </div>
             ))}
         </div>

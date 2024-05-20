@@ -18,12 +18,8 @@ if (Astro.request.method === "POST") {
         const descripcion = data.get("descripcion")?.toString();
         const categoriaPadre = data.get("categoriaPadre")?.toString();
 
-        console.log(titulo)
-        console.log(descripcion)
-        console.log(categoriaPadre)
         if(titulo && descripcion && categoriaPadre){
-           let idCategoria= await insertCategoria(titulo, descripcion, categoriaPadre);
-           console.log(idCategoria)
+        await insertCategoria(titulo, descripcion, categoriaPadre);
            console.log('Categoria insertada correctamente')
           }
         
