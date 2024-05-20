@@ -1,0 +1,44 @@
+{
+  "mockup": {
+    "controls": {
+      "control": [
+        {
+          "ID": "0",
+          "h": "101",
+          "measuredH": "100",
+          "measuredW": "150",
+          "properties": {
+            "curvature": "0",
+            "direction": "top",
+            "leftArrow": "false",
+            "p0": {
+              "x": 0,
+              "y": 0
+            },
+            "p1": {
+              "x": 0.5,
+              "y": 0
+            },
+            "p2": {
+              "x": 150,
+              "y": 100
+            },
+            "rightArrow": "false",
+            "shape": "line",
+            "text": ""
+          },
+          "typeID": "Arrow",
+          "w": "151",
+          "x": "447",
+          "y": "181",
+          "zOrder": "0"
+        }
+      ]
+    },
+    "measuredH": "282",
+    "measuredW": "598",
+    "mockupH": "101",
+    "mockupW": "151",
+    "version": "1.0"
+  }
+}

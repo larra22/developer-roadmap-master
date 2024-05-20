@@ -104,7 +104,7 @@ export function createPropertiesFlechas(
     p2: {x: string, y: string, length?: string},
     rightArrow: string,
     shape: string,
-    //stroke?: "dotted",
+    stroke?: "dotted",
     //text?: string
 ): Properties {
     return {
@@ -117,7 +117,7 @@ export function createPropertiesFlechas(
         p2,
         rightArrow,
         shape,
-     //   stroke,
+        stroke,
         //text
     }
 }
