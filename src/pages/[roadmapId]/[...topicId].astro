@@ -1,105 +1,71 @@
 ---
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import RoadmapBanner from '../../components/RoadmapBanner.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { Props } from '../guides/[guideId].astro';
-import {getResourcesByCategory, getAllCategorias, getCategoriaInformacionRoadmap} from '../../database/consultas';
+import { getResourcesByCategory, getCategoriaInformacionRoadmap } from '../../database/consultas';
 import type { ICategoria, IRecurso } from '../../database/dbMySQL';
-import { getRoadmapById , getRoadmapAlmacenados} from '../../database/consultas';
 
-// TODO: Es necesario modificar la base de datos, 
-// para que los roadmap tengan un title
 export const prerender = false;
-
-const getLoadStaticData = async () => {
-  //const topicPathMapping = await getRoadmapTopicFiles();
-  const listaCategoriasGuardadas = await getAllCategorias();
-  return listaCategoriasGuardadas?.map((categoria) => {
-    const roadmapId = categoria.idRoadmap;
-    const topicId = categoria.idCategoria;
-    //const topicId = categoria.replace(`/${roadmapId}/`, '');
-    return {
-      params: {
-        topicId,
-        roadmapId,
-      },
-      props: categoria,
-    };
-  });
-}
- // return Object.keys(topicPathMapping).map((topicSlug) => {
-   // const topicDetails = topicPathMapping[topicSlug];
-    //const roadmapId = topicDetails.roadmapId;
-   // const topicId = topicSlug.replace(`/${roadmapId}/`, '');
-
-   // return {
-    //  params: {
-      //  topicId,
-        //roadmapId,
-      //},
-   //   props: topicDetails,
-    //};
- // });
-//}
-
-const roadmapData = await getLoadStaticData();
 
 const { topicId } = Astro.params;
 
-//const {breadcrumbs, roadmapId, roadmap, heading } = roadmapData?.[0]?.props ?? {};
-//const {roadmapId} = roadmapData?.[0]?.params ?? {};
-const roadmapId = 'new'
-
-const roadmap = await getRoadmapById(roadmapId);
-const breadcrumbs= await getRoadmapAlmacenados();
-
-
-/*
-*!-------------------------------------------------------------------------------------------------------------------
-*/
-let  recursos: IRecurso[] | undefined;
+let recursos: IRecurso[] | undefined;
 let cuerpo: ICategoria | undefined;
-  if(topicId){
-  recursos =  await getResourcesByCategory(topicId);
-   cuerpo = await getCategoriaInformacionRoadmap(topicId);
-  }
+if (topicId) {
+  recursos = await getResourcesByCategory(topicId);
+  cuerpo = await getCategoriaInformacionRoadmap(topicId);
+}
 
 ---
-<!--title={`${heading} - roadmap.sh`}-->
 <BaseLayout
-  title={'No title'}
-  description={`Free resources to learn  in . Everything you need to know about .`}
+  title={cuerpo ? cuerpo.idNombre : 'No title'}
+  description={`Recursos gratuitos para aprender sobre ${cuerpo ? cuerpo.idNombre : ''}. Todo lo que necesitas saber sobre ${cuerpo ? cuerpo.idNombre : ''}.`}
   noIndex={true}
-  permalink={`/${roadmapId}/${topicId}`}
+  permalink={`/${topicId}`}
 >
-{roadmap && <RoadmapBanner roadmapId={roadmapId} roadmap={roadmap} />}
-<div class='bg-gray-50'>
-    <Breadcrumbs breadcrumbs={breadcrumbs || []} roadmapId={roadmapId} />
-
-    <div class='container pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0'>
-      <main id='main-content'>
-
-        {cuerpo &&
-          <div>
-            <h2>{cuerpo.idNombre}</h2>
-            <p>{cuerpo.descripcion}</p>
+  <div class="bg-gray-50 py-8">
+    <div class="container mx-auto pb-16 prose prose-p:mt-0 prose-h1:mb-4 prose-h2:mb-3 prose-h2:mt-0 px-4">
+      <main id="main-content">
+        {cuerpo ? (
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800  text-center">{cuerpo.idNombre}</h2>
+            <p class="text-gray-600">{cuerpo.descripcion}</p>
+            <br/>
+            <h2 class="text-2xl font-bold text-lks-color  text-center">Recursos: </h2>
           </div>
-        }
-        {!cuerpo && <p>No hay información</p>}
+        ) : (
+          <p>No hay información</p>
+        )}
 
-      <ul>
-        {/* Conditional rendering using logical && operator */}
-        {recursos  && recursos?.map((recurso) => (
-          <li>
-           <a href={recurso.enlaceFichero} target="_blank" rel="noopener noreferrer">{recurso.titulo}</a>
-        </li>
-    ))}
+         
+        <ul class="space-y-4">
+         
+          {recursos && recursos.length > 0 ? (
+            
+            recursos.map((recurso) => (
+              <li class="bg-white p-4 rounded shadow hover:shadow-md transition-shadow duration-200">
+                <a
+                  href={recurso.enlaceFichero}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-blue-600 hover:underline"
+                >
+                  {recurso.titulo}
+                </a>
+              </li>
+            ))
+          ) : (
+            <p>No hay recursos para esta categoría</p>
+          )}
 
-    {/* Conditional rendering for when recursos is null */}
-    {(!recursos || recursos.length==0)  && <p>No hay recursos para esta categoría</p>}
-      </ul>
-
+          <p>¿Quieres filtrar los recursos? </p>
+          <select id="filter-select" class="form-select mt-1 block w-full">
+            <option>Selecciona una opción</option>
+            <option>Recursos gratuitos</option>
+            <option>Recursos de pago</option>
+          </select>
+        </ul>
       </main>
     </div>
   </div>
 </BaseLayout>
+<script src="./filter.js"></script>

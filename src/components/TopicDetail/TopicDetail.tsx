@@ -181,7 +181,7 @@ export function TopicDetail() {
                 className="absolute right-2.5 top-2.5 inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
                 onClick={() => setIsActive(false)}
               >
-                <img alt="Close" class="h-5 w-5" src={CloseIcon.toString()} />
+                X
               </button>
             </div>
 
