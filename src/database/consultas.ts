@@ -340,7 +340,7 @@ export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:s
     const connection = await db.getConnection();
     try {
         
-        const query = `SELECT Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
+        const query =  `SELECT  Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
         FROM Roadmap_categoria 
         JOIN Categoria 
         ON Roadmap_categoria.componenteCategoria = Categoria.idNombre 
@@ -348,11 +348,10 @@ export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:s
         AND Categoria.categoriaSuperior IN (
             SELECT idNombre 
             FROM Categoria 
-            WHERE Categoria.categoriaSuperior = '${padre}' 
+            WHERE Categoria.categoriaSuperior = '${padre}'
         ) 
         ORDER BY prioridad ASC;`;
-
-        const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap]);
+        const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap, padre]);
         console.log(rows)
         return rows || [];
     } catch (error) {
