@@ -18,9 +18,14 @@ function extructuraCorrectaJson(json: any): boolean{
 
 
 
-export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategoriasSegundoNivel:[string,string][], listaPadres: string[]){
+export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategoriasSegundoNivel:[string,string][], subTercerNivel:[string,string][]){
+    console.log('crear grtafico')
+    console.log(subTercerNivel)
 
-    let listaComponentesPrimerNivel = crearCuadradosPrimerNivel(listaCategoriasPrimerNivel);
+
+    const listaComponentesPrimerNivel = crearCuadrados(listaCategoriasPrimerNivel,listaCategoriasSegundoNivel, subTercerNivel,COLOR_AMARILLO);
+   console.log(listaCategoriasSegundoNivel)
+
     const controls = {control:[]}
 
     const mockup = createMockUp(controls, "4000","1800","4000","1390","1.0")
@@ -33,8 +38,53 @@ export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategori
     return global
 }
 
+export function crearCuadradosSegundoNivel(listaTitulos: [string,string][],padre:string,color:string,yPrimerNivel:number, subTercerNivel:[string,string][]){
+    let listaHijos = listaTitulos.filter((categoriaPadre)=> categoriaPadre[1]==padre).map((categoriaPadre)=> categoriaPadre[0]);
+    const limit = listaHijos.length ?? 0;
+    let listaComponentes= []
+    let x=1000;
+    console.log('tercer nivel')
+    console.log(subTercerNivel)
 
-function crearCuadradosPrimerNivel(listaTitulos: string[]){
+    let i=0;
+    while (limit >i ){
+        const textArea = createTextArea(color);
+        const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
+        const label = createLabel("20", listaHijos[i]);
+        const control1= createControl("1","25","100", label,"Label","88","50","11","1")
+        const componente = createComponent((i*100).toString(), "70", "46", "200", listaHijos[i], [control0, control1],"121", (x-250).toString(), (yPrimerNivel+90).toString(),  "100");
+        listaComponentes.push(componente);
+        x+=350;
+        const hijos = crearCuadradosTercerNivel(subTercerNivel, listaHijos[i], COLOR_GRIS, yPrimerNivel+90);
+        listaComponentes.push(...hijos);
+        i++;
+
+    }
+    return listaComponentes;
+}
+
+export function crearCuadradosTercerNivel(listaTitulos: [string,string][],padre:string,color:string,yPrimerNivel:number){
+    let listaHijos = listaTitulos.filter((categoriaPadre)=> categoriaPadre[1]==padre).map((categoriaPadre)=> categoriaPadre[0]);
+    const limit = listaHijos.length ?? 0;
+    let listaComponentes= []
+    let x=1000;
+    console.log(listaTitulos)
+    let i=0;
+    while (limit >i ){
+        const textArea = createTextArea(color);
+        const control0 = createControl("0","200","400", textArea, "TextArea", "325", "0", "0", "0", "50");
+        const label = createLabel("20", listaHijos[i]);
+        const control1= createControl("1","25","100", label,"Label","88","50","11","1")
+        const componente = createComponent((i*100).toString(), "70", "46", "200", listaHijos[i], [control0, control1],"121", (x-250).toString(), (yPrimerNivel+90).toString(),  "100");
+        listaComponentes.push(componente);
+        x+=350;
+        i++;
+
+    }
+    return listaComponentes;
+}
+
+function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], subTercerNivel:[string,string][],color:string){
     let listaConComponentes= [];
     let listaFlechas=[];
     const max = listaTitulos.length;
@@ -55,7 +105,9 @@ function crearCuadradosPrimerNivel(listaTitulos: string[]){
 
         const componente = createComponent(i.toString(), "70", "46", "200",texto, [control0, control1],"121", centro_X.toString(), principio_Y.toString(),  "100");
 
-        listaConComponentes.push(componente);
+        const hijos = crearCuadradosSegundoNivel(subcategorias, texto, COLOR_GRIS, principio_Y_primer_nivel, subTercerNivel);
+        listaConComponentes.push(...hijos);
+        console.log(hijos)
         i++;
     }
 

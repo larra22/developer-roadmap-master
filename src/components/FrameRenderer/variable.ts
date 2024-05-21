@@ -104,14 +104,15 @@ function segundoNivel(json:any, padre:string, listaCategoriasSegundoNivel:[strin
     return json;
 }
 
-export function changeTextoSegunListaBD(json: any, listaCategoriasPrimerNivel: string[], listaCategoriasSegundoNivel: [string,string][], listaCategoriasTercerivel: string[]){
+export function changeTextoSegunListaBD(listaCategoriasPrimerNivel: string[], listaCategoriasSegundoNivel: [string,string][], listaCategoriasTercerivel: [string,string][]){
+
    
 
     const listaPadres = listaCategoriasSegundoNivel.map((categoriaPadre) => categoriaPadre[1]);
 
 
 
-    json = crearGrafico(listaCategoriasPrimerNivel, listaCategoriasSegundoNivel, listaPadres);
+    let json = crearGrafico(listaCategoriasPrimerNivel, listaCategoriasSegundoNivel, listaCategoriasTercerivel);
     return json
 
     

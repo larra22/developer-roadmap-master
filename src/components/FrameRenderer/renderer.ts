@@ -20,7 +20,7 @@ export class Renderer {
 
   componentesCategoriaPrimerNivel: string[];
   componentesCategoriaSegundoNivel: [string, string][];
-  componentesCategoriaTercerNivel: string[];
+  componentesCategoriaTercerNivel: [string, string][];
 
 
   constructor() {
@@ -79,9 +79,22 @@ export class Renderer {
         componentesCategoriaSegundoNivelArray.push([currentItem, nextItem]);
     }
     this.componentesCategoriaSegundoNivel = componentesCategoriaSegundoNivelArray;
-    
+
+    const componentesCategoriaTercerNivelString = dataset.componentesCategoriaTercerNivel || '';
+    const itemsArrayTercerNivel = componentesCategoriaTercerNivelString.split(',').map(item => item.trim());
+
+    const componentesCategoriaTercerNivelArray: [string, string][] = [];
+    for (let i = 0; i < itemsArrayTercerNivel.length; i += 2) {
+        const currentItem = itemsArrayTercerNivel[i];
+        const nextItem = i + 1 < itemsArrayTercerNivel.length ? itemsArrayTercerNivel[i + 1] : ''; // If there's no next item, use an empty string
+        componentesCategoriaTercerNivelArray.push([currentItem, nextItem]);
+    }    
+    this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelArray;
    // this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelString.split(',').map(item => item.trim());
     
+
+
+
     return true;
   }
 

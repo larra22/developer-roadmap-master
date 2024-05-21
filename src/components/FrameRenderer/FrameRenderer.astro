@@ -13,14 +13,17 @@ export interface Props {
   };
   componentesCategoriaPrimerNivel: string[];
   componentesCategoriaSegundoNivel: [string,string][];
-  //componentesCategoriaTercerNivel: string[];
+  componentesCategoriaTercerNivel: [string,string][];
 }
 
 
-const { resourceId, resourceType, jsonData, dimensions = null, componentesCategoriaPrimerNivel, componentesCategoriaSegundoNivel} = Astro.props;
 
-//console.log(componentesCategoriaSegundoNivel)
+const { resourceId, resourceType,  dimensions = null, componentesCategoriaPrimerNivel, componentesCategoriaSegundoNivel,componentesCategoriaTercerNivel} = Astro.props;
 
+
+console.log(componentesCategoriaPrimerNivel)
+console.log(componentesCategoriaTercerNivel)
+console.log(componentesCategoriaTercerNivel)
 ---
 
 <div
@@ -32,7 +35,8 @@ const { resourceId, resourceType, jsonData, dimensions = null, componentesCatego
   data-resource-id={resourceId}
   data-componentes-categoria-primer-nivel={componentesCategoriaPrimerNivel}
   data-componentes-categoria-segundo-nivel={componentesCategoriaSegundoNivel}
-  data-json-data={JSON.stringify(jsonData)}
+  data-componentes-categoria-tercer-nivel={componentesCategoriaTercerNivel}
+
 >
 
 

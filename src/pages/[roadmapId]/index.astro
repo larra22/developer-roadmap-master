@@ -20,12 +20,13 @@ const roadmapData = await getRoadmapById(roadmapId);
 
 const componentesCategoriaPrimerNivel:string[] = [];
 const componentesCategoriaSegundoNivel:[string,string][]= [];
-//const componentesCategoriaTercerNivel:string[] = [];
+
+let componentesCategoriaTercerNivel:[string,string][] = [];
 
 let jsonLdSchema: Record<string, unknown>[] | undefined = [];
 
 
-if (Astro.request.method === 'GET') {
+
   componentesCategoriaPrimerNivel.length = 0;
   try {
     const componentesPrimerNivel = await getComponentesCategoriaPrimerNivel(roadmapId);
@@ -36,16 +37,42 @@ if (Astro.request.method === 'GET') {
     });
 
     const componentesSegundoNivel = await getComponentesCategoriaSegundoNivel(roadmapId);
-    componentesSegundoNivel?.map((componenteSegundoNivel) => {
+
+    componentesSegundoNivel?.map( (componenteSegundoNivel) => {
         componentesCategoriaSegundoNivel.push(
             [componenteSegundoNivel.componenteCategoria, componenteSegundoNivel.categoriaSuperior]);
-         
-    });
-   //console.log(componentesCategoriaSegundoNivel) console.log(componentesCategoriaSegundoNivel);
-  } catch (error) {
-    console.log(error);
-  }
+   })
 
+   const processedCategories = new Set();
+
+const uniqueComponentesSegundoNivel = componentesSegundoNivel?.filter((segundoNivel) => {
+  if (processedCategories.has(segundoNivel.categoriaSuperior)) {
+    return false;
+  } else {
+    processedCategories.add(segundoNivel.categoriaSuperior);
+    return true;
+  }
+});
+
+   const tercerNivelPromises = uniqueComponentesSegundoNivel?.map(async (segundoNivel) => {
+    const componentesTercerNivel = await getComponentesCategoriaTercerNivel(roadmapId, segundoNivel.categoriaSuperior);
+    return componentesTercerNivel?.map((componenteTercerNivel) => [
+      componenteTercerNivel.componenteCategoria,
+      componenteTercerNivel.categoriaSuperior
+    ]);
+  });
+
+  const resolvedTercerNivel = await Promise.all(tercerNivelPromises?.filter(Boolean) ?? []);
+  resolvedTercerNivel.forEach((nivel) => {
+    if (nivel) {
+      componentesCategoriaTercerNivel = [...componentesCategoriaTercerNivel, ...nivel as Array<[string, string]>];
+    }
+  });
+
+  
+
+} catch (error) {
+  console.log(error);
 }
 
 ---
@@ -86,7 +113,9 @@ if (Astro.request.method === 'GET') {
             dimensions={roadmapData.dimensions}
             componentesCategoriaPrimerNivel={componentesCategoriaPrimerNivel}
             componentesCategoriaSegundoNivel={componentesCategoriaSegundoNivel}
+            componentesCategoriaTercerNivel={componentesCategoriaTercerNivel}
         />
+
 
         </div>
       )
