@@ -28,6 +28,7 @@ export async function POST(context:APIContext):Promise<Response> {
 
     //Buscar que el usuario exista
     const foundUser = await getUsuario(username)
+    console.log(foundUser)
 
     if(!foundUser){
         return new Response('Nombre de usuario o contraseña incorrecto',

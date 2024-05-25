@@ -2,6 +2,7 @@ import { lucia } from "./auth";
 import { verifyRequestOrigin } from "lucia";
 import { defineMiddleware } from "astro:middleware";
 
+
 export const onRequest = defineMiddleware(async (context, next) => {
 	if (context.request.method !== "GET") {
 		const originHeader = context.request.headers.get("Origin");

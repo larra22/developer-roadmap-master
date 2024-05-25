@@ -84,6 +84,7 @@ export interface User extends RowDataPacket {
   id:string
   username:string
   password:string
+  admin:boolean
 }
 export const prerender = false;
 
