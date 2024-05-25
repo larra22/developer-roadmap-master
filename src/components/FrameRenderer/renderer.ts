@@ -91,12 +91,9 @@ export class Renderer {
    this.jsonData = changeTextoSegunListaBD(this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
     
 
-<<<<<<< HEAD
 
 
-=======
   
->>>>>>> d773851 (falta por haer cosas)
     return true;
   }
 

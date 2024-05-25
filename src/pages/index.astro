@@ -1,22 +1,12 @@
 ---
-import FeaturedGuides from '../components/FeaturedGuides.astro';
-import FeaturedItems from '../components/FeaturedItems/FeaturedItems.astro';
-import FeaturedVideos from '../components/FeaturedVideos.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-//import { getAllOrganigramas } from '../lib/organigrama';
-import { getAllGuides } from '../lib/guide';
+import {SignIn, SignOut} from "auth-astro/components"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import {getSession} from "auth-astro/server"
 
-import { getAllVideos } from '../lib/video';
-import { getRoadmapAlmacenados } from '../database/consultas';
+export const prerender = false
+const session = await getSession(Astro.request)
 
-export const prerender = false;
-//const roleRoadmaps = await getRoadmapsByTag('role-roadmap');
-//const skillRoadmaps = await getRoadmapsByTag('skill-roadmap');
-//const organigramas = await getAllOrganigramas();
-const roadmaps = await getRoadmapAlmacenados();
 
-const guides = await getAllGuides();
-const videos = await getAllVideos();
 ---
 
 <BaseLayout
@@ -24,60 +14,11 @@ const videos = await getAllVideos();
   description={'Community driven roadmaps, articles and guides for developers to grow in their career.'}
   permalink={'/'}
 >
-  <div class='bg-gradient-to-b from-slate-900 to-white-900'>
-    <div class='border-b border-b-[#1e293c]'>
-      <div class='container text-left sm:text-center py-6 pb-14 sm:py-20 px-6 sm:px-0'>
-        <h1
-          class='text-2xl sm:text-5xl mb-2 sm:mb-4 font-bold bg-gradient-to-b from-orange-50 to-orange-500 text-transparent bg-clip-text'
-        >
-          Developer Roadmaps
-        </h1>
-
-        <p class='hidden sm:block text-white text-lg px-4'>
-          <span class='font-medium text-white'>Proyecto onboarding</span> para mejorar la experiencia de las nuevas incorporaciones y facilitar su adaptación a su puesto
-          de trabajo. 
-        </p>
-
-        <p class='block sm:hidden text-gray-400 text-md px-0'>
-          Community created roadmaps, guides and articles to help developers grow in their career.
-        </p>
-      </div>
-    </div>
-
-   {roadmaps && <FeaturedItems
-      heading='Role based Roadmaps'
-      featuredItems={roadmaps.map((roadmapItem) => ({
-        text: roadmapItem.title,
-        url: `/${roadmapItem.idRoadmap}`,
-       // isNew: roadmapItem.frontmatter.isNew,
-       // isUpcoming: roadmapItem.frontmatter.isUpcoming,
-      }))}
-    />}
-
-   
-    <!--<FeaturedItems
-      heading='Organigrama'
-      featuredItems={organigramas.map((organigrama) => ({
-        text: organigrama.frontmatter.briefTitle,
-        url: `/organigrama/${organigrama.id}`,
-        isNew: organigrama.frontmatter.isNew,
-        isUpcoming: organigrama.frontmatter.isUpcoming,
-      }))}
-    />-->
-
-    
-    <div class='grid grid-cols-1 gap-7 sm:gap-16 bg-gray-50 py-7 sm:py-16'>
-      <a href='/variable' class='text-center text-lg font-bold text-orange-400 hover:text-gray-800'>
-        Obtener personalizado
-      </a>
-    </div>
-    
-
-    <div class='grid grid-cols-1 gap-7 sm:gap-16 bg-gray-50 py-7 sm:py-16'>
-      <FeaturedGuides heading='Guides' guides={guides.slice(0, 7)} />
-      <FeaturedVideos heading='Videos' videos={videos.slice(0, 7)} />
-    </div>
-
-    
-  </div>
+<SignIn provider="google">Iniciar sesión con Google</SignIn>
 </BaseLayout>
+
+//TODO : Añadir el boton de logut
+//TODO: cambiar el rediregir, los antiguos index ahora deben de ser home
+//TODO: Asegurarse que no pueda pasar si la cuenta no esta iniciada
+//TODO: Crear tipo admin mirar si es posible, o si no se registra y se comprueba con la base de datos?
+//Y si esta almacenado entonces es admin y tiene todas las funcionalidades mirar como hacer esto

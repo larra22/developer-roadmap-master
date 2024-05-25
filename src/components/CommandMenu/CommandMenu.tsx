@@ -19,7 +19,7 @@ type PageType = {
 };
 
 const defaultPages: PageType[] = [
-  { url: '/', title: 'Home', group: 'Pages', icon: HomeIcon },
+  { url: '/home', title: 'Home', group: 'Pages', icon: HomeIcon },
   {
     url: '/account',
     title: 'Account',

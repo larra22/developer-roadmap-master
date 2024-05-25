@@ -1,11 +1,12 @@
 ---
 import Icon from '../AstroIcon.astro';
 import AccountDropdown from './AccountDropdown.astro';
+import { SignOut } from 'auth-astro/components';
 ---
 
 <div class='bg-gray-100 py-5 text-lks-color sm:py-8'>
   <nav class='container flex items-center justify-between'>
-    <a class='flex items-center text-lks-color font-medium text-lks-color' href='/' aria-label="roadmap.sh">
+    <a class='flex items-center text-lks-color font-medium text-lks-color' href='/home' aria-label="roadmap.sh">
       <Icon icon='logo' />
     </a>
 
@@ -43,6 +44,13 @@ import AccountDropdown from './AccountDropdown.astro';
       <li class='hidden lg:inline'>
         <a href='/opinar/escogerRecurso' class='text-lks-color hover:text-gray-400'>Calificar</a>
       </li>
+
+      <li class='hidden lg:inline'>
+        <SignOut>Salir</SignOut>
+
+      </li>
+
+
      <!-- <li>
         <kbd data-command-menu class="hidden sm:flex items-center text-lks-color border border-lks-color rounded-md px-2.5 py-1 text-sm hover:bg-gray-600 hover:cursor-pointer">
            <Icon icon='search' class='h-3 w-3 mr-2' />
@@ -87,6 +95,8 @@ import AccountDropdown from './AccountDropdown.astro';
             Organigrama
           </a>
         </li>
+
+
         
 
         <!-- Links for logged in users -->

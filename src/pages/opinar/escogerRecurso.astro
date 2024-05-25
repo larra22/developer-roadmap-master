@@ -8,15 +8,17 @@ import '../../styles/formulario.css'
  export const prerender = false
 
  const recursos = await getAllRecursos();
- const recursosNames = recursos?.map((recurso) => recurso.titulo);
+
 
  if(Astro.request.method === 'POST'){
   try{
     const data = await Astro.request.formData();
     const recurso = data.get('recurso')?.toString();
     const id = parseInt(recurso || '0');
+    console.log(id);
 
     const elegido = await getRecursoById(id);
+    console.log(elegido);
     if(elegido?.interno){
       return Astro.redirect('/enviarOpinionInterno?id=${id}');
     }else{  
@@ -48,8 +50,9 @@ import '../../styles/formulario.css'
         <label for="titulo">Escoge el recurso que has cursado:</label>
         <select id="recurso" name="recurso" required>
           <option value="" disabled selected>Escoger el recurso a valorar...</option>
-          {recursosNames?.map((recurso) => (
-            <option value={recurso}>{recurso}</option>
+          {recursos?.map((recurso) => (
+            <option value={recurso.idRecurso}>{recurso.titulo}</option>
+
         ))}
         
         </select>

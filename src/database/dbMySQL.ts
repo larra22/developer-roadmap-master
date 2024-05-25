@@ -80,10 +80,10 @@ export interface ICategoriaSubNivel extends RowDataPacket {
   categoriaSuperior: string
 }
 
-export interface IUsuario extends RowDataPacket {
-  email: string
-  password: string
-  admin:boolean
+export interface User extends RowDataPacket {
+  id:string
+  username:string
+  password:string
 }
 export const prerender = false;
 

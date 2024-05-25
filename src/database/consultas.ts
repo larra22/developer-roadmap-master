@@ -1,10 +1,11 @@
 import { type ResultSetHeader} from "mysql2"
 
 import { type IRecurso, db, type IRoadmapEsquema, type ICategoriaSubNivel } from "./dbMySQL";
-import { type ICategoria , type IUsuario} from "./dbMySQL";
+import { type ICategoria , type User} from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
 import {ER_DUP_ENTRY} from 'mysql-error-keys'
+import { error } from "console";
 
 
 export interface MyErrorEvent {
@@ -139,14 +140,14 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
     }
     }
 
-    export const insertUsuario = async (email: string, password: string) => {
+    export const insertUsuario = async (id:string, username:string,password:string) => {
         const connection = await db.getConnection();
         try {
             
-            const query = `INSERT INTO Usuario (email, password, admin) VALUES ('${email}', '${password}')`;
-            const [result] = await connection.execute<ResultSetHeader>(query, [email, password]);
+            const query = `INSERT INTO User (id, username, password) VALUES ('${id}','${username}', '${password}')`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [id, username, password]);
             
-            return email;
+            return result;
         } catch (error) {
             console.error('Error adding user:', error);
     }finally {
@@ -159,6 +160,23 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GET FROM BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const getUsuario = async(username:string)=>{
+    const connection = await db.getConnection();
+
+    try{
+        const query = `SELECT * FROM User 
+        WHERE User.username='${username}'`
+        const [rows]= await connection.execute<User[]>(query,[username])
+        return rows[0] || [];
+    }catch(error) {
+        console.log('Error al obtener user', error)
+    }finally{
+        connection.release();
+    }
+
+}
+
 
 //Obtener los recursos según categoría
 export const getResourcesByCategory = async (categoria: string) => {
@@ -178,21 +196,6 @@ export const getResourcesByCategory = async (categoria: string) => {
     }
 }
 
-export const getUsuarioByEmail = async (email: string) => {
-    const connection = await db.getConnection();
-    try {
-        
-        const query = `SELECT * FROM Usuario WHERE email = '${email}'`;
-        const [rows] = await connection.execute<IUsuario[]>(query, [email]);
-        
-        return rows[0];
-    } catch (error) {
-        console.error('Error getting user:', error);
-
-}finally {
-    connection.release();
-}
-}
 
 export const getRecursoById = async (idRecurso: number) => {
     const connection = await db.getConnection();
@@ -363,31 +366,6 @@ export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:s
 }
 
 
-export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:string)=>{
-    const connection = await db.getConnection();
-    try {
-        
-        const query =  `SELECT  Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
-        FROM Roadmap_categoria 
-        JOIN Categoria 
-        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre 
-        WHERE Roadmap_categoria.idRoadmap = '${roadmap}' 
-        AND Categoria.categoriaSuperior IN (
-            SELECT idNombre 
-            FROM Categoria 
-            WHERE Categoria.categoriaSuperior = '${padre}'
-        ) 
-        ORDER BY prioridad ASC;`;
-        const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap, padre]);
-        console.log(rows)
-        return rows || [];
-    } catch (error) {
-        console.error('Error getting categoria:', error);
-    }finally {
-        connection.release();
-    }
-
-}
 
 
 

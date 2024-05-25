@@ -8,10 +8,12 @@ import rehypeExternalLinks from 'rehype-external-links';
 import { serializeSitemap, shouldIndexPage } from './sitemap.mjs';
 import node from '@astrojs/node';
 
+import auth from "auth-astro";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://roadmap.sh/',
-  output: 'hybrid',
+  output: 'server',
   adapter: node({
     mode: "standalone"
   }),
@@ -44,5 +46,5 @@ export default defineConfig({
   }), compress({
     css: false,
     js: false
-  }), preact()]
+  }), preact(), auth()]
 });
