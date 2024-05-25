@@ -1,41 +1,12 @@
 ---
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
-import { getAllRecursos, getRecursoById } from "../../database/consultas";
+import { getAllRecursos} from "../../database/consultas";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import '../../styles/formulario.css'
 
-
- export const prerender = false
-
- const recursos = await getAllRecursos();
-
-
- if(Astro.request.method === 'POST'){
-  try{
-    const data = await Astro.request.formData();
-    const recurso = data.get('recurso')?.toString();
-    const id = parseInt(recurso || '0');
-    console.log(id);
-
-    const elegido = await getRecursoById(id);
-    console.log(elegido);
-    if(elegido?.interno){
-      return Astro.redirect('/enviarOpinionInterno?id=${id}');
-    }else{  
-      return Astro.redirect('/enviarOpinionExternoid=${id}');
-
-    }
-
-
-  }catch(error){
-    console.log(error);
-  }
-}
-
+const recursos = await getAllRecursos();
 
 ---
-
-
 
 <BaseLayout title='Onboarding' permalink={'/enviarOpinion'}>
     <SimplePageHeader
@@ -44,7 +15,8 @@ import '../../styles/formulario.css'
   />
 
 
-  <form method="POST">
+  <form method ="POST" action="/api/calificar">
+    <input type="hidden" name="formType" value="escogerRecurso" />
     <fieldset>
         <legend>LKS Evaluación de recursos de aprendizaje</legend>
         <label for="titulo">Escoge el recurso que has cursado:</label>

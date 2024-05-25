@@ -1,24 +1,12 @@
 ---
-import {SignIn, SignOut} from "auth-astro/components"
-import BaseLayout from "../layouts/BaseLayout.astro"
-import {getSession} from "auth-astro/server"
 
-export const prerender = false
-const session = await getSession(Astro.request)
-
-
+if (!Astro.locals.user) {
+  return Astro.redirect("/auth/signin")
+}else {
+  return Astro.redirect("/home")
+}
 ---
 
-<BaseLayout
-  title='Developer Roadmaps - roadmap.sh'
-  description={'Community driven roadmaps, articles and guides for developers to grow in their career.'}
-  permalink={'/'}
->
-<SignIn provider="google">Iniciar sesión con Google</SignIn>
-</BaseLayout>
 
-//TODO : Añadir el boton de logut
 //TODO: cambiar el rediregir, los antiguos index ahora deben de ser home
 //TODO: Asegurarse que no pueda pasar si la cuenta no esta iniciada
-//TODO: Crear tipo admin mirar si es posible, o si no se registra y se comprueba con la base de datos?
-//Y si esta almacenado entonces es admin y tiene todas las funcionalidades mirar como hacer esto
