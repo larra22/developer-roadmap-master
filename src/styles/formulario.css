@@ -1,5 +1,5 @@
 form {
-    width: 500px;
+    width: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -7,8 +7,16 @@ form {
   }
   
   fieldset {
-    margin-bottom: 20px;
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: none; /* Remove the default fieldset border */
+    border-bottom: 2px solid #ccc; /* Add a bottom border */
+    padding: 20px; /* Optional: for visual spacing */
+    max-width: 600px; /* Optional: set a max-width for better appearance */
+}
   
   legend {
     font-weight: bold;
@@ -106,4 +114,9 @@ input[type="submit"]:hover {
 .checkbox-item label:not([for]) {
   margin-left: 20px; /* Espacio a la izquierda del segundo label */
   font-weight: normal;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
 }

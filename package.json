@@ -35,6 +35,8 @@
     "astro": "^4.4.0",
     "astro-compress": "^2.2.10",
     "auth-astro": "^4.1.1",
+    "bootstrap": "^4.6.2",
+    "bootstrap-select": "^1.13.18",
     "express": "^4.19.2",
     "jose": "^5.2.2",
     "jquery": "^3.7.1",
