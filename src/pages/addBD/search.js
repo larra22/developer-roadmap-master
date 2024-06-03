@@ -1,6 +1,6 @@
 
 let availableKeywords =[]
-
+console.log(categoriasNames)
 
 const resultsBox = document.querySelector('.results-box')
 const inputBox = document.getElementById('input-box')

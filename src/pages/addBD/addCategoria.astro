@@ -42,15 +42,20 @@ const availableKeywords = categoriasNames || [];
 
             <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
             
-            <input type="text" id="input-box" placeholder="Buscar categoría"
-            autocomplete="off">
-            <select id="categoriaPadre" name="categoriaPadre" required aria-required="true">
-                <option value="" disabled selected>Escoger categoría padre...</option>
-                <option value="Global">Ninguna</option>
-                {categoriasNames?.map((categoria: string) => (
-                    <option value={categoria}>{categoria}</option>
-                ))}
-            </select>
+            <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
+
+            <div id="custom-dropdown" class="custom-dropdown">
+                <ul id="dropdown-options" class="dropdown-options">
+                    <li value="Global">Ninguna</li>
+                    {categoriasNames?.map((categoria: string) => (
+                        <li value={categoria}>{categoria}</li>
+                    ))}
+                </ul>
+            </div>
+
+
+
+
         </fieldset>
         <div class="button-container">
             <button type="submit">Guardar</button>
@@ -95,38 +100,124 @@ const availableKeywords = categoriasNames || [];
           }
       });
 
-      const inputBox = document.getElementById('input-box');
-    // Get the select element
+    const inputBox = document.getElementById('input-box');
+    const dropdown = document.getElementById('custom-dropdown');
+    const dropdownOptions = document.getElementById('dropdown-options');
+
+    // Hide the original select element
     const selectBox = document.getElementById('categoriaPadre');
-    // Get all options in the select element
-    const options = selectBox?.getElementsByTagName('option');
+    if(selectBox){
+    selectBox.style.display = 'none';
+    }
 
-    // Add an input event listener to the input box
-    inputBox?.addEventListener('input', function(event) {
+    // Show dropdown when input is clicked
+inputBox?.addEventListener('click', function(event) {
+    if (dropdown) {
+        dropdown.style.display = 'block';
+        updateOptionsVisibility();
+    }
+});
 
-        console.log('ha pasado')
-        const inputElement = event.target as HTMLInputElement;
-        const searchText = inputElement.value?.toLowerCase(); // Convert input text to lowercase for case-insensitive matching
-        console.log(searchText)
-        if(options){
-        // Loop through each option in the select box
-        for (let i = 0; i < options.length; i++) {
-            const optionText = options[i].text.toLowerCase(); // Convert option text to lowercase for case-insensitive matching
+// Add an input event listener to the input box
+inputBox?.addEventListener('input', function(event) {
+    updateOptionsVisibility();
+});
 
-            // Check if the option text contains the search text
-            if(searchText){
-            if (optionText.includes(searchText)) {
-                console.log(optionText)
-                options[i].style.display = ''; // Show the option if it matches the search text
-            } else {
-                options[i].style.display = 'none'; // Hide the option if it does not match the search text
-            }
-        }else{
-            options[i].style.display = ''; 
+// Function to update options visibility based on input text
+function updateOptionsVisibility() {
+    const inputElement = document.getElementById('input-box') as HTMLInputElement
+    const searchText = inputElement.value.toLowerCase(); // Obtain the current value of the input box and convert it to lowercase
+    
+    // Loop through each option in the dropdown
+    const dropdownOptions = document.querySelectorAll('#dropdown-options li');
+    dropdownOptions.forEach(option => {
+        const optionText = option.textContent?.toLowerCase();
+        if (searchText === '' || optionText && optionText.includes(searchText)) {
+            (option as HTMLLIElement).style.display = ''; // Show the option if it matches the search text or if the input is empty
+        } else {
+            (option as HTMLLIElement).style.display = 'none'; // Hide the option if it does not match the search text
+        }
+    });
+
+    // If the input text is empty, display all options
+    if (searchText === '') {
+        dropdownOptions.forEach(option => {
+            (option as HTMLLIElement).style.display = '';
+        });
+    }
+}
+
+    // Hide dropdown when user clicks outside of it
+    document.addEventListener('click', function(event) {
+        
+        const target = event.target as Node;
+        if (dropdown && !dropdown.contains(target) && target !== inputBox) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    dropdownOptions?.addEventListener('click', function(event) {
+    const selectedOption = event.target as HTMLLIElement;
+    if (selectedOption.tagName === 'LI') {
+        const value = selectedOption.getAttribute('value');
+        if (value && inputBox && dropdown) {
+            const inputElement = document.getElementById('input-box') as HTMLInputElement;
+            inputElement.value = value;
+            dropdown.style.display = 'none';
         }
     }
-    }
-    });
+});
+
   
   </script>
+
+  <style>
+    .custom-dropdown {
+        position: relative;
+        display: none;
+    }
+
+    .dropdown-options {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px; /* Set a maximum height for the dropdown */
+        overflow-y: auto; /* Enable vertical scrolling */
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 100%; /* Make the dropdown the same width as the input */
+    }
+
+    .dropdown-options li {
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+
+    .dropdown-options li:hover {
+        background-color: #f0f0f0;
+    }
+
+    /* Style the scrollbar */
+    .dropdown-options::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .dropdown-options::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .dropdown-options::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .dropdown-options::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+  </style>
 </BaseLayout>
