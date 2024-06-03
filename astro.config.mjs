@@ -12,7 +12,6 @@ import auth from "auth-astro";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://roadmap.sh/',
   output: 'server',
   adapter: node({
     mode: "standalone"

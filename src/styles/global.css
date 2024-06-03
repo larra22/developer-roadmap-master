@@ -8,6 +8,11 @@
   }
 }
 
+.footer-spacing {
+  margin-top: 50px;
+}
+
+
 button {
   background-color: #f7f8f7; /* Green */
   border: 2px solid #F85900;

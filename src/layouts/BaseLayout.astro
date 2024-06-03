@@ -133,9 +133,13 @@ const gaPageIdentifier = Astro.url.pathname
     </slot>
 
     <slot />
-
+    <br>
+    <br>
+    <br>
+    <br>
     <slot name='page-footer'>
-      <Footer />
+      <Footer/>
+
     </slot>
 
     <PageProgress initialMessage={initialLoadingMessage} client:idle />

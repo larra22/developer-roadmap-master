@@ -1,86 +1,132 @@
 ---
-
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
-import { insertCategoria} from "../../database/consultas";
-import { getAllCategorias } from "../../database/consultas";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import '../../styles/formulario.css'
-
-
- export const prerender = false
-
-
-
-if (Astro.request.method === "POST") {
-    try {
-        const data = await Astro.request.formData();
-        const titulo = data.get("titulo")?.toString();
-        const descripcion = data.get("descripcion")?.toString();
-        const categoriaPadre = data.get("categoriaPadre")?.toString();
-
-        if(titulo && descripcion && categoriaPadre){
-        await insertCategoria(titulo, descripcion, categoriaPadre);
-           console.log('Categoria insertada correctamente')
-          }
-        
-
-    } catch (error) {
-      return Astro.redirect('/addBD/addError')
-    
-    }
-  }
+import { type ICategoria } from "../../database/dbMySQL";
+import { getAllCategorias } from "../../database/consultas";
+import '../../styles/formulario.css';
 
 const categorias = await getAllCategorias();
-var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
-console.log(categoriasNames)
-
+const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idNombre);
+const availableKeywords = categoriasNames || [];
 
 ---
 
 <BaseLayout title='Onboarding' permalink={'/enviarOpinion'}>
     <SimplePageHeader
-    title='Developer Roadmaps'
-    description='Incluir en el almacenamiento de la empresa un nueva categoría:'
-  />
+        title='Developer Roadmaps'
+        description='Incluir en el almacenamiento de la empresa un nueva categoría:'
+    />
 
-
-  <form method="POST">
-
+    <form id="categoriaForm" class="form-container">
         <fieldset>
-            <label  for="titulo" >Título:</label>
+            <label for="titulo">Título:</label>
             <input
-              type="text"
-              id="titulo"
-              name="titulo"
-              required
-              placeholder="Título de la categoría" aria-required="true"
+                type="text"
+                id="titulo"
+                name="titulo"
+                required
+                placeholder="Título de la categoría"
+                aria-required="true"
             />
 
             <label for="descripcion">Descripción:</label>
             <textarea
-              id="descripcion"
-              name="descripcion"
-              cols="50"
-              rows="5"
-              placeholder="Descripción..." required aria-required="true"
+                id="descripcion"
+                name="descripcion"
+                cols="50"
+                rows="5"
+                placeholder="Descripción..."
+                required
+                aria-required="true"
             ></textarea>
 
-
-        <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
-        <select id="categoriaPadre" name="categoriaPadre" required aria-required="true">
-            <option value="" disabled selected>Escoger categoría padre...</option>
-            <option value="Global" >Ninguna</option>
-            {categoriasNames?.map((categoria) => (
-              <option value={categoria}>{categoria}</option>
-            ))}
-          </select>
-
+            <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
+            
+            <input type="text" id="input-box" placeholder="Buscar categoría"
+            autocomplete="off">
+            <select id="categoriaPadre" name="categoriaPadre" required aria-required="true">
+                <option value="" disabled selected>Escoger categoría padre...</option>
+                <option value="Global">Ninguna</option>
+                {categoriasNames?.map((categoria: string) => (
+                    <option value={categoria}>{categoria}</option>
+                ))}
+            </select>
         </fieldset>
-        <button type="submit">Guardar</button>
+        <div class="button-container">
+            <button type="submit">Guardar</button>
+        </div>
 
-</form>
+        <div id="correct-message" class="message success"></div>
+        <div id="error-message" class="message error"></div>
+    </form>
 
+    <script>
+      const form = document.getElementById('categoriaForm');
+      const correctMessageElement = document.getElementById('correct-message');
+      const errorMessageElement = document.getElementById('error-message');
+ 
 
+      form?.addEventListener('submit', async function(event) {
+          event.preventDefault();
+          const form = event.target as HTMLFormElement;
+          const formData = new FormData(form);
+  
+          const response = await fetch('/api/addCategoria', {
+              method: 'POST',
+              body: formData
+          });
+  
+          const result = await response.json();
+  
+          if (response.ok) {
+              if (correctMessageElement && errorMessageElement) {
+                  correctMessageElement.textContent = result.message;
+                  errorMessageElement.textContent = ''; // Clear error message if success
+                  correctMessageElement.classList.add('show'); // Show success message style
+                  errorMessageElement.classList.remove('show'); // Hide error message style
+              }
+          } else {
+              if (errorMessageElement && correctMessageElement) {
+                  errorMessageElement.textContent = result.message || 'Error';
+                  correctMessageElement.textContent = ''; // Clear success message if error
+                  errorMessageElement.classList.add('show'); // Show error message style
+                  correctMessageElement.classList.remove('show'); // Hide success message style
+              }
+          }
+      });
 
+      const inputBox = document.getElementById('input-box');
+    // Get the select element
+    const selectBox = document.getElementById('categoriaPadre');
+    // Get all options in the select element
+    const options = selectBox?.getElementsByTagName('option');
 
+    // Add an input event listener to the input box
+    inputBox?.addEventListener('input', function(event) {
+
+        console.log('ha pasado')
+        const inputElement = event.target as HTMLInputElement;
+        const searchText = inputElement.value?.toLowerCase(); // Convert input text to lowercase for case-insensitive matching
+        console.log(searchText)
+        if(options){
+        // Loop through each option in the select box
+        for (let i = 0; i < options.length; i++) {
+            const optionText = options[i].text.toLowerCase(); // Convert option text to lowercase for case-insensitive matching
+
+            // Check if the option text contains the search text
+            if(searchText){
+            if (optionText.includes(searchText)) {
+                console.log(optionText)
+                options[i].style.display = ''; // Show the option if it matches the search text
+            } else {
+                options[i].style.display = 'none'; // Hide the option if it does not match the search text
+            }
+        }else{
+            options[i].style.display = ''; 
+        }
+    }
+    }
+    });
+  
+  </script>
 </BaseLayout>
