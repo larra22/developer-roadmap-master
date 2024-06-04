@@ -60,9 +60,9 @@ export function createControl(
     properties : TextArea | Label |Properties,
     typeID: "TextArea" | "Label" | "Arrow",
     w: string,
-    x: string,
-    y: string,
-    zOrder: string,
+    x: string, //CAMBIA
+    y: string, //Interfiere con la inclinacion
+    zOrder: string, // Para que este encima o debajo
     h?: string,
 ): Control {
     return {
@@ -85,9 +85,9 @@ interface Properties {
     curvature:  string;
     direction:  string;
     leftArrow:  string;
-    p0:         { x: string, y: string, length?: string};
-    p1:         {x: string, y: string,length?: string},
-    p2:         {x: string, y: string,length?: string},
+    p0:         { x: number, y: number, length?: number};
+    p1:         {x: number, y: number,length?: number},
+    p2:         {x: number, y: number,length?: number},
     rightArrow: string;
     shape:      string;
     stroke?:     string;
@@ -99,9 +99,9 @@ export function createPropertiesFlechas(
     curvature: string,
     direction: string,
     leftArrow: string,
-    p0: {x: string, y: string, length?: string},
-    p1: {x: string, y: string, length?: string},
-    p2: {x: string, y: string, length?: string},
+    p0: {x: number, y: number, length?: number},
+    p1: {x: number, y: number, length?: number},
+    p2: {x: number, y: number, length?: number},
     rightArrow: string,
     shape: string,
     stroke?: "dotted",

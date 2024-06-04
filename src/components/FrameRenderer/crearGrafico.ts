@@ -19,7 +19,7 @@ export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategori
     const listaComponentesPrimerNivel = crearCuadrados(listaCategoriasPrimerNivel,listaCategoriasSegundoNivel, subTercerNivel,COLOR_AMARILLO);
 
     const controls = {control:[]}
-    const mockup = createMockUp(controls, "5000","1800","5000","1390","1.0")
+    const mockup = createMockUp(controls, "5000","1847","5000","1847","1.0")
     mockup.controls.control=listaComponentesPrimerNivel;
 
     const global = createGlobal(mockup)
@@ -107,10 +107,22 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], 
 
     while (max>i){
         
+        //Se suma +23.5 para que pase en medio del cuadrado, ya que la posición del cuadrado + la mitad de su ancho
+       const flechaHorizontalI= crearFlechaHorizontalI(i+10, principio_Y_primer_nivel+23.5);
+        listaFlechas.push(flechaHorizontalI);
+        const flechaHorizontalD = crearFlechaHorizontalD(i+10, principio_Y_primer_nivel+23.5)
+        listaFlechas.push(flechaHorizontalD)
 
-        const flechaHorizontal= //crearFlechaVerticalSubNivel(i+10, 0);
-        crearFlecaPrincipalHorizontal(i+10);
-        listaFlechas.push(flechaHorizontal);
+        const flechaVerticalD = crearFlechaVerticalDerecha(i+20, principio_Y_primer_nivel+23.5);
+        listaFlechas.push(flechaVerticalD);
+        const flechaVerticalI = crearFlechaVerticalIzquierda(i+20, principio_Y_primer_nivel+23.5)
+        listaFlechas.push(flechaVerticalI)
+
+
+
+
+        const pruebaFlechaInclinada = crearPruebaFlechaInclinada(1, principio_Y_primer_nivel+49)
+        listaFlechas.push(pruebaFlechaInclinada)
        
         const textArea = createTextArea(color)
 
@@ -129,42 +141,55 @@ function crearCuadrados(listaTitulos: string[],subcategorias:[string,string][], 
         principio_Y_primer_nivel+=450;
 
     }
-    const flechaVertical = crearFlechaVerticalIzquierda(i+20, (principio_Y_primer_nivel/10)+3);
-   listaFlechas.push(flechaVertical);
+    
 
     return listaFlechas.concat(listaConComponentes);
 
 }
 
+function crearPruebaFlechaInclinada(i:number, y:number){
+    //La y del 70 para modificar la forma de la curva
+    //El 700 para que este en medio, o sea que sería mejor ajustarlo al componente
+    //La x para el final, debería ser segun el segundo nivel, ajustarlo tambien
+    const properties= createPropertiesFlechas(COLOR_LKS,"0","bottom","false",{x:700 ,y:0},{x:0.5,y:0},{x:80,y:70.989898989899},"false","line")
+    const controlFlecha = createControl(i.toString(),"79","522",properties,"Arrow","523","495",y.toString(),"72","70") 
+    return controlFlecha
+}
 
 
-function crearFlecaPrincipalHorizontal(i: number){
-    //Recudido a la mitad
-    //const properties= createPropertiesFlechas(COLOR_ROJO,"0","bottom","false",{x:"0",y:"0",length:"0"},{x:"2",y:"20",length:"20"},{x:"2",y:"20",length:"20"},"false","line")
-    //const controlFlecha = createControl(i.toString(),"2","10",properties,"Arrow","10",(coordenadaX/10).toString(),principio_Y.toString(),"1","2") 
-    
-   const properties= createPropertiesFlechas(COLOR_LKS,"0","bottom","false",{x:"0",y:"0",length:"0"},{x:"50",y:"2",length:"50"},{x:"10",y:"2",length:"10"},"false","line")
-    const controlFlecha = createControl(i.toString(),"2","10",properties,"Arrow","10","50",((principio_Y_primer_nivel/10)+3).toString(),"1","2") 
-    
+
+
+function crearFlechaHorizontalI(i: number, y: number){
+    const properties = createPropertiesFlechas(COLOR_NEGRO, "0", "bottom", "false", 
+    {x:752, y:0, length:752},{x:0.5, y:0, length:0.5}, {x:0,y:4,length:4},"false","line")
+    const controlFlecha = createControl(i.toString(), "4", "752", properties,"Arrow","753", "400",(y).toString(),"0","5")
     return controlFlecha;
 }
-let y=6;
+
+function crearFlechaHorizontalD(i: number, y: number){
+    const properties = createPropertiesFlechas(COLOR_NEGRO, "0", "bottom", "false", 
+    {x:752, y:0, length:752},{x:0.5, y:0, length:0.5}, {x:0,y:4,length:4},"false","line")
+    const controlFlecha = createControl(i.toString(), "4", "752", properties,"Arrow","753", "1000",(y).toString(),"0","5")
+    return controlFlecha;
+}
+
+function crearFlechaVerticalDerecha(i:number, coordenadaY:number){
+
+    const properties= createPropertiesFlechas(COLOR_GRIS,"0","top","false",{x:0,y:0},{x:0.5,y:0},{x:2,y:451},"false","line")
+    //Posicion con x e y
+    const controlFlecha = createControl((i*33).toString(),"451","2",properties,"Arrow","4","1752",coordenadaY.toString(),"0","453")
+
+    return controlFlecha;
+}
+
 function crearFlechaVerticalIzquierda(i:number, coordenadaY:number){
 
-    const properties= createPropertiesFlechas(COLOR_GRIS,"0","top","false",{x:"0.5",y:"0"},{x:"0",y:"0",length:"0"},{x:"0",y:"1000",length:"0"},"false","line")
-    const controlFlecha = createControl((i*33).toString(),"200","1",properties,"Arrow","1","115","1","0","0.8")
-    y+=40;
+    const properties= createPropertiesFlechas(COLOR_NEGRO,"0","top","false",{x:0,y:0},{x:0.5,y:0},{x:2,y:451},"false","line")
+    //Posicion con x e y
+    const controlFlecha = createControl((i*33).toString(),"451","2",properties,"Arrow","4","400",(coordenadaY+4).toString(),"0","453")
     return controlFlecha;
 }
 
-
-function crearFlechaVerticalSubNivel(i:number, coordenadaY:number){
-    //pOSICION x, EN EL CENTRO 115
-    const properties= createPropertiesFlechas(COLOR_ROJO,"0","top","false",{x:"0",y:"1"},{x:"0.5027290932181129",y:"0.0027592156598140257",length: "0.502736665103077"},{x:"90",y:"20", length:"20"},"false","line")
-    const controlFlecha = createControl((i*33).toString(),"4","90",properties,"Arrow","91","115","5","0","0.7")
-    y+=40;
-    return controlFlecha;
-}
 
 
 
