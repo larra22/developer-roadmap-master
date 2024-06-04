@@ -205,7 +205,7 @@ const componentes = createComponent('0', "70", "46", "200",'Prueba', [control0, 
 
 
 
-const propiedades= createPropertiesFlechas('16711680', '0', '0', '0', {x: '0', y: '0', length:'0'}, {x: '0', y: '0',length:'0'}, {x: '0', y: '0',length:'0'}, '0', '0');
+const propiedades= createPropertiesFlechas('16711680', '0', '0', '0', {x: 0, y: 0, length:0}, {x: 0, y: 0,length:0}, {x: 0, y: 0,length:0}, '0', '0');
 const controlFlecha = createControl("0","200","400", propiedades, "Arrow", "325", "0", "0", "0", "50");
 
 const controls = {control: []};
