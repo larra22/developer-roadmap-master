@@ -2,7 +2,7 @@
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import '../../styles/formulario.css';
-import {insertResource} from '../../database/consultas.ts';
+import {getAllRecursos, insertResource} from '../../database/consultas.ts';
 import {getAllCategorias} from '../../database/consultas.ts';
 import { insertRelacionRecursoCategoria } from "../../database/consultas.ts";
 
@@ -33,12 +33,22 @@ import { insertRelacionRecursoCategoria } from "../../database/consultas.ts";
     }
   }
 
+
+
+
+const user = Astro.locals.user;
+if(!user){
+    return Astro.redirect("/auth/signin")
+}
+
+
 const categorias = await getAllCategorias();
 var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
+const recursos = await getAllRecursos();
+var recursosNames = recursos?.map((recurso)=> recurso.titulo)
+console.log(recursosNames)
 ---
-<head>
-  <meta charset="UTF-8" />
-</head>
+
 <BaseLayout title='Onboarding' permalink={'/enviarOpinion'}>
     <SimplePageHeader
     title='Developer Roadmaps'
@@ -46,7 +56,7 @@ var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
   />
 
 
-  <form method="POST">
+  <form id="recursoForm" class="form-container">
     <fieldset>
         <label  for="titulo" >Título:</label>
         <input
@@ -74,22 +84,28 @@ var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
                 <input type="radio" id="externo" name="internoExterno" value="false" required/>
                 <label for="intermedio">No</label>
               </div>
-        </fieldset>
+        
 
-        <label for="categoria">Elige una categoría:</label>
-        <select class="js-example-basic-single" id="categoria" name="categoria" required>
-          <option value="" disabled selected>Escoger categoría...</option>
-          {categoriasNames?.map((categoria) => (
-            <option value={categoria}>{categoria}</option>
-          ))}
-          </select>
-          <div style="display: flex; flex-flow: column; justify-content: center;">
-            <rux-log filter=""></rux-log>
-          </div>
+
+        <input type="hidden" id="categoria" name="categoria">
+
+        <label for="categoriaLabel">Elige una categoría:</label>
+        <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
+
+            <div id="custom-dropdown" class="custom-dropdown">
+                <ul id="dropdown-options" class="dropdown-options">
+                    <li value="Global">Ninguna</li>
+                    {categoriasNames?.map((categoria: string) => (
+                        <li value={categoria}>{categoria}</li>
+                    ))}
+                </ul>
+            </div>
+
+          </fieldset>
 
         <fieldset>
-            <legend>Campos opcionales </legend>
-        <br></br>
+           
+     
         <label for="descripcion">Descripción:</label>
         <textarea
           id="descripcion"
@@ -149,21 +165,40 @@ var categoriasNames = categorias?.map((categoria) => categoria.idNombre);
             </fieldset>
 
             <label for="otrosRecursos">¿Esta relacionado con algún otro?:</label>
-            Falta implementar esto, permiter mostrar la lista de recursos,
-            y seleccionar uno o varios de ellos para relacionarlos con el nuevo recurso.
 
-        <button type="submit">Guardar</button>
+            <input type="hidden" id="recursoRelacion" name="recursoRelacion">
+        <input type="text" id="input-boxRecurso" placeholder="Buscar recurso relacionado..." autocomplete="off">
 
+            <div id="custom-dropdownRecurso" class="custom-dropdown">
+                <ul id="dropdown-optionsRecurso" class="dropdown-options">
+                    {recursosNames?.map((recurso: string) => (
+                        <li value={recurso}>{recurso}</li>
+                    ))}
+                </ul>
+            </div>
+
+
+            <div class="button-container">
+              <button type="submit">Guardar</button>
+          </div>
+  
+          <div id="correct-message" class="message success"></div>
+          <div id="error-message" class="message error"></div>
 </form>
+
+<script>
+import {  setupDropdown, setupFormSubmission } from '../../utils.js';
+
+// Setup form submission handling
+setupFormSubmission('recursoForm', '/api/addRecurso');
+
+// Initialize dropdowns
+setupDropdown('input-box', 'custom-dropdown', 'categoriaPadre');
+setupDropdown('input-boxRecurso', 'custom-dropdownRecurso', 'recursoRelacion');
+</script>
 
 
 </BaseLayout>
 
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
-import $ from 'jquery';
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-</script>
 

@@ -66,3 +66,50 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.custom-dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100%; /* Make the dropdown the same width as the input */
+}
+
+.dropdown-options li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-options li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style the scrollbar */
+.dropdown-options::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-options::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dropdown-options::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.dropdown-options::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -8,12 +8,8 @@ export async function POST(context: APIContext): Promise<Response> {
     const titulo = data.get("titulo")?.toString();
     const descripcion = data.get("descripcion")?.toString();
     const categoriaPadre = data.get("categoriaPadre")?.toString();
-    console.log(categoriaPadre)
-
-
 
     if (titulo && descripcion && categoriaPadre) {
-        console.log('Ha pasado')
         try {
             await insertCategoria(titulo, descripcion, categoriaPadre);
             return new Response(JSON.stringify({ message: "Ha sido correctamente insertado" }), {
