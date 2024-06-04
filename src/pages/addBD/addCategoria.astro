@@ -5,9 +5,16 @@ import { type ICategoria } from "../../database/dbMySQL";
 import { getAllCategorias } from "../../database/consultas";
 import '../../styles/formulario.css';
 
+const user = Astro.locals.user;
+if(!user){
+    return Astro.redirect("/auth/signin")
+}else if(user && (!user.admin || user.admin==0)){
+    return Astro.redirect("/home")
+    
+}
+
 const categorias = await getAllCategorias();
 const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idNombre);
-const availableKeywords = categoriasNames || [];
 
 ---
 
@@ -40,6 +47,9 @@ const availableKeywords = categoriasNames || [];
                 aria-required="true"
             ></textarea>
 
+            <input type="hidden" id="categoriaPadre" name="categoriaPadre" value="Global">
+
+
             <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
             
             <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
@@ -53,10 +63,9 @@ const availableKeywords = categoriasNames || [];
                 </ul>
             </div>
 
-
-
-
         </fieldset>
+
+
         <div class="button-container">
             <button type="submit">Guardar</button>
         </div>
@@ -162,8 +171,10 @@ function updateOptionsVisibility() {
         const value = selectedOption.getAttribute('value');
         if (value && inputBox && dropdown) {
             const inputElement = document.getElementById('input-box') as HTMLInputElement;
+            const hiddenInput = document.getElementById('categoriaPadre') as HTMLInputElement;
             inputElement.value = value;
             dropdown.style.display = 'none';
+            hiddenInput.value = value;
         }
     }
 });

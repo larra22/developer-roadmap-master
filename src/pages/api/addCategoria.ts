@@ -8,6 +8,7 @@ export async function POST(context: APIContext): Promise<Response> {
     const titulo = data.get("titulo")?.toString();
     const descripcion = data.get("descripcion")?.toString();
     const categoriaPadre = data.get("categoriaPadre")?.toString();
+    console.log(categoriaPadre)
 
 
 
