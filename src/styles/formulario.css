@@ -113,3 +113,30 @@ button {
 .dropdown-options::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.radio-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.radio-container label {
+  margin-right: 50px; 
+}
+
+.checkbox-list {
+  margin-top: 10px;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.checkbox-container input[type="checkbox"] {
+  margin: 0;
+}
+.checkbox-container label {
+  margin-left: 5px;
+  margin-top: auto;
+  margin-bottom: auto;
+}

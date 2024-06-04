@@ -1,14 +1,17 @@
 ---
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
-import { getAllCategorias } from "../../database/consultas";
+import {getCategoriaPrimerNivelGENERAL, getCategoriaSegundoNivelGENERAL,getCategoriaTercerNivelGENERAL } from "../../database/consultas";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import esqueletoDev from "../../../public/roadmaps/esqueletoDev.json";
 import { insertNuevoRoadmap } from "../../database/consultas";
 import { insertRelacionRoadmapCategoria } from "../../database/consultas";
 import '../../styles/formulario.css'
-export const prerender = false
 
-const categoriasNivel1 = await getAllCategorias();
+
+const categoriasNivel1 = await getCategoriaPrimerNivelGENERAL();
+
+const categoriasNivel2 = await getCategoriaSegundoNivelGENERAL();
+
+const categoriasNivel3 = await getCategoriaTercerNivelGENERAL();
 
 if (Astro.request.method === 'POST') {
     try{
@@ -57,7 +60,7 @@ if (Astro.request.method === 'POST') {
     description='Añade todo a la base de datos'
   />
 
-  <form method="POST">
+  <form id="roadmapForm" class="form-container" autocomplete="off">
 
     <fieldset>
     <label>Titulo:</label>
@@ -68,21 +71,78 @@ if (Astro.request.method === 'POST') {
     </fieldset>
 
     <fieldset>
-        <div class="checkbox-container">
-            <label for="categorias">Escoge las categorías que desees incluir:</label>
-            {categoriasNivel1?.map((categoria) => (
-                <div class="checkbox-item">
-                    <input type="checkbox" id={categoria.idNombre} name={categoria.idNombre} value={categoria.idNombre}/>
-                    <label for={categoria.idNombre}>{categoria.idNombre}</label>
-                    <label>Orden (opcional):</label>
-                    <input type="number" id={`prioridad-${categoria.idNombre}`} name={`prioridad-${categoria.idNombre}`} min="1"/>
-                </div>
-            ))}
-        </div>
+        <label for="categorias">Escoge las categorías del 1º nivel que desees incluir:</label>
+            
+            <input type="text" id="input-box" placeholder="Buscar primer nivel" autocomplete="off">
+
+            <div id="custom-dropdown" class="custom-dropdown">
+                <ul id="dropdown-options" class="dropdown-options">
+                    {categoriasNivel1?.map((categoria) => (
+                        <li value={categoria.idNombre}>{categoria.idNombre}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div id="checkboxList" class="checkbox-list"></div>
+
     </fieldset>
 
-<br/>
-    <button>Crear y guardar</button>
+
+    <fieldset>
+        <label for="categorias">Escoge las categorías del 2º nivel que desees incluir:</label>
+            
+            <input type="text" id="input-boxSegundo" placeholder="Buscar segundo nivel" autocomplete="off">
+
+            <div id="custom-dropdownSegundo" class="custom-dropdown">
+                <ul id="dropdown-optionsSegundo" class="dropdown-options">
+                    {categoriasNivel2?.map((categoria) => (
+                        <li value={categoria.idNombre}>{categoria.idNombre}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div id="checkboxListSegundo" class="checkbox-list"></div>
+
+    </fieldset>
+
+    <fieldset>
+        <label for="categorias">Escoge las categorías del 3º nivel que desees incluir:</label>
+            
+            <input type="text" id="input-boxTercero" placeholder="Buscar tercero nivel" autocomplete="off">
+
+            <div id="custom-dropdownTercero" class="custom-dropdown">
+                <ul id="dropdown-optionsTercero" class="dropdown-options">
+                    {categoriasNivel3?.map((categoria) => (
+                        <li value={categoria.idNombre}>{categoria.idNombre}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div id="checkboxListTercero" class="checkbox-list"></div>
+
+    </fieldset>
+
+
+    <div class="button-container">
+        <button type="submit">Crear y Guardar</button>
+    </div>
+
+    <div id="correct-message" class="message success"></div>
+    <div id="error-message" class="message error"></div>
+
     </form>
+
+<script>
+
+import { setupFormSubmission } from '../../utils.js';
+import { setupDropdown } from './configRoadmap';
+
+setupFormSubmission('roadmapForm', '/api/addRoadmap');
+setupDropdown('input-box', 'custom-dropdown', 'checkboxList');
+setupDropdown('input-boxSegundo', 'custom-dropdownSegundo', 'checkboxListSegundo');
+setupDropdown('input-boxTercero', 'custom-dropdownTercero', 'checkboxListTercero');
+
+
+</script>
 
 </BaseLayout>

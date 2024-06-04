@@ -2,39 +2,8 @@
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import '../../styles/formulario.css';
-import {getAllRecursos, insertResource} from '../../database/consultas.ts';
+import {getAllRecursos} from '../../database/consultas.ts';
 import {getAllCategorias} from '../../database/consultas.ts';
-import { insertRelacionRecursoCategoria } from "../../database/consultas.ts";
-
-
- export const prerender = false
-
- if (Astro.request.method === "POST") {
-    try {
-        const data = await Astro.request.formData();
-      const titulo = data.get("titulo")?.toString();
-      const enlace = data.get("enlaceFichero")?.toString();
-      const interno = data.get("internoExterno")?.toString() === "true" ? true : false;
-      const categoria = data.get("categoria")?.toString();
-      //Opcionales
-      const descripcion = data.get("descripcion")?.toString();
-      const dificultad = data.get("dificultad")?.toString();
-      const idioma = data.get("idioma")?.toString();
-        const tipo = data.get("tipo")?.toString();
-        const formato = data.get("formato")?.toString();
-      let idRecurso ;
-      if(titulo && enlace && interno && categoria){
-      idRecurso = await insertResource(titulo, enlace, interno, descripcion ?? null , dificultad ?? null, tipo ?? null, formato ?? null,idioma ?? null,  null);
-        if(idRecurso){
-      await insertRelacionRecursoCategoria(idRecurso, categoria);
-    }}
-    } catch (error) {
-      return Astro.redirect('/addBD/addError')
-    }
-  }
-
-
-
 
 const user = Astro.locals.user;
 if(!user){
@@ -193,7 +162,7 @@ import {  setupDropdown, setupFormSubmission } from '../../utils.js';
 setupFormSubmission('recursoForm', '/api/addRecurso');
 
 // Initialize dropdowns
-setupDropdown('input-box', 'custom-dropdown', 'categoriaPadre');
+setupDropdown('input-box', 'custom-dropdown', 'categoria');
 setupDropdown('input-boxRecurso', 'custom-dropdownRecurso', 'recursoRelacion');
 </script>
 

@@ -51,7 +51,7 @@ export interface IRecurso extends RowDataPacket {
   tipo: Tipo | null;
   formato: Formato | null;
   idioma: string | null;
-  deInteres: number[] | null;
+  deInteres: number | null;
 }
 
 export interface ICategoria extends RowDataPacket {

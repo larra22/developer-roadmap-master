@@ -11,6 +11,8 @@ export function updateOptionsVisibility(inputId, dropdownId) {
     });
 
     if (searchText === '') {
+        const hiddenInput = document.getElementById(hiddenInputId);
+        hiddenInput.value=''
         dropdownOptions.forEach(option => {
             option.style.display = '';
         });

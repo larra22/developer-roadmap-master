@@ -79,7 +79,7 @@ export interface MyErrorEvent {
     }
 
 
-export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string | null,n_Dificultad:string | null,tipo:string | null,formato:string | null,idioma:string | null,deInteres:number[] | null ) => {
+export const insertResource = async (titulo:string, enlaceFichero:string,interno:boolean,descripcion:string | null,n_Dificultad:string | null,tipo:string | null,formato:string | null,idioma:string | null,deInteres:number | null ) => {
     const connection = await db.getConnection();
     const internoExterno = interno ? 1 : 0;
     const dificultad = n_Dificultad ? `'${n_Dificultad}'` : null;
@@ -213,6 +213,23 @@ export const getRecursoById = async (idRecurso: number) => {
 
 }
 
+export const getRecursoIdByTitle = async (title: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT idRecurso FROM Recurso WHERE titulo = '${title}'`;
+        const [rows] = await connection.execute<IRecurso[]>(query, [title]);
+        
+        return rows[0].idRecurso;
+    } catch (error) {
+        console.error('Error getting resource:', error);
+    }finally {
+        connection.release();
+    }
+
+}
+
+
 export const getAllRecursos = async () => {
     const connection = await db.getConnection();
     try {
@@ -312,6 +329,21 @@ export const getComponentesCategoriaPrimerNivel = async (roadmap: string) => {
     }
 }
 
+export const getCategoriaPrimerNivelGENERAL = async() =>{
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Categoria WHERE Categoria.categoriaSuperior='Global' ORDER BY idNombre ASC`;
+        const [rows] = await connection.execute<ICategoria[]>(query);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
+}
+
 export const getComponentesCategoriaSegundoNivel = async (roadmap: string) => {
     const connection = await db.getConnection();
     try {
@@ -330,6 +362,27 @@ export const getComponentesCategoriaSegundoNivel = async (roadmap: string) => {
         const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap]);
         console.log(rows)
 
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
+}
+
+
+export const getCategoriaSegundoNivelGENERAL = async() =>{
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Categoria WHERE Categoria.categoriaSuperior IN (
+            SELECT idNombre 
+            FROM Categoria 
+            WHERE Categoria.categoriaSuperior = 'Global'
+        ) 
+        ORDER BY idNombre ASC;`;
+        const [rows] = await connection.execute<ICategoria[]>(query);
         
         return rows || [];
     } catch (error) {
@@ -363,6 +416,29 @@ export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:s
         connection.release();
     }
 
+}
+
+export const getCategoriaTercerNivelGENERAL = async() =>{
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Categoria WHERE Categoria.categoriaSuperior IN (
+            SELECT idNombre 
+            FROM Categoria 
+            WHERE Categoria.categoriaSuperior <> 'Global' AND
+            Categoria.categoriaSuperior IN ( SELECT idNombre
+                FROM Categoria 
+                WHERE Categoria.categoriaSuperior = 'Global'
+        ) )
+        ORDER BY idNombre ASC;`;
+        const [rows] = await connection.execute<ICategoria[]>(query);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting categoria:', error);
+    }finally {
+        connection.release();
+    }
 }
 
 

@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import { insertCategoria, getAllCategorias } from "../../database/consultas";
+import { insertCategoria } from "../../database/consultas";
 
 
 export async function POST(context: APIContext): Promise<Response> {
