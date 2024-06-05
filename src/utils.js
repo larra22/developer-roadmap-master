@@ -52,7 +52,7 @@ export function setupDropdown(inputId, dropdownId, hiddenInputId) {
     });
 }
 
-export async function handleFormSubmit(event, apiUrl) {
+export async function handleFormSubmit(event, apiUrl, formId) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
@@ -63,11 +63,17 @@ export async function handleFormSubmit(event, apiUrl) {
     const errorMessageElement = document.getElementById('error-message');
 
     if (response.ok) {
+        if(formId=='roadmapForm'){
+            document.getElementById('checkboxList').innerHTML = '';
+    document.getElementById('checkboxListSegundo').innerHTML = '';
+    document.getElementById('checkboxListTercero').innerHTML = '';
+        }
         correctMessageElement.textContent = result.message;
         errorMessageElement.textContent = '';
         correctMessageElement.classList.add('show');
         errorMessageElement.classList.remove('show');
         form.reset()
+
     } else {
         errorMessageElement.textContent = result.message || 'Error';
         correctMessageElement.textContent = '';
@@ -79,6 +85,6 @@ export async function handleFormSubmit(event, apiUrl) {
 export function setupFormSubmission(formId, apiUrl) {
     const form = document.getElementById(formId);
     form?.addEventListener('submit', function(event) {
-        handleFormSubmit(event, apiUrl);
+        handleFormSubmit(event, apiUrl, formId);
     });
 }

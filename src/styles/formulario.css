@@ -124,9 +124,6 @@ button {
   margin-right: 50px; 
 }
 
-.checkbox-list {
-  margin-top: 10px;
-}
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -139,4 +136,25 @@ button {
   margin-left: 5px;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+/* Estilos para el asterisco rojo */
+.required-field::after {
+  content: ' *';
+  color: red;
+}
+
+
+.checkbox-list {
+  margin-top: 10px;
+  
+  padding: 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados opcionales */
+}
+
+/* Estilo para el campo de entrada numérico */
+.checkbox-list input[type="number"] {
+  width: 100px; /* Tamaño más pequeño */
+  border: 2px solid skyblue; /* Borde azul */
+  color: #000000; /* Tono gris para el texto */
 }

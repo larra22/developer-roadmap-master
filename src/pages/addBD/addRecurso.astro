@@ -27,7 +27,7 @@ console.log(recursosNames)
 
   <form id="recursoForm" class="form-container">
     <fieldset>
-        <label  for="titulo" >Título:</label>
+        <label class="required-field"  for="titulo" >Título:</label>
         <input
           type="text"
           id="titulo"
@@ -36,7 +36,7 @@ console.log(recursosNames)
           placeholder="Título del recurso" aria-required="true"
         />
 
-        <label for="enlaceFichero">Enlace al fichero:</label>
+        <label class="required-field" for="enlaceFichero">Enlace al fichero:</label>
         <input
           type="text"
           id="enlaceFichero"
@@ -45,7 +45,7 @@ console.log(recursosNames)
           placeholder="Enlace del fichero" aria-required="true"
         />
 
-        <label for="interno">¿Este recurso ha sido creado por LKS?:</label>
+        <label class="required-field" for="interno">¿Este recurso ha sido creado por LKS?:</label>
             <div class="radio-container" >
                 <input type="radio" id="interno" name="internoExterno" value="true" required/>
                 <label for="interno">Sí</label>
@@ -58,7 +58,7 @@ console.log(recursosNames)
 
         <input type="hidden" id="categoria" name="categoria">
 
-        <label for="categoriaLabel">Elige una categoría:</label>
+        <label class="required-field" for="categoriaLabel">Elige una categoría:</label>
         <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
 
             <div id="custom-dropdown" class="custom-dropdown">

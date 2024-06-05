@@ -54,17 +54,17 @@ export interface MyErrorEvent {
         }
     }
 
-    export const insertNuevoRoadmap = async (roadmap: string, titulo:string, descripcion: string, relatedRoadmap?:string) => {
+    export const insertNuevoRoadmap = async (roadmap: string, descripcion: string, relatedRoadmap?:string) => {
         const connection = await db.getConnection();
         try {
             let result: ResultSetHeader; 
             let query: string;
             if(relatedRoadmap){
-                query = `INSERT INTO EsquemaRoadmap (idRoadmap,  title, description, relatedRoadmap) VALUES ('${roadmap}', '${titulo}', '${descripcion}', '${relatedRoadmap}')`;
-                [result] = await connection.execute<ResultSetHeader>(query, [roadmap, titulo, descripcion, relatedRoadmap]);
+                query = `INSERT INTO EsquemaRoadmap (idRoadmap,  description, relatedRoadmap) VALUES ('${roadmap}', '${descripcion}', '${relatedRoadmap}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap,  descripcion, relatedRoadmap]);
             }else{
-                query = `INSERT INTO EsquemaRoadmap (idRoadmap, title, description) VALUES ('${roadmap}', '${titulo}', '${descripcion}')`;
-                [result] = await connection.execute<ResultSetHeader>(query, [roadmap,  titulo, descripcion]);
+                query = `INSERT INTO EsquemaRoadmap (idRoadmap,description) VALUES ('${roadmap}', '${descripcion}')`;
+                [result] = await connection.execute<ResultSetHeader>(query, [roadmap,   descripcion]);
 
             }
             

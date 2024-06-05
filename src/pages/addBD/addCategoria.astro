@@ -26,7 +26,7 @@ const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idN
 
     <form id="categoriaForm" class="form-container" autocomplete="off">
         <fieldset>
-            <label for="titulo">Título:</label>
+            <label class="required-field" for="titulo">Título:</label>
             <input
                 type="text"
                 id="titulo"
@@ -36,7 +36,7 @@ const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idN
                 aria-required="true"
             />
 
-            <label for="descripcion">Descripción:</label>
+            <label class="required-field" for="descripcion">Descripción:</label>
             <textarea
                 id="descripcion"
                 name="descripcion"
@@ -50,7 +50,7 @@ const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idN
             <input type="hidden" id="categoriaPadre" name="categoriaPadre" value="Global">
 
 
-            <label for="categoriaPadre">Pertenece a alguna categoría más global:</label>
+            <label  for="categoriaPadre">Pertenece a alguna categoría más global:</label>
             
             <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
 
