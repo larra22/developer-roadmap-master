@@ -32,7 +32,7 @@ const roadmaps= await getRoadmapAlmacenados();
           roadmaps.map((roleRoadmap) => (
             <GridItem
               url={`/${roleRoadmap.idRoadmap}`}
-              title={roleRoadmap.title}
+              title={roleRoadmap.idRoadmap}
               description={roleRoadmap.description}
             />
           ))

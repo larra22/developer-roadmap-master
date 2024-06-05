@@ -80,7 +80,7 @@ const uniqueComponentesSegundoNivel = componentesSegundoNivel?.filter((segundoNi
 
 <BaseLayout
   permalink={`/${roadmapId}`}
-  title={roadmapData?.title ?? 'Indefinido'}
+  title={roadmapData?.idRoadmap ?? 'Indefinido'}
   description={roadmapData?.description}
   jsonLd={jsonLdSchema}
 >
@@ -95,7 +95,7 @@ const uniqueComponentesSegundoNivel = componentesSegundoNivel?.filter((segundoNi
   />
 
   <RoadmapHeader
-    title={roadmapData?.title ?? 'Indefinido'}
+    title={roadmapData?.idRoadmap ?? 'Indefinido'}
     description={roadmapData?.description ?? 'Indefinido'}
     note={roadmapData?.note}
     roadmapId={roadmapId}
