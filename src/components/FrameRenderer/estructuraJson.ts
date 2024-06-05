@@ -89,7 +89,7 @@ interface Properties {
     p1:         {x: number, y: number,length?: number},
     p2:         {x: number, y: number,length?: number},
     rightArrow: string;
-    shape:      string;
+    shape?:      string;
     stroke?:     string;
     text?:       string;
 }
@@ -103,7 +103,7 @@ export function createPropertiesFlechas(
     p1: {x: number, y: number, length?: number},
     p2: {x: number, y: number, length?: number},
     rightArrow: string,
-    shape: string,
+    shape?: "line",
     stroke?: "dotted",
     //text?: string
 ): Properties {
