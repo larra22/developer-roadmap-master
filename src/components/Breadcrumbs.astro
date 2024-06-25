@@ -24,7 +24,7 @@ const { breadcrumbs, roadmapId } = Astro.props;
             <>
               <a class='hover:text-gray-800' href={`${breadcrumb.idRoadmap}`}>
                 
-                {breadcrumb.title}
+                {breadcrumb.idRoadmap}
                
               </a>
               <span>&nbsp;&middot;&nbsp;</span>
@@ -33,7 +33,7 @@ const { breadcrumbs, roadmapId } = Astro.props;
         }else{
           return (
             <>
-              <span class='text-gray-400'>{breadcrumb.title}</span>
+              <span class='text-gray-400'>{breadcrumb.idRoadmap}</span>
             </>
           );
         }

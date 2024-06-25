@@ -6,52 +6,20 @@ import { insertNuevoRoadmap } from "../../database/consultas";
 import { insertRelacionRoadmapCategoria } from "../../database/consultas";
 import '../../styles/formulario.css'
 
-
+const user = Astro.locals.user;
+if(!user){
+    return Astro.redirect("/auth/signin")
+}else if(user && (!user.admin || user.admin==0)){
+    return Astro.redirect("/home")
+    
+}
 const categoriasNivel1 = await getCategoriaPrimerNivelGENERAL();
 
 const categoriasNivel2 = await getCategoriaSegundoNivelGENERAL();
 
 const categoriasNivel3 = await getCategoriaTercerNivelGENERAL();
 
-if (Astro.request.method === 'POST') {
-    try{
-        const data = await Astro.request.formData();
-        const titulo = data.get('titulo')?.toString();
-        const prioridad = data.get('prioridad')?.toString();
-        const descripcion = data.get('descripcion')?.toString();
-        const checkboxes = categoriasNivel1?.filter(categoria => data.has(categoria.idNombre))
-            .map(categoria => ({ idNombre: categoria.idNombre,
-                prioridad: data.get(`prioridad-${categoria.idNombre}`)?.toString()}));
-        const id= titulo;
-        if(id && titulo  && descripcion ){
-            console.log('Datos completos')
-            const resultId= await insertNuevoRoadmap(id, titulo, descripcion);
-            console.log(resultId)
 
-            if(resultId==0){
-                console.log(resultId)
-                console.log('Roadmap creado con exito')
-                console.log(checkboxes)
-
-                checkboxes?.map((categoria)=>{
-                    if(categoria.prioridad==null){
-                       insertRelacionRoadmapCategoria(id, categoria.idNombre)
-                    }else{
-                    insertRelacionRoadmapCategoria(id, categoria.idNombre, parseInt(categoria.prioridad))
-                    }
-                }
-            )
-                return Astro.redirect('/')               // Ahora creamos las relaciones entre las categorias y el roadmap
-            }
-            return Astro.redirect('/404')
-
-        }
-        console.log('Faltan datos, error crear aglo visual que señalice el error al usuario')
-
-      }catch(e){
-        console.log(e)
-    }
-}
 ---
 
 <BaseLayout title='About roadmap.sh' permalink={'/addBD/configCrear'}>
@@ -63,10 +31,10 @@ if (Astro.request.method === 'POST') {
   <form id="roadmapForm" class="form-container" autocomplete="off">
 
     <fieldset>
-    <label>Titulo:</label>
+    <label class="required-field">Titulo:</label>
     <input type="text" name="titulo" required />
 
-    <label>Descripción:</label>
+    <label class="required-field">Descripción:</label>
     <textarea name="descripcion" rows="4" cols="60" required></textarea>
     </fieldset>
 
@@ -137,7 +105,7 @@ if (Astro.request.method === 'POST') {
 import { setupFormSubmission } from '../../utils.js';
 import { setupDropdown } from './configRoadmap';
 
-setupFormSubmission('roadmapForm', '/api/addRoadmap');
+setupFormSubmission('roadmapForm', '/api/configRoadmap');
 setupDropdown('input-box', 'custom-dropdown', 'checkboxList');
 setupDropdown('input-boxSegundo', 'custom-dropdownSegundo', 'checkboxListSegundo');
 setupDropdown('input-boxTercero', 'custom-dropdownTercero', 'checkboxListTercero');
