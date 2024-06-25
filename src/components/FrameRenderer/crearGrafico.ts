@@ -22,9 +22,9 @@ export function crearGrafico(listaCategoriasPrimerNivel:string[],  listaCategori
     const mockup = createMockUp(controls, "5000","1847","5000","1847","1.0")
     mockup.controls.control=listaComponentesPrimerNivel;
 
-    const global = createGlobal(mockup)
+    const entero = createGlobal(mockup)
 
-    return global
+    return entero
 }
 export function crearCuadradosSegundoNivel(listaTitulos: [string, string][], padre: string, color: string, yPrimerNivel: number, subTercerNivel: [string, string][]) {
     let listaHijos = listaTitulos.filter((categoriaPadre) => categoriaPadre[1] === padre).map((categoriaPadre) => categoriaPadre[0]);

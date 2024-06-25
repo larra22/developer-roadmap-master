@@ -231,8 +231,8 @@ const mockup = createMockUp(controls, "100", "100", "100", "100", "1.0");
 
 mockup.controls.control[mockup.controls.control.length] = componentes;
 
-const global = createGlobal(mockup);
+//const global = createGlobal(mockup);
 
-console.log(global);
+//console.log(global);
 
 
