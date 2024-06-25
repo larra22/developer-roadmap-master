@@ -3,6 +3,7 @@ module.exports = {
       {
         name: 'roadmap',
         script: 'npm',
+        interpreter: '/home/onboarding/.nvm/versions/node/v18.14.1/bin/node',
         args: 'run dev -- --host',
         watch: '.',
         instances: '1',
@@ -13,6 +14,7 @@ module.exports = {
         },
         env_production: {
           NODE_ENV: 'production',
+          NVM_BIN: '/home/onboarding/.nvm/versions/node/v18.14.1/bin',
         },
       },
     ],
