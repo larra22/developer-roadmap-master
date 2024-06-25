@@ -1,0 +1,27 @@
+---
+import SimplePageHeader from "../../components/SimplePageHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const user = Astro.locals.user;
+if(!user){
+    return Astro.redirect("/auth/signin")
+}
+
+---
+
+
+<BaseLayout title='About roadmap.sh' permalink={'/auth/cuentaInfo'}>
+    <SimplePageHeader
+    title='Developer Roadmaps'
+    description='Añade todo a la base de datos'
+  />
+
+  <label for="puesto">Tipo de trabajo:</label>
+
+  <label for="admin">Administrador</label>
+  <label for=tecnico>Instalación y gestión</label>
+  <label for="calidad">Calidad</label>
+
+
+  
+</BaseLayout>
