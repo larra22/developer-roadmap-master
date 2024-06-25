@@ -88,7 +88,7 @@ export const prerender = false;
 const connectionConfig = {
   host: 'localhost',
   user: 'roadmap',
-  //password: 'roadmap',
+  password: 'roadmap',
   //database: 'roadmap',
   database: 'roadmapcompleto',
   port: 3306,

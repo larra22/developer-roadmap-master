@@ -1,59 +1,62 @@
 ---
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCategoriaInformacionRoadmap, updateCategoriaNombreDescripcion,} from "../../database/consultas";
-export const prerender = false
+import { getCategoriaInformacionRoadmap,} from "../../database/consultas";
+import '../../styles/formulario.css'
 
 
-const categoriaName = decodeURIComponent(Astro.request.url).split('=')[1]
+const { request } = Astro;
+const url = new URL(request.url);
+const searchParams = new URLSearchParams(url.search);
+let categoriaName = searchParams.get('title');
 
-const informacion = await getCategoriaInformacionRoadmap(categoriaName)
+categoriaName = categoriaName?.replace(/^'|'$/g, '') || '';
+const informacion = await getCategoriaInformacionRoadmap(categoriaName || '')
+console.log(categoriaName)
 
-if (Astro.request.method === 'POST') {
-    try{
-      
-      
-        const data = await Astro.request.formData();
-        const categoria = data.get('categoria');
-        const descripcion = data.get('descripcion');
-        if(categoria && descripcion){
-          await updateCategoriaNombreDescripcion( categoriaName, categoria.toString(), descripcion.toString())
 
-        }
-
-        return Astro.redirect('/home')
-    
-    }catch(e){
-        console.log(e)
-    }
-}
 ---
-<BaseLayout title='Modificar la información' permalink={'/modificar/contenido'}>
+<BaseLayout title='Modificar la información' permalink={'/modificar/contenidoCategoria'}>
     <SimplePageHeader
     title='Developer Roadmaps'
     description='Modificar la información/contenido'
   />
 
-  <form method="POST">
-    
-    <label>
-      Título:     
-      <textarea name="categoria" rows="1" cols="60">{informacion?.idNombre}</textarea>
-    </label>
-  </br>
-</br>
-</br>
-</br>
-    <label>
-      Descripción:
-      <textarea name="descripcion" rows="10" cols="120">{informacion?.descripcion}</textarea>
-    </label>
-  </br>
-</br>
+  <form method ="POST" class="form-container" action="/api/modificar">
+    <input type="hidden" name="formType" value="contenidoCategoria" />
+    <input type="hidden" name="oldCategoria" value={categoriaName} />
+<fieldset>
+      <label class="required-field" for="categoria">Título:</label>
+            <input
+                type="text"
+                id="categoria"
+                name="categoria"
+               value={informacion?.idNombre}
+                required
+                aria-required="true"
+            ></input>
 
-    
-    <button>Guardar</button>
-    </form>
+            <label class="required-field" for="descripcion">Descripción:</label>
+            <textarea
+                id="descripcion"
+                name="descripcion"
+              
+                rows="4"
+            cols="50"
+                required
 
+            >{informacion?.descripcion}</textarea>
+    </fieldset>
+    
+    <div class="button-container">
+      <button type="submit">Guardar</button>
+  </div>
+
+  
+
+  <div id="correct-message" class="message success"></div>
+  <div id="error-message" class="message error"></div>
+
+  </form>
 
 </BaseLayout>
