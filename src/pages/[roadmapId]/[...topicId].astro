@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { Props } from '../guides/[guideId].astro';
 import { getResourcesByCategory, getCategoriaInformacionRoadmap } from '../../database/consultas';
 import type { ICategoria, IRecurso } from '../../database/dbMySQL';
+import IconoFormatoR from '../../components/IconoFormatoR.astro';
+
 
 export const prerender = false;
 
@@ -40,32 +42,36 @@ if (topicId) {
         <ul class="space-y-4">
          
           {recursos && recursos.length > 0 ? (
-            
-            recursos.map((recurso) => (
-              <li class="bg-white p-4 rounded shadow hover:shadow-md transition-shadow duration-200">
-                <a
-                  href={recurso.enlaceFichero}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-blue-600 hover:underline"
-                >
+                 recursos.map((recurso) => (
+                
+              
+                 <li class="bg-white p-4 rounded shadow hover:shadow-md transition-shadow duration-200 flex items-center">
+        <a
+           href={recurso.enlaceFichero.startsWith('http') ? recurso.enlaceFichero : `https://${recurso.enlaceFichero}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:underline flex items-center"
+        >
                   {recurso.titulo}
                 </a>
+                <IconoFormatoR formato={recurso.formato} />
+                {console.log(recurso.formato)}
               </li>
             ))
           ) : (
             <p>No hay recursos para esta categoría</p>
           )}
 
+
           <p>¿Quieres filtrar los recursos? </p>
           <select id="filter-select" class="form-select mt-1 block w-full">
             <option>Selecciona una opción</option>
-            <option>Recursos gratuitos</option>
-            <option>Recursos de pago</option>
+            <option>Popularidad</option>
+            <option>Menor tiempo/option>
           </select>
         </ul>
       </main>
     </div>
   </div>
 </BaseLayout>
-<script src="./filter.js"></script>
+
