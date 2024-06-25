@@ -22,7 +22,7 @@ console.log(categoriaName)
     description='Modificar la información/contenido'
   />
 
-  <form method ="POST" class="form-container" action="/api/modificar">
+  <form id="categoriaModifyForm" class="form-container" >
     <input type="hidden" name="formType" value="contenidoCategoria" />
     <input type="hidden" name="oldCategoria" value={categoriaName} />
 <fieldset>
@@ -58,5 +58,10 @@ console.log(categoriaName)
   <div id="error-message" class="message error"></div>
 
   </form>
+<script>
+    import { setupFormSubmission } from "../../utils";
 
+    setupFormSubmission('categoriaModifyForm', '/api/modificar')
+</script>
 </BaseLayout>
+

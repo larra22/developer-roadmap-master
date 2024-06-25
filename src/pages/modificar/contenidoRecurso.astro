@@ -10,20 +10,21 @@ const searchParams = new URLSearchParams(url.search);
 const id = parseInt(searchParams.get('id') || '');
 
 
-
+console.log(id)
 const informacion = await getRecursoById(id);
 
+console.log(informacion)
 
 ---
 
-<BaseLayout title='Modificar la información' permalink={'/modificar/contenidoCategoria'}>
+<BaseLayout title='Modificar la información' permalink={'/modificar/contenidoRecurso'}>
     <SimplePageHeader
     title='Developer Roadmaps'
     description='Modificar la información/contenido'
   />
 
   <form method ="POST" class="form-container" action="/api/modificar">
-    <input type="hidden" name="formType" value="contenidoCategoria" />
+    <input type="hidden" name="formType" value="contenidoRecurso" />
     <input type="hidden" name="idRecurso" value={id} />
 <fieldset>
       <label class="required-field" for="recurso">Título:</label>

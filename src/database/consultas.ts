@@ -531,3 +531,18 @@ export const getJsonDeRoadmap = async (roadmap: string) => {
         }
     }
     
+
+    export const updateRecurso = async (id: number, nuevoTitulo: string, nuevoEnlace: string, nuevaDescripcion:string) => {
+        const connection = await db.getConnection();
+        try {
+            
+            const query = `UPDATE Recurso SET titulo='${nuevoTitulo}', enlaceFichero='${nuevoEnlace}',descripcion = '${nuevaDescripcion}' WHERE idRecurso = '${id}'`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [nuevoTitulo,nuevoEnlace, nuevaDescripcion, id]);
+            return result.affectedRows;
+        } catch (error) {
+            console.error('Error updating categoria:', error);
+        }finally {
+            connection.release();
+        }
+    }
+    
