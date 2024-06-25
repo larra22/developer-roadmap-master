@@ -14,7 +14,15 @@ export async function POST(context:APIContext):Promise<Response> {
     
         
         }
+    else if(formType === 'escogerRecurso') {
+        
+        const id= data.get('recurso')?.toString();
 
+
+          return context.redirect(`/modificar/contenidoRecurso?id=${id}`);
+    
+        
+        }
     else if(formType === 'contenidoCategoria'){
     try{
         console.log('pasa')
