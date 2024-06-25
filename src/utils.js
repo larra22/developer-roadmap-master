@@ -65,8 +65,8 @@ export async function handleFormSubmit(event, apiUrl, formId) {
     if (response.ok) {
         if(formId=='roadmapForm'){
             document.getElementById('checkboxList').innerHTML = '';
-    document.getElementById('checkboxListSegundo').innerHTML = '';
-    document.getElementById('checkboxListTercero').innerHTML = '';
+            document.getElementById('checkboxListSegundo').innerHTML = '';
+            document.getElementById('checkboxListTercero').innerHTML = '';
         }
         correctMessageElement.textContent = result.message;
         errorMessageElement.textContent = '';

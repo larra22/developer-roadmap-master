@@ -57,8 +57,8 @@ export function createControl(
     ID:  string,
     measuredH: string,
     measuredW:  string,
-    properties : TextArea | Label |Properties,
-    typeID: "TextArea" | "Label" | "Arrow",
+    properties : TextArea | Label |Properties, //| Leyenda,
+    typeID: "TextArea" | "Label" | "Arrow",// "Icon" | "Canvas"
     w: string,
     x: string, //CAMBIA
     y: string, //Interfiere con la inclinacion
@@ -196,6 +196,22 @@ export function createComponent(
 }
 
 
+////////////////////////////////////////////////////////////////
+//LEYENDA
+///////////////////////////////////////////////////////////////7
+export interface Icon {
+    ID:   string;
+    size: string;
+}
+
+export interface Leyenda {
+    size?:  string;
+    text?:  string;
+    color?: string;
+    icon?:  Icon;
+}
+
+
 const COLOR_ROJO = '16711680';
 const label = createLabel("20", 'Prueba');
 const textArea = createTextArea(COLOR_ROJO);
@@ -205,13 +221,13 @@ const componentes = createComponent('0', "70", "46", "200",'Prueba', [control0, 
 
 
 
-const propiedades= createPropertiesFlechas('16711680', '0', '0', '0', {x: 0, y: 0, length:0}, {x: 0, y: 0,length:0}, {x: 0, y: 0,length:0}, '0', '0');
-const controlFlecha = createControl("0","200","400", propiedades, "Arrow", "325", "0", "0", "0", "50");
+//const propiedades= createPropertiesFlechas('16711680', '0', '0', '0', {x: 0, y: 0, length:0}, {x: 0, y: 0,length:0}, {x: 0, y: 0,length:0}, '0', '0');
+//const controlFlecha = createControl("0","200","400", propiedades, "Arrow", "325", "0", "0", "0", "50");
 
 const controls = {control: []};
 const mockup = createMockUp(controls, "100", "100", "100", "100", "1.0");
 
-mockup.controls.control[mockup.controls.control.length] = controlFlecha;
+//mockup.controls.control[mockup.controls.control.length] = controlFlecha;
 
 mockup.controls.control[mockup.controls.control.length] = componentes;
 

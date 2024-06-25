@@ -20,7 +20,7 @@ export interface MyErrorEvent {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    export const inserUsuario= async (email: string, password: string) => {
+   /**  export const inserUsuario= async (email: string, password: string) => {
             const connection = await db.getConnection();
             try {
                 const query = `INSERT INTO Usuario (email, password) VALUES ('${email}', '${password}')`;
@@ -32,7 +32,7 @@ export interface MyErrorEvent {
             }finally {
                 connection.release();
             }
-    }
+    }*/
     export const insertRelacionRoadmapCategoria = async (roadmap: string, categoria: string, prioridad?: number) => {
         const connection = await db.getConnection();
         try {
@@ -229,6 +229,21 @@ export const getRecursoIdByTitle = async (title: string) => {
 
 }
 
+export const getRecursoSegunTitulo = async (title: string) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT idRecurso FROM Recurso WHERE titulo = '${title}'`;
+        const [rows] = await connection.execute<IRecurso[]>(query, [title]);
+        
+        return rows[0];
+    } catch (error) {
+        console.error('Error getting resource:', error);
+    }finally {
+        connection.release();
+    }
+
+}
 
 export const getAllRecursos = async () => {
     const connection = await db.getConnection();

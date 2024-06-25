@@ -4,20 +4,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
 
 <BaseLayout title='Page not found' permalink={'/auth/signup'}>
   <section class="bg-gray-50 dark:bg-gray-900">
-    <div
-      class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
-    >
-      <a
-        href="#"
-        class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-      >
-        <img
-          class="w-8 h-8 mr-2"
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-          alt="logo"
-        />
-        Flowbite
-      </a>
+    <section class="bg-gray-50 dark:bg-gray-900">
+      <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          <img class="w-15 h-15 mr-2" src="/src/icons/logo.svg" alt="logo" />
+        </a>
       <div
         class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
       >
@@ -25,7 +16,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
           <h1
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
           >
-            Sign Up in to your account
+            Crear una nueva cuenta:
           </h1>
           <form
             class="space-y-4 md:space-y-6"
@@ -36,7 +27,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
               <label
                 for="username"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Your username</label
+                >Nombre de usuario:</label
               >
               <input
                 type="text"
@@ -50,7 +41,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
               <label
                 for="password"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Password</label
+                >Contraseña:</label
               >
               <input
                 type="password"
@@ -62,18 +53,28 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
               />
             </div>
 
+            <!-- Add the checkbox for admin permissions here -->
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                name="admin"
+                id="admin"
+                class="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                for="admin"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >Convertirlo en administrador</label
+              >
+            </div>
+
+
+
             <button
               type="submit"
               class="w-full text-white bg-pink-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >Sign Up</button
+              >Crear cuenta</button
             >
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-              already have an account? <a
-                href="/signin"
-                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >Sign In</a
-              >
-            </p>
           </form>
         </div>
       </div>

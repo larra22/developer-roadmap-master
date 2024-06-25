@@ -23,55 +23,21 @@ const [categoriaNames] = await Promise.all([fetchCategoriaNames()]);
     />
 
     <label>Selecciona la categoria: </label>
+    <form id="categoriaForm" class="form-container" autocomplete="off">
+      
+    <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
 
-
-<Dropdown lista={categoriaNames}/>
- 
-
-      <br/>
-
-      <br/>
-      <br/>
-  
-      <br/>
-  
-      <br/>
-      <br/>
-  
-
+    <div id="custom-dropdown" class="custom-dropdown">
+        <ul id="dropdown-options" class="dropdown-options">
+            <li value="Global">Ninguna</li>
+            {categoriaNames?.map((categoria: string) => (
+                <li value={categoria}>{categoria}</li>
+            ))}
+        </ul>
+    </div>
+  </form>
       <script>
-        /** 
-          const categoriaDropdown = document?.getElementById("categoriaDropdown");
-          if (categoriaDropdown) {
-            categoriaDropdown.classList.toggle("show");
-          }
-        
-          const input = document?.getElementById("categoriaSelect") as HTMLInputElement;
-          const filter = input?.value.toUpperCase();
-          const div = document?.getElementById("categoriaDropdown");
-          const a = div?.getElementsByTagName("a");
-          if (a) {
-          for (let i = 0; i < a.length; i++) {
-            
-              const txtValue = a[i].textContent || a[i].innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              a[i].style.display = "";
-            } else {
-              a[i].style.display = "none";
-            }
-            }
-            
-          }
-        
-
-        // TODO: Si queremos añadir que dependa del roadmap, coger de la url el nombre de este
-
-        const select = document.getElementById('categoriaSelect');
-        select?.addEventListener('change', (event) => {
-            const categoria =(event.target as HTMLSelectElement).value;
-            window.location.href = `/modificar/contenido?categoria=${categoria}`;
-        });
-        */
+    
       </script>
 
 
