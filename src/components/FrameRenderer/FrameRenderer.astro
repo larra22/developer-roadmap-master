@@ -39,20 +39,3 @@ const { resourceId, resourceType,  dimensions = null, componentesCategoriaPrimer
 </div>
 
 <script  src='./renderer.ts'></script>
-<script>
-  // Variable para contar las veces que se ejecuta el evento astro:page-load
-  let loadEventCount = 0;
-
-  document.addEventListener('astro:after-swap', () => {
-    // Incrementar el contador cada vez que se ejecuta el evento astro:page-load
-    loadEventCount++;
-
-    // Verificar si es la primera vez que se ejecuta el evento astro:page-load
-    if (loadEventCount === 1) {
-      // Refrescar la página después de un breve retardo (por ejemplo, 5 segundos)
-      setTimeout(() => {
-        location.reload();
-      }, 5500); // Ajusta el tiempo de espera según sea necesario
-    }
-  }, { once: true });
-</script>

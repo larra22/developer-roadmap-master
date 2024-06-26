@@ -20,7 +20,13 @@ export async function POST(context:APIContext):Promise<Response> {
           return context.redirect(`/modificar/contenidoRecurso?id=${id}`);
     
         
-        }
+        }else if(formType === 'escogerRoadmap') {
+        
+            const id= data.get('roadmapR')?.toString();
+              return context.redirect(`/modificar/contenido?id=${id}`);
+        
+            
+            }
     else if(formType === 'contenidoCategoria'){
     try{
 
