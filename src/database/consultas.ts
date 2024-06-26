@@ -144,7 +144,7 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
         const connection = await db.getConnection();
         try {
             
-            const query = `INSERT INTO User (id, username, password) VALUES ('${id}','${username}', '${password}')`;
+            const query = `INSERT INTO user (id, username, password) VALUES ('${id}','${username}', '${password}')`;
             const [result] = await connection.execute<ResultSetHeader>(query, [id, username, password]);
             
             return result;
@@ -165,8 +165,8 @@ export const getUsuario = async(username:string)=>{
     const connection = await db.getConnection();
 
     try{
-        const query = `SELECT * FROM User 
-        WHERE User.username='${username}'`
+        const query = `SELECT * FROM user 
+        WHERE user.username='${username}'`
         const [rows]= await connection.execute<User[]>(query,[username])
         return rows[0] || [];
     }catch(error) {
