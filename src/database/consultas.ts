@@ -546,3 +546,42 @@ export const getJsonDeRoadmap = async (roadmap: string) => {
         }
     }
     
+
+    export const updateUserPassWordYRol = async (username:string, password: string, rol:string)=>{
+        const connection = await db.getConnection();
+            const query = `UPDATE User SET password='${password}', rol='${rol}' WHERE username='${username}'`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [password, rol, username]);
+            return result.affectedRows;
+
+        
+
+    }
+
+
+    export const updateUserPassWord = async (username:string,password: string)=>{
+        const connection = await db.getConnection();
+            const query = `UPDATE User SET password='${password}' WHERE username='${username}'`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [password,  username]);
+            return result.affectedRows;
+
+    }
+
+    
+    export const updateUserRol = async (username:string,rol: string)=>{
+        const connection = await db.getConnection();
+            const query = `UPDATE User SET  rol='${rol}' WHERE username='${username}'`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [ rol, username]);
+            return result.affectedRows;
+
+
+    }
+
+    export const updateUserAdminPoder = async (username:string,admin: number)=>{
+        const connection = await db.getConnection();
+
+            const query = `UPDATE User SET admin='${admin}' WHERE username='${username}'`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [admin, username]);
+            return result.affectedRows;
+
+
+    }

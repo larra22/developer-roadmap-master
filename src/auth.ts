@@ -12,7 +12,8 @@ declare module "lucia" {
 
 interface DatabaseUserAttributes {
 	username: string;
-    admin:number
+    admin:number;
+	rol:string;
 }
 
 const adapter = new Mysql2Adapter(db, {
@@ -24,7 +25,8 @@ export const lucia = new  Lucia(adapter, {
     getUserAttributes: (attributes) => {
 		return {
 			username: attributes.username,
-            admin: attributes.admin
+            admin: attributes.admin,
+			rol: attributes.rol
 		};
 	},
     
