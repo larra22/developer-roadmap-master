@@ -4,12 +4,18 @@ import RelatedRoadmaps from '../../components/RelatedRoadmaps.astro';
 import RoadmapHeader from '../../components/RoadmapHeader.astro';
 import { TopicDetail } from '../../components/TopicDetail/TopicDetail';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import {getCategoriasDeXroadmapSegunZrol} from '../../database/consultas'
 import { getComponentesCategoriaPrimerNivel, getComponentesCategoriaSegundoNivel, getComponentesCategoriaTercerNivel, getRoadmapById } from '../../database/consultas';
 export const prerender = false;
 
 
 interface Params extends Record<string, string | undefined> {
   roadmapId: string;
+}
+
+const user= Astro.locals.user;
+if(!user){
+  return Astro.redirect("/auth/signin")
 }
 
 const { roadmapId } = Astro.params as Params;
@@ -20,7 +26,7 @@ const roadmapData = await getRoadmapById(roadmapId);
 
 const componentesCategoriaPrimerNivel:string[] = [];
 const componentesCategoriaSegundoNivel:[string,string][]= [];
-
+let  nombresListaCategoriasRol: string[]=[]
 let componentesCategoriaTercerNivel:[string,string][] = [];
 
 let jsonLdSchema: Record<string, unknown>[] | undefined = [];
@@ -71,11 +77,16 @@ const uniqueComponentesSegundoNivel = componentesSegundoNivel?.filter((segundoNi
 
   
 
+
 } catch (error) {
   console.log(error);
 }
 
-
+ const listaCategoriasDadoRolYroadmap = await getCategoriasDeXroadmapSegunZrol(roadmapId, user?.rol)
+  listaCategoriasDadoRolYroadmap?.map((item)=>{
+    nombresListaCategoriasRol.push(item.idNombre)
+  } )
+console.log(nombresListaCategoriasRol)
 ---
 
 <BaseLayout
@@ -114,6 +125,7 @@ const uniqueComponentesSegundoNivel = componentesSegundoNivel?.filter((segundoNi
             componentesCategoriaPrimerNivel={componentesCategoriaPrimerNivel}
             componentesCategoriaSegundoNivel={componentesCategoriaSegundoNivel}
             componentesCategoriaTercerNivel={componentesCategoriaTercerNivel}
+            categoriaSegunRol={nombresListaCategoriasRol}
               />
 
 

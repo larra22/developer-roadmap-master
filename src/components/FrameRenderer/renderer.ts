@@ -4,8 +4,6 @@ import { isLoggedIn } from '../../lib/jwt';
 import { renderResourceProgress, type ResourceType} from '../../lib/resource-progress';
 import {  cambiarSegunRol } from './variable';
 import { crearGrafico } from './crearGrafico';
-import { data } from 'jquery';
-import { getCategoriasDeXroadmapSegunZrol } from '../../database/consultas';
 
 
 export const prerender = false
@@ -63,7 +61,7 @@ export class Renderer {
   }
 
   prepareConfig() {
-   
+
     if (!this.containerEl) {
       return false;
     }
@@ -100,10 +98,16 @@ export class Renderer {
     }    
     this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelArray;
    // this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelString.split(',').map(item => item.trim());
+    const formatoCorrectoCategoriasRol = dataset.listaCategoriaRol || ''
+   this.categoriasTeniendoRolDiferenciacion= formatoCorrectoCategoriasRol.split(',').map(item => item.trim());
+
 
    const creacion=  crearGrafico(this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
-   this.jsonData = cambiarSegunRol(creacion, this.categoriasTeniendoRolDiferenciacion)
-
+   console.log(creacion)
+   console.log(this.categoriasTeniendoRolDiferenciacion)
+   console.log('estoy render')
+   this.jsonData=  cambiarSegunRol(creacion, this.categoriasTeniendoRolDiferenciacion)
+    //this.jsonData=crearGrafico(this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
     
 
 

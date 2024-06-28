@@ -106,6 +106,7 @@ function segundoNivel(json:any, padre:string, listaCategoriasSegundoNivel:[strin
 
 
 
+
 //Cambia el color segun el texto
 export function cambiarSegunRol(json: any, categoriasACambiar:string[]): any {
     console.log('ha pasod')
@@ -126,7 +127,12 @@ export function cambiarSegunRol(json: any, categoriasACambiar:string[]): any {
         if (innerControlLabel && innerControlLabel.properties && innerControlLabel.properties.text && innerControlTextArea && innerControlTextArea.properties) {
             
             const text = innerControlLabel.properties.text;
-            const color = determineColorByText(text, puesto);
+            console.log(categoriasACambiar)
+            if(!categoriasACambiar.includes(text)){
+                const color = determineColorByText(text);
+                innerControlTextArea.properties.color = color; //Para modificar el color del cuadrado
+            }
+            
             //innerControlLabel.properties.color = color; // Para modificar el color del texto
             //innerControlTextArea.properties.color = color; //Para modificar el color del cuadrado
           }
@@ -136,10 +142,11 @@ export function cambiarSegunRol(json: any, categoriasACambiar:string[]): any {
   return modifiedJson;
 }
 
+function determineColorByText(text:string){
+    return COLOR_GRIS;
 
-
-const categoriaJunior = ['git', 'calidad', 'sonar', 'introduccion', 'continu'];
-const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'];
+}
+/**
  function determineColorByText(text: string, puesto: string): string  {
     var cambiamos = false;
     var i =0;
@@ -160,7 +167,7 @@ const categoriaSenior =['ansible', 'chef', 'puppet','grafana', 'terraform','aws'
     }
     
 }
-
+*/
 
 
 /////////////////////////////////////////////////////////////7
