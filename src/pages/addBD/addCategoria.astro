@@ -70,7 +70,7 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
         <fieldset>
             <label>Dirigido, ¿a qué rol? (Por defecto, a todos): </label>
             {rolesNames?.map((rol:string) => (
-                 <label><input type="checkbox" name="rolCategoria" value={rol}> {rol}</label>
+                 <label><input type="checkbox" name="rolCategoria" value={rol} checked> {rol}</label>
             ))}
            
         </fieldset>
