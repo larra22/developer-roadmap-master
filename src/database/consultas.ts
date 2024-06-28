@@ -1,7 +1,7 @@
 import { type ResultSetHeader} from "mysql2"
 
 import { type IRecurso, db, type IRoadmapEsquema, type ICategoriaSubNivel } from "./dbMySQL";
-import { type ICategoria , type User} from "./dbMySQL";
+import { type ICategoria , type IRol,type User} from "./dbMySQL";
 import { type IRelacionRecursoCategoria } from "./dbMySQL";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
 import {ER_DUP_ENTRY} from 'mysql-error-keys'
@@ -120,7 +120,7 @@ export const insertRelacionRecursoCategoria = async (idRecurso: number, idNombre
 
 }
 
-export const insertCategoria = async (nombre: string, descripcion:string, superior:string) => {
+export const insertCategoria = async (nombre: string, descripcion:string, superior:string,) => {
     const connection = await db.getConnection();
     try {
 
@@ -139,6 +139,26 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
         connection.release();
     }
     }
+
+    export const insertCategoriaRol = async (categoria:string, rol:string) => {
+        const connection = await db.getConnection();
+        try {
+    
+            const query = `INSERT INTO Categoria_rol (idCategoria, idRol) VALUES ('${categoria}','${rol}')`;
+            const [result] = await connection.execute<ResultSetHeader>(query, [categoria, rol]);
+            
+            return result;
+        } catch (error) {
+            const errorDuplicate: MyErrorEvent = {
+                    code: 11062,
+                    message: ER_DUP_ENTRY
+                    
+            };
+            throw errorDuplicate
+            }finally {
+            connection.release();
+        }
+        }
 
     export const insertUsuario = async (id:string, username:string,password:string) => {
         const connection = await db.getConnection();
@@ -160,6 +180,30 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GET FROM BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+export const getCategoriasDeXroadmapSegunZrol= async(roadmap:string, rol:string)=>{
+    const connection = await db.getConnection();
+
+    try{
+        const query = `SELECT * FROM Categoria JOIN Roadmap_categoria ON Categoria.idNombre=Roadmap_categoria.componenteCategoria
+        WHERE Roadmap_categoria.idRoadmap = '${roadmap}' 
+        AND Categoria.idNombre IN (
+            SELECT idCategoria
+            FROM Categoria_rol 
+            WHERE Categoria_rol.idRol='${rol}'
+        ) `;
+        const [rows] = await connection.execute<ICategoria[]>(query,[roadmap, rol])
+        console.log('Metodo de la clase de consultas X roadmap rol Y prueba')
+        console.log(rows)
+        return rows;
+
+    }catch(error) {
+        console.log('Error al obtener user', error)
+    }finally{
+        connection.release();
+    }
+}
 
 export const getUsuario = async(username:string)=>{
     const connection = await db.getConnection();
@@ -456,7 +500,21 @@ export const getCategoriaTercerNivelGENERAL = async() =>{
     }
 }
 
+export const getAllRoles = async () =>{
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `SELECT * FROM Rol`;
+        const [rows] = await connection.execute<IRol[]>(query);
+        
+        return rows || [];
+    } catch (error) {
+        console.error('Error getting roadmap:', error);
+    }finally {
+        connection.release();
+    }
 
+}
 
 
 

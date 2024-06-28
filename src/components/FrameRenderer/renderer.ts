@@ -2,7 +2,10 @@ import { wireframeJSONToSVG } from 'roadmap-renderer';
 import { httpPost } from '../../lib/http';
 import { isLoggedIn } from '../../lib/jwt';
 import { renderResourceProgress, type ResourceType} from '../../lib/resource-progress';
-import {  changeJson, changeTextoSegunListaBD } from './variable';
+import {  cambiarSegunRol } from './variable';
+import { crearGrafico } from './crearGrafico';
+import { data } from 'jquery';
+import { getCategoriasDeXroadmapSegunZrol } from '../../database/consultas';
 
 
 export const prerender = false
@@ -17,9 +20,13 @@ export class Renderer {
   containerId: string;
   loaderId: string;
 
+
+
   componentesCategoriaPrimerNivel: string[];
   componentesCategoriaSegundoNivel: [string, string][];
   componentesCategoriaTercerNivel: [string, string][];
+
+  categoriasTeniendoRolDiferenciacion: string[];
 
 
   constructor() {
@@ -28,6 +35,8 @@ export class Renderer {
     this.loaderHTML = null;
     this.containerId = 'resource-svg-wrap';
     this.loaderId = 'resource-loader';
+
+
     this.init = this.init.bind(this);
     this.onDOMLoaded = this.onDOMLoaded.bind(this);
     this.jsonToSvg = this.jsonToSvg.bind(this);
@@ -38,6 +47,8 @@ export class Renderer {
     this.componentesCategoriaPrimerNivel = [];
     this.componentesCategoriaSegundoNivel = [];
     this.componentesCategoriaTercerNivel = [];
+
+    this.categoriasTeniendoRolDiferenciacion=[];
 
    
   }
@@ -60,6 +71,7 @@ export class Renderer {
     const dataset = this.containerEl.dataset;
     this.resourceType = dataset.resourceType!;
     this.resourceId = dataset.resourceId!;
+  
   
 
     const componentesCategoriaPrimerNivelString = dataset.componentesCategoriaPrimerNivel || '';
@@ -88,7 +100,9 @@ export class Renderer {
     }    
     this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelArray;
    // this.componentesCategoriaTercerNivel = componentesCategoriaTercerNivelString.split(',').map(item => item.trim());
-   this.jsonData = changeTextoSegunListaBD(this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
+
+   const creacion=  crearGrafico(this.componentesCategoriaPrimerNivel, this.componentesCategoriaSegundoNivel, this.componentesCategoriaTercerNivel)
+   this.jsonData = cambiarSegunRol(creacion, this.categoriasTeniendoRolDiferenciacion)
 
     
 

@@ -37,6 +37,12 @@ export interface IRoadmapEsquema  extends RowDataPacket {
   relatedRoadmap: string
 }
 
+export interface IRol  extends RowDataPacket {
+  idRol: string
+  experiencia: string
+}
+
+
 
 export interface IRecurso extends RowDataPacket {
   idRecurso?: number

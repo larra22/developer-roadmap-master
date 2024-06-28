@@ -1,6 +1,7 @@
 ---
 import Loader from '../Loader.astro';
 import './FrameRenderer.css';
+import {getCategoriasDeXroadmapSegunZrol} from '../../database/consultas'
 
 export const prerender = false
 export interface Props {
@@ -15,8 +16,15 @@ export interface Props {
   componentesCategoriaTercerNivel: [string,string][];
 }
 
+const user= Astro.locals.user;
+if(!user){
+  return Astro.redirect("/auth/signin")
+}
+
 
 const { resourceId, resourceType,  dimensions = null, componentesCategoriaPrimerNivel, componentesCategoriaSegundoNivel,componentesCategoriaTercerNivel} = Astro.props;
+const listaCategoriasDadoRolYroadmap = await getCategoriasDeXroadmapSegunZrol(resourceId, user?.rol)
+const nombresListaCategoriasRol = listaCategoriasDadoRolYroadmap?.map((item)=> item.idNombre)
 
 ---
 
@@ -30,6 +38,7 @@ const { resourceId, resourceType,  dimensions = null, componentesCategoriaPrimer
   data-componentes-categoria-primer-nivel={componentesCategoriaPrimerNivel}
   data-componentes-categoria-segundo-nivel={componentesCategoriaSegundoNivel}
   data-componentes-categoria-tercer-nivel={componentesCategoriaTercerNivel}
+  data-lista-categoria-rol={nombresListaCategoriasRol}
 >
 
 <label id="contador" transition:persist></label>

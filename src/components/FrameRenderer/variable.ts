@@ -104,22 +104,17 @@ function segundoNivel(json:any, padre:string, listaCategoriasSegundoNivel:[strin
     return json;
 }
 
-export function changeTextoSegunListaBD(listaCategoriasPrimerNivel: string[], listaCategoriasSegundoNivel: [string,string][], listaCategoriasTercerivel: [string,string][]){
-    let json = crearGrafico(listaCategoriasPrimerNivel, listaCategoriasSegundoNivel, listaCategoriasTercerivel);
-    return json
-
-    
-    
-}
 
 
-// Change colors in the JSON based on text content
-export function changeJson(json: any, puesto: string): any {
+//Cambia el color segun el texto
+export function cambiarSegunRol(json: any, categoriasACambiar:string[]): any {
+    console.log('ha pasod')
   if (!extructuraCorrectaJson(json) ){
       console.error('Invalid JSON structure. Unable to change colors.');
       return json;
   }
 
+  console.log(json)
   const modifiedJson = JSON.parse(JSON.stringify(json));
 
   modifiedJson.mockup.controls.control.forEach((control: { children: { controls: { control: { properties: { text: string; color: string; }; }[]; }; }; }) => {

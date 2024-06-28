@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import { insertCategoria } from "../../database/consultas";
+import { insertCategoria, insertCategoriaRol } from "../../database/consultas";
 
 
 export async function POST(context: APIContext): Promise<Response> {
@@ -8,15 +8,25 @@ export async function POST(context: APIContext): Promise<Response> {
     const titulo = data.get("titulo")?.toString();
     const descripcion = data.get("descripcion")?.toString();
     const categoriaPadre = data.get("categoriaPadre")?.toString();
+    const rolCategoria = data.getAll("rolCategoria").map(item => item.toString());
+    
 
     if (titulo && descripcion && categoriaPadre) {
         try {
-            await insertCategoria(titulo, descripcion, categoriaPadre);
+           
+           const nombre =  await insertCategoria(titulo, descripcion, categoriaPadre);
+            if(rolCategoria.length>0){
+                rolCategoria.map(async (rol)=>
+             await insertCategoriaRol(nombre, rol)   
+
+                )
+            }
             return new Response(JSON.stringify({ message: "Ha sido correctamente insertado" }), {
                 status: 200,
                 headers: { "Content-Type": "application/json" }
             });
         } catch (error) {
+            console.log(error)
             const errorMessage = error instanceof Error ? error.message : "Unknown error";
             return new Response(JSON.stringify({ message: "Ya existe una categoría con ese título", error: errorMessage }), {
                 status: 500,
@@ -25,13 +35,22 @@ export async function POST(context: APIContext): Promise<Response> {
         }
     }else if(titulo && descripcion){
         try {
-            await insertCategoria(titulo, descripcion, 'Global');
+            const nombre= await insertCategoria(titulo, descripcion, 'Global');
+            if(rolCategoria){
+                rolCategoria.map(async (rol)=>
+                    await insertCategoriaRol(nombre, rol)   
+       
+                       )
+                    }
             return new Response(JSON.stringify({ message: "Ha sido correctamente insertado una GLOBAL" }), {
                 status: 200,
                 headers: { "Content-Type": "application/json" }
             });
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Unknown error";
+            console.log(error)
+
+            const errorMessage = error instanceof Error ? 
+            error.message : "Unknown error";
             return new Response(JSON.stringify({ message: "Ya existe una categoría con ese título", error: errorMessage }), {
                 status: 500,
                 headers: { "Content-Type": "application/json" }

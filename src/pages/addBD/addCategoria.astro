@@ -1,8 +1,8 @@
 ---
 import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { type ICategoria } from "../../database/dbMySQL";
-import { getAllCategorias } from "../../database/consultas";
+import { type ICategoria, type IRol } from "../../database/dbMySQL";
+import { getAllCategorias, getAllRoles } from "../../database/consultas";
 import '../../styles/formulario.css';
 
 const user = Astro.locals.user;
@@ -15,6 +15,8 @@ if(!user){
 
 const categorias = await getAllCategorias();
 const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idNombre);
+const roles = await getAllRoles();
+const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
 
 ---
 
@@ -63,6 +65,14 @@ const categoriasNames = categorias?.map((categoria: ICategoria) => categoria.idN
                 </ul>
             </div>
 
+        </fieldset>
+
+        <fieldset>
+            <label>Dirigido, ¿a qué rol? (Por defecto, a todos): </label>
+            {rolesNames?.map((rol:string) => (
+                 <label><input type="checkbox" name="rolCategoria" value={rol}> {rol}</label>
+            ))}
+           
         </fieldset>
 
 
