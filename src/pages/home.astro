@@ -18,16 +18,19 @@ const roadmaps = await getRoadmapAlmacenados();
 const guides = await getAllGuides();
 const videos = await getAllVideos();
 
-const user = Astro.locals.user;
+const user= Astro.locals.user;
+if(!user){
+  return Astro.redirect("/auth/signin")
+}
 
 ---
 
 <BaseLayout
-  title='Developer Roadmaps - roadmap.sh'
-  description={'Community driven roadmaps, articles and guides for developers to grow in their career.'}
-  permalink={'/'}
+  title='Itienerarios apredizaje'
+  description={'Para mejorar la experiencia de las nuevas incorporaciones y facilitar su adaptación a su puesto'}
+  permalink={'/home'}
 >
-  <div class='bg-gradient-to-b from-slate-900 to-white-900'>
+<div class='bg-rosita'>
     <div class='border-b border-b-[#1e293c]'>
       <div class='container text-left sm:text-center py-6 pb-14 sm:py-20 px-6 sm:px-0'>
         <h1
@@ -41,14 +44,12 @@ const user = Astro.locals.user;
           de trabajo. 
         </p>
 
-        <p class='block sm:hidden text-gray-400 text-md px-0'>
-          Community created roadmaps, guides and articles to help developers grow in their career.
-        </p>
+      
       </div>
     </div>
 
    {roadmaps && <FeaturedItems
-      heading='Role based Roadmaps'
+      heading='Itinerarios disponibles'
       featuredItems={roadmaps.map((roadmapItem) => ({
         text: roadmapItem.idRoadmap,
         url: `/${roadmapItem.idRoadmap}`,
@@ -75,12 +76,12 @@ const user = Astro.locals.user;
       </a>
     </div>
     
-
+<!-- 
     <div class='grid grid-cols-1 gap-7 sm:gap-16 bg-gray-50 py-7 sm:py-16'>
       <FeaturedGuides heading='Guides' guides={guides.slice(0, 7)} />
       <FeaturedVideos heading='Videos' videos={videos.slice(0, 7)} />
     </div>
-
+-->
     
   </div>
 </BaseLayout>

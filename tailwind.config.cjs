@@ -5,6 +5,13 @@ module.exports = {
     extend: {
       colors: {
         'lks-color': '#f85900',
+        'crudo':'#dbc2a3',
+        'rosita':'#db73a',
+        'oro-caliente':'#dbb15a',
+        'oro-frio':'#dbc15a',
+        'naranja-apagado':'#dba05a',
+        'azul-complementario':'#5adbdb',
+        'blanco': '#ffffff'
       },
       typography: {
         quoteless: {

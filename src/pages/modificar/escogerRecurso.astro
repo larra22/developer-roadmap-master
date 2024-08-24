@@ -23,12 +23,13 @@ const recursos = await getAllRecursos();
         <legend>recursos de aprendizaje</legend>
         <label for="titulo">Modifica los apartados que desees del recurso elegido</label>
         <input type="hidden" id="recursoR" name="recursoR">
+        
         <input type="text" id="input-box" placeholder="Buscar recurso..." autocomplete="off">
 
             <div id="custom-dropdown" class="custom-dropdown">
                 <ul id="dropdown-options" class="dropdown-options">
                     {recursos?.map((recurso) => (
-                        <li value={recurso.idRecurso}>{recurso.titulo}</li>
+                        <li value={recurso.idRecurso+'.' + recurso.titulo}>{recurso.titulo}</li>
                     ))}
                 </ul>
         

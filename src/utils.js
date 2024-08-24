@@ -44,9 +44,20 @@ export function setupDropdown(inputId, dropdownId, hiddenInputId) {
         if (selectedOption.tagName === 'LI') {
             const value = selectedOption.getAttribute('value');
             if (value) {
-                inputBox.value = value;
+                
+                if(value.toString().split('.')[1]){
+                    console.log(value)
+                    const values= value.toString().split('.')
+                    inputBox.value = values[1];
+                    hiddenInput.value = values[0];
+                    dropdown.style.display = 'none';
+                }else{
+                    inputBox.value = value;
                 hiddenInput.value = value;
                 dropdown.style.display = 'none';
+                }
+                
+                
             }
         }
     });

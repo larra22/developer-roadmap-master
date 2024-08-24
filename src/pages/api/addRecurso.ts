@@ -17,15 +17,29 @@ export async function POST(context: APIContext): Promise<Response> {
       const formato = data.get("formato")?.toString();
       const recursoRelacion = data.get("recursoRelacion")?.toString();
 
+
       let idRecurso ;
       if(titulo && enlace && interno && categoria){
+        
         try{
+            
             if(!recursoRelacion){
+                console.log("ha pasdo")
             idRecurso = await insertResource(titulo, enlace, interno, descripcion ?? null , dificultad ?? null, tipo ?? null, formato ?? null,idioma ?? null,   null);
             }else{
                 let idrelacion = await getRecursoIdByTitle(recursoRelacion)
                 idRecurso = await insertResource(titulo, enlace, interno, descripcion ?? null , dificultad ?? null, tipo ?? null, formato ?? null,idioma ?? null,  idrelacion ?? null);
+            }}catch(error){
+                console.log(error)
+            const errorMessage = error instanceof Error ? 
+            error.message : "Unknown error";
+                return new Response(JSON.stringify({ message: "Ha ocurrido algún fallo al insertado recurso, problemente título repetido", error: errorMessage }), {
+                    status: 500,
+                    headers: { "Content-Type": "application/json" }
+                });
             }
+
+            try{
             if(idRecurso){
                
                     await insertRelacionRecursoCategoria(idRecurso, categoria);
@@ -34,20 +48,25 @@ export async function POST(context: APIContext): Promise<Response> {
                         headers: { "Content-Type": "application/json" }
                     });
                 }else{
+                    
 
                     return new Response(JSON.stringify({ message: "Ha ocurrido algún fallo al insertado recurso" }), {
                         status: 500,
                         headers: { "Content-Type": "application/json" }
                     });
+                }}catch(error){
+                    console.log(error)
+
+            const errorMessage = error instanceof Error ? 
+            error.message : "Unknown error";
+                    return new Response(JSON.stringify({ message: "Ha ocurrido algún fallo al insertado recurso", error: errorMessage }), {
+                        status: 500,
+                        headers: { "Content-Type": "application/json" }
+                    });
                 }
+
             
-        }catch(error){
-            const errorMessage = error instanceof Error ? error.message : "Unknown error";
-            return new Response(JSON.stringify({ message: "Ha ocurrido algún fallo al insertado recurso", error: errorMessage }), {
-                status: 500,
-                headers: { "Content-Type": "application/json" }
-            });
-        }
+        
         
             
     }else {

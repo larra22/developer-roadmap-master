@@ -2,10 +2,10 @@ import { type ResultSetHeader} from "mysql2"
 
 import { type IRecurso, db, type IRoadmapEsquema, type ICategoriaSubNivel } from "./dbMySQL";
 import { type ICategoria , type IRol,type User} from "./dbMySQL";
-import { type IRelacionRecursoCategoria } from "./dbMySQL";
+import { generateId } from "lucia";
 import {type IRoadmapComponentePrioridad}   from "./dbMySQL";
 import {ER_DUP_ENTRY} from 'mysql-error-keys'
-import { error } from "console";
+
 
 
 export interface MyErrorEvent {
@@ -95,10 +95,15 @@ export const insertResource = async (titulo:string, enlaceFichero:string,interno
         
         return result.insertId;
     } catch (error) {
-        console.error('Error adding resource:', error);
-    }finally {
+        const errorDuplicate: MyErrorEvent = {
+                code: 11062,
+                message: ER_DUP_ENTRY
+                
+        };
+        throw errorDuplicate
+        }finally {
         connection.release();
-    }
+        }
 
 }
 
@@ -174,7 +179,29 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
         connection.release();
     }
 }
-    
+
+
+export const insertOpinionExterno = async (user: string, idRecurso:number, fecha:Date, valoracionGlobal:number, dificultad:number, topTema:string, problematico:number, n_beneficioso:number,
+    recomendado:number, tiempo:number, resolutivo:number, problema:string, extra: string
+) => {
+    const connection = await db.getConnection();
+    try {
+        const idOpinion = generateId(10);
+        const query = `INSERT INTO Opinion_externo (idOpinion, user,idRecurso, fecha, valoracion, dificultad, 
+        topTema, problematico, n_beneficioso, recomendado, tiempoNecesario, resolutivo, problema, extra) 
+        VALUES ('${idOpinion}','${user}', '${idRecurso}','${fecha}','${valoracionGlobal}', '${dificultad}', '${topTema}','${problematico}', '${n_beneficioso}', 
+        '${recomendado}', '${tiempo}','${resolutivo}', '${problema}' '${extra}')`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [idOpinion, user, idRecurso, fecha, valoracionGlobal, dificultad, topTema, problematico, n_beneficioso,
+            recomendado, tiempo, resolutivo, problema, extra
+        ]);
+        
+        return result;
+    } catch (error) {
+        console.error('Error adding user:', error);
+}finally {
+    connection.release();
+}
+}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GET FROM BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -376,10 +403,11 @@ export const getAllCategorias = async () => {
 export const getComponentesCategoriaPrimerNivel = async (roadmap: string) => {
     const connection = await db.getConnection();
     try {
-        
-        const query = `SELECT * FROM Roadmap_categoria INNER JOIN Categoria ON componenteCategoria=idNombre WHERE idRoadmap = '${roadmap}' AND Categoria.categoriaSuperior='Global' ORDER BY prioridad ASC`;
+
+        const query = `SELECT * FROM Roadmap_categoria INNER JOIN Categoria ON componenteCategoria=idNombre WHERE idRoadmap = '${roadmap}'
+        AND Categoria.categoriaSuperior='Global' ORDER BY prioridad ASC`;
         const [rows] = await connection.execute<IRoadmapComponentePrioridad[]>(query, [roadmap]);
-        
+
         return rows || [];
     } catch (error) {
         console.error('Error getting categoria:', error);
@@ -406,22 +434,20 @@ export const getCategoriaPrimerNivelGENERAL = async() =>{
 export const getComponentesCategoriaSegundoNivel = async (roadmap: string) => {
     const connection = await db.getConnection();
     try {
-        
         const query = `SELECT Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
-        FROM Roadmap_categoria 
-        JOIN Categoria 
-        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre 
-        WHERE Roadmap_categoria.idRoadmap = '${roadmap}' 
+        FROM Roadmap_categoria
+        JOIN Categoria
+        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre
+        WHERE Roadmap_categoria.idRoadmap = '${roadmap}'
         AND Categoria.categoriaSuperior IN (
-            SELECT idNombre 
-            FROM Categoria 
+            SELECT idNombre
+            FROM Categoria
             WHERE Categoria.categoriaSuperior = 'Global'
-        ) 
+        )
         ORDER BY prioridad ASC;`;
         const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap]);
         console.log(rows)
 
-        
         return rows || [];
     } catch (error) {
         console.error('Error getting categoria:', error);
@@ -454,17 +480,15 @@ export const getCategoriaSegundoNivelGENERAL = async() =>{
 export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:string)=>{
     const connection = await db.getConnection();
     try {
-        
         const query =  `SELECT  Roadmap_categoria.componenteCategoria, Categoria.categoriaSuperior
-        FROM Roadmap_categoria 
-        JOIN Categoria 
-        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre 
-        WHERE Roadmap_categoria.idRoadmap = '${roadmap}' 
+        FROM Roadmap_categoria  JOIN Categoria
+        ON Roadmap_categoria.componenteCategoria = Categoria.idNombre
+        WHERE Roadmap_categoria.idRoadmap = '${roadmap}'
         AND Categoria.categoriaSuperior IN (
-            SELECT idNombre 
-            FROM Categoria 
+            SELECT idNombre
+            FROM Categoria
             WHERE Categoria.categoriaSuperior = '${padre}'
-        ) 
+        )
         ORDER BY prioridad ASC;`;
         const [rows] = await connection.execute<ICategoriaSubNivel[]>(query, [roadmap, padre]);
         console.log(rows)
@@ -474,7 +498,6 @@ export const getComponentesCategoriaTercerNivel = async (roadmap:string, padre:s
     }finally {
         connection.release();
     }
-
 }
 
 export const getCategoriaTercerNivelGENERAL = async() =>{

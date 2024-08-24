@@ -16,24 +16,41 @@ const recursos = await getAllRecursos();
   />
 
 
-  <form method ="POST" class="form-container" action="/api/modificar">
+  <form method ="POST" class="form-container" action="/api/calificar">
     <input type="hidden" name="formType" value="escogerRecurso" />
     <fieldset>
         <legend>LKS Evaluación de recursos de aprendizaje</legend>
         <label for="titulo">Escoge el recurso que has cursado:</label>
-        <select id="recurso" name="recurso" required>
-          <option value="" disabled selected>Escoger el recurso a valorar...</option>
-          {recursos?.map((recurso) => (
-            <option value={recurso.idRecurso}>{recurso.titulo}</option>
-
-        ))}
         
-        </select>
+        
+        <input type="hidden" id="recursoR" name="recursoR">
+        
+        <input type="text" id="input-box" placeholder="Buscar recurso..." autocomplete="off">
+
+            <div id="custom-dropdown" class="custom-dropdown">
+                <ul id="dropdown-options" class="dropdown-options">
+                    {recursos?.map((recurso) => (
+                        <li value={recurso.idRecurso+'.' + recurso.titulo}>{recurso.titulo}</li>
+                    ))}
+                </ul>
 
 </fieldset>
 
-      <button type="submit">Next</button>
+<div class="button-container">
+  <button type="submit">Next</button>
+</div>
+
+<div id="correct-message" class="message success"></div>
+<div id="error-message" class="message error"></div>
+
 
   </form>
+
+  <script>
+    import {  setupDropdown } from '../../utils.js';
+    
+
+    setupDropdown('input-box', 'custom-dropdown', 'recursoR');
+    </script>
 
 </BaseLayout>

@@ -92,12 +92,12 @@ export interface User extends RowDataPacket {
 export const prerender = false;
 
 const connectionConfig = {
-  host: '172.20.133.21',
-  //host:'localhost',
+  //host: '172.20.133.21',
+  host:'localhost',
   user: 'roadmap',
   password: 'roadmap',
-  database: 'roadmap',
-  //database: 'roadmapcompleto',
+  //database: 'roadmap',
+  database: 'roadmapcompleto',
   port: 3306,
   //port:3306
 
