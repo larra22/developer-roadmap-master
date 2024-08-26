@@ -6,12 +6,23 @@
   .container {
     @apply mx-auto max-w-[830px] px-4;
   }
+
+  .wrapper {
+    @apply flex flex-col min-h-screen; /* Full viewport height and flex column */
+  }
+
+  .content {
+    @apply flex-1; /* Allow content to take up available space */
+  }
+
+  .footer {
+    /* Add any footer-specific styles here */
+  }
 }
 
 .footer-spacing {
   margin-top: 50px;
 }
-
 
 button {
   background-color: #f7f8f7; /* Green */
@@ -27,10 +38,6 @@ button {
   border-radius: 10px;
 }
 
-button:hover {
-  background-color: #F85900;
-  color:#ebebeb
-}
 
 blockquote p:before {
   display: none;

@@ -5,13 +5,14 @@ module.exports = {
     extend: {
       colors: {
         'lks-color': '#f85900',
-        'crudo':'#dbc2a3',
-        'rosita':'#db73a',
-        'oro-caliente':'#dbb15a',
-        'oro-frio':'#dbc15a',
-        'naranja-apagado':'#dba05a',
-        'azul-complementario':'#5adbdb',
-        'blanco': '#ffffff'
+        'morado':'#AA66D9',
+        'verde': '#63DB4B',
+        'azul':'#009ff8',
+        'marron':' #7f2d00 ',
+        'blanco': '#ffffff',
+        'negro':'#000000',
+        'verde-claro':'#C8E0C9',
+        'crudo':'#C8E0D6',
       },
       typography: {
         quoteless: {

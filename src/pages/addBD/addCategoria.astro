@@ -4,6 +4,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { type ICategoria, type IRol } from "../../database/dbMySQL";
 import { getAllCategorias, getAllRoles } from "../../database/consultas";
 import '../../styles/formulario.css';
+import "../../components/Button/ButtonSave.astro"
+import ButtonSave from "../../components/Button/ButtonSave.astro";
 
 const user = Astro.locals.user;
 if(!user){
@@ -75,11 +77,9 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
            
         </fieldset>
 
-
-        <div class="button-container">
-            <button type="submit">Guardar</button>
-        </div>
-
+        <center>
+       <ButtonSave></ButtonSave>
+    </center>
         <div id="correct-message" class="message success"></div>
         <div id="error-message" class="message error"></div>
     </form>

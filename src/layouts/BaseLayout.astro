@@ -128,25 +128,27 @@ const gaPageIdentifier = Astro.url.pathname
 
   </head>
   <body>
-    <slot name='page-header'>
-      <Navigation />
-    </slot>
+    <div class="wrapper">
+      <header>
+        <slot name='page-header'>
+          <Navigation />
+        </slot>
+      </header>
 
-    <slot />
-    <br>
-    <br>
-    <br>
-    <br>
-    <slot name='page-footer'>
-      <Footer/>
+      <main class="content">
+        <slot />
+      </main>
 
-    </slot>
+      <footer class="footer">
+        <slot name='page-footer'>
+          <Footer />
+        </slot>
+      </footer>
+    </div>
 
     <PageProgress initialMessage={initialLoadingMessage} client:idle />
     <CommandMenu client:idle />
-
     <slot name='after-footer' />
-
     <Analytics />
   </body>
 </html>

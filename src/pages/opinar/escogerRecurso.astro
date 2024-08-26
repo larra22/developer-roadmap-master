@@ -3,6 +3,7 @@ import SimplePageHeader from "../../components/SimplePageHeader.astro";
 import { getAllRecursos} from "../../database/consultas";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import '../../styles/formulario.css'
+import ButtonNext from "../../components/Button/ButtonNext.astro";
 
 const recursos = await getAllRecursos();
 
@@ -36,9 +37,7 @@ const recursos = await getAllRecursos();
 
 </fieldset>
 
-<div class="button-container">
-  <button type="submit">Next</button>
-</div>
+<ButtonNext></ButtonNext>
 
 <div id="correct-message" class="message success"></div>
 <div id="error-message" class="message error"></div>
