@@ -1,5 +1,9 @@
 ---
 import '../styles/IconoFormatoR.css';
+import '../styles/global.css'
+import './Button/ButtonProgress.astro'
+import '../styles/btnProgress.css'
+import ButtonProgress from './Button/ButtonProgress.astro';
 export interface Props {
   formato: string | null;
 }
@@ -12,6 +16,7 @@ const { formato } = Astro.props;
     case 'Vídeo':
       return (
         <span class="formato-video">{formato}</span>
+       
       );
     case 'PDF':
       return (
@@ -31,3 +36,5 @@ const { formato } = Astro.props;
       );
   }
 }}
+
+<ButtonProgress></ButtonProgress>

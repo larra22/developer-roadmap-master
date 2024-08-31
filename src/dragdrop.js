@@ -1,7 +1,9 @@
+export function loadScroller(){
+
 window.addEventListener('load', () => {
     diapositivasScroller();
+    
     document.querySelectorAll('.svg-card').forEach(card => {
-        console.log('Hola')
         let offsetX, offsetY, isDragging = false;
 
         card.addEventListener('mousedown', (e) => {
@@ -18,12 +20,11 @@ window.addEventListener('load', () => {
             card.style.left = `${x}px`;
             card.style.top = `${y}px`;
 
-            // Update the corresponding item
             const text = card.querySelector('text').textContent;
             const item = document.querySelector(`#resource-svg-wrap svg g[data-group-id='${text.split(' ')[1]}]`);
             if (item) {
-                item.style.left = `${x + 200}px`; // Adjust based on your layout
-                item.style.top = `${y}px`;       // Adjust based on your layout
+                item.style.left = `${x + 200}px`;
+                item.style.top = `${y}px`;
             }
         });
 
@@ -63,7 +64,7 @@ function diapositivasScroller() {
             const newLi = document.createElement("li");
             newLi.classList.add("reorder-item");
             newLi.setAttribute("draggable", "true");
-            newLi.dataset.index = index; // Store original index in the card
+            newLi.dataset.index = index;
 
             const filmstripItemDiv = document.createElement("div");
             filmstripItemDiv.classList.add("filmstrip-item");
@@ -78,7 +79,7 @@ function diapositivasScroller() {
 
             filmstripUl.appendChild(newLi);
 
-            // Add drag-and-drop functionality
+            
             addDragAndDropListeners(newLi, filmstripUl, svgGroups);
         });
     } else {
@@ -97,8 +98,8 @@ function addDragAndDropListeners(card, filmstripUl, svgGroups) {
     card.addEventListener('dragend', () => {
         setTimeout(() => {
             card.classList.remove('dragging');
-            updateCardNumbers(filmstripUl); // Update numbers after drop
-            reorderSvgGroups(filmstripUl, svgGroups); // Reorder SVG groups based on the new order of cards
+            updateCardNumbers(filmstripUl);
+            reorderSvgGroups(filmstripUl, svgGroups);
         }, 0);
         draggedItem = null;
     });
@@ -120,7 +121,7 @@ function updateCardNumbers(filmstripUl) {
     cards.forEach((card, index) => {
         const cardNumberDiv = card.querySelector('.card-number');
         if (cardNumberDiv) {
-            cardNumberDiv.textContent = index + 1; // Update the number
+            cardNumberDiv.textContent = index + 1;
         }
     });
 }
@@ -132,12 +133,10 @@ function reorderSvgGroups(filmstripUl, svgGroups) {
         const group = svgGroups[originalIndex];
         const parent = group.parentNode;
 
-        // Move the SVG group to the new position
         parent.appendChild(group);
     });
 }
 
-// Helper function to determine where to insert the dragging card
 function getDragAfterElement(container, y) {
     const draggableElements = [...container.querySelectorAll('.reorder-item:not(.dragging)')];
 
@@ -150,4 +149,5 @@ function getDragAfterElement(container, y) {
             return closest;
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
 }

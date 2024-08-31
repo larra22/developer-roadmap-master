@@ -132,6 +132,7 @@ export class Renderer {
     }
 
     this.containerEl.innerHTML = this.loaderHTML!;
+    console.log(jsonData)
     
         return wireframeJSONToSVG(JSON.parse(JSON.stringify(jsonData)), {
           fontURL: '/fonts/balsamiq.woff2',
