@@ -180,6 +180,22 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
     }
 }
 
+export const insertAdmin = async (id:string, username:string,password:string, admin:1) => {
+    const connection = await db.getConnection();
+    try {
+        
+        const query = `INSERT INTO user (id, username, password, admin) VALUES ('${id}','${username}', '${password}', '${admin}')`;
+        const [result] = await connection.execute<ResultSetHeader>(query, [id, username, password]);
+        
+        return result;
+    } catch (error) {
+        console.error('Error adding user:', error);
+}finally {
+    connection.release();
+}
+}
+
+
 
 export const insertOpinionExterno = async (user: string, idRecurso:number, fecha:Date, valoracionGlobal:number, dificultad:number, topTema:string, problematico:number, n_beneficioso:number,
     recomendado:number, tiempo:number, resolutivo:number, problema:string, extra: string

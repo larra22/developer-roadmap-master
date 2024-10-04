@@ -1,7 +1,7 @@
 import type { APIContext } from "astro";
 import { generateId } from "lucia";
 import {Argon2id} from "oslo/password"
-import { insertUsuario } from "../../database/consultas";
+import { insertUsuario, insertAdmin } from "../../database/consultas";
 import { lucia } from "../../auth.ts";
 
 
@@ -29,11 +29,20 @@ export async function POST(context:APIContext): Promise<Response>{
 
         }
 
-        //Insertamos en la base de datos
         const userId= generateId(15);
         const hashPassword = await new Argon2id().hash(password)
 
+        if(admin){
+            //Insertamos usuario siendo admin a la BD
+            await insertAdmin(userId, username, hashPassword, 1)
+
+        }else{
+            //Insertamos en la base de datos usuario normal sin admin
         await insertUsuario(userId, username, hashPassword)
+
+        }
+
+        
 
         //Ya nos hemos registrado
 
