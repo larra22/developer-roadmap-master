@@ -13,7 +13,13 @@ export interface MyErrorEvent {
     message: string;
 }
 
-
+export class ProblemaBD extends Error {
+    constructor(message: string | undefined) {
+        super(message);
+        this.name = 'DatabaseException';
+        
+    }
+}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  INSERT INTO BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -207,7 +213,7 @@ export const insertAdmin = async (id:string, username:string,password:string, ad
 
 
 
-export const insertOpinionExterno = async (user: string, idRecurso:number, fecha:Date, valoracionGlobal:number, dificultad:number, topTema:string, problematico:number, n_beneficioso:number,
+export const insertOpinionExterno = async (user: string, idRecurso:number, fecha:String, valoracionGlobal:number, dificultad:number, topTema:string, problematico:number, n_beneficioso:number,
     recomendado:number, tiempo:number, resolutivo:number, problema:string, extra: string
 ) => {
     const connection = await db.getConnection();
@@ -216,14 +222,15 @@ export const insertOpinionExterno = async (user: string, idRecurso:number, fecha
         const query = `INSERT INTO Opinion_externo (idOpinion, user,idRecurso, fecha, valoracion, dificultad, 
         topTema, problematico, n_beneficioso, recomendado, tiempoNecesario, resolutivo, problema, extra) 
         VALUES ('${idOpinion}','${user}', '${idRecurso}','${fecha}','${valoracionGlobal}', '${dificultad}', '${topTema}','${problematico}', '${n_beneficioso}', 
-        '${recomendado}', '${tiempo}','${resolutivo}', '${problema}' '${extra}')`;
+        '${recomendado}', '${tiempo}','${resolutivo}', '${problema}', '${extra}')`;
         const [result] = await connection.execute<ResultSetHeader>(query, [idOpinion, user, idRecurso, fecha, valoracionGlobal, dificultad, topTema, problematico, n_beneficioso,
             recomendado, tiempo, resolutivo, problema, extra
         ]);
         
         return result;
-    } catch (error) {
-        console.error('Error adding user:', error);
+    } catch (error){
+        console.log(error)
+        throw new ProblemaBD('Fallo en insertar la opinion')
 }finally {
     connection.release();
 }

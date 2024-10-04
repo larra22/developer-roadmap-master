@@ -8,12 +8,18 @@ const url = new URL(request.url);
 const searchParams = new URLSearchParams(url.search);
 const id = searchParams.get('id');
 
+
+
 const user = Astro.locals.user;
 if(!user){
   return Astro.redirect("/auth/signin")
 }
+console.log('hola')
 
-
+console.log(id)
+console.log(user.username)
+console.log(url)
+console.log('hola')
 ---
 <head>
     <meta charset="UTF-8" />
@@ -25,12 +31,13 @@ if(!user){
     />
   
   
-    <form method="POST" class="form-container" action="/api/calificar">
+    <form id="externoForm" method="POST" class="form-container" action="/api/calificar">
         <input type="hidden" name="formType" value="calificarExterno" />
 
         <input type="hidden" name="idRecurso" value={id} />
-        <input type="hidden" name="user" value={user.id} />
-
+       Aqui:  {id}
+        <input type="hidden" name="user" value={user.username} />
+  
         <fieldset>
 
           <label for="dificultad">¿Cúal es tu valoración general del recurso?: Negativa 1 ... 5 Positiva</label>
@@ -184,10 +191,19 @@ if(!user){
          <div class="button-container">
           <button type="submit">Guardar</button>
         </div>
+
+        <div id="correct-message" class="message success"></div>
+        <div id="error-message" class="message error"></div>
   </form>
   
   
   </BaseLayout>
+
+  <script>
+     import {  setupFormSubmission } from '../../utils.js';
+
+setupFormSubmission('externoForm', '/api/calificar');
+  </script>
   
 
   
