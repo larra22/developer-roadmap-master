@@ -174,7 +174,12 @@ export const insertCategoria = async (nombre: string, descripcion:string, superi
             
             return result;
         } catch (error) {
-            console.error('Error adding user:', error);
+            const errorDuplicate: MyErrorEvent = {
+                code: 11062,
+                message: ER_DUP_ENTRY
+                
+        };
+        throw errorDuplicate
     }finally {
         connection.release();
     }
@@ -189,7 +194,12 @@ export const insertAdmin = async (id:string, username:string,password:string, ad
         
         return result;
     } catch (error) {
-        console.error('Error adding user:', error);
+        const errorDuplicate: MyErrorEvent = {
+            code: 11062,
+            message: ER_DUP_ENTRY
+            
+    };
+    throw errorDuplicate
 }finally {
     connection.release();
 }

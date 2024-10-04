@@ -15,44 +15,59 @@ export async function POST(context:APIContext): Promise<Response>{
 
         //Validamos los datos (que este todo bien)
         if(!username || !password){
-            return new Response("El usuario o la contraseña son necesarios", {status:400});
+            return new Response(JSON.stringify({ message: 'El usuario o la contraseña son necesarios', }), {
+                status: 400,
+                headers: { "Content-Type": "application/json" }
+            });
 
         }
 
         if(typeof username !=='string' || username.length<4){
-            return new Response('El usuario deben ser carácteres y logintud mayor que 4', {status:400})
+            return new Response(JSON.stringify({ message: 'El usuario deben ser carácteres y logintud mayor que 4', }), {
+                status: 400,
+                headers: { "Content-Type": "application/json" }
+            });
 
         }
 
         if(typeof password !=='string' || password.length<4){
-            return new Response('La contraseña debe ser mayor que 4 caracteres', {status:400})
+            
+            return new Response(JSON.stringify({ message: 'La contraseña debe ser mayor que 4 caracteres', }), {
+                status: 400,
+                headers: { "Content-Type": "application/json" }
+            });
 
         }
 
         const userId= generateId(15);
         const hashPassword = await new Argon2id().hash(password)
 
-        if(admin){
-            //Insertamos usuario siendo admin a la BD
-            await insertAdmin(userId, username, hashPassword, 1)
+        try{
+            if(admin){
+                //Insertamos usuario siendo admin a la BD
+                await insertAdmin(userId, username, hashPassword, 1)
+    
+            }else{
+                //Insertamos en la base de datos usuario normal sin admin
+            await insertUsuario(userId, username, hashPassword)
 
-        }else{
-            //Insertamos en la base de datos usuario normal sin admin
-        await insertUsuario(userId, username, hashPassword)
+            }
 
+            //Ya nos hemos registrado
+
+            //ahora iniciamos sesión seguido
+
+            return context.redirect('/addBD/escogerObjeto')
+    
+        }catch(error){
+            const errorMessage = error instanceof Error ? error.message : "Ya existe un usuario con ese usernameD";
+            return new Response(JSON.stringify({ message: "Ya existe un usuario con ese username", error: errorMessage }), {
+                status: 400,
+                headers: { "Content-Type": "application/json" }
+            });
         }
-
+       
         
 
-        //Ya nos hemos registrado
-
-        //ahora iniciamos sesión seguido
-
-        const session = await lucia.createSession(userId,{});
-
-        const sessionCookie = lucia.createSessionCookie(session.id)
         
-        context.cookies.set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-
-        return context.redirect('/home')
 }
