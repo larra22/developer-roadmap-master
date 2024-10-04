@@ -34,14 +34,24 @@ export async function POST(context:APIContext):Promise<Response> {
     
     
     }else if(formType === 'calificarInterno'){
-      const idRecurso = parseInt(data.get('idRecurso')?.toString() || '0');
-      const user= data.get('user')?.toString();
-      const fecha = new Date();
-      const  valoracionGlobal = parseInt(data.get('valoracion')?.toString() || '0');
-      const dificultad = parseInt(data.get('dificultad')?.toString() || '0');
-      const topTema = data.get('topTema')?.toString();
+      const idRecurso = data.get('idRecurso')?.toString();
+      if(idRecurso){
+        const user= data.get('user')?.toString() || 'null';
+        const fecha =  new Date().toISOString().slice(0, 19).replace('T', ' ');
+          const  valoracionGlobal = parseInt(data.get('valoracion')?.toString() || '0');
+          const dificultad = parseInt(data.get('dificultad')?.toString() || '0');
+          const topTema = data.get('topTema')?.toString() || 'null';
+     
+          //TODO: Try y catch es decir meter en la BD adecuadamente, fijarse bien en los parametros
+          //Es que no se cuales son y me ha dado un poco de no seque ponerme a buscar 
+          //Es tarde :(
+    }else{
+        return context.redirect(`/error`);
+    }
 
-        return new Response('calificarInterno');
+      
+
+        
     }else{
       
       const idRecurso =data.get('idRecurso')?.toString()

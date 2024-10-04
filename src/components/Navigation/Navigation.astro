@@ -24,6 +24,10 @@ const user = Astro.locals.user;
         <a href='/opinar/escogerRecurso' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Calificar</a>
       </li>
 
+      <li class='hidden lg:inline'>
+        <a href='/help/ayuda' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Ayuda</a>
+      </li>
+
       <!-- FUNCIONALIDADES ADMIN -->
       {user && user.admin == 1 &&
       <li class='hidden lg:inline'>

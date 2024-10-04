@@ -14,20 +14,15 @@ const user = Astro.locals.user;
 if(!user){
   return Astro.redirect("/auth/signin")
 }
-console.log('hola')
 
-console.log(id)
-console.log(user.username)
-console.log(url)
-console.log('hola')
 ---
 <head>
     <meta charset="UTF-8" />
   </head>
   <BaseLayout title='Onboarding' permalink={`/opinar/calificarExterno?id='${id}'` }>
       <SimplePageHeader
-      title='Developer Roadmaps'
-      description='Incluir en el almacenamiento de la empresa un nuevo recurso:'
+      title='Califica el recurso externo'
+      description='Tu opinión nos importa, ayudanos a mejorar nuestras formaciones con tu experiencia.'
     />
   
   
@@ -35,7 +30,7 @@ console.log('hola')
         <input type="hidden" name="formType" value="calificarExterno" />
 
         <input type="hidden" name="idRecurso" value={id} />
-       Aqui:  {id}
+
         <input type="hidden" name="user" value={user.username} />
   
         <fieldset>

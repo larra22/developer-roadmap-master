@@ -10,6 +10,10 @@ const url = new URL(request.url);
 const searchParams = new URLSearchParams(url.search);
 const id = searchParams.get('id');
 
+const user = Astro.locals.user;
+if(!user){
+  return Astro.redirect("/auth/signin")
+}
 
 ---
 <head>
@@ -17,13 +21,18 @@ const id = searchParams.get('id');
   </head>
   <BaseLayout title='Onboarding' permalink={`/opinar/calificarInterno?id='${id}'` }>
       <SimplePageHeader
-      title='Developer Roadmaps'
-      description='Incluir en el almacenamiento de la empresa un nuevo recurso:'
+      title='Califica el recurso interno'
+      description='Tu opinión nos importa. Dinos como mejorar y ayudanos a mejorar nuestras formaciones con tu experiencia.'
     />
   
   
-    <form method="POST" class="form-container" action="/api/calificar">
+    <form id='internoForm' method="POST" class="form-container" action="/api/calificar">
         <input type="hidden" name="formType" value="calificarInterno" />
+
+        <input type="hidden" name="idRecurso" value={id} />
+
+        <input type="hidden" name="user" value={user.username} />
+
       <fieldset>
           <label  for="ponentes" >Indica el/los nombre(s) del(os) ponente(s), en caso de ser una formación:</label>
           <input
@@ -31,7 +40,7 @@ const id = searchParams.get('id');
             id="ponentes"
             name="ponentes"
             required
-            placeholder="Ponentes que han impartido" aria-required="true"
+            placeholder="Ponentes que han impartido"
           />
   
           <label for="topTema">Entre los temas que se han trabajado, ¿hay alguno que se haya explicado particularmente bien? Si puedes, describe qué tema te ha ayudado.</label>
@@ -111,18 +120,17 @@ const id = searchParams.get('id');
           <div class="button-container">
           <button type="submit">Guardar</button>
           </div>
-  
+          <div id="correct-message" class="message success"></div>
+          <div id="error-message" class="message error"></div>
   </form>
   
   
   </BaseLayout>
   
   
-  <script is:inline src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
-  import $ from 'jquery';
-  $(document).ready(function() {
-      $('.js-example-basic-single').select2();
-  });
-  </script>
-  
+  <script>
+    import {  setupFormSubmission } from '../../utils.js';
+
+setupFormSubmission('internoForm', '/api/calificar');
+ </script>
   
