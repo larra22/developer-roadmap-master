@@ -86,3 +86,7 @@ a > code:before {
 }
 
 
+a {
+  color: #1D4ED8; /* Azul */
+  text-decoration: underline; /* Subrayado */
+}

@@ -15,7 +15,7 @@ const user = Astro.locals.user;
     <!-- Center-aligned navigation items -->
     <ul class='hidden space-x-5 sm:flex sm:items-center mx-auto'>
       <li>
-        <a href='/roadmaps' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Roadmaps</a>
+        <a href='/roadmaps' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Itinerarios</a>
       </li>
       <li class='hidden lg:inline'>
         <a href='/addBD/escogerObjeto' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Añadir</a>
@@ -28,11 +28,10 @@ const user = Astro.locals.user;
         <a href='/help/ayuda' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Ayuda</a>
       </li>
 
-      <!-- FUNCIONALIDADES ADMIN -->
-      {user && user.admin == 1 &&
+
       <li class='hidden lg:inline'>
         <a href='/modificar/escogerModificar' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Modificar</a>
-      </li>}
+      </li>
       
       <li class='hidden lg:inline'>
         <a href='/account/cuentaInfo' class='custom-button text-lks-color font-semibold text-[20px] flex items-center justify-center'>Cuenta</a>
