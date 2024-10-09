@@ -90,3 +90,21 @@ a {
   color: #1D4ED8; /* Azul */
   text-decoration: underline; /* Subrayado */
 }
+
+
+
+::-webkit-scrollbar{
+  width: .7rem;
+  background-color: hsl(34, 16%, 75%);
+
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: hsl(34, 16%, 65%);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: hsl(34, 97%, 53%);
+}
+
+
