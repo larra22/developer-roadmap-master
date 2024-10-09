@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation/Navigation.astro';
 import { PageProgress } from '../components/PageProgress';
 import { siteConfig } from '../lib/config';
 import '../styles/global.css';
-
+import '../styles/remixicon.css'
 export interface Props {
   title: string;
   // This isn't used anywhere except for the sponsor event labels
@@ -138,12 +138,21 @@ const gaPageIdentifier = Astro.url.pathname
         <slot />
       </main>
 
+      <!----========= FLECHA PARA VOLVER HACIA ARRIBA ======= -->
+      <div style="font-size: 64px;">
+    <a href="" class="scrollup" id="scroll-up">
+      <i class="ri-bus-2-fill"></i>
+    </a>
+  </div>
       <footer class="footer">
         <slot name='page-footer'>
           <Footer />
         </slot>
       </footer>
-    </div>
+    
+  </div>
+
+    
 
     <PageProgress initialMessage={initialLoadingMessage} client:idle />
     <CommandMenu client:idle />

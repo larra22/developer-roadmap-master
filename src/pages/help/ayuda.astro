@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import SimplePageHeader from "../../components/SimplePageHeader.astro"
+import "../../styles/ayuda.css"
 
 ---
 <BaseLayout title="Información" permalink={'/help/ayuda'}>
-
-</BaseLayout>
+    <SimplePageHeader
+    title='Información'
+    description='Aquí se aclaran los distinto significados de los objetos que componen los itinerarios o se utilizan a lo largo de esta aplicación.'
+/>
 
 <section class="ayuda section" id="ayuda">
     <div class="ayuda container container grid">
@@ -19,7 +22,13 @@ import SimplePageHeader from "../../components/SimplePageHeader.astro"
             </p>
         </div>
 
+        <div class="ayuda__images">
+            <img src="/public/manifest/icon196.png" alt="" class="ayuda__recurso">
+        </div>
+
 
 
     </div>
 </section>
+
+</BaseLayout>
