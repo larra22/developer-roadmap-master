@@ -67,7 +67,8 @@
     "openai": "^4.28.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11"
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "sonarqube-scanner": "^4.2.3"
   },
   "engines": {
     "node": ">=18.14.1"
