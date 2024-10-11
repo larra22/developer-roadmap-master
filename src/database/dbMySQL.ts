@@ -92,21 +92,30 @@ export interface User extends RowDataPacket {
 export const prerender = false;
 
 const connectionConfig = {
-  //host: '172.20.133.21',
   host:'localhost',
   user: 'roadmap',
   password: 'roadmap',
   database: 'roadmap',
-  //database: 'roadmapcompleto',
   port: 3307,
-  //port:3306
+
+
+};
+
+const connectionPropia = {
+  host:'localhost',
+  user: 'roadmap',
+  password: 'roadmap',
+  database: 'roadmapcompleto',
+  port:3306
 
 };
 
 
 
 
-export const pool = mysql.createPool(connectionConfig);
+
+
+export const pool = mysql.createPool(connectionPropia);
 
 
 

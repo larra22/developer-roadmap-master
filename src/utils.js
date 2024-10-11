@@ -1,4 +1,5 @@
-// src/utils.js
+
+
 
 export function updateOptionsVisibility(inputId, dropdownId) {
     const inputElement = document.getElementById(inputId);

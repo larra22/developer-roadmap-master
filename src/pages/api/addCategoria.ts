@@ -2,6 +2,8 @@ import type { APIContext } from "astro";
 import { insertCategoria, insertCategoriaRol } from "../../database/consultas";
 
 
+
+
 export async function POST(context: APIContext): Promise<Response> {
     const data = await context.request.formData();
 
@@ -9,7 +11,10 @@ export async function POST(context: APIContext): Promise<Response> {
     const descripcion = data.get("descripcion")?.toString();
     const categoriaPadre = data.get("categoriaPadre")?.toString();
     const rolCategoria = data.getAll("rolCategoria").map(item => item.toString());
-    
+    const editorContent = data.get('content') as string;
+
+    console.log(editorContent); 
+
 
     if (titulo && descripcion && categoriaPadre) {
         try {

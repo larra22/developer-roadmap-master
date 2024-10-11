@@ -7,8 +7,9 @@ import { defineConfig } from 'astro/config';
 import rehypeExternalLinks from 'rehype-external-links';
 import { serializeSitemap, shouldIndexPage } from './sitemap.mjs';
 import node from '@astrojs/node';
-
 import auth from "auth-astro";
+
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -45,5 +46,5 @@ export default defineConfig({
   }), compress({
     css: false,
     js: false
-  }), preact(), auth()]
+  }), preact(), auth(), react()]
 });

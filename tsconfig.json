@@ -1,8 +1,10 @@
 {
-	"extends": "astro/tsconfigs/strict",
-	"compilerOptions": {
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact",
-		"typeRoots": ["node_modules/@types"]
-	}
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
 }

@@ -28,6 +28,7 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
         description='Incluir en el almacenamiento de la empresa un nueva categoría:'
     />
 
+
     <form id="categoriaForm" class="form-container" autocomplete="off">
         <fieldset>
             <label class="required-field" for="titulo">Título:</label>
@@ -79,11 +80,18 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
         </fieldset>
 
         <center>
-       <ButtonSave></ButtonSave>
+
+    <ButtonSave></ButtonSave>
+
+
+       
+
     </center>
         <div id="correct-message" class="message success"></div>
         <div id="error-message" class="message error"></div>
+
     </form>
+
 
     <script>
       import { setupDropdown, setupFormSubmission } from '../../utils.js';
@@ -91,8 +99,8 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
         setupFormSubmission('categoriaForm', '/api/addCategoria');
         setupDropdown('input-box', 'custom-dropdown', 'categoriaPadre');
 
-  
-  </script>
 
+   
+  </script>
 
 </BaseLayout>
