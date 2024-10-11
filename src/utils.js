@@ -1,4 +1,12 @@
+export function setUpEditorFormHandle(idForm){
+    const form =document.getElementById(idForm)
 
+  form.addEventListener('formdata', (event)=>{
+    const content = document.getElementById('content');
+    console.log('EDITOR')
+    event.formData.append('content',content.innerHTML );
+  });
+}
 
 
 export function updateOptionsVisibility(inputId, dropdownId) {
@@ -73,6 +81,9 @@ export async function handleFormSubmit(event, apiUrl, formId) {
 
     const correctMessageElement = document.getElementById('correct-message');
     const errorMessageElement = document.getElementById('error-message');
+
+    
+
 
     if (response.ok) {
         if(formId=='roadmapForm'){

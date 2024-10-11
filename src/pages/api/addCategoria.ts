@@ -11,7 +11,7 @@ export async function POST(context: APIContext): Promise<Response> {
     const descripcion = data.get("descripcion")?.toString();
     const categoriaPadre = data.get("categoriaPadre")?.toString();
     const rolCategoria = data.getAll("rolCategoria").map(item => item.toString());
-    const editorContent = data.get('content') as string;
+    const editorContent = data.get('content');
 
     console.log(editorContent); 
 

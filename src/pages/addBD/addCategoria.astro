@@ -4,8 +4,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { type ICategoria, type IRol } from "../../database/dbMySQL";
 import { getAllCategorias, getAllRoles } from "../../database/consultas";
 import '../../styles/formulario.css';
+import '../../styles/editor.css'
 import "../../components/Button/ButtonSave.astro"
 import ButtonSave from "../../components/Button/ButtonSave.astro";
+import fs from 'fs-extra';
+import path from 'path';
+
+const htmlContent = await fs.readFile(path.resolve('src/pages/addBD/editor.html'), 'utf-8');
+
+const quillHTML = await fs.readFile(path.resolve('src/pages/addBD/quillEditor.html'),'utf-8');
 
 const user = Astro.locals.user;
 if(!user){
@@ -81,26 +88,37 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
 
         <center>
 
+            <section set:html={htmlContent}>
+            </section>
+
+            <!--<section set:html={quillHTML}></section>-->
+
     <ButtonSave></ButtonSave>
 
+    
+</center>
+<div id="correct-message" class="message success"></div>
+<div id="error-message" class="message error"></div>
 
+</form>
        
 
-    </center>
-        <div id="correct-message" class="message success"></div>
-        <div id="error-message" class="message error"></div>
 
-    </form>
 
 
     <script>
-      import { setupDropdown, setupFormSubmission } from '../../utils.js';
+      import { setUpEditorFormHandle, setupDropdown, setupFormSubmission } from '../../utils.js';
+
+      setUpEditorFormHandle('categoriaForm');
 
         setupFormSubmission('categoriaForm', '/api/addCategoria');
         setupDropdown('input-box', 'custom-dropdown', 'categoriaPadre');
 
 
+
    
   </script>
+
+
 
 </BaseLayout>
