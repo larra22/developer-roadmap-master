@@ -49,6 +49,7 @@
     "node-html-parser": "^6.1.12",
     "npm-check-updates": "^16.14.15",
     "preact": "^10.15.1",
+    "react": "^18.3.1",
     "rehype-external-links": "^3.0.0",
     "roadmap-renderer": "^1.0.6",
     "select2": "^4.1.0-rc.0",
