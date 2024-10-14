@@ -23,7 +23,7 @@ export async function POST(context:APIContext):Promise<Response> {
         }else if(formType === 'escogerRoadmap') {
         
             const id= data.get('roadmapR')?.toString();
-              return context.redirect(`/modificar/contenido?id=${id}`);
+              return context.redirect(`/modificar/contenidoItinerario?id=${id}`);
         
             
             }

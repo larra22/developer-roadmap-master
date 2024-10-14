@@ -149,8 +149,8 @@ const gaPageIdentifier = Astro.url.pathname
 
     
 
-    <PageProgress initialMessage={initialLoadingMessage} client:idle />
-    <CommandMenu client:idle />
+    <PageProgress initialMessage={initialLoadingMessage} client:only="react" />
+    <CommandMenu client:only="react" />
     <slot name='after-footer' />
     <Analytics />
   </body>
