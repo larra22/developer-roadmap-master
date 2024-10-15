@@ -10,9 +10,9 @@ import ButtonSave from "../../components/Button/ButtonSave.astro";
 import fs from 'fs-extra';
 import path from 'path';
 
-const htmlContent = await fs.readFile(path.resolve('src/pages/addBD/editor.html'), 'utf-8');
+const htmlContent = await fs.readFile(path.resolve('src/components/Editor/editor.html'), 'utf-8');
 
-const quillHTML = await fs.readFile(path.resolve('src/pages/addBD/quillEditor.html'),'utf-8');
+const quillHTML = await fs.readFile(path.resolve('src/components/Editor/bubbleQuillEditor.html'),'utf-8');
 
 const user = Astro.locals.user;
 if(!user){
@@ -38,26 +38,17 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
 
     <form id="categoriaForm" class="form-container" autocomplete="off">
         <fieldset>
-            <label class="required-field" for="titulo">Título:</label>
-            <input
-                type="text"
-                id="titulo"
-                name="titulo"
-                required
-                placeholder="Título de la categoría"
-                aria-required="true"
-            />
+            <label  class="required-field" for="titulo">Título:</label>
+            <div id="editorTitulo" aria-required="true">
+            </div>
+
 
             <label class="required-field" for="descripcion">Descripción:</label>
-            <textarea
-                id="descripcion"
-                name="descripcion"
-                cols="50"
-                rows="5"
-                placeholder="Descripción..."
-                required
-                aria-required="true"
-            ></textarea>
+
+            <section set:html={htmlContent}>
+            </section>
+            
+            <div id="editorDescripcion"></div>
 
             <input type="hidden" id="categoriaPadre" name="categoriaPadre" value="Global">
 
@@ -88,10 +79,8 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
 
         <center>
 
-            <section set:html={htmlContent}>
-            </section>
+          
 
-            <!--<section set:html={quillHTML}></section>-->
 
     <ButtonSave></ButtonSave>
 
@@ -104,6 +93,7 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
        
 
 
+<section set:html={quillHTML}></section>
 
 
     <script>
@@ -118,7 +108,6 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
 
    
   </script>
-
 
 
 </BaseLayout>

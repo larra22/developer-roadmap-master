@@ -1,5 +1,6 @@
 .form-container {
-  width: 600px;
+  justify-content: center;
+  width: 1000px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ddd;
