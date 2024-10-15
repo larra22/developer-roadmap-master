@@ -7,13 +7,6 @@
 	font-family: 'Poppins', sans-serif;
 }
 
-body {
-	background: #ddd;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-}
 
 li {
 	margin-left: 16px;
@@ -26,16 +19,19 @@ a {
 
 
 
-.container {
-	max-width: 991px;
+.container-editor {
+	max-width: 1000px;
 	width: 100%;
-	background: #fff;
+	background: #ffffff;
 	border-radius: 8px;
 	overflow: hidden;
 }
 .toolbar {
+	
+	width: 100%;
 	padding: 16px;
-	background: #eee;
+	background: #ffffff;
+	border: 2px solid #ddd;
 }
 .toolbar .head {
 	display: flex;
@@ -51,14 +47,15 @@ a {
 	outline: none;
 }
 .toolbar .head select {
-	background: #fff;
+	max-width: 150px;
+	background: #ffffff;
 	border: 2px solid #ddd;
 	border-radius: 6px;
 	outline: none;
 	cursor: pointer;
 }
 .toolbar .head .color {
-	background: #fff;
+	background: #ffffff;
 	border: 2px solid #ddd;
 	border-radius: 6px;
 	outline: none;
@@ -75,7 +72,7 @@ a {
 	border: none;
 	padding: 0;
 	width: 26px;
-	height: 26px;
+	height: 20px;
 	background: #fff;
 	cursor: pointer;
 }
@@ -92,7 +89,7 @@ a {
 	grid-gap: 10px;
 }
 .toolbar .btn-toolbar button {
-	background: #fff;
+	background: #e87b21;
 	border: 2px solid #ddd;
 	border-radius: 6px;
 	cursor: pointer;
@@ -106,12 +103,47 @@ a {
 .toolbar .btn-toolbar button:hover {
 	background: #f3f3f3;
 }
-#content {
-	padding: 16px;
-	outline: none;
-	max-height: 50vh;
-	overflow: auto;
-}
+
 #show-code[data-active="true"] {
 	background: #eee;
+}
+
+#content {
+	width: 950px;
+	height: 140px;
+    white-space: pre-wrap;
+    background-color: #ffffff;
+    border: 2px solid #ddd;
+    padding: 16px;
+    outline: none;
+	max-width: 1000px;
+    max-height: 30vh; /* Max height of the content area */
+    overflow-y: auto; /* Vertical scroll when content exceeds height */
+    position: relative;
+}
+
+/* Simulating placeholder for contenteditable */
+#content[contenteditable="true"]:empty::before {
+    content: attr(data-placeholder); /* Set the placeholder using data-placeholder attribute */
+    color: #aaa; /* Placeholder text color */
+    position: absolute;
+    top: 16px; /* Match padding */
+    left: 16px; /* Match padding */
+    pointer-events: none; /* Ensure you can still click into the div */
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Optional styling for the scrollbar */
+#content::-webkit-scrollbar {
+    width: 10px;
+}
+
+#content::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Scrollbar color */
+    border-radius: 10px;
+}
+
+#content::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
