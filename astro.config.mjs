@@ -9,7 +9,6 @@ import { serializeSitemap, shouldIndexPage } from './sitemap.mjs';
 import node from '@astrojs/node';
 import auth from "auth-astro";
 
-import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -46,5 +45,5 @@ export default defineConfig({
   }), compress({
     css: false,
     js: false
-  }), preact(), auth(), react()]
+  }), preact(), auth(),]
 });
