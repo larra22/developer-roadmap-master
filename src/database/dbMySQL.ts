@@ -115,7 +115,7 @@ const connectionPropia = {
 
 
 
-export const pool = mysql.createPool(connectionPropia);
+export const pool = mysql.createPool(connectionConfig);
 
 
 
