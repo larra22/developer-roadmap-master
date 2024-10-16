@@ -42,6 +42,9 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
             <div id="editorTitulo" aria-required="true">
             </div>
 
+            <br>
+            
+
 
             <label class="required-field" for="descripcion">Descripción:</label>
 
@@ -50,10 +53,14 @@ const rolesNames = roles?.map((rol:IRol)=> rol.idRol)
             
             <div id="editorDescripcion"></div>
 
+
+            <br>
+            <br>
             <input type="hidden" id="categoriaPadre" name="categoriaPadre" value="Global">
 
 
             <label  for="categoriaPadre">Pertenece a alguna categoría más global:</label>
+    
             
             <input type="text" id="input-box" placeholder="Buscar categoría" autocomplete="off">
 

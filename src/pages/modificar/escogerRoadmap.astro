@@ -17,7 +17,7 @@ const roadmap = await getRoadmapAlmacenados();
   />
 
 
-  <form method ="POST" class="form-container" action="/api/modificar">
+  <form method ="POST"  enctype="multipart/form-data" class="form-container" action="/api/modificar">
     <input type="hidden" name="formType" value="escogerRoadmap" />
     <fieldset>
         <legend>recursos de aprendizaje</legend>
@@ -31,13 +31,16 @@ const roadmap = await getRoadmapAlmacenados();
                         <li value={road.idRoadmap}>{road.idRoadmap}</li>
                     ))}
                 </ul>
-        
-        
+              
 </fieldset>
 
 <div class="button-container">
   <button type="submit">Next</button>
 </div>
+
+<fieldset>
+  <input  type="file" name="JSON">
+</fieldset>
 
 <div id="correct-message" class="message success"></div>
 <div id="error-message" class="message error"></div>
